@@ -4,18 +4,20 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class Account {
-    private String ID, Name, Address, Phone;
-    private HashMap<String, String> credentials;
+    private String ID, Name, Address, Phone, Username, Pass;
     private HashSet<items> Listofrental;
 
-    public Account(String ID, String name, String address, String phone, HashMap<String, String> credentials, HashSet<items> listofrental) {
+    public Account(String ID, String name, String address, String phone, String username, String pass, HashSet<items> listofrental) {
         this.ID = ID;
         Name = name;
         Address = address;
         Phone = phone;
-        this.credentials = credentials;
+        Username = username;
+        Pass = pass;
         Listofrental = listofrental;
     }
+
+
 
     public String getID() {
         return ID;
@@ -57,12 +59,19 @@ public class Account {
         Listofrental = listofrental;
     }
 
-    public HashMap<String, String> getCredentials() {
-        return credentials;
+    public String getUsername() {
+        return Username;
     }
 
-    public void setCredentials(HashMap<String, String> credentials) throws Exception {
-        BufferedWriter brw = new BufferedWriter(new FileWriter(RentalSys.file));
-        this.credentials = credentials;
+    public void setUsername(String username) {
+        Username = username;
+    }
+
+    public String getPass() {
+        return Pass;
+    }
+
+    public void setPass(String pass) {
+        Pass = pass;
     }
 }

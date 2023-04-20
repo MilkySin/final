@@ -1,12 +1,24 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class RentalSys {
     static String home = System.getProperty("user.home");
     static File file = new File(
             home + File.separator + "IdeaProjects" + File.separator + "final" + File.separator + "src" + File.separator + "usernamepass.txt");
+    static HashSet<String> hs = new HashSet<>();
 
+
+    public static void Register(Account account) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+        hs.add(account.getUsername() + account.getPass());
+        for(String s : hs){
+            bw.write(s + "\n");
+        }
+        bw.close();
+    }
     public static void Login() throws Exception {
         BufferedReader br = new BufferedReader(new FileReader(file));
 
@@ -17,6 +29,8 @@ public class RentalSys {
             accounts.add(st);
         }
 
+
+        //Login
         while (true) {
             Scanner scanner = new Scanner(System.in);
             System.out.print("Username: ");
@@ -34,6 +48,4 @@ public class RentalSys {
             }
         }
     }
-
-
 }

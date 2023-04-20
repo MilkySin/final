@@ -7,39 +7,17 @@ public class Main {
     static File file = new File(
             home + File.separator + "IdeaProjects" + File.separator + "final" + File.separator + "src" + File.separator + "usernamepass.txt");
 
-
-
-    public static void main (String[]args) throws Exception {
+    public static void main(String[] args) throws Exception {
 //        RentalSys.Login();
-        BufferedWriter brw = new BufferedWriter(new FileWriter(RentalSys.file));
 
-        BufferedReader br = new BufferedReader(new FileReader(file));
+        //Init objects
+        Regular regular = new Regular("C100", "John", "600", "911", "John", "1234", null);
+        Account admin = new Account("A100", "Test", "789", "911", "Admin", "admin", null);
 
-        String st;
-        ArrayList<String> accounts = new ArrayList<>();
+        RentalSys.Register(admin);
+        RentalSys.Register(regular);
 
-        while ((st = br.readLine()) != null){
-            accounts.add(st);
-        }
-
-        while (true) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.print("Username: ");
-            String user_input = scanner.nextLine();
-
-            System.out.print("Password: ");
-            String pass_input = scanner.nextLine();
-
-            if (accounts.contains(user_input + pass_input)) {
-                System.out.println("Login success");
-                br.close();
-                break;
-            } else {
-                System.out.println("Invalid username or password ");
-            }
-        }
-
-
+        RentalSys.Login();
     }
 }
 
