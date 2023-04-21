@@ -48,4 +48,12 @@ public class RentalSys {
             }
         }
     }
+
+    public static void addRental(Account account, HashSet<items> listofrental){
+        account.setListofrental(listofrental);
+    }
+
+    public static void removeRental(Account account, items rentalItem){
+        account.getListofrental().remove(rentalItem);
+    }
 }
