@@ -1,9 +1,11 @@
 package core;
 
-import javax.xml.crypto.Data;
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.sql.*;
+import java.util.Objects;
+
+import static java.sql.ResultSet.*;
 
 public class Database {
     Connection connection = null;
@@ -20,16 +22,22 @@ public class Database {
     }
 
     public Database query(String query) throws SQLException {
-        this.statement = this.connection.prepareStatement(query);
+        this.statement.executeQuery(query);
+        return this;
+    }
+
+    public Database query(String query, String param) throws SQLException {
+        this.statement = this.connection.prepareStatement(query, TYPE_FORWARD_ONLY, CONCUR_READ_ONLY);
+        this.statement.setString(1, param);
         this.statement.execute();
         return this;
     }
 
-    public Database query(String query, ArrayList<String> param) throws SQLException {
-        this.statement = this.connection.prepareStatement(query);
+    public Database query(String query, ArrayList<?> param) throws SQLException {
+        this.statement = this.connection.prepareStatement(query, TYPE_FORWARD_ONLY, CONCUR_READ_ONLY);
         int index = 1;
-        for (var it = param.iterator(); it.hasNext(); index++) {
-            this.statement.setString(index, it.next());
+        for (var it = param.listIterator(); it.hasNext(); index++) {
+            this.statement.setString(index, it.next().toString());
         }
         this.statement.execute();
         return this;
@@ -38,4 +46,5 @@ public class Database {
     public ResultSet get() throws SQLException {
         return this.statement.getResultSet();
     }
+
 }
