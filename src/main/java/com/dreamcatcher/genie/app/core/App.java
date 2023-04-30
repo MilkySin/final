@@ -24,4 +24,5 @@ public class App {
     public static Object resolve(String key) throws Exception {
         return App.container.resolve(key);
     }
+
 }

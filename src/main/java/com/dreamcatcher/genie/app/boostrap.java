@@ -3,12 +3,12 @@ package com.dreamcatcher.genie.app;
 import com.dreamcatcher.genie.app.core.App;
 import com.dreamcatcher.genie.app.core.Container;
 import com.dreamcatcher.genie.app.core.Database;
-import com.dreamcatcher.genie.app.core.Session;
 
 
 public class boostrap {
-    private static final Container container = new Container();
+
     public static void run() {
+        var container = new Container();
 
         container.bind("Core/Database", () -> {
             try {
@@ -18,7 +18,7 @@ public class boostrap {
             }
         });
 
-        container.bind("Core/Session", Session::new);
+//        container.bind("Core/Session", Session::new);
 
         App.setContainer(container);
     }
