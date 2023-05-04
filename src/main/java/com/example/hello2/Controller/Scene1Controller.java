@@ -67,7 +67,6 @@ public class Scene1Controller {
         String number = NumberField.getText();
         String accountType = accountTypeChoiceBox.getValue();
 
-
         if (username.isEmpty() || password.isEmpty() || ID.isEmpty() || address.isEmpty() || number.isEmpty() || accountType.isEmpty()) {
             System.out.println("Please enter all required fields!");
             return;
@@ -107,6 +106,18 @@ public class Scene1Controller {
             return;
         }
 
+        // Check if ID already exists
+        BufferedReader reader = new BufferedReader(new FileReader("userinfo.txt"));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            if (line.startsWith("ID: " + ID)) {
+                System.out.println("ID already exists. Please enter a different ID.");
+                reader.close();
+                return;
+            }
+        }
+        reader.close();
+
         // Save username, password, ID, address, phone number, and account type to a text file
         File file = new File("userinfo.txt");
         FileWriter fw = new FileWriter(file, true);
@@ -121,8 +132,7 @@ public class Scene1Controller {
         bw.close();
         fw.close();
 
-
-                // Load Scene 3 and pass the username as a parameter
+        // Load Scene 3 and pass the username as a parameter
         Path path = Paths.get("src/main/resources/com/example/hello2/Scene3.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
 
@@ -140,12 +150,8 @@ public class Scene1Controller {
         } else {
             System.out.println("Error: Stage is null");
         }
-
-
-
-
-
     }
+
 
 
 
