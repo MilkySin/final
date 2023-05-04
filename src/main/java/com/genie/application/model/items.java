@@ -1,4 +1,4 @@
-package com.dreamcatcher.genie.app.model;
+package com.genie.application.model;
 
 public class items {
     private String ID;

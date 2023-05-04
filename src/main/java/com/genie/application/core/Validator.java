@@ -1,4 +1,4 @@
-package com.dreamcatcher.genie.app.core;
+package com.genie.application.core;
 
 public class Validator {
 

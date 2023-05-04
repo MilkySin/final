@@ -1,4 +1,4 @@
-module com.dreamcatcher.genie.app {
+module com.genie.application {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -9,10 +9,10 @@ module com.dreamcatcher.genie.app {
     requires bcrypt;
     requires java.sql;
 
-    opens com.dreamcatcher.genie.app to javafx.fxml;
-    exports com.dreamcatcher.genie.app;
+    opens com.genie.application to javafx.fxml;
+    exports com.genie.application;
 
-    exports com.dreamcatcher.genie.app.controllers;
-    opens com.dreamcatcher.genie.app.controllers to javafx.fxml;
+    exports com.genie.application.controllers;
+    opens com.genie.application.controllers to javafx.fxml;
 
 }

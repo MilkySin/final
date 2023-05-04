@@ -1,5 +1,5 @@
-package com.dreamcatcher.genie.app.controllers;
-import com.dreamcatcher.genie.app.core.Authenticator;
+package com.genie.application.controllers;
+import com.genie.application.core.Authenticator;
 
 public class RegisterController {
 

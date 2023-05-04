@@ -1,4 +1,4 @@
-package com.dreamcatcher.genie.app.model;
+package com.genie.application.model;
 
 import java.util.HashSet;
 

@@ -1,4 +1,4 @@
-package com.dreamcatcher.genie.app.core;
+package com.genie.application.core;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
@@ -9,8 +9,8 @@ public class Authenticator {
 
     private Database db = null;
 
-    public Authenticator() throws Exception {
-        db = (Database) App.resolve("Core/Database");
+    public Authenticator(Database db) {
+        this.db = db;
     }
 
     public boolean attempt(String email, String password) {

@@ -1,7 +1,7 @@
-package com.dreamcatcher.genie.app;
+package com.genie.application;
 
-import com.dreamcatcher.genie.app.model.Account;
-import com.dreamcatcher.genie.app.model.items;
+import com.genie.application.model.Account;
+import com.genie.application.model.items;
 
 import java.util.HashSet;
 

@@ -1,9 +1,9 @@
-package com.dreamcatcher.genie.app;
+package com.genie.application;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public final class config {
+final class Config {
     static final HashMap<String, String> database = new HashMap<String, String>
             (
                     Map.of(
@@ -13,4 +13,6 @@ public final class config {
                             "port", "3306"
                     )
             );
+
+    static final String APP_NAME = "Genie";
 }
