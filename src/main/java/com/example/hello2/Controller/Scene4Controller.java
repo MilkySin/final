@@ -43,33 +43,53 @@ public class Scene4Controller {
     @FXML
     public void handleNextButton(ActionEvent event) throws IOException {
         setAccount(this.accountType);
-        if(this.accountType == null) {
+        if (this.accountType == null) {
             System.out.println("Account type not set");
             return;
         }
         Stage stage = (Stage) root.getScene().getWindow();
         switch (this.accountType) {
-            case "VIP":
+            case "VIP" -> {
                 Parent scene5Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/Scene5.fxml")));
                 Scene scene5 = new Scene(scene5Parent);
                 stage.setScene(scene5);
-                break;
-            case "Regular":
+            }
+            case "Regular" -> {
                 Parent scene6Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/Scene6.fxml")));
                 Scene scene6 = new Scene(scene6Parent);
                 stage.setScene(scene6);
-                break;
-            case "Guest":
+            }
+            case "Guest" -> {
                 Parent scene8Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/Scene8.fxml")));
                 Scene scene8 = new Scene(scene8Parent);
                 stage.setScene(scene8);
-                break;
-            default:
-                System.out.println("Invalid account type: " + this.accountType);
-                break;
+            }
+            default -> System.out.println("Invalid account type: " + this.accountType);
         }
         stage.show();
+//    }
+//    switch (this.accountType) {
+//        case "VIP":
+//            Parent scene5Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/Scene5.fxml")));
+//            Scene scene5 = new Scene(scene5Parent);
+//            stage.setScene(scene5);
+//            break;
+//        case "Regular":
+//            Parent scene6Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/Scene6.fxml")));
+//            Scene scene6 = new Scene(scene6Parent);
+//            stage.setScene(scene6);
+//            break;
+//        case "Guest":
+//            Parent scene8Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/Scene8.fxml")));
+//            Scene scene8 = new Scene(scene8Parent);
+//            stage.setScene(scene8);
+//            break;
+//        default:
+//            System.out.println("Invalid account type: " + this.accountType);
+//            break;
+//    }
+//        stage.show();
+//}
+
     }
-
-
 }
