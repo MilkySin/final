@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.Scene7Controller">
+    <children>
+        <Label layoutX="246.0" layoutY="22.0" text="Add Item to Shop" />
+        <Label layoutX="80.0" layoutY="74.0" text="ID:" />
+        <Label layoutX="80.0" layoutY="115.0" text="Title:" />
+        <Label layoutX="80.0" layoutY="156.0" text="Rental Type:" />
+        <Label layoutX="80.0" layoutY="197.0" text="Loan Type:" />
+        <Label layoutX="80.0" layoutY="238.0" text="Copies:" />
+        <Label layoutX="80.0" layoutY="279.0" text="Rental Fee (USD):" />
+        <Label layoutX="80.0" layoutY="320.0" text="Rental Status:" />
+        <TextField fx:id="idField" layoutX="182.0" layoutY="70.0" promptText="Ixxx-yyyy" />
+        <TextField fx:id="titleField" layoutX="182.0" layoutY="111.0" />
+        <TextField fx:id="copiesField" layoutX="182.0" layoutY="234.0" promptText="Number of copies" />
+        <TextField fx:id="rentalFeeField" layoutX="182.0" layoutY="275.0" promptText="Rental fee (in USD)" />
+        <Button fx:id="addItemButton" layoutX="245.0" layoutY="360.0" mnemonicParsing="false" onAction="#addItem" text="Add Item" />
+        <Label fx:id="successLabel" layoutX="389.0" layoutY="117.0" prefHeight="70.0" prefWidth="169.0" textFill="#008000" />
+        <ChoiceBox fx:id="loanTypeChoiceBox" layoutX="182.0" layoutY="193.0" prefWidth="150.0">
+        </ChoiceBox>
+      <ChoiceBox fx:id="rentalStatusChoiceBox" layoutX="181.0" layoutY="316.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="RentalTypeChoiceBox" layoutX="182.0" layoutY="152.0" prefWidth="150.0" />
+    </children>
+</AnchorPane>
