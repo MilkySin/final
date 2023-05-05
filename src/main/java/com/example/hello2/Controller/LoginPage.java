@@ -62,14 +62,14 @@ public class LoginPage {
                 if (username != null && storedPassword != null && storedID != null && accountType != null) {
                     if (storedID.equals(ID) && storedPassword.equals(password)) {
                         if(Objects.equals(username, "Admin")){
-                            Path path = Paths.get("src/main/resources/com/example/hello2/AddItems.fxml");
+                            Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
                             FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
 
                             Parent root = loader.load();
                             Scene scene = new Scene(root);
                             Stage stage = (Stage) LogIn.getScene().getWindow();
                             stage.setScene(scene);
-                            AddItemController controller = loader.getController();
+                            SceneAdminController controller = loader.getController();
                             stage.show();
 
                         }else {

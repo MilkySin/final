@@ -42,7 +42,7 @@ public class SceneAdminController {
         Scene scene = new Scene(root);
         Stage stage = (Stage) EditItem.getScene().getWindow();
         stage.setScene(scene);
-        AddItemController controller = loader.getController();
+        EditItemController controller = loader.getController();
         stage.show();
     }
 
