@@ -5,7 +5,7 @@
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f2f2f2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.ItemSelectController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f2f2f2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.ItemSelectVIPController">
 
     <Label alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="164.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="This is a VIP Account" textAlignment="CENTER" />
 

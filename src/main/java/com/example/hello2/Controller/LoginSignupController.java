@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class LoginScreenController {
+public class LoginSignupController {
 
     @FXML
     private Button loginButton;

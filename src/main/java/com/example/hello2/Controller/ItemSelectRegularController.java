@@ -99,7 +99,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class Scene6Controller {
+public class ItemSelectRegularController {
 
     @FXML
     public Label selectedItemLabel;

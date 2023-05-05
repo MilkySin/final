@@ -50,17 +50,20 @@ public class Scene4Controller {
         Stage stage = (Stage) root.getScene().getWindow();
         switch (this.accountType) {
             case "VIP" -> {
-                Parent scene5Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/Scene5.fxml")));
+                Parent scene5Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(
+                        "/com/example/hello2/VIPUser.fxml")));
                 Scene scene5 = new Scene(scene5Parent);
                 stage.setScene(scene5);
             }
             case "Regular" -> {
-                Parent scene6Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/Scene6.fxml")));
+                Parent scene6Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(
+                        "/com/example/hello2/RegularUser.fxml")));
                 Scene scene6 = new Scene(scene6Parent);
                 stage.setScene(scene6);
             }
             case "Guest" -> {
-                Parent scene8Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/Scene8.fxml")));
+                Parent scene8Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(
+                        "/com/example/hello2/GuestUser.fxml")));
                 Scene scene8 = new Scene(scene8Parent);
                 stage.setScene(scene8);
             }
@@ -70,17 +73,17 @@ public class Scene4Controller {
 //    }
 //    switch (this.accountType) {
 //        case "VIP":
-//            Parent scene5Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/Scene5.fxml")));
+//            Parent scene5Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/VIPUser.fxml")));
 //            Scene scene5 = new Scene(scene5Parent);
 //            stage.setScene(scene5);
 //            break;
 //        case "Regular":
-//            Parent scene6Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/Scene6.fxml")));
+//            Parent scene6Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/RegularUser.fxml")));
 //            Scene scene6 = new Scene(scene6Parent);
 //            stage.setScene(scene6);
 //            break;
 //        case "Guest":
-//            Parent scene8Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/Scene8.fxml")));
+//            Parent scene8Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/GuestUser.fxml")));
 //            Scene scene8 = new Scene(scene8Parent);
 //            stage.setScene(scene8);
 //            break;

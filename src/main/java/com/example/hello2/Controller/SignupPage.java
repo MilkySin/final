@@ -16,7 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
-public class LoginPageController {
+public class SignupPage {
     public Button CancelButton;
     private Stage stage;
     private Scene scene;
