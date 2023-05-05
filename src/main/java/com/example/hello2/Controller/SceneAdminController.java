@@ -34,7 +34,7 @@ public class SceneAdminController {
         AddItemController controller = loader.getController();
         stage.show();
     }
-    @FXML
+    @FXML //pl
     void editItem(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/EditItem.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
