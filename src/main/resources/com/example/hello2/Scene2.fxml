@@ -5,10 +5,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.Scene2Controller">
-   <children>
-      <TextField fx:id="IDField" layoutX="170.0" layoutY="119.0" prefHeight="40.0" prefWidth="280.0" promptText="Enter Your ID" />
-      <PasswordField fx:id="passwordField" layoutX="170.0" layoutY="180.0" prefHeight="40.0" prefWidth="280.0" promptText="Enter Your Password" />
-      <Button fx:id="LogIn" layoutX="240.0" layoutY="249.0" minWidth="120.0" onAction="#handleLogIn" styleClass="primary-button" text="Log In" />
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.hello2.Controller.SignupPageController">
+   <TextField fx:id="IDField" layoutX="170.0" layoutY="119.0" prefHeight="40.0" prefWidth="280.0"
+              promptText="Enter Your ID"/>
+   <PasswordField fx:id="passwordField" layoutX="170.0" layoutY="180.0" prefHeight="40.0" prefWidth="280.0"
+                  promptText="Enter Your Password"/>
+   <Button fx:id="LogIn" layoutX="240.0" layoutY="249.0" minWidth="120.0" onAction="#handleLogIn"
+           styleClass="primary-button" text="Log In"/>
 </AnchorPane>

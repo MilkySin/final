@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class Scene5Controller {
+public class ItemSelectController {
 
     @FXML
     public Label selectedItemLabel;
@@ -31,7 +31,7 @@ public class Scene5Controller {
         Task<List<String>> task = new Task<List<String>>() {
             @Override
             protected List<String> call() throws Exception {
-                List<String> lines = Files.readAllLines(Paths.get("C:/Users/ShirinLP/IdeaProjects/Hello2/new_items.txt"));
+                List<String> lines = Files.readAllLines(Paths.get("new_items.txt"));
                 return new ArrayList<String>(lines);
             }
         };

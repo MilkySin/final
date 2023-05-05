@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class Scene3Controller {
+public class UNUSED {
     @FXML
     private AnchorPane root;
 
@@ -27,8 +27,8 @@ public class Scene3Controller {
         accountTypeLabel.setText("Account Type: "+ accountType);
 
     }
-    public void setAccountType(String accountType) {
-        this.accountType = accountType;
-        accountTypeLabel.setText("Account Type: " + accountType);
-    }
+//    public void setAccountType(String accountType) {
+//        this.accountType = accountType;
+//        accountTypeLabel.setText("Account Type: " + accountType);
+//    }
 }

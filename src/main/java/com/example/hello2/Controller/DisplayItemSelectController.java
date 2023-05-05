@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Scene8Controller {
+public class DisplayItemSelectController {
     @FXML
     public Label selectedItemLabel;
     @FXML
