@@ -139,7 +139,7 @@ public class LoginPageController {
         Parent root = loader.load();
         Scene scene = new Scene(root);
 
-        Scene3Controller controller = loader.getController();
+        UNUSED controller = loader.getController();
         controller.setUsername(username);
         controller.setAccount(accountType);
 
