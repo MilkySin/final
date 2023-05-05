@@ -1,4 +1,4 @@
-package com.example.hello2;
+package com.example.hello2.Controller;
 //choose sign up or login
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class LoginScreenController {
 
@@ -22,10 +24,11 @@ public class LoginScreenController {
     public void login(ActionEvent event) {
         try {
             // Load the FXML file for Scene 2
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Scene2.fxml"));
-            Parent root = loader.load();
+            Path path = Paths.get("src/main/resources/com/example/hello2/Scene2.fxml");
+            FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
 
-            // Set up the stage and show Scene 2
+            // Set up the stage and show Scene 1
+            Parent root = loader.load();
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -41,10 +44,11 @@ public class LoginScreenController {
     public void signup(ActionEvent event) {
         try {
             // Load the FXML file for Scene 1
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Scene1.fxml"));
-            Parent root = loader.load();
+            Path path = Paths.get("src/main/resources/com/example/hello2/Scene1.fxml");
+            FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
 
             // Set up the stage and show Scene 1
+            Parent root = loader.load();
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.setScene(scene);
