@@ -103,3 +103,10 @@ Address: fg
 Phone Number: 987654
 Account Type: Guest
 
+Username: linh
+Password: Shur5g!hj
+ID: C777
+Address: sdfg
+Phone Number: 7654
+Account Type: Regular
+
