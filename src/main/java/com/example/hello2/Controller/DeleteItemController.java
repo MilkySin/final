@@ -8,8 +8,8 @@ import javafx.scene.control.ChoiceBox;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,12 +47,41 @@ public class DeleteItemController {
 
     @FXML
     void Delete() throws IOException {
-        System.out.println(IDchoicebox.getValue());
+        String selectedID = IDchoicebox.getValue();
+        if (selectedID == null || selectedID.equals("Select Item to Delete")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Please select an item to delete.");
+            alert.showAndWait();
+            return;
+        }
         Path path = Paths.get("new_items.txt");
-        try {
-            Scanner scanner = new Scanner(new File(path.toFile().toURI()));
-        } finally {
-
+        List<String> fileContent = new ArrayList<>(Files.readAllLines(path));
+        try (PrintWriter writer = new PrintWriter(new FileWriter(path.toFile()))) {
+            boolean found = false;
+            for (int i = 0; i < fileContent.size(); i++) {
+                String line = fileContent.get(i);
+                if (line.startsWith("ID") && line.trim().equals(selectedID)) {
+                    found = true;
+                    for (int j = i; j < i + 7; j++) {
+                        fileContent.remove(i);
+                    }
+                    break;
+                }
+            }
+            if (found) {
+                for (String line : fileContent) {
+                    writer.println(line);
+                }
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Item deleted successfully.");
+                alert.showAndWait();
+                IDchoicebox.getItems().remove(selectedID);
+                IDchoicebox.setValue("Select Item to Delete");
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Item not found.");
+                alert.showAndWait();
+            }
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error deleting item: " + e.getMessage());
+            alert.showAndWait();
         }
     }
 }

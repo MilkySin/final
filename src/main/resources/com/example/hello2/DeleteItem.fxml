@@ -10,6 +10,6 @@
         <ChoiceBox fx:id="IDchoicebox" layoutX="225.0" layoutY="52.0" pickOnBounds="false" prefWidth="150.0" />
         <Text layoutX="85.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title: " />
         <Text layoutX="269.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delete Item" />
-      <Button fx:id="delete" layoutX="273.0" layoutY="114.0" mnemonicParsing="false" onAction="#Delete" text="Button" />
+      <Button fx:id="delete" layoutX="273.0" layoutY="114.0" mnemonicParsing="false" onAction="#Delete" text="DELETE" />
     </children>
 </AnchorPane>

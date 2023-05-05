@@ -1,10 +1,3 @@
-ID: I986-235
-Title: bridgerton 
-Rental Type: Borrowed
-Loan Type: 2 Days Loan
-Copies: 0
-Rental Fee (USD): 67
-Rental Status: Available
 
 ID: I123-987
 Title: test
