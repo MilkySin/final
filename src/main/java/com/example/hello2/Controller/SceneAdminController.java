@@ -46,4 +46,16 @@ public class SceneAdminController {
         stage.show();
     }
 
+    @FXML
+    void deleteItem(ActionEvent event) throws IOException{
+        Path path = Paths.get("src/main/resources/com/example/hello2/DeleteItem.fxml");
+        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) EditItem.getScene().getWindow();
+        stage.setScene(scene);
+        DeleteItemController controller = loader.getController();
+        stage.show();
+    }
+
 }
