@@ -69,7 +69,7 @@ public class LoginPage {
                             Scene scene = new Scene(root);
                             Stage stage = (Stage) LogIn.getScene().getWindow();
                             stage.setScene(scene);
-//                            AddItemController controller = loader.getController();
+                            AddItemController controller = loader.getController();
                             stage.show();
 
                         }else {
