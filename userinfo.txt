@@ -96,3 +96,10 @@ Address: me@gmail.com
 Phone Number: 09090909
 Account Type: Regular
 
+Username: sgf
+Password: Srir98#gf
+ID: C245
+Address: fg
+Phone Number: 987654
+Account Type: Guest
+
