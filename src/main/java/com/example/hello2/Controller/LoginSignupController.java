@@ -24,7 +24,7 @@ public class LoginSignupController {
     public void login(ActionEvent event) {
         try {
             // Load the FXML file for Scene 2
-            Path path = Paths.get("src/main/resources/com/example/hello2/Scene2.fxml");
+            Path path = Paths.get("src/main/resources/com/example/hello2/Login.fxml");
             FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
 
             // Set up the stage and show Scene 1
@@ -44,7 +44,7 @@ public class LoginSignupController {
     public void signup(ActionEvent event) {
         try {
             // Load the FXML file for Scene 1
-            Path path = Paths.get("src/main/resources/com/example/hello2/Scene1.fxml");
+            Path path = Paths.get("src/main/resources/com/example/hello2/Signup.fxml");
             FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
 
             // Set up the stage and show Scene 1
