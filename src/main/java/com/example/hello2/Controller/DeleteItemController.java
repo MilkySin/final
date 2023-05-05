@@ -1,16 +1,23 @@
 package com.example.hello2.Controller;
 
 import javafx.concurrent.Task;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.Path;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class DeleteItemController {
     public ChoiceBox<String> IDchoicebox;
+    public Button delete;
 
     public void initialize() {
         Task<List<String>> task = new Task<>() {
@@ -23,7 +30,7 @@ public class DeleteItemController {
         task.setOnSucceeded(e -> {
             List<String> contentList = task.getValue();
             for (String line : contentList) {
-                if (line.startsWith("Title")) {
+                if (line.startsWith("ID")) {
                     String item = line.trim();
                     IDchoicebox.getItems().add(item);
                     IDchoicebox.setValue("Select Item to Delete");
@@ -38,7 +45,12 @@ public class DeleteItemController {
         new Thread(task).start();
     }
 
-    void Delete(){
-
+    @FXML
+    void Delete() throws IOException {
+        System.out.println(IDchoicebox.getValue());
+        Path path = Paths.get("new_items.txt");
+        try {
+            Scanner scanner = new Scanner(new File(path.toFile().toURI()));
+        }
     }
 }
