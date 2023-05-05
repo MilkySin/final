@@ -13,7 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class Scene4Controller {
+public class CheckAccountController {
 
     @FXML
     private AnchorPane root;

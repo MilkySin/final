@@ -62,7 +62,7 @@ public class LoginPage {
                 if (username != null && storedPassword != null && storedID != null && accountType != null) {
                     if (storedID.equals(ID) && storedPassword.equals(password)) {
                         if(Objects.equals(username, "Admin")){
-                            Path path = Paths.get("src/main/resources/com/example/hello2/Scene7.fxml");
+                            Path path = Paths.get("src/main/resources/com/example/hello2/AddItems.fxml");
                             FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
 
                             Parent root = loader.load();
@@ -74,7 +74,7 @@ public class LoginPage {
 
                         }else {
                             // If the credentials match, go to Scene4
-                            Path path = Paths.get("src/main/resources/com/example/hello2/Scene4.fxml");
+                            Path path = Paths.get("src/main/resources/com/example/hello2/CheckAccount.fxml");
                             FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
 
                             Parent root = loader.load();

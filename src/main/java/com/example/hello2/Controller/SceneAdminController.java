@@ -26,7 +26,7 @@ public class SceneAdminController {
 
     @FXML
     void addItem(ActionEvent event) throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/Scene7.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/AddItems.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);

@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Scene7Controller {
+public class AddItemController {
 
     public ChoiceBox RentalTypeChoiceBox;
     @FXML
