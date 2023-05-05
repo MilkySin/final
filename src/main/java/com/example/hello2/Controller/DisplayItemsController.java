@@ -29,6 +29,4 @@ public class DisplayItemsController {
         System.out.println(fileContents);
         selectedItemLabel.setText(String.valueOf(fileContents));
     }
-
-
 }
