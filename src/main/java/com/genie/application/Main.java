@@ -6,14 +6,17 @@ import javafx.stage.Stage;
 
 
 import java.io.IOException;
+
+import static com.genie.application.core.functions.BASE_PATH;
+import static com.genie.application.core.functions.base_path;
+
 public class Main extends Application {
 
     @Override
-    public void start(Stage stage) throws IOException {
-        Boostrap.run();
-        App.bindWindow(this, stage);
-//        App.redirect("session.fxml");
-            App.redirect("dataview.fxml");
+    public void start(Stage stage) {
+        App.applicationName = Config.applicationName;
+        App.setWindow(this, stage);
+        App.scene("session.fxml");
     }
 
     public static void main(String[] args) {

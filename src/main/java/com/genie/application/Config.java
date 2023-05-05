@@ -3,8 +3,8 @@ package com.genie.application;
 import java.util.HashMap;
 import java.util.Map;
 
-final class Config {
-    static final HashMap<String, String> database = new HashMap<String, String>
+public final class Config {
+    public static final HashMap<String, String> database = new HashMap<String, String>
             (
                     Map.of(
                             "database", "mysql",
@@ -14,5 +14,5 @@ final class Config {
                     )
             );
 
-    static final String APP_NAME = "Genie";
+    public static final String applicationName = "Genie";
 }

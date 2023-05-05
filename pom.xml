@@ -5,26 +5,28 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.genie</groupId>
-    <artifactId>milkysin-final</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>milkysin-final</name>
+    <artifactId>video-store-rental</artifactId>
+    <version>1.0</version>
+    <name>video-store-rental</name>
+    <description>Genie's video store is a management system for classics movies, TV series and Video games</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>17</java.version>
         <junit.version>5.9.1</junit.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>at.favre.lib</groupId>
-            <artifactId>bcrypt</artifactId>
-            <version>0.10.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <version>8.0.33</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>at.favre.lib</groupId>-->
+<!--            <artifactId>bcrypt</artifactId>-->
+<!--            <version>0.10.2</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.mysql</groupId>-->
+<!--            <artifactId>mysql-connector-j</artifactId>-->
+<!--            <version>8.0.33</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>

@@ -11,8 +11,12 @@ public class Validator {
         return s.matches(emailRegexPattern);
     }
 
-    public static boolean password(String s, int start) {
-        return s.trim().equals(s) && s.length() > start;
+    public static boolean string(String s) {
+        return s.trim().equals(s);
+    }
+
+    public static boolean string(String s, int length) {
+        return s.trim().equals(s) && s.length() >= length;
     }
 
 }

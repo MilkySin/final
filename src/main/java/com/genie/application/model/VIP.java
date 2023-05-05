@@ -1,4 +1,4 @@
-package com.genie.application;
+package com.genie.application.model;
 
 import com.genie.application.model.Account;
 import com.genie.application.model.items;

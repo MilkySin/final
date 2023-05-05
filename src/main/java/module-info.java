@@ -6,13 +6,15 @@ module com.genie.application {
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
 
-    requires bcrypt;
-    requires java.sql;
+//    requires bcrypt;
+//    requires java.sql;
 
     opens com.genie.application to javafx.fxml;
     exports com.genie.application;
 
-    exports com.genie.application.controllers;
-    opens com.genie.application.controllers to javafx.fxml;
+    exports com.genie.application.controller;
+    opens com.genie.application.controller to javafx.fxml;
+    exports com.genie.application.model;
+    opens com.genie.application.model to javafx.fxml;
 
 }
