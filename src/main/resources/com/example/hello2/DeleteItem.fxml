@@ -7,7 +7,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.DeleteItemController">
     <children>
         <ChoiceBox fx:id="IDchoicebox" layoutX="225.0" layoutY="52.0" pickOnBounds="false" prefWidth="150.0" />
-        <Text layoutX="85.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
+        <Text layoutX="85.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title: " />
         <Text layoutX="269.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delete Item" />
     </children>
 </AnchorPane>
