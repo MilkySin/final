@@ -8,5 +8,6 @@
       <Button fx:id="AddItem" layoutX="33.0" layoutY="46.0" mnemonicParsing="false" onAction="#addItem" text="Add Item" />
       <Button fx:id="EditItem" layoutX="141.0" layoutY="46.0" mnemonicParsing="false" onAction="#editItem" text="Edit Item" />
       <Button fx:id="DeleteItem" layoutX="244.0" layoutY="46.0" mnemonicParsing="false" onAction="#deleteItem" text="Delete Item" />
+      <Button fx:id="DisplayAllItems" layoutX="359.0" layoutY="47.0" mnemonicParsing="false" onAction="#showAllItems" text="Display all Items" />
    </children>
 </AnchorPane>
