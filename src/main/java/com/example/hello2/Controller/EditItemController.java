@@ -10,17 +10,17 @@ import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 
 public class EditItemController {
 
     public TextField itemIdField;
     public Button searchItemButton;
+
+    public Label title;
+    public ChoiceBox loanTypeChoiceBox;
+    public ChoiceBox rentalStatusChoiceBox;
     @FXML
     private TextField searchIdField;
 
@@ -33,10 +33,24 @@ public class EditItemController {
     @FXML
     private TextField copiesField;
 
+
+
+    @FXML
+    private TextField titleField;
+
     @FXML
     private Button saveChangesButton;
 
-    private String filePath = "src/main/resources/items.txt";
+    private String filePath = "C:\\Users\\ShirinLP\\IdeaProjects\\Hello2\\new_items.txt";
+    public void initialize() {
+        // Initialize loan type choice box with two options
+        loanTypeChoiceBox.getItems().addAll("1 Week Loan", "2 Days Loan");
+        loanTypeChoiceBox.setValue("1 Week Loan");
+
+        // Initialize rental status choice box with two options
+        rentalStatusChoiceBox.getItems().addAll("Available", "Borrowed");
+        rentalStatusChoiceBox.setValue("Available");
+    }
 
     public void searchItem(ActionEvent event) {
         String searchId = searchIdField.getText();
@@ -44,7 +58,7 @@ public class EditItemController {
         String itemDetails = "";
         for (int i = 0; i < itemList.size(); i++) {
             if (itemList.get(i).startsWith("ID: " + searchId)) {
-                for (int j = i; j < i + 6; j++) {
+                for (int j = i; j < i + 7; j++) {
                     itemDetails += itemList.get(j) + "\n";
                 }
                 itemDetailsArea.setText(itemDetails);
@@ -52,14 +66,17 @@ public class EditItemController {
             }
         }
     }
-
     public void saveChanges(ActionEvent event) {
         String searchId = searchIdField.getText();
         List<String> itemList = readItems();
         for (int i = 0; i < itemList.size(); i++) {
             if (itemList.get(i).startsWith("ID: " + searchId)) {
+                itemList.set(i, "ID: " + itemIdField.getText());
+                itemList.set(i + 1, "Title: " + titleField.getText());
+                itemList.set(i + 3, "Loan Type: " + loanTypeChoiceBox.getValue());
                 itemList.set(i + 4, "Copies: " + copiesField.getText());
                 itemList.set(i + 5, "Rental Fee (USD): " + rentalFeeField.getText());
+                itemList.set(i + 6, "Rental Status: " + rentalStatusChoiceBox.getValue());
                 writeItems(itemList);
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Success");

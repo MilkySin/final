@@ -1,18 +1,18 @@
-ID: I001-2001
-Title: blabla
-Rental Type: DVD
-Loan Type: 1 Week Loan
-Copies: 3
-Rental Fee (USD): 78.0
+ID: I986-235
+Title: bridgerton 
+Rental Type: Borrowed
+Loan Type: 2 Days Loan
+Copies: 0
+Rental Fee (USD): 67
 Rental Status: Available
 
-ID: I001-2001
-Title: blabla
+ID: I123-987
+Title: test
 Rental Type: DVD
-Loan Type: 1 Week Loan
-Copies: 3
-Rental Fee (USD): 78.0
-Rental Status: Borrowed
+Loan Type: 2 Days Loan
+Copies: 8
+Rental Fee (USD): 99
+Rental Status: Available
 
 ID: I001-2001
 Title: Game of thrones
