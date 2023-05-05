@@ -51,6 +51,8 @@ public class DeleteItemController {
         Path path = Paths.get("new_items.txt");
         try {
             Scanner scanner = new Scanner(new File(path.toFile().toURI()));
+        } finally {
+
         }
     }
 }
