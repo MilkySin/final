@@ -47,7 +47,7 @@ public class LoginPage {
             String username = null;
             String storedPassword = null;
             String storedID = null;
-            String accountType = null;
+//            String accountType = null;
             while (scanner.hasNextLine()) {
                accountType = null;
                 String line = scanner.nextLine();
@@ -69,7 +69,7 @@ public class LoginPage {
                             Scene scene = new Scene(root);
                             Stage stage = (Stage) LogIn.getScene().getWindow();
                             stage.setScene(scene);
-                            Scene4Controller controller = loader.getController();
+//                            AddItemController controller = loader.getController();
                             stage.show();
 
                         }else {
@@ -81,7 +81,7 @@ public class LoginPage {
                             Scene scene = new Scene(root);
                             Stage stage = (Stage) LogIn.getScene().getWindow();
                             stage.setScene(scene);
-                            Scene4Controller controller = loader.getController();
+                            CheckAccountController controller = loader.getController();
                             controller.setUserName(username); // Set the username in Scene4
                             controller.setAccount(accountType); // Set the Account type in Scene4
                             stage.show();
