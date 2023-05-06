@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 
 public class SceneAdminController {
 
+    public Button DisplayCustomers;
     @FXML
     private Button AddItem;
 
@@ -55,6 +56,17 @@ public class SceneAdminController {
         Stage stage = (Stage) EditItem.getScene().getWindow();
         stage.setScene(scene);
         DeleteItemController controller = loader.getController();
+        stage.show();
+    }
+    @FXML
+    void displayCustomers(ActionEvent event) throws IOException{
+        Path path = Paths.get("src/main/resources/com/example/hello2/displayCustomers.fxml");
+        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) EditItem.getScene().getWindow();
+        stage.setScene(scene);
+        DisplayCustomersController controller = loader.getController();
         stage.show();
     }
 
