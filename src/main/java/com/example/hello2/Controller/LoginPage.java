@@ -112,5 +112,6 @@ public class LoginPage {
         Stage stage = (Stage) back.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+
     }
 }
