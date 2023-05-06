@@ -15,6 +15,7 @@ import java.nio.file.Paths;
 public class SceneAdminController {
 
     public Button DisplayCustomers;
+    public Button DeleteUser;
     @FXML
     private Button AddItem;
 
