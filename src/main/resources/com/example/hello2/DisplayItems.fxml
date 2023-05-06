@@ -9,6 +9,6 @@
    <children>
       <TextArea fx:id="selectedItemLabel" editable="false" layoutY="54.0" prefHeight="313.0" prefWidth="600.0" />
       <Text layoutX="161.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All Items In Shop" textAlignment="CENTER" wrappingWidth="277.07958984375" />
-      <Button layoutX="268.0" layoutY="373.0" mnemonicParsing="false" text="Go back" />
+      <Button fx:id="back" layoutX="268.0" layoutY="373.0" mnemonicParsing="false" onAction="#Back" text="Go back" />
    </children>
 </AnchorPane>

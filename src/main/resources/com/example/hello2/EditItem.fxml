@@ -25,6 +25,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
+            <Button fx:id="back" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#Back" text="Back" />
             </children>
             <VBox.margin>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

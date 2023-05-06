@@ -11,6 +11,6 @@
       <Button fx:id="DisplayCustomers" layoutX="379.0" layoutY="46.0" mnemonicParsing="false" onAction="#displayCustomers" text="Display all customers " />
       <Button fx:id="DeleteUser" layoutX="33.0" layoutY="106.0" mnemonicParsing="false" onAction="#deleteUser" text="Delete Customer" />
       <Button fx:id="DisplayAvailItems" layoutX="195.0" layoutY="106.0" mnemonicParsing="false" onAction="#showAvailItems" text="Display All Items" />
-      <Button fx:id="DisplayAllItems" layoutX="323.0" layoutY="106.0" mnemonicParsing="false" text="Display Available Items" />
+      <Button fx:id="DisplayAllItems" layoutX="323.0" layoutY="106.0" mnemonicParsing="false" onAction="#showAvailItems" text="Display Available Items" />
    </children>
 </AnchorPane>

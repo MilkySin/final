@@ -1,9 +1,14 @@
 package com.example.hello2.Controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,11 +20,10 @@ import java.nio.file.Paths;
 public class DisplayCustomersController {
     @FXML
     public TextArea customerTextArea;
-
-
-
     @FXML
     private Button displayButton;
+
+    public Button back;
 
     @FXML
     void display() {
@@ -36,5 +40,15 @@ public class DisplayCustomersController {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Error reading file: " + e.getMessage());
             alert.showAndWait();
         }
+    }
+    @FXML
+    public void Back(ActionEvent event) throws IOException {
+        Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
+        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) back.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 }
