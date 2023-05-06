@@ -6,8 +6,9 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.SceneAdminController">
    <children>
       <Button fx:id="AddItem" layoutX="33.0" layoutY="46.0" mnemonicParsing="false" onAction="#addItem" text="Add Item" />
-      <Button fx:id="EditItem" layoutX="141.0" layoutY="46.0" mnemonicParsing="false" onAction="#editItem" text="Edit Item" />
-      <Button fx:id="DeleteItem" layoutX="244.0" layoutY="46.0" mnemonicParsing="false" onAction="#deleteItem" text="Delete Item" />
-      <Button fx:id="DisplayAllItems" layoutX="359.0" layoutY="47.0" mnemonicParsing="false" onAction="#showAllItems" text="Display all Items" />
+      <Button fx:id="EditItem" layoutX="178.0" layoutY="46.0" mnemonicParsing="false" onAction="#editItem" text="Edit Item" />
+      <Button fx:id="DeleteItem" layoutX="321.0" layoutY="46.0" mnemonicParsing="false" onAction="#deleteItem" text="Delete Item" />
+      <Button fx:id="DisplayAllItems" layoutX="455.0" layoutY="46.0" mnemonicParsing="false" onAction="#showAllItems" text="Display all Items" />
+      <Button fx:id="DisplayAvailItems" layoutX="33.0" layoutY="109.0" mnemonicParsing="false" onAction="#showAvailItems" text="Display all Items" />
    </children>
 </AnchorPane>

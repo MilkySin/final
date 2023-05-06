@@ -27,6 +27,9 @@ public class SceneAdminController {
     private Button DisplayAllItems;
 
     @FXML
+    private Button DisplayAvailItems;
+
+    @FXML
     void addItem(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/AddItems.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
@@ -70,6 +73,18 @@ public class SceneAdminController {
         Stage stage = (Stage) DisplayAllItems.getScene().getWindow();
         stage.setScene(scene);
         DisplayItemsController controller = loader.getController();
+        stage.show();
+    }
+
+    @FXML
+    void showAvailItems(ActionEvent event) throws IOException{
+        Path path = Paths.get("src/main/resources/com/example/hello2/DisplayItemsAvail.fxml");
+        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) DisplayAvailItems.getScene().getWindow();
+        stage.setScene(scene);
+        DisplayItemsAvailController controller = loader.getController();
         stage.show();
     }
 
