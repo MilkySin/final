@@ -84,12 +84,6 @@ Account Type: Regular
 
 Username: shirin
 Password: shirinHI123!
-ID: C222
-Address: saigon
-Phone Number: 098765
-Account Type: VIP
-
-Username: help
 Password: LD:LVBO3y8Y@@
 ID: C229
 Address: me@gmail.com

@@ -1,0 +1,87 @@
+package com.example.hello2.Controller;
+
+import javafx.concurrent.Task;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class DeleteUser {
+    public ChoiceBox<String> IDchoicebox;
+    public Button delete;
+
+    public void initialize() {
+        Task<List<String>> task = new Task<>() {
+            @Override
+            protected List<String> call() throws Exception {
+                List<String> lines = Files.readAllLines(Paths.get("userinfo.txt"));
+                return new ArrayList<>(lines);
+            }
+        };
+        task.setOnSucceeded(e -> {
+            List<String> contentList = task.getValue();
+            for (String line : contentList) {
+                if (line.startsWith("ID")) {
+                    String item = line.trim();
+                    IDchoicebox.getItems().add(item);
+                    IDchoicebox.setValue("Select user to Delete");
+                }
+            }
+        });
+        task.setOnFailed(e -> {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error reading file: " + task.getException().getMessage());
+            alert.showAndWait();
+        });
+
+        new Thread(task).start();
+    }
+
+    @FXML
+    void Delete() throws IOException {
+        String selectedID = IDchoicebox.getValue();
+        if (selectedID == null || selectedID.equals("Select user to Delete")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a user to delete.");
+            alert.showAndWait();
+            return;
+        }
+        Path path = Paths.get("userinfo.txt");
+        List<String> fileContent = new ArrayList<>(Files.readAllLines(path));
+        try (PrintWriter writer = new PrintWriter(new FileWriter(path.toFile()))) {
+            boolean found = false;
+            for (int i = 0; i < fileContent.size(); i++) {
+                String line = fileContent.get(i);
+                if (line.startsWith("ID") && line.trim().equals(selectedID)) {
+                    found = true;
+                    for (int j = i; j < i + 6; j++) {
+                        fileContent.remove(i);
+                    }
+                    break;
+                }
+            }
+            if (found) {
+                for (String line : fileContent) {
+                    writer.println(line);
+                }
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "User deleted successfully.");
+                alert.showAndWait();
+                IDchoicebox.getItems().remove(selectedID);
+                IDchoicebox.setValue("Select User to Delete");
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "User not found.");
+                alert.showAndWait();
+            }
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error deleting User: " + e.getMessage());
+            alert.showAndWait();
+        }
+    }
+}
