@@ -24,29 +24,30 @@ public class DisplayItemsAvailController {
         File file = new File(path.toUri());
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-//
+//            String line;
+//            String id;
 //            while ((line = br.readLine()) != null) {
-//                if (line.contains("Rental Status: Available")) {
-//                    String prevLine = "";
-//                    while ((prevLine = br.readLine()) != null) {
-//                        if (prevLine.contains("ID:")) {
-//                            id = prevLine.split(":\\s")[1];
-//                            System.out.println(id);
-//                        }
-//                    }
+//                String[] fields = line.split(":\\s");
+//                if (fields.length >= 2 && fields[1].equals("Available")) {
+//                        System.out.println(line);
 //                }
+//            }
+            String line;
+            String id = "";
+            boolean available = false;
             while ((line = br.readLine()) != null) {
-                if (line.contains("Borrowed")) {
-                    String id = null;
-                    while ((line = br.readLine()) != null) {
-                        if (line.contains("ID:")) {
-                            id = line.split(":\\s")[1];
-                            break;
-                        }
-                    }
-                    if (id != null) {
-                        System.out.println(id);
+                if (line.contains("Rental Status: Available")) {
+                    available = true;
+                }
+                if (available) {
+                    System.out.println(line);
+                    if (line.contains("ID:")) {
+                        id = line.split(":\\s")[1];
+                        System.out.println("ID: " + id + "\n");
+
+                    } else if (line.isEmpty()) {
+                        System.out.println("ID: " + id + "\n");
+                        available = false;
                     }
                 }
             }
