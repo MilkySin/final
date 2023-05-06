@@ -9,6 +9,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class DisplayCustomersController {
     @FXML
@@ -21,7 +23,8 @@ public class DisplayCustomersController {
 
     @FXML
     void display() {
-        File file = new File("C:/Users/ShirinLP/IdeaProjects/Hello2/userinfo.txt");
+        Path path = Paths.get("userinfo.txt");
+        File file = new File(path.toUri());
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             StringBuilder content = new StringBuilder();
