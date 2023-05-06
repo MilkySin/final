@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +43,7 @@ public class EditItemController {
     @FXML
     private Button saveChangesButton;
 
-    private String filePath = "C:\\Users\\ShirinLP\\IdeaProjects\\Hello2\\new_items.txt";
+    private Path filePath = Paths.get("new_items.txt");
     public void initialize() {
         // Initialize loan type choice box with two options
         loanTypeChoiceBox.getItems().addAll("1 Week Loan", "2 Days Loan");
@@ -91,7 +93,7 @@ public class EditItemController {
     private List<String> readItems() {
         List<String> itemList = new ArrayList<>();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(filePath)));
+            BufferedReader reader = new BufferedReader(new FileReader(new File(filePath.toUri())));
             String line = reader.readLine();
             while (line != null) {
                 itemList.add(line);
@@ -106,7 +108,7 @@ public class EditItemController {
 
     private void writeItems(List<String> itemList) {
         try {
-            FileWriter writer = new FileWriter(new File(filePath));
+            FileWriter writer = new FileWriter(new File(filePath.toUri()));
             for (String line : itemList) {
                 writer.write(line + "\n");
             }

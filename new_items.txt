@@ -1,10 +1,9 @@
-
-ID: I123-987
-Title: test
+ID: I123-321
+Title: FFF
 Rental Type: DVD
-Loan Type: 2 Days Loan
-Copies: 8
-Rental Fee (USD): 99
+Loan Type: 1 Week Loan
+Copies: 2
+Rental Fee (USD): 39
 Rental Status: Available
 
 ID: I001-2001
@@ -31,12 +30,12 @@ Copies: 4
 Rental Fee (USD): 34.0
 Rental Status: Available
 
-ID: I980-678
-Title: dynasty
+ID: I690-293
+Title: Skip and Loafers
 Rental Type: DVD
-Loan Type: 2 Days Loan
-Copies: 5
-Rental Fee (USD): 87.0
+Loan Type: 1 Week Loan
+Copies: 3
+Rental Fee (USD): 9
 Rental Status: Available
 
 ID: I767-576
@@ -54,4 +53,12 @@ Loan Type: 1 Week Loan
 Copies: 6
 Rental Fee (USD): 98.0
 Rental Status: Available
+
+ID: I000-999
+Title: Ihatemyself
+Rental Type: Record
+Loan Type: 2 Days Loan
+Copies: 1
+Rental Fee (USD): 90.0
+Rental Status: Borrowed
 
