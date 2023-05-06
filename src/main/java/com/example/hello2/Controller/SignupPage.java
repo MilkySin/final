@@ -17,7 +17,7 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 public class SignupPage {
-    public Button CancelButton;
+    public Button back;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -51,10 +51,14 @@ public class SignupPage {
     }
 
 
-    public void cancel(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(previousScene);
-        stage.close();
+    public void Back(ActionEvent event) throws IOException {
+        Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
+        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) back.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
 

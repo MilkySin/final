@@ -14,7 +14,7 @@
    <TextField fx:id="IDField" layoutX="14.0" layoutY="60.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter Your ID" />
    <TextField fx:id="AddressField" layoutX="375.0" layoutY="135.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter Your Address" />
    <TextField fx:id="NumberField" layoutX="14.0" layoutY="211.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter Your Phone Number" />
-   <Button fx:id="CancelButton" layoutX="75.0" layoutY="346.0" mnemonicParsing="false" onAction="#cancel" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #F44336; -fx-text-fill: white; -fx-font-size: 16px;" text="Cancel" />
+   <Button fx:id="back" layoutX="75.0" layoutY="346.0" mnemonicParsing="false" onAction="#Back" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #F44336; -fx-text-fill: white; -fx-font-size: 16px;" text="back" />
    <ChoiceBox fx:id="accountTypeChoiceBox" layoutX="375.0" layoutY="211.0" prefHeight="40.0" prefWidth="210.0">
 
    </ChoiceBox>

@@ -32,6 +32,9 @@ public class SceneAdminController {
     private Button DisplayAvailItems;
 
     @FXML
+    private Button back;
+
+    @FXML
     void addItem(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/AddItems.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
@@ -109,6 +112,15 @@ public class SceneAdminController {
         Stage stage = (Stage) EditItem.getScene().getWindow();
         stage.setScene(scene);
         DeleteUser controller = loader.getController();
+        stage.show();
+    }
+    public void Back(ActionEvent event) throws IOException {
+        Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
+        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) back.getScene().getWindow();
+        stage.setScene(scene);
         stage.show();
     }
 }

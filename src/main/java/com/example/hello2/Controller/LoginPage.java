@@ -26,6 +26,8 @@ public class LoginPage {
     @FXML
     private Button LogIn;
     private String accountType;
+    @FXML
+    private Button back;
 
     @FXML
     void handleLogIn(ActionEvent event) {
@@ -101,5 +103,14 @@ public class LoginPage {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public void Back(ActionEvent event) throws IOException {
+        Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
+        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) back.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 }

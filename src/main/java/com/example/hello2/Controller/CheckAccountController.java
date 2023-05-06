@@ -1,6 +1,8 @@
 package com.example.hello2.Controller;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Objects;
 
 import javafx.event.ActionEvent;
@@ -28,7 +30,8 @@ public class CheckAccountController {
     private Button nextButton;
 
     private String accountType;
-
+    @FXML
+    private Button back;
 
 
     public void setAccount(String accountType) {
@@ -50,26 +53,24 @@ public class CheckAccountController {
         Stage stage = (Stage) root.getScene().getWindow();
         switch (this.accountType) {
             case "VIP" -> {
-                Parent scene5Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(
-                        "/com/example/hello2/VIPUser.fxml")));
+                Parent scene5Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/VIPUser.fxml")));
                 Scene scene5 = new Scene(scene5Parent);
                 stage.setScene(scene5);
             }
             case "Regular" -> {
-                Parent scene6Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(
-                        "/com/example/hello2/RegularUser.fxml")));
+                Parent scene6Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/RegularUser.fxml")));
                 Scene scene6 = new Scene(scene6Parent);
                 stage.setScene(scene6);
             }
             case "Guest" -> {
-                Parent scene8Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(
-                        "/com/example/hello2/GuestUser.fxml")));
+                Parent scene8Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/GuestUser.fxml")));
                 Scene scene8 = new Scene(scene8Parent);
                 stage.setScene(scene8);
             }
             default -> System.out.println("Invalid account type: " + this.accountType);
         }
         stage.show();
+    }
 //    }
 //    switch (this.accountType) {
 //        case "VIP":
@@ -93,6 +94,13 @@ public class CheckAccountController {
 //    }
 //        stage.show();
 //}
-
+        public void Back(ActionEvent event) throws IOException {
+            Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
+            FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) back.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
     }
-}
