@@ -33,6 +33,8 @@ public class SceneAdminController {
 
     @FXML
     private Button back;
+    @FXML
+    private Button promote;
 
     @FXML
     void addItem(ActionEvent event) throws IOException {
@@ -112,6 +114,15 @@ public class SceneAdminController {
         Stage stage = (Stage) EditItem.getScene().getWindow();
         stage.setScene(scene);
         DeleteUser controller = loader.getController();
+        stage.show();
+    }
+    public void Promote(ActionEvent event) throws IOException {
+        Path path = Paths.get("src/main/resources/com/example/hello2/Promote.fxml");
+        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) promote.getScene().getWindow();
+        stage.setScene(scene);
         stage.show();
     }
     public void Back(ActionEvent event) throws IOException {

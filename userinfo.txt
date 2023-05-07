@@ -83,7 +83,6 @@ Phone Number: 09090909
 Account Type: Regular
 
 Username: shirin
-Password: shirinHI123!
 Password: LD:LVBO3y8Y@@
 ID: C229
 Address: me@gmail.com
@@ -95,12 +94,12 @@ Password: Srir98#gf
 ID: C245
 Address: fg
 Phone Number: 987654
-Account Type: Guest
+Account Type: Regular
 
 Username: linh
 Password: Shur5g!hj
 ID: C777
 Address: sdfg
 Phone Number: 7654
-Account Type: Regular
+Account Type: VIP
 
