@@ -51,46 +51,50 @@ public class ItemSelectGuestController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("Select an item from the list:");
 
-            VBox vbox = new VBox(); // create a container for the CheckBoxes
+            VBox vbox = new VBox();
+                // create a container for the CheckBoxes
 
             List<CheckBox> checkBoxList = new ArrayList<>(); // keep track of selected CheckBoxes
             ToggleGroup group = new ToggleGroup();
-            final int[] selectedCount = {0}; // keep track of selected CheckBox count
             String item = null;
+
+            final int[] selectedCount = {0}; // keep track of selected CheckBox count
             for (String line : contentList) {
+                String finalItem = null;
                 if (line.startsWith("ID")) {
                     item = line.trim();
-                    HBox hbox = new HBox(); // create a container for the button and the text
-                    Button button = new Button("Select");
-                    String finalItem = item;
-                    button.setOnAction((ActionEvent e2) -> {
-                        setLabelText(finalItem);
+                    // create a container for the button and the text
+                    CheckBox checkBox = new CheckBox(item);
+                    checkBox.setOnAction((ActionEvent event1) -> {
+                        if (checkBox.isSelected()) {
+                            if (selectedCount[0] < 2) {
+                                selectedCount[0]++;
+                            } else {
+                                checkBox.setSelected(false);
+                            }
+                        } else {
+                            selectedCount[0]--;
+                        }
                     });
-                    RadioButton radioButton = new RadioButton(item);
-                    radioButton.setToggleGroup(group);
-                    hbox.getChildren().addAll(button, radioButton); // add the button and the text to the container
-                    vbox.getChildren().add(hbox); // add the container to the main container
+
+                    vbox.getChildren().add(checkBox); // add the CheckBox to the container
+                    checkBoxList.add(checkBox);
+
+
+                    setLabelText(item);
+                    // add the container to the main container
                 } else {
                     vbox.getChildren().add(new Label(line)); // add the text to the main container
                 }
             }
-            CheckBox checkBox = new CheckBox(item);
-            checkBox.setOnAction((ActionEvent event1) -> {
-                if (checkBox.isSelected()) {
-                    if (selectedCount[0] < 2) {
-                        selectedCount[0]++;
-                    } else {
-                        checkBox.setSelected(false);
-                    }
-                } else {
-                    selectedCount[0]--;
-                }
-            });
 
-            vbox.getChildren().add(checkBox); // add the CheckBox to the container
-            checkBoxList.add(checkBox);
-
-            alert.getDialogPane().setContent(vbox); // set the container as the content of the dialog pane
+            ScrollPane scrollPane = new ScrollPane();
+            selectedItemLabel.setVisible(false);
+            scrollPane.setFitToWidth(true);
+            scrollPane.setPrefHeight(200);
+            scrollPane.setContent(vbox);
+            scrollPane.setMaxHeight(200);
+            alert.getDialogPane().setContent(scrollPane); // set the container as the content of the dialog pane
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -106,6 +110,7 @@ public class ItemSelectGuestController {
                 }
                 setLabelText(selectedItem);
             }
+            selectedItemLabel.setVisible(true);
             progressBar.setVisible(false);
         });
 
