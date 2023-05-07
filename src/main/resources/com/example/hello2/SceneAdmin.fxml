@@ -14,5 +14,8 @@
       <Button fx:id="DisplayAvailItems" layoutX="323.0" layoutY="106.0" mnemonicParsing="false" onAction="#showAvailItems" text="Display Available Items" />
       <Button fx:id="back" layoutX="279.0" layoutY="360.0" mnemonicParsing="false" onAction="#Back" text="Back" />
       <Button fx:id="promote" layoutX="33.0" layoutY="161.0" mnemonicParsing="false" onAction="#Promote" text="Promote Customer" />
+      <Button fx:id="VIPCUSTOMER" layoutX="205.0" layoutY="161.0" mnemonicParsing="false" onAction="#DisplayVIP" text="Display VIP Account" />
+      <Button fx:id="RegularCustomer" layoutX="392.0" layoutY="161.0" mnemonicParsing="false" onAction="#DisplayRegular" text="Display Regular Account" />
+      <Button fx:id="GuestAccount" layoutX="33.0" layoutY="212.0" mnemonicParsing="false" onAction="#DisplayGuest" text="Display Guest Account " />
    </children>
 </AnchorPane>

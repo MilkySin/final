@@ -14,8 +14,11 @@ import java.nio.file.Paths;
 
 public class SceneAdminController {
 
+    public  Button VIPCUSTOMER ;
     public Button DisplayCustomers;
     public Button DeleteUser;
+    public Button RegularCustomer;
+    public Button GuestAccount;
     @FXML
     private Button AddItem;
 
@@ -127,6 +130,33 @@ public class SceneAdminController {
     }
     public void Back(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
+        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) back.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void DisplayVIP (ActionEvent event) throws IOException {
+        Path path = Paths.get("src/main/resources/com/example/hello2/DisplayVIP.fxml");
+        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) back.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void DisplayRegular (ActionEvent event) throws IOException {
+        Path path = Paths.get("src/main/resources/com/example/hello2/DisplayRegular.fxml");
+        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) back.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void DisplayGuest (ActionEvent event) throws IOException {
+        Path path = Paths.get("src/main/resources/com/example/hello2/DisplayGuest.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);

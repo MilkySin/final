@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.DisplayRegular">
+    <children>
+        <TextArea fx:id="customerTextArea" editable="false" layoutY="54.0" prefHeight="313.0" prefWidth="600.0" />
+        <Text layoutX="161.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regular Accounts " textAlignment="CENTER" wrappingWidth="277.07958984375" />
+    </children>
+</AnchorPane>
