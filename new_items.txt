@@ -2,17 +2,15 @@ ID: I123-321
 Title: FFF
 Rental Type: DVD
 Loan Type: 1 Week Loan
-Copies: 2
+Copies: 0
 Rental Fee (USD): 39
-Rental Status: Available
 
 ID: I001-2001
 Title: Game of thrones
 Rental Type: DVD
 Loan Type: 1 Week Loan
-Copies: 3
+Copies: 2
 Rental Fee (USD): 65.0
-Rental Status: Available
 
 ID: I123-2001
 Title: Harry potter
@@ -20,7 +18,6 @@ Rental Type: DVD
 Loan Type: 1 Week Loan
 Copies: 5
 Rental Fee (USD): 87.0
-Rental Status: Available
 
 ID: I678-876
 Title: fghj
@@ -28,7 +25,6 @@ Rental Type: Record
 Loan Type: 2 Days Loan
 Copies: 4
 Rental Fee (USD): 34.0
-Rental Status: Available
 
 ID: I690-293
 Title: Skip and Loafers
@@ -36,7 +32,6 @@ Rental Type: DVD
 Loan Type: 1 Week Loan
 Copies: 3
 Rental Fee (USD): 9
-Rental Status: Available
 
 ID: I767-576
 Title: fdgfhjkl
@@ -44,7 +39,6 @@ Rental Type: DVD
 Loan Type: 1 Week Loan
 Copies: 4
 Rental Fee (USD): 56.0
-Rental Status: Available
 
 ID: I786-946
 Title: dfgh
@@ -52,7 +46,6 @@ Rental Type: DVD
 Loan Type: 1 Week Loan
 Copies: 6
 Rental Fee (USD): 98.0
-Rental Status: Available
 
 ID: I000-999
 Title: Ihatemyself

@@ -7,18 +7,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class ItemSelectGuestController {
     @FXML
@@ -52,7 +52,7 @@ public class ItemSelectGuestController {
             alert.setHeaderText("Select an item from the list:");
 
             VBox vbox = new VBox();
-                // create a container for the CheckBoxes
+            // create a container for the CheckBoxes
 
             List<CheckBox> checkBoxList = new ArrayList<>(); // keep track of selected CheckBoxes
             ToggleGroup group = new ToggleGroup();
@@ -60,7 +60,6 @@ public class ItemSelectGuestController {
 
             final int[] selectedCount = {0}; // keep track of selected CheckBox count
             for (String line : contentList) {
-                String finalItem = null;
                 if (line.startsWith("ID")) {
                     item = line.trim();
                     // create a container for the button and the text
@@ -102,6 +101,12 @@ public class ItemSelectGuestController {
                 for (CheckBox checkBox1 : checkBoxList) {
                     if (checkBox1.isSelected()) {
                         selectedItemBuilder.append(checkBox1.getText()).append(", ");
+                        try {
+                            Deduction(checkBox1.getText().split("ID: ")[1]);
+                        } catch (Exception ex) {
+                            Alert errorAlert = new Alert(Alert.AlertType.ERROR, "Error updating file: " + ex.getMessage());
+                            errorAlert.showAndWait();
+                        }
                     }
                 }
                 String selectedItem = selectedItemBuilder.toString();
@@ -109,9 +114,11 @@ public class ItemSelectGuestController {
                     selectedItem = selectedItem.substring(0, selectedItem.length() - 2); // remove the trailing ", "
                 }
                 setLabelText(selectedItem);
+
             }
             selectedItemLabel.setVisible(true);
             progressBar.setVisible(false);
+
         });
 
         task.setOnFailed(e -> {
@@ -124,10 +131,10 @@ public class ItemSelectGuestController {
     }
 
 
-
     public void setLabelText(String text) {
         selectedItemLabel.setText(text);
     }
+
     public void Back(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
@@ -137,4 +144,44 @@ public class ItemSelectGuestController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void Deduction(String id) throws IOException {
+        Path path = Paths.get("new_items.txt");
+        List<String> fileContent = new ArrayList<>(Files.readAllLines(path));
+        boolean itemFound = false;
+        int copies;
+
+        for (int i = 0; i < fileContent.size(); i++) {
+            String line = fileContent.get(i);
+            String[] fields = line.split(":\\s+");
+            if (fields[0].equals("ID") && fields[1].equals(id)) {
+                int copiesIndex = i + 4;
+                if (copiesIndex >= fileContent.size()) {
+                    System.out.println("Error: Copies field not found.");
+                    return;
+                }
+                String copiesLine = fileContent.get(copiesIndex);
+                String[] copiesFields = copiesLine.split(":\\s+");
+                copies = Integer.parseInt(copiesFields[1]);
+                copies--;
+                if (copies < 0) {
+                    System.out.println("Error: Copies field cannot be negative.");
+                    return;
+                }
+                String updatedLine = String.format("Copies: %d", copies);
+                fileContent.set(copiesIndex, updatedLine);
+                itemFound = true;
+                break;
+            }
+        }
+
+        if (!itemFound) {
+            System.out.println("Item not found.");
+            return;
+        }
+
+        Files.write(path, fileContent, StandardCharsets.UTF_8);
+        System.out.println("Item updated successfully.");
+    }
 }
+
