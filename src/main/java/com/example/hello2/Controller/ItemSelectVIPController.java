@@ -3,11 +3,16 @@ package com.example.hello2.Controller;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +30,7 @@ public class ItemSelectVIPController {
 
     @FXML
     private Button viewTextFileButton;
+    public Button back;
 
     @FXML
     public void viewTextFile(ActionEvent event) {
@@ -87,5 +93,15 @@ public class ItemSelectVIPController {
 
     public void setLabelText(String text) {
         selectedItemLabel.setText(text);
+    }
+
+    public void Back(ActionEvent event) throws IOException {
+        Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
+        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) back.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 }
