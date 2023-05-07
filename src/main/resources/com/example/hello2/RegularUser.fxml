@@ -15,5 +15,6 @@
 
     <Label fx:id="selectedItemLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="108.0" prefWidth="567.0" style="-fx-font-size: 18px;" text="" textAlignment="CENTER" />
    <Button fx:id="back" layoutX="269.0" layoutY="347.0" mnemonicParsing="false" onAction="#Back" text="Logout" />
+   <Button fx:id="saveSelectedItems" layoutX="270.0" layoutY="308.0" mnemonicParsing="false" onAction="#saveSelectedItems" text="confirm" />
 
 </AnchorPane>

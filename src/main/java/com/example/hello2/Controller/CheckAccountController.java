@@ -15,6 +15,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+
+
 public class CheckAccountController {
 
     @FXML
@@ -32,6 +34,10 @@ public class CheckAccountController {
     private String accountType;
     @FXML
     private Button back;
+    private int userID;
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
 
 
     public void setAccount(String accountType) {
@@ -58,9 +64,14 @@ public class CheckAccountController {
                 stage.setScene(scene5);
             }
             case "Regular" -> {
-                Parent scene6Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/RegularUser.fxml")));
-                Scene scene6 = new Scene(scene6Parent);
-                stage.setScene(scene6);
+                Path path = Paths.get("src/main/resources/com/example/hello2/RegularUser.fxml");
+                FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+                Parent scene8Parent = loader.load();
+                Scene scene8 = new Scene(scene8Parent);
+                stage.setScene(scene8);
+
+                ItemSelectRegularController controller = loader.getController();
+                controller.setUserID(userID);
             }
             case "Guest" -> {
                 Parent scene8Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/GuestUser.fxml")));
@@ -71,29 +82,7 @@ public class CheckAccountController {
         }
         stage.show();
     }
-//    }
-//    switch (this.accountType) {
-//        case "VIP":
-//            Parent scene5Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/VIPUser.fxml")));
-//            Scene scene5 = new Scene(scene5Parent);
-//            stage.setScene(scene5);
-//            break;
-//        case "Regular":
-//            Parent scene6Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/RegularUser.fxml")));
-//            Scene scene6 = new Scene(scene6Parent);
-//            stage.setScene(scene6);
-//            break;
-//        case "Guest":
-//            Parent scene8Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/GuestUser.fxml")));
-//            Scene scene8 = new Scene(scene8Parent);
-//            stage.setScene(scene8);
-//            break;
-//        default:
-//            System.out.println("Invalid account type: " + this.accountType);
-//            break;
-//    }
-//        stage.show();
-//}
+
         public void Back(ActionEvent event) throws IOException {
             Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
             FXMLLoader loader = new FXMLLoader(path.toUri().toURL());

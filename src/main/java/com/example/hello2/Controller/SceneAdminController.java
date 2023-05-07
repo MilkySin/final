@@ -19,6 +19,7 @@ public class SceneAdminController {
     public Button DeleteUser;
     public Button RegularCustomer;
     public Button GuestAccount;
+    public Button DisplayUnavailableItems;
     @FXML
     private Button AddItem;
 
@@ -161,6 +162,16 @@ public class SceneAdminController {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) back.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    void DisplayUnavailableItems(ActionEvent event) throws IOException{
+        Path path = Paths.get("src/main/resources/com/example/hello2/DisplayUnavailableItems.fxml");
+        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) EditItem.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }

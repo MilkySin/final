@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
@@ -14,61 +13,61 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
-public class DisplayRegular {
+public class DisplayUnavailableItems {
     @FXML
-    public TextArea customerTextArea;
+    public TextArea textArea;
 
     public Button back;
-    private int userID;
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
-
-
-
     @FXML
     public void initialize() throws IOException {
-        Path path = Paths.get("userinfo.txt");
+        Path path = Paths.get("new_items.txt");
         File file = new File(path.toUri());
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
-            String Username = "", Password = "", ID = "", Account_Type = "", Address = "", Phonenum = "";
+            String id = "", title = "", rentalType = "", loanType = "", copies = "", rentalFee = "";
             StringBuilder sb = new StringBuilder();
 
             while ((line = br.readLine()) != null) {
                 String[] fields = line.split(":\\s");
                 switch (fields[0]) {
-                    case "Username":
-                        Username = fields[1];
-                        break;
-                    case "Password":
-                        Password = fields[1];
-                        break;
                     case "ID":
-                        ID = fields[1];
+                        id = fields[1];
                         break;
-                    case "Address":
-                        Address = fields[1];
+                    case "Title":
+                        title = fields[1];
                         break;
-                    case "Phone Number":
-                        Phonenum = fields[1];
+                    case "Rental Type":
+                        rentalType = fields[1];
                         break;
-                    case "Account Type":
-                        if (fields[1].equals("Regular")) {
-                            sb.append("Username:  ").append(Username).append("\n");
-                            sb.append("Password: ").append(Password).append("\n");
-                            sb.append("ID: ").append(ID).append("\n");
-                            sb.append("Address: ").append(Address).append("\n");
-                            sb.append("Phone NUmber: ").append(Phonenum).append("\n\n");
+                    case "Loan Type":
+                        loanType = fields[1];
+                        break;
+                    case "Copies":
+                        copies = fields[1];
+                        break;
+                    case "Rental Fee (USD)":
+                        rentalFee = fields[1];
+                        break;
+                    case "Rental Status":
+                        if (fields[1].equals("Borrowed")) {
+                            sb.append("ID: ").append(id).append("\n");
+                            sb.append("Title: ").append(title).append("\n");
+                            sb.append("Rental Type: ").append(rentalType).append("\n");
+                            sb.append("Loan Type: ").append(loanType).append("\n");
+                            sb.append("Copies: ").append(copies).append("\n");
+                            sb.append("Rental Fee: ").append(rentalFee).append("\n\n");
                         }
 
-                        customerTextArea.setText(String.valueOf(sb));
+                        textArea.setText(String.valueOf(sb));
                 }
             }
         }catch(IOException e){
@@ -86,3 +85,4 @@ public class DisplayRegular {
         stage.show();
     }
 }
+

@@ -41,6 +41,7 @@ public class LoginPage {
             alert.showAndWait();
             return;
         }
+        int userID = Integer.parseInt(ID.substring(1));
 
         // Read the user info from file and check if the credentials match
         String password = passwordField.getText();
@@ -86,6 +87,7 @@ public class LoginPage {
                             CheckAccountController controller = loader.getController();
                             controller.setUserName(username); // Set the username in Scene4
                             controller.setAccount(accountType); // Set the Account type in Scene4
+                            controller.setUserID(userID);
                             stage.show();
                         }
 
