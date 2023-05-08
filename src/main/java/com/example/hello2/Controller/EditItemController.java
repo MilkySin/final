@@ -8,7 +8,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.hello2.Modal.ItemModel;
+import com.example.hello2.Model.ItemModel;
+import com.example.hello2.Reader.ItemsFileReader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -3,9 +3,6 @@ package com.example.hello2;
 
 //new change
 //new new change
-import com.example.hello2.Controller.ItemsFileReader;
-import com.example.hello2.Modal.ItemModel;
-import com.example.hello2.Modal.UserModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +12,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class HelloApplication extends Application {
