@@ -14,8 +14,7 @@ public class PromoteAccount {
             String address = account.getAddress();
             int phoneNumber = account.getPhoneNumber();
             ArrayList<ItemModel> rentedItemList = account.getRentedItemList();
-            RegularAccount promotedAccount = new RegularAccount(username, password, id, name, address, phoneNumber, rentedItemList);
-            return promotedAccount;
+            return new RegularAccount(username, password, id, name, address, phoneNumber, rentedItemList);
         }
         return null;
     }
@@ -31,8 +30,7 @@ public class PromoteAccount {
             String address = account.getAddress();
             int phoneNumber = account.getPhoneNumber();
             ArrayList<ItemModel> rentedItemList = account.getRentedItemList();
-            VIPAccount promotedAccount = new VIPAccount(username, password, id, name, address, phoneNumber, rentedItemList);
-            return promotedAccount;
+            return new VIPAccount(username, password, id, name, address, phoneNumber, rentedItemList);
         }
         return null;
     }
