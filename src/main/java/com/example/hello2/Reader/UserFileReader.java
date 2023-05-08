@@ -1,4 +1,5 @@
 package com.example.hello2.Reader;
+//Fixed and is working correctly
 
 import com.example.hello2.Model.UserModel;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 public class UserFileReader {
     public Path filePath = Paths.get("userinfo.txt");
 
-    private static ArrayList<UserModel> userList  = new ArrayList<>();
+    private ArrayList<UserModel> userList  = new ArrayList<>();
 
     public UserFileReader(Path filePath) {
         this.filePath = filePath;

@@ -1,5 +1,7 @@
 package com.example.hello2.Controller;
 
+//Fixed and is working correctly
+
 import com.example.hello2.Model.UserModel;
 import com.example.hello2.Reader.UserFileReader;
 import com.example.hello2.Writer.UsersFileWriter;
@@ -93,11 +95,14 @@ public class PromoteController {
 
         }
         if (found) {
-            user.setAccountType(newAccountType);
 //            UserFileReader reader = new UserFileReader();
-
-                UsersFileWriter writer = new UsersFileWriter();
-                writer.FileWriter(new UserFileReader().readUser());
+            UsersFileWriter writer = new UsersFileWriter();
+            for(UserModel temo : userList){
+                if(Objects.equals(temo.getId(), idToModify)){
+                    temo.setAccountType(newAccountType);
+                }
+            }
+            writer.FileWriter(userList);
 //            writer.writeUsers(user.getUsername(), user.getPassword());
 
         } else {
