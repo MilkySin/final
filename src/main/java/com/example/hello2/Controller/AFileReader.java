@@ -1,6 +1,5 @@
 package com.example.hello2.Controller;
 
-import com.example.hello2.Modal.ItemListModel;
 import com.example.hello2.Modal.ItemModel;
 
 import java.io.BufferedReader;
@@ -10,7 +9,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class AFileReader {
