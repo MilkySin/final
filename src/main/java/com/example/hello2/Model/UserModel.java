@@ -19,7 +19,7 @@ public class UserModel {
     protected int phoneNumber;
     protected String accountType;
     protected ArrayList<ItemModel> rentedItemList;
-    protected ArrayList<UserModel> usersList = new ArrayList<>();
+    protected static ArrayList<UserModel> usersList = new ArrayList<>();
 
     public UserModel(String username, String password, String id, String address, String accountType, int phoneNumber) {
         this.username = username;

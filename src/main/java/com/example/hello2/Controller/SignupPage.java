@@ -80,7 +80,7 @@ public class SignupPage {
                                                  Integer.parseInt(number));
             UserFileReader read = new UserFileReader();
             UsersFileWriter writer = new UsersFileWriter();
-            read.readUser().add(registeredUser);
+            read.getUserList().add(registeredUser);
             writer.writeUsers(read.readUser());
 
         } else {

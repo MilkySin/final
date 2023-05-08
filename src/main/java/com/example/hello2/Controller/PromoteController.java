@@ -35,6 +35,9 @@ public class PromoteController {
     public Text text;
     public Button back;
 
+    public PromoteController() throws IOException {
+    }
+
     public void initialize(){
         PromoteChoice.getItems().addAll("Guest", "Regular", "VIP");
         PromoteChoice.setValue("Guest");

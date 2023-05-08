@@ -31,7 +31,7 @@ public class DeleteUser {
     public Button delete;
     public Button back;
 
-    public void initialize() {
+    public void initialize() throws IOException {
         UserFileReader temp = new UserFileReader();
         ArrayList<UserModel> Userlist = temp.readUser();
         for (UserModel User : Userlist) {

@@ -2,10 +2,7 @@ package com.example.hello2.Reader;
 
 import com.example.hello2.Model.UserModel;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -23,9 +20,19 @@ public class UserFileReader {
     public UserFileReader() {
     }
 
-    public ArrayList<UserModel> readUser() {
+    public ArrayList<UserModel> getUserList(){
         return userList;
     }
-
-
+    public ArrayList<UserModel> readUser() throws IOException {
+        File file = new File("userinfo.txt");
+        FileReader fw = new FileReader(file);
+        BufferedReader bw = new BufferedReader(fw);
+        String line;
+        while((line = bw.readLine()) != null){
+            String[] field = line.split(",");
+            UserModel user = new UserModel(field[0], field[1],field[2],field[3],field[4],Integer.parseInt(field[5]));
+            userList.add(user);
+        }
+        return userList;
+    }
 }
