@@ -3,8 +3,8 @@ package com.example.hello2;
 
 //new change
 //new new change
-import com.example.hello2.Controller.ItemsFileReader;
-import com.example.hello2.Modal.*;
+import com.example.hello2.Writer.*;
+import com.example.hello2.Model.*;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

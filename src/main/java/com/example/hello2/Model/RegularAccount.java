@@ -1,4 +1,4 @@
-package com.example.hello2.Modal;
+package com.example.hello2.Model;
 
 import java.util.ArrayList;
 
