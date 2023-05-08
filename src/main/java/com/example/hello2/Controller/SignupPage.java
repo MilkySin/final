@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Objects;
 
 public class SignupPage {
     public Button back;
@@ -111,7 +110,7 @@ public class SignupPage {
         }
 
         // Check if ID already exists
-        BufferedReader reader = new BufferedReader(new FileReader("userinfo.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader(Paths.get("userinfo.txt").toFile()));
         String line;
         while ((line = reader.readLine()) != null) {
             if (line.startsWith("ID: " + ID)) {

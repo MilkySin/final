@@ -57,24 +57,34 @@ public class ItemSelectGuestController {
             List<CheckBox> checkBoxList = new ArrayList<>(); // keep track of selected CheckBoxes
             ToggleGroup group = new ToggleGroup();
             String item = null;
+            int copies = 0;
 
             final int[] selectedCount = {0}; // keep track of selected CheckBox count
             for (String line : contentList) {
+                String[] fields = line.split(":\\s+");
+                if (Objects.equals(fields[0], "Copies")){
+                    copies = Integer.parseInt(fields[1]);
+                    
+                }
                 if (line.startsWith("ID")) {
                     item = line.trim();
                     // create a container for the button and the text
                     CheckBox checkBox = new CheckBox(item);
-                    checkBox.setOnAction((ActionEvent event1) -> {
-                        if (checkBox.isSelected()) {
-                            if (selectedCount[0] < 2) {
-                                selectedCount[0]++;
+                    if (copies == 0) {
+                        checkBox.setDisable(true);
+                    } else {
+                        checkBox.setOnAction((ActionEvent event1) -> {
+                            if (checkBox.isSelected()) {
+                                if (selectedCount[0] < 2) {
+                                    selectedCount[0]++;
+                                } else {
+                                    checkBox.setSelected(false);
+                                }
                             } else {
-                                checkBox.setSelected(false);
+                                selectedCount[0]--;
                             }
-                        } else {
-                            selectedCount[0]--;
-                        }
-                    });
+                        });
+                    }
 
                     vbox.getChildren().add(checkBox); // add the CheckBox to the container
                     checkBoxList.add(checkBox);
@@ -156,6 +166,7 @@ public class ItemSelectGuestController {
             String[] fields = line.split(":\\s+");
             if (fields[0].equals("ID") && fields[1].equals(id)) {
                 int copiesIndex = i + 4;
+                int rentalStatusIndex = i + 6;
                 if (copiesIndex >= fileContent.size()) {
                     System.out.println("Error: Copies field not found.");
                     return;
@@ -170,6 +181,12 @@ public class ItemSelectGuestController {
                 }
                 String updatedLine = String.format("Copies: %d", copies);
                 fileContent.set(copiesIndex, updatedLine);
+
+                if (copies == 0) {
+                    String updatedRentalStatusLine = "Rental Status: Borrowed";
+                    fileContent.set(rentalStatusIndex, updatedRentalStatusLine);
+                }
+
                 itemFound = true;
                 break;
             }

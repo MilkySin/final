@@ -99,6 +99,7 @@ public class EditItemController {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File(filePath.toUri())));
             String line = reader.readLine();
+
             while (line != null) {
                 itemList.add(line);
                 line = reader.readLine();
