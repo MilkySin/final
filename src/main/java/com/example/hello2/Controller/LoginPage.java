@@ -2,11 +2,15 @@ package com.example.hello2.Controller;
 //login screen
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
+import com.example.hello2.Modal.ItemModel;
+import com.example.hello2.Modal.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +34,7 @@ public class LoginPage {
     private Button back;
 
     @FXML
-    void handleLogIn(ActionEvent event) {
+    void handleLogIn(ActionEvent event) throws IOException {
         // Validate the format of the ID field
 //        String ID = IDField.getText().trim();
 //        if (!ID.matches("C\\d{3}")) {
@@ -108,9 +112,12 @@ public class LoginPage {
 //            e.printStackTrace();
 //        }
 //    }
-        String ID = IDField.getText().trim();
-        int userID = Integer.parseInt(ID.substring(1));
 
+        UserFileReader temp = new UserFileReader();
+        ArrayList<UserModel> itemList  = temp.readUser();
+
+        String ID = IDField.getText().trim();
+        String password = passwordField.getText().trim();
         if (!ID.matches("C\\d{3}")) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Invalid ID");
@@ -118,6 +125,46 @@ public class LoginPage {
         alert.setContentText("The ID should start with a capital 'C' followed by three digits.");
         alert.showAndWait();
     }
+
+        for(UserModel users : itemList){
+            if (ID.equals(users.getID()) && password.equals(users.getPassword())){
+                if(Objects.equals(users.getID(), "C000")){
+                    Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
+                    FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) LogIn.getScene().getWindow();
+                    stage.setScene(scene);
+                    SceneAdminController controller = loader.getController();
+                    stage.show();
+                } else{
+                    Path path = Paths.get("src/main/resources/com/example/hello2/CheckAccount.fxml");
+                    FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) LogIn.getScene().getWindow();
+                    stage.setScene(scene);
+                    CheckAccountController controller = loader.getController();
+                    controller.setUserName(users.getUsername()); // Set the username in Scene4
+                    controller.setAccount(accountType); // Set the Account type in Scene4
+                    controller.setUserID(users.getID());
+                    stage.show();
+                }
+            }
+        }
+//        if (line.startsWith("Username:")) {
+//                    username = line.substring("Username:".length()).trim();
+//                } else if (line.startsWith("Password:")) {
+//                    storedPassword = line.substring("Password:".length()).trim();
+//                } else if (line.startsWith("ID:")) {
+//                    storedID = line.substring("ID:".length()).trim();
+//                } else if (line.startsWith("Account Type:")) {
+//                    accountType = line.substring("Account Type:".length()).trim();}
+//                if (username != null && storedPassword != null && storedID != null && accountType != null) {
+//                    if (storedID.equals(ID) && storedPassword.equals(password)) {
+
 
 }
     public void Back(ActionEvent event) throws IOException {

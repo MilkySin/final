@@ -59,17 +59,19 @@ public class EditItemController {
 
     public void searchItem(ActionEvent event) {
         String searchId = searchIdField.getText();
-        List<String> itemList = readItems();
+        ItemsFileReader temp = new ItemsFileReader();
+        ArrayList<ItemModel> itemList  = temp.readItems();
+
         String itemDetails = "";
-        for (int i = 0; i < itemList.size(); i++) {
-            if (itemList.get(i).startsWith("ID: " + searchId)) {
-                for (int j = i; j < i + 7; j++) {
-                    itemDetails += itemList.get(j) + "\n";
-                }
-                itemDetailsArea.setText(itemDetails);
-                break;
-            }
-        }
+//        for (int i = 0; i < itemList.size(); i++) {
+//            if (itemList.get(i).("ID: " + searchId)) {
+//                for (int j = i; j < i + 7; j++) {
+//                    itemDetails += itemList.get(j) + "\n";
+//                }
+//                itemDetailsArea.setText(itemDetails);
+//                break;
+//            }
+//        }
     }
     public void saveChanges(ActionEvent event) {
         String searchId = searchIdField.getText();
@@ -89,10 +91,8 @@ public class EditItemController {
                 alert.setHeaderText(null);
                 alert.setContentText("Changes saved successfully.");
                 alert.showAndWait();
-                break;
+
             }
-        }
-    }
 
 //    private List<String> readItems() {
 //        List<String> itemList = new ArrayList<>();

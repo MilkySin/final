@@ -123,7 +123,7 @@ public class SignupPage {
 //        }
 //        reader.close();
 
-        ArrayList<>
+//        ArrayList<>
 
         // Save username, password, ID, address, phone number, and account type to a text file
         File file = new File("userinfo.txt");

@@ -34,8 +34,8 @@ public class CheckAccountController {
     private String accountType;
     @FXML
     private Button back;
-    private int userID;
-    public void setUserID(int userID) {
+    private String userID;
+    public void setUserID(String userID) {
         this.userID = userID;
     }
 
@@ -71,7 +71,7 @@ public class CheckAccountController {
                 stage.setScene(scene8);
 
                 ItemSelectRegularController controller = loader.getController();
-                controller.setUserID(userID);
+                controller.setUserID(Integer.parseInt(userID));
             }
             case "Guest" -> {
                 Parent scene8Parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/hello2/GuestUser.fxml")));
