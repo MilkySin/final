@@ -1,6 +1,5 @@
 package com.example.hello2.Controller;
 
-import com.example.hello2.Modal.ItemModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +18,7 @@ import java.nio.file.Paths;
 
 public class AddItemController {
 
-    public ChoiceBox RentalTypeChoiceBox;
+    public ChoiceBox<String> RentalTypeChoiceBox;
     @FXML
     private ChoiceBox<String> loanTypeChoiceBox;
 
@@ -65,25 +64,17 @@ public class AddItemController {
         // Get input values
         String id = idField.getText();
         String title = titleField.getText();
-        String rentalType = (String) RentalTypeChoiceBox.getValue();
+        String rentalType = RentalTypeChoiceBox.getValue();
         String loanType = loanTypeChoiceBox.getValue();
         int copies = Integer.parseInt(copiesField.getText());
         double rentalFee = Double.parseDouble(rentalFeeField.getText());
         String rentalStatus = rentalStatusChoiceBox.getValue();
 
-
-//        ItemModel item = new ItemModel();
-
-        // Write to file
         try {
             FileWriter writer = new FileWriter("new_items.txt", true);
-            writer.write(id + "," + title + ","  + rentalType + "," + loanType + "," + copies + "," + rentalFee + "," + rentalStatus);
-//            writer.write( title + "\n");
-//            writer.write("Rental Type: " + rentalType + "\n");
-//            writer.write("Loan Type: " + loanType + "\n");
-//            writer.write("Copies: " + copies + "\n");
-//            writer.write("Rental Fee (USD): " + rentalFee + "\n");
-//            writer.write("Rental Status: " + rentalStatus + "\n\n");
+            writer.write(id + "," + title + ","  + rentalType + "," + loanType + "," + copies + "," + rentalFee +
+                                   "," + rentalStatus);
+            writer.write("\n");
             writer.close();
 
             // Show success message

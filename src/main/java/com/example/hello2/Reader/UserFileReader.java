@@ -1,7 +1,6 @@
-package com.example.hello2.Controller;
+package com.example.hello2.Reader;
 
-import com.example.hello2.Modal.ItemModel;
-import com.example.hello2.Modal.UserModel;
+import com.example.hello2.Model.UserModel;
 
 import java.io.BufferedReader;
 import java.io.File;

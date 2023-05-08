@@ -1,1 +1,2 @@
 Minh,Shirin,C001,Saigon,Guest,09090909
+Admin,Admin000!,C000,VIP,Saigon,09090909

@@ -1,5 +1,6 @@
 package com.example.hello2.Controller;
 //sign up screen goes to scene3
+import com.example.hello2.Writer.UsersFileWriter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -60,9 +61,6 @@ public class SignupPage {
         stage.setScene(scene);
         stage.show();
     }
-
-
-
     public void signup(ActionEvent event) throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -71,76 +69,18 @@ public class SignupPage {
         String number = NumberField.getText();
         String accountType = accountTypeChoiceBox.getValue();
 
-        if (username.isEmpty() || password.isEmpty() || ID.isEmpty() || address.isEmpty() || number.isEmpty() || accountType.isEmpty()) {
-            System.out.println("Please enter all required fields!");
-            return;
+        String passwordRegex = "^(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?])(?=.*\\d)(?=.*[A-Z]).{8,}$";
+        String IDRegex = "^C\\d{3}$";
+
+        if (password.matches(passwordRegex) && ID.matches(IDRegex)) {
+            UsersFileWriter write = new UsersFileWriter();
+            write.FileWriter(username, password, ID, address, accountType, Integer.parseInt(number));
+        } else {
+            System.out.println("Invalid Pass or ID");
         }
-
-        // Check ID format
-        if (!ID.matches("C\\d{3}")) {
-            System.out.println("ID must start with a capital C and be followed by 3 digits!");
-            return;
-        }
-
-        // Check password constraints
-        boolean hasUpperCase = false;
-        boolean hasLowerCase = false;
-        boolean hasNumber = false;
-        boolean hasSpecialChar = false;
-        for (char c : password.toCharArray()) {
-            if (Character.isUpperCase(c)) {
-                hasUpperCase = true;
-            } else if (Character.isLowerCase(c)) {
-                hasLowerCase = true;
-            } else if (Character.isDigit(c)) {
-                hasNumber = true;
-            } else if (!Character.isLetterOrDigit(c)) {
-                hasSpecialChar = true;
-            }
-        }
-
-        if (password.length() < 8 || !hasUpperCase || !hasLowerCase || !hasNumber || !hasSpecialChar) {
-            System.out.println("Password must be at least 8 characters long and contain a mix of uppercase and lowercase letters, numbers, and special characters!");
-            return;
-        }
-
-        // Check phone number format
-        if (!number.matches("\\d+")) {
-            System.out.println("Phone number must only contain digits!");
-            return;
-        }
-
-        // Check if ID already exists
-//        BufferedReader reader = new BufferedReader(new FileReader(Paths.get("userinfo.txt").toFile()));
-//        String line;
-//
-//        while ((line = reader.readLine()) != null) {
-//            if (line.startsWith("ID: " + ID)) {
-//                System.out.println("ID already exists. Please enter a different ID.");
-//                reader.close();
-//                return;
-//            }
-//        }
-//        reader.close();
-
-//        ArrayList<>
-
-        // Save username, password, ID, address, phone number, and account type to a text file
-        File file = new File("userinfo.txt");
-        FileWriter fw = new FileWriter(file, true);
-        BufferedWriter bw = new BufferedWriter(fw);
-        bw.write( username + "," + password + "," + ID + "," + address + "," + number + "," + accountType);
-//        bw.write("Password: " + password + "\n");
-//        bw.write("ID: " + ID + "\n");
-//        bw.write("Address: " + address + "\n");
-//        bw.write("Phone Number: " + number + "\n");
-//        bw.write("Account Type: " + accountType + "\n");
-        bw.write("\n");
-        bw.close();
-        fw.close();
 
         // Load Scene 3 and pass the username as a parameter
-        Path path = Paths.get("src/main/resources/com/example/hello2/Scene3.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
 
         Parent root = loader.load();
@@ -158,9 +98,4 @@ public class SignupPage {
             System.out.println("Error: Stage is null");
         }
     }
-
-
-
-
-
 }
