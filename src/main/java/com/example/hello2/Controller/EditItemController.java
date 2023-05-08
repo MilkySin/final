@@ -7,9 +7,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Reader.ItemsFileReader;
+import com.example.hello2.Writer.ItemsFileWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,7 +49,7 @@ public class EditItemController {
     @FXML
     private Button saveChangesButton;
 
-    private Path filePath = Paths.get("new_items.txt");
+
     public void initialize() {
         // Initialize loan type choice box with two options
         loanTypeChoiceBox.getItems().addAll("1 Week Loan", "2 Days Loan");
@@ -57,6 +59,10 @@ public class EditItemController {
         rentalStatusChoiceBox.getItems().addAll("Available", "Borrowed");
         rentalStatusChoiceBox.setValue("Available");
     }
+    public String toString(ItemModel i ){
+        return "ID: "+ i.getID()+ " \n"+ "Title: "+i.getTitle()+"\n"+ "Type: "+ i.getRentalType()+"\n"+ "Loan type: "+i.getLoanType()+"\n"+"Copies: "+
+                i.getCopies()+"\n"+"fee: "+i.getFee()+"\n"+" Availability: "+ i.getStatus()+"\n";
+    }
 
     public void searchItem(ActionEvent event) {
         ItemsFileReader temp = new ItemsFileReader();
@@ -65,29 +71,48 @@ public class EditItemController {
         String itemDetails = "";
         for (ItemModel item : itemlist) {
             if (item.getID().equals(searchId)) {
-                itemDetails += item.toString() + "\n";
-                itemDetailsArea.setText(itemDetails);
-                break;
+                itemDetailsArea.setText(toString(item));
+//                itemDetails += item + "\n";
+//                itemDetailsArea.setText(itemDetails);
+//                break;
             }
         }
 
     }
-    public void saveChanges(ActionEvent event) {
+    public void saveChanges(ActionEvent event) throws IOException {
         String searchId = searchIdField.getText();
-        ArrayList<ItemModel> itemList =  new ItemsFileReader().readItems();
-        ItemModel temp=new ItemModel();
-        temp.setID(searchId);
-        for (ItemModel tems: itemList){
 
-            if(tems.getID() == temp.getID()){
-                temp.setID(itemIdField.getText());
-                temp.setFee(Double.parseDouble(rentalFeeField.getText()));
-                temp.setCopies(Integer.parseInt(copiesField.getText()));
-                temp.setTitle(titleField.getText());
-                temp.setStatus((String) rentalStatusChoiceBox.getValue());
-                temp.setLoanType((String)loanTypeChoiceBox.getValue());
+        ArrayList<ItemModel> itemlist =  new ItemsFileReader().readItems();
+        ItemsFileWriter write = new ItemsFileWriter();
+//        ItemModel temp=new ItemModel();
+//        temp.setID(searchId);
+        for (int i = 0; i < itemlist.size(); i++) {
+            if (itemlist.get(i).getID().equals(searchId)) {
+                itemlist.get(i).setID(itemIdField.getText());
+                itemlist.get(i).setFee(Double.parseDouble(rentalFeeField.getText()));
+                itemlist.get(i).setCopies(Integer.parseInt(copiesField.getText()));
+                itemlist.get(i).setTitle(titleField.getText());
+                itemlist.get(i).setStatus((String) rentalStatusChoiceBox.getValue());
+                itemlist.get(i).setLoanType((String)loanTypeChoiceBox.getValue());
+                write.FileWriter(itemlist);
+                break;
             }
         }
+//        for (ItemModel tems: itemList){
+//
+//            if(Objects.equals(tems.getID(), temp.getID())){
+//                tems.setID(itemIdField.getText());
+//                tems.setFee(Double.parseDouble(rentalFeeField.getText()));
+//                tems.setCopies(Integer.parseInt(copiesField.getText()));
+//                tems.setTitle(titleField.getText());
+//                tems.setStatus((String) rentalStatusChoiceBox.getValue());
+//                tems.setLoanType((String)loanTypeChoiceBox.getValue());
+//            }
+//
+//        }
+
+
+        write.FileWriter(itemlist);
 //
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Success");

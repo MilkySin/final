@@ -24,17 +24,22 @@ public class ItemModel {
 
     private String status;
 
+
     private ArrayList<ItemModel> itemList = new ArrayList<>();
 
-    public ItemModel(String ID, String title, String rentalType, String loanType, int copies, double fee, String status) {
+    public ItemModel(String ID, String title, String rentalType, String loanType, int copies, double fee,  String status) {
         this.ID = ID;
         this.title = title;
         this.rentalType = rentalType;
         this.loanType = loanType;
         this.copies = copies;
         this.fee = fee;
-        this.status = status;
+        this.status=status;
+
+
     }
+
+
 
     public ItemModel() {
     }
