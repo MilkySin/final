@@ -11,16 +11,16 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 
-public class AFileReader {
+public class ItemsFileReader {
     public Path filePath = Paths.get("new_items.txt");
 
     public ArrayList<ItemModel> itemList  = new ArrayList<ItemModel>();
 
-    public AFileReader(Path filePath) {
+    public ItemsFileReader(Path filePath) {
         this.filePath = filePath;
     }
 
-    public AFileReader() {
+    public ItemsFileReader() {
     }
 
     public ArrayList<ItemModel> readItems() {

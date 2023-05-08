@@ -3,19 +3,14 @@ package com.example.hello2;
 
 //new change
 //new new change
-import com.example.hello2.Controller.AFileReader;
+import com.example.hello2.Controller.ItemsFileReader;
 import com.example.hello2.Modal.ItemModel;
+import com.example.hello2.Modal.UserModel;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class HelloApplication extends Application {
     @Override
@@ -32,11 +27,14 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-        new AFileReader();
-        AFileReader temp = new AFileReader();
+        new ItemsFileReader();
+        ItemsFileReader temp = new ItemsFileReader();
 //        temp.readItems();
 
         ArrayList<ItemModel> itemList  = temp.readItems();
+//        ItemsFileReader temp2;
+//        ArrayList<UserModel> userList  = temp2.readItems();
+
 //        System.out.println(itemList.get(0).getRentalType() == );
 
         for(ItemModel temp2: itemList) {

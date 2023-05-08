@@ -1,8 +1,6 @@
 package com.example.hello2.Controller;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -10,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.hello2.Modal.ItemModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -74,16 +73,17 @@ public class EditItemController {
     }
     public void saveChanges(ActionEvent event) {
         String searchId = searchIdField.getText();
-        List<String> itemList = readItems();
-        for (int i = 0; i < itemList.size(); i++) {
-            if (itemList.get(i).startsWith("ID: " + searchId)) {
-                itemList.set(i, "ID: " + itemIdField.getText());
-                itemList.set(i + 1, "Title: " + titleField.getText());
-                itemList.set(i + 3, "Loan Type: " + loanTypeChoiceBox.getValue());
-                itemList.set(i + 4, "Copies: " + copiesField.getText());
-                itemList.set(i + 5, "Rental Fee (USD): " + rentalFeeField.getText());
-                itemList.set(i + 6, "Rental Status: " + rentalStatusChoiceBox.getValue());
-                writeItems(itemList);
+        ArrayList<ItemModel> itemList =  new ItemsFileReader().readItems();
+//        for (int i = 0; i < itemList.size(); i++) {
+
+//            if (itemList.get(i).startsWith("ID: " + searchId)) {
+//                itemList.set(i, "ID: " + itemIdField.getText());
+//                itemList.set(i + 1, "Title: " + titleField.getText());
+//                itemList.set(i + 3, "Loan Type: " + loanTypeChoiceBox.getValue());
+//                itemList.set(i + 4, "Copies: " + copiesField.getText());
+//                itemList.set(i + 5, "Rental Fee (USD): " + rentalFeeField.getText());
+//                itemList.set(i + 6, "Rental Status: " + rentalStatusChoiceBox.getValue());
+//                writeItems(itemList);
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Success");
                 alert.setHeaderText(null);
@@ -94,22 +94,22 @@ public class EditItemController {
         }
     }
 
-    private List<String> readItems() {
-        List<String> itemList = new ArrayList<>();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(filePath.toUri())));
-            String line = reader.readLine();
-
-            while (line != null) {
-                itemList.add(line);
-                line = reader.readLine();
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return itemList;
-    }
+//    private List<String> readItems() {
+//        List<String> itemList = new ArrayList<>();
+//        try {
+//            BufferedReader reader = new BufferedReader(new FileReader(new File(filePath.toUri())));
+//            String line = reader.readLine();
+//
+//            while (line != null) {
+//                itemList.add(line);
+//                line = reader.readLine();
+//            }
+//            reader.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return itemList;
+//    }
 
     private void writeItems(List<String> itemList) {
         try {

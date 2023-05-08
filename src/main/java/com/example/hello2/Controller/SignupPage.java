@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class SignupPage {
     public Button back;
@@ -110,27 +111,30 @@ public class SignupPage {
         }
 
         // Check if ID already exists
-        BufferedReader reader = new BufferedReader(new FileReader(Paths.get("userinfo.txt").toFile()));
-        String line;
-        while ((line = reader.readLine()) != null) {
-            if (line.startsWith("ID: " + ID)) {
-                System.out.println("ID already exists. Please enter a different ID.");
-                reader.close();
-                return;
-            }
-        }
-        reader.close();
+//        BufferedReader reader = new BufferedReader(new FileReader(Paths.get("userinfo.txt").toFile()));
+//        String line;
+//
+//        while ((line = reader.readLine()) != null) {
+//            if (line.startsWith("ID: " + ID)) {
+//                System.out.println("ID already exists. Please enter a different ID.");
+//                reader.close();
+//                return;
+//            }
+//        }
+//        reader.close();
+
+        ArrayList<>
 
         // Save username, password, ID, address, phone number, and account type to a text file
         File file = new File("userinfo.txt");
         FileWriter fw = new FileWriter(file, true);
         BufferedWriter bw = new BufferedWriter(fw);
-        bw.write("Username: " + username + "\n");
-        bw.write("Password: " + password + "\n");
-        bw.write("ID: " + ID + "\n");
-        bw.write("Address: " + address + "\n");
-        bw.write("Phone Number: " + number + "\n");
-        bw.write("Account Type: " + accountType + "\n");
+        bw.write( username + "," + password + "," + ID + "," + address + "," + number + "," + accountType);
+//        bw.write("Password: " + password + "\n");
+//        bw.write("ID: " + ID + "\n");
+//        bw.write("Address: " + address + "\n");
+//        bw.write("Phone Number: " + number + "\n");
+//        bw.write("Account Type: " + accountType + "\n");
         bw.write("\n");
         bw.close();
         fw.close();
