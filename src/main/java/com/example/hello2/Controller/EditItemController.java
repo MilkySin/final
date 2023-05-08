@@ -59,34 +59,36 @@ public class EditItemController {
     }
 
     public void searchItem(ActionEvent event) {
-        String searchId = searchIdField.getText();
         ItemsFileReader temp = new ItemsFileReader();
-        ArrayList<ItemModel> itemList  = temp.readItems();
-
+        ArrayList<ItemModel> itemlist = temp.readItems();
+        String searchId = searchIdField.getText();
         String itemDetails = "";
-//        for (int i = 0; i < itemList.size(); i++) {
-//            if (itemList.get(i).("ID: " + searchId)) {
-//                for (int j = i; j < i + 7; j++) {
-//                    itemDetails += itemList.get(j) + "\n";
-//                }
-//                itemDetailsArea.setText(itemDetails);
-//                break;
-//            }
-//        }
+        for (ItemModel item : itemlist) {
+            if (item.getID().equals(searchId)) {
+                itemDetails += item.toString() + "\n";
+                itemDetailsArea.setText(itemDetails);
+                break;
+            }
+        }
+
     }
     public void saveChanges(ActionEvent event) {
         String searchId = searchIdField.getText();
         ArrayList<ItemModel> itemList =  new ItemsFileReader().readItems();
-//        for (int i = 0; i < itemList.size(); i++) {
+        ItemModel temp=new ItemModel();
+        temp.setID(searchId);
+        for (ItemModel tems: itemList){
 
-//            if (itemList.get(i).startsWith("ID: " + searchId)) {
-//                itemList.set(i, "ID: " + itemIdField.getText());
-//                itemList.set(i + 1, "Title: " + titleField.getText());
-//                itemList.set(i + 3, "Loan Type: " + loanTypeChoiceBox.getValue());
-//                itemList.set(i + 4, "Copies: " + copiesField.getText());
-//                itemList.set(i + 5, "Rental Fee (USD): " + rentalFeeField.getText());
-//                itemList.set(i + 6, "Rental Status: " + rentalStatusChoiceBox.getValue());
-//                writeItems(itemList);
+            if(tems.getID() == temp.getID()){
+                temp.setID(itemIdField.getText());
+                temp.setFee(Double.parseDouble(rentalFeeField.getText()));
+                temp.setCopies(Integer.parseInt(copiesField.getText()));
+                temp.setTitle(titleField.getText());
+                temp.setStatus((String) rentalStatusChoiceBox.getValue());
+                temp.setLoanType((String)loanTypeChoiceBox.getValue());
+            }
+        }
+//
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Success");
                 alert.setHeaderText(null);
@@ -95,34 +97,19 @@ public class EditItemController {
 
             }
 
-//    private List<String> readItems() {
-//        List<String> itemList = new ArrayList<>();
+
+
+//    private void writeItems(List<String> itemList) {
 //        try {
-//            BufferedReader reader = new BufferedReader(new FileReader(new File(filePath.toUri())));
-//            String line = reader.readLine();
-//
-//            while (line != null) {
-//                itemList.add(line);
-//                line = reader.readLine();
+//            FileWriter writer = new FileWriter(new File(filePath.toUri()));
+//            for (String line : itemList) {
+//                writer.write(line + "\n");
 //            }
-//            reader.close();
+//            writer.close();
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-//        return itemList;
 //    }
-
-    private void writeItems(List<String> itemList) {
-        try {
-            FileWriter writer = new FileWriter(new File(filePath.toUri()));
-            for (String line : itemList) {
-                writer.write(line + "\n");
-            }
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     public void Back(ActionEvent event) throws IOException {
