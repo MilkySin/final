@@ -38,6 +38,10 @@ public class HelloApplication extends Application {
 
         ArrayList<ItemModel> itemList  = temp.readItems();
 //        System.out.println(itemList.get(0).getRentalType() == );
+
+        for(ItemModel temp2: itemList) {
+            System.out.println(temp2.getID());
+        }
         launch();
     }
 }

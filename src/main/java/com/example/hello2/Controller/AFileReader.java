@@ -30,7 +30,7 @@ public class AFileReader {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(new File(filePath.toUri())));
             String line = reader.readLine();
-            System.out.println(line);
+//            System.out.println(line);
 
             while (line != null) {
 //                itemList.add(line);
