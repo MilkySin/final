@@ -19,7 +19,7 @@ public class UserModel {
     protected String address;
     protected int phoneNumber;
     protected ArrayList<ItemModel> rentedItemList = new ArrayList<>();
-    protected String customerType;
+    protected String accountType;
 
     public UserModel(String username, String password, String name, String id, String address, int phoneNumber, ArrayList<ItemModel> rentedItemList) {
         this.username = username;
@@ -88,7 +88,7 @@ public class UserModel {
     }
 
     public String getCustomerType() {
-        return customerType;
+        return accountType;
     }
 
     public void rentItem (ItemModel item){};

@@ -7,7 +7,7 @@ public class VIPAccount extends UserModel{
     private int rewardPoints;
     public VIPAccount(String username, String password, String name, String id, String address, int phoneNumber, ArrayList<ItemModel> rentedItemList) {
         super(username, password, name, id, address, phoneNumber, rentedItemList);
-        customerType = "VIP";
+        accountType = "VIP";
     }
 
     public void rentItem (ItemModel item){

@@ -10,7 +10,7 @@ public class GuestAccount extends UserModel {
     public GuestAccount(String username, String password, String name, String id, String address, int phoneNumber, ArrayList<ItemModel> rentedItemList) {
         super(username, password, name, id, address, phoneNumber, rentedItemList);
         numReturned = 0;
-        customerType = "Guest";
+        accountType = "Guest";
     }
 
     public int getNumReturned() {
