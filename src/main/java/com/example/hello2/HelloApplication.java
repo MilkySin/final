@@ -4,8 +4,8 @@ package com.example.hello2;
 //new change
 //new new change
 import com.example.hello2.Controller.ItemsFileReader;
-import com.example.hello2.Modal.ItemModel;
-import com.example.hello2.Modal.UserModel;
+import com.example.hello2.Modal.*;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

@@ -2,77 +2,110 @@ package com.example.hello2.Modal;
 
 import java.util.ArrayList;
 
-public class UserModel {
+abstract class UserModel {
 //    Username: shirin
 //    Password: 09SHhi!67
 //    ID: C987
 //    Address: dfg
 //    Phone Number: 09876
 //    Account Type: Regular
-    private String Username;
-    private String Password;
-    private String ID;
-    private String Address, AccountType;
-    private int PhoneNumber;
-    private ArrayList<UserModel> Userlist=new ArrayList<>();
+    protected String username;
 
-    public UserModel(String username, String password, String ID, String address, String accountType, int phoneNumber) {
-        Username = username;
-        Password = password;
-        this.ID = ID;
-        Address = address;
-        AccountType = accountType;
-        PhoneNumber = phoneNumber;
+    protected String password;
+    protected String name;
+
+    protected String id;
+
+    protected String address;
+    protected int phoneNumber;
+    protected ArrayList<ItemModel> rentedItemList = new ArrayList<>();
+
+    public UserModel(String username, String password, String name, String id, String address, int phoneNumber, ArrayList<ItemModel> rentedItemList) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.id = id;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.rentedItemList = rentedItemList;
     }
 
     public String getUsername() {
-        return Username;
+        return username;
     }
 
     public void setUsername(String username) {
-        Username = username;
+        this.username = username;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 
-    public String getID() {
-        return ID;
+    public String getName() {
+        return name;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String address) {
-        Address = address;
-    }
-
-    public String getAccountType() {
-        return AccountType;
-    }
-
-    public void setAccountType(String accountType) {
-        AccountType = accountType;
+        this.address = address;
     }
 
     public int getPhoneNumber() {
-        return PhoneNumber;
+        return phoneNumber;
     }
 
     public void setPhoneNumber(int phoneNumber) {
-        PhoneNumber = phoneNumber;
+        this.phoneNumber = phoneNumber;
     }
 
-    public UserModel() {
+    public ArrayList<ItemModel> getRentedItemList() {
+        return rentedItemList;
+    }
+
+    public void setRentedItemList(ArrayList<ItemModel> rentedItemList) {
+        this.rentedItemList = rentedItemList;
+    }
+
+    public abstract void rentItem (ItemModel item);
+    public void returnItem(ItemModel item) {
+        try {
+            rentedItemList.remove(item);
+        }
+        catch (RuntimeException ex) {
+            System.out.println("cannot return item if not borrowed");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "UserModel{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", address='" + address + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", rentedItemList=" + rentedItemList +
+                '}';
     }
 }
