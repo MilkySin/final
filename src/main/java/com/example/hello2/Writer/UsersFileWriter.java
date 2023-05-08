@@ -1,5 +1,6 @@
 package com.example.hello2.Writer;
 
+import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Model.UserModel;
 
 import java.io.BufferedWriter;
@@ -27,4 +28,16 @@ public class UsersFileWriter {
         bw.close();
         fw.close();
     }
+    public void FileWriter(ArrayList<UserModel> Userlist) throws IOException {
+        File file = new File("userinfo.txt");
+        FileWriter fw = new FileWriter(file, false); // set append to false
+        BufferedWriter bw = new BufferedWriter(fw);
+        for (UserModel user : Userlist) {
+            bw.write(user.getUsername() + "," + user.getPassword() + "," + user.getId() + "," + user.getAddress() + "," + user.getAccountType() + "," + user.getPhoneNumber());
+            bw.write("\n");
+        }
+        bw.close();
+        fw.close();
+    }
+
 }

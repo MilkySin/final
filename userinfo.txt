@@ -1,1 +1,1 @@
-Minh,HelloWorld1!,C001,adc,Regular,9090909
+Admin,Admin000!,C000,RMIT,VIP,2023

@@ -27,7 +27,5 @@ public class UserFileReader {
         return userList;
     }
 
-    public static ArrayList<UserModel> getUserList() {
-        return userList;
-    }
+
 }

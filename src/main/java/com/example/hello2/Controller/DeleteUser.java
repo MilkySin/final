@@ -1,5 +1,11 @@
 package com.example.hello2.Controller;
 
+import com.example.hello2.Model.ItemModel;
+import com.example.hello2.Model.UserModel;
+import com.example.hello2.Reader.ItemsFileReader;
+import com.example.hello2.Reader.UserFileReader;
+import com.example.hello2.Writer.ItemsFileWriter;
+import com.example.hello2.Writer.UsersFileWriter;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,70 +32,38 @@ public class DeleteUser {
     public Button back;
 
     public void initialize() {
-        Task<List<String>> task = new Task<>() {
-            @Override
-            protected List<String> call() throws Exception {
-                List<String> lines = Files.readAllLines(Paths.get("userinfo.txt"));
-                return new ArrayList<>(lines);
-            }
-        };
-        task.setOnSucceeded(e -> {
-            List<String> contentList = task.getValue();
-            for (String line : contentList) {
-                if (line.startsWith("ID")) {
-                    String item = line.trim();
-                    IDchoicebox.getItems().add(item);
-                    IDchoicebox.setValue("Select user to Delete");
-                }
-            }
-        });
-        task.setOnFailed(e -> {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Error reading file: " + task.getException().getMessage());
-            alert.showAndWait();
-        });
+        UserFileReader temp = new UserFileReader();
+        ArrayList<UserModel> Userlist = temp.readUser();
+        for (UserModel User : Userlist) {
+            IDchoicebox.getItems().add(User.getId());
+            IDchoicebox.setValue("Select Item to Delete");
 
-        new Thread(task).start();
+        }
     }
 
     @FXML
     void Delete() throws IOException {
+        UserFileReader temp = new UserFileReader();
+        UsersFileWriter writee = new UsersFileWriter();
+        String searchId = IDchoicebox.getValue();
+        ArrayList<UserModel> Userlist = temp.readUser();
         String selectedID = IDchoicebox.getValue();
         if (selectedID == null || selectedID.equals("Select user to Delete")) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a user to delete.");
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a User to delete.");
             alert.showAndWait();
             return;
         }
-        Path path = Paths.get("userinfo.txt");
-        List<String> fileContent = new ArrayList<>(Files.readAllLines(path));
-        try (PrintWriter writer = new PrintWriter(new FileWriter(path.toFile()))) {
-            boolean found = false;
-            for (int i = 0; i < fileContent.size(); i++) {
-                String line = fileContent.get(i);
-                if (line.startsWith("ID") && line.trim().equals(selectedID)) {
-                    found = true;
-                    for (int j = i; j < i + 6; j++) {
-                        fileContent.remove(i);
-                    }
-                    break;
-                }
-            }
-            if (found) {
-                for (String line : fileContent) {
-                    writer.println(line);
-                }
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "User deleted successfully.");
+        for (int i = 0; i < Userlist.size(); i++) {
+            if (Userlist.get(i).getId().equals(searchId)) {
+                Userlist.remove(i);
+                writee.FileWriter(Userlist);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Item Successfully deleted.");
                 alert.showAndWait();
-                IDchoicebox.getItems().remove(selectedID);
-                IDchoicebox.setValue("Select User to Delete");
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "User not found.");
-                alert.showAndWait();
+                break;
             }
-        } catch (IOException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Error deleting User: " + e.getMessage());
-            alert.showAndWait();
         }
     }
+
     @FXML
     public void Back(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
