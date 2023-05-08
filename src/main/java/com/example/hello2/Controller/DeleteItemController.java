@@ -3,7 +3,6 @@ package com.example.hello2.Controller;
 import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Reader.ItemsFileReader;
 import com.example.hello2.Writer.ItemsFileWriter;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +12,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,7 +22,7 @@ public class DeleteItemController {
     public Button delete;
     public Button back;
 
-    public void initialize() {
+    public void initialize() throws IOException {
         ItemsFileReader temp = new ItemsFileReader();
         ArrayList<ItemModel> itemlist = temp.readItems();
         for (ItemModel item : itemlist) {

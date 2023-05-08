@@ -64,7 +64,7 @@ public class EditItemController {
                 i.getCopies()+"\n"+"fee: "+i.getFee()+"\n"+" Availability: "+ i.getStatus()+"\n";
     }
 
-    public void searchItem(ActionEvent event) {
+    public void searchItem(ActionEvent event) throws IOException {
         ItemsFileReader temp = new ItemsFileReader();
         ArrayList<ItemModel> itemlist = temp.readItems();
         String searchId = searchIdField.getText();
@@ -98,22 +98,11 @@ public class EditItemController {
                 break;
             }
         }
-//        for (ItemModel tems: itemList){
-//
-//            if(Objects.equals(tems.getID(), temp.getID())){
-//                tems.setID(itemIdField.getText());
-//                tems.setFee(Double.parseDouble(rentalFeeField.getText()));
-//                tems.setCopies(Integer.parseInt(copiesField.getText()));
-//                tems.setTitle(titleField.getText());
-//                tems.setStatus((String) rentalStatusChoiceBox.getValue());
-//                tems.setLoanType((String)loanTypeChoiceBox.getValue());
-//            }
-//
-//        }
+
 
 
         write.FileWriter(itemlist);
-//
+
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Success");
                 alert.setHeaderText(null);
