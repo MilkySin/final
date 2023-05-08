@@ -45,8 +45,8 @@ public class LoginPage {
         }
 
         for (UserModel users : itemList) {
-            if (ID.equals(users.getID()) && password.equals(users.getPassword())) {
-                if (Objects.equals(users.getID(), "C000") && Objects.equals(users.getUsername(), "Admin")) {
+            if (ID.equals(users.getId()) && password.equals(users.getPassword())) {
+                if (Objects.equals(users.getId(), "C000") && Objects.equals(users.getUsername(), "Admin")) {
                     Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
                     FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
                     Parent root = loader.load();

@@ -25,7 +25,7 @@ public class ItemModel {
     private String status;
 
 
-    private ArrayList<ItemModel> itemList = new ArrayList<>();
+    private static ArrayList<ItemModel> itemList = new ArrayList<>();
 
     public ItemModel(String ID, String title, String rentalType, String loanType, int copies, double fee,  String status) {
         this.ID = ID;
@@ -35,11 +35,7 @@ public class ItemModel {
         this.copies = copies;
         this.fee = fee;
         this.status=status;
-
-
     }
-
-
 
     public ItemModel() {
     }
@@ -102,6 +98,13 @@ public class ItemModel {
     }
 
 
+    public ArrayList<ItemModel> getItemList() {
+        return itemList;
+    }
+
+    public void setItemList(ArrayList<ItemModel> itemList) {
+        this.itemList = itemList;
+    }
 }
 
 

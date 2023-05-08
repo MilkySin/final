@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class RegularAccount extends UserModel {
     private int numReturned;
 
-    public RegularAccount(String username, String password, String name, String id, String address, int phoneNumber, ArrayList<ItemModel> rentedItemList) {
-        super(username, password, name, id, address, phoneNumber, rentedItemList);
-        numReturned = 0;
-        accountType = "Regular";
+
+    public RegularAccount(String username, String password, String id, String address, String accountType, int phoneNumber) {
+        super(username, password, id, address, accountType, phoneNumber);
     }
+
 
     public int getNumReturned() {
         return numReturned;
@@ -23,17 +23,9 @@ public class RegularAccount extends UserModel {
         rentedItemList.add(item);
     }
 
+
     @Override
     public String toString() {
-        return "RegularAccount{" +
-                "numReturned=" + numReturned +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", id='" + id + '\'' +
-                ", address='" + address + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", rentedItemList=" + rentedItemList +
-                '}';
+        return "RegularAccount{" + "numReturned=" + numReturned + ", username='" + username + '\'' + ", password='" + password + '\'' + ", id='" + id + '\'' + ", address='" + address + '\'' + ", phoneNumber=" + phoneNumber + ", accountType='" + accountType + '\'' + ", rentedItemList=" + rentedItemList + ", usersList=" + usersList + '}';
     }
 }

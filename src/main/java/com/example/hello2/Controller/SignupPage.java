@@ -1,5 +1,7 @@
 package com.example.hello2.Controller;
 //sign up screen goes to scene3
+import com.example.hello2.Model.UserModel;
+import com.example.hello2.Reader.UserFileReader;
 import com.example.hello2.Writer.UsersFileWriter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,7 +17,6 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 public class SignupPage {
     public Button back;
@@ -41,6 +42,8 @@ public class SignupPage {
 
     @FXML
     private TextField NumberField;
+
+
 
     public void setPreviousScene(Scene previousScene) {
         this.previousScene = previousScene;
@@ -73,8 +76,13 @@ public class SignupPage {
         String IDRegex = "^C\\d{3}$";
 
         if (password.matches(passwordRegex) && ID.matches(IDRegex)) {
-            UsersFileWriter write = new UsersFileWriter();
-            write.FileWriter(username, password, ID, address, accountType, Integer.parseInt(number));
+            UserModel registeredUser = new UserModel(username, password, ID, address, accountType,
+                                                 Integer.parseInt(number));
+            UserFileReader read = new UserFileReader();
+            UsersFileWriter writer = new UsersFileWriter();
+            read.readUser().add(registeredUser);
+            writer.writeUsers(read.readUser());
+
         } else {
             System.out.println("Invalid Pass or ID");
         }
@@ -86,9 +94,9 @@ public class SignupPage {
         Parent root = loader.load();
         Scene scene = new Scene(root);
 
-        UNUSED controller = loader.getController();
-        controller.setUsername(username);
-        controller.setAccount(accountType);
+//        UNUSED controller = loader.getController();
+//        controller.setUsername(username);
+//        controller.setAccount(accountType);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         if (stage != null) {

@@ -1,5 +1,8 @@
 package com.example.hello2.Controller;
 
+import com.example.hello2.Model.UserModel;
+import com.example.hello2.Reader.UserFileReader;
+import com.example.hello2.Writer.UsersFileWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,25 +16,21 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class PromoteController {
+
+    public UserFileReader temp = new UserFileReader();
+    private ArrayList<UserModel> userList = temp.readUser();
     @FXML
     private TextField searchIdField;
     public Button searchCustomerButton;
     public TextArea CustomerDetail;
     public ChoiceBox<String> PromoteChoice;
-    private Path filePath = Paths.get("userinfo.txt");
-    private String accountType = null;
 
     public Text text;
     public Button back;
@@ -43,88 +42,68 @@ public class PromoteController {
         text.setVisible(false);
     }
     public void searchItem(ActionEvent event) throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath.toFile()))) {
-            String line;
-            String result;
-            String idToSearch = searchIdField.getText(); // Change this to the ID you want to search for
-            boolean found = false;
-            String username = null, password = null, id = null, address = null, phoneNumber = null;
+        String idToSearch = searchIdField.getText(); // Change this to the ID you want to search for
 
-            while ((line = br.readLine()) != null) {
-                String[] fields = line.split(":\\s");
-                if (fields[0].equals("Username")) {
-                    username = fields[1];
-                } else if (fields[0].equals("Password")) {
-                    password = fields[1];
-                } else if (fields[0].equals("ID") && fields[1].equals(idToSearch)) {
-                    found = true;
-                    id = fields[1];
-                } else if (found) {
-                    switch (fields[0]) {
-                        case "Address":
-                            address = fields[1];
-                            break;
-                        case "Phone Number":
-                            phoneNumber = fields[1];
-                            break;
-                        case "Account Type":
-                            accountType = fields[1];
-                            break;
-                    }
-                }
-                if (found && fields[0].equals("")) {
-                    break;
-                }
-            }
+//        UserFileReader temp = new UserFileReader();
+//        ArrayList<UserModel> itemList = temp.readUser();
 
-            if (found) {
-                result = "Username: " + username + "\n" +
-                        "Password: " + password + "\n" +
-                        "ID: " + id + "\n" +
-                        "Address: " + address + "\n" +
-                        "Phone Number: " + phoneNumber + "\n" +
-                        "Account Type: " + accountType + "\n";
-                CustomerDetail.setText(result);
-            } else {
-                System.out.println("User with ID " + idToSearch + " not found.");
+        boolean found = false;
+        UserModel user = null;
+
+        for(UserModel users: userList){
+            if(Objects.equals(users.getId(), idToSearch)){
+                user =  users;
+                found = true;
+                break;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        }
+        
+        if (found) {
+            CustomerDetail.setText(user.getId());
+        } else {
+            System.out.println("User not found");
         }
     }
 
     public void saveChange(ActionEvent e) throws IOException {
         String idToModify = searchIdField.getText();
         String newAccountType = PromoteChoice.getValue();
-        List<String> fileContent = new ArrayList<>(Files.readAllLines(filePath));
-
+//        System.out.println(idToModify);
         boolean found = false;
 
-        for (int i = 0; i < fileContent.size(); i++) {
-            String line = fileContent.get(i);
-            String[] fields = line.split(":\\s");
-            if (fields[0].equals("ID") && fields[1].equals(idToModify)) {
-                found = true;
-                fileContent.set(i + 3, "Account Type: " + newAccountType);
-                break;
-            }
-        }
+//        UserFileReader temp = new UserFileReader();
 
-        if (Objects.equals(accountType, newAccountType)) {
-            text.setVisible(true);
-            text.setFill(Color.RED);
-            text.setText("New account type is the same as the old one.");
-        } else if (!found) {
+
+        UserModel user = null;
+        for (UserModel users : userList) {
+            if (Objects.equals(users.getId(), idToModify)){
+                user = users;
+                found = true;
+                if (Objects.equals(users.getAccountType(), newAccountType)) {
+                    text.setVisible(true);
+                    text.setFill(Color.RED);
+                    text.setText("New account type is the same as the old one.");
+                    break;
+                }
+            }
+
+
+        }
+        if (found) {
+            user.setAccountType(newAccountType);
+//            UserFileReader reader = new UserFileReader();
+
+                UsersFileWriter writer = new UsersFileWriter();
+                writer.writeUsers(new UserFileReader().readUser());
+//            writer.writeUsers(user.getUsername(), user.getPassword());
+
+        } else {
             text.setVisible(true);
             text.setFill(Color.RED);
             text.setText("User with ID " + idToModify + " not found.");
-        } else {
-            Files.write(filePath, fileContent, StandardCharsets.UTF_8);
-            text.setVisible(true);
-            text.setFill(Color.GREEN);
-            text.setText("Account Type for user with ID " + idToModify + " modified to " + newAccountType);
         }
     }
+
     public void Back(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());

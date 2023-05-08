@@ -19,15 +19,18 @@ public class ItemsFileWriter {
     private int copies;
 
     private double fee;
-
-    private String status;
+     private String status;
     public void FileWriter(String ID, String title, String rentalType, String loanType, int copies, double fee,String Availability) throws IOException {
 
         File file = new File("new_items.txt");
         FileWriter fw = new FileWriter(file, true);
         BufferedWriter bw = new BufferedWriter(fw);
-        bw.write(ID + "," + title + "," + rentalType + "," + loanType + "," + copies + "," + fee+ ","+ Availability );
-        bw.write("\n");
+        ItemModel item = new ItemModel(ID, title,rentalType,loanType,copies,fee,Availability);
+        item.getItemList().add(item);
+        for (ItemModel items : item.getItemList()) {
+            bw.write(item.getID() + "," + item.getTitle() + "," + item.getRentalType() + "," + item.getLoanType() + "," + item.getCopies() + "," + item.getFee()+","+item.getStatus());
+            bw.write("\n");
+        }
         bw.close();
         fw.close();
     }

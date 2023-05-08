@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class ItemsFileReader {
     public Path filePath = Paths.get("new_items.txt");
 
-    public ArrayList<ItemModel> itemList  = new ArrayList<ItemModel>();
+    public ArrayList<ItemModel> itemList  = new ArrayList<>(new ItemModel().getItemList());
 
     public ItemsFileReader(Path filePath) {
         this.filePath = filePath;
@@ -24,28 +24,6 @@ public class ItemsFileReader {
     }
 
     public ArrayList<ItemModel> readItems() {
-//        List<String> itemList = new ArrayList<>();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(filePath.toUri())));
-            String line = reader.readLine();
-//            System.out.println(line);
-
-            while (line != null) {
-//                itemList.add(line);
-//                line.split(",");
-
-                String[] temp = line.split(",");
-//                System.out.println(toString(line.split(",")));
-
-                ItemModel item = new ItemModel(temp[0],temp[1],temp[2], temp[3], Integer.parseInt(temp[4]), Double.parseDouble(temp[5]),
-                                               temp[6]);
-                itemList.add(item);
-                line = reader.readLine();
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return itemList;
     }
 

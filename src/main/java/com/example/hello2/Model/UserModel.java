@@ -12,23 +12,30 @@ public class UserModel {
     protected String username;
 
     protected String password;
-    protected String name;
 
     protected String id;
 
     protected String address;
     protected int phoneNumber;
-    protected ArrayList<ItemModel> rentedItemList;
     protected String accountType;
+    protected ArrayList<ItemModel> rentedItemList;
+    protected ArrayList<UserModel> usersList = new ArrayList<>();
 
-    public UserModel(String username, String password, String name, String id, String address, int phoneNumber, ArrayList<ItemModel> rentedItemList) {
+    public UserModel(String username, String password, String id, String address, String accountType, int phoneNumber) {
         this.username = username;
         this.password = password;
-        this.name = name;
         this.id = id;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.rentedItemList = rentedItemList;
+        this.accountType = accountType;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
     }
 
     public String getUsername() {
@@ -45,14 +52,6 @@ public class UserModel {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getId() {
@@ -87,9 +86,6 @@ public class UserModel {
         this.rentedItemList = rentedItemList;
     }
 
-    public String getAccountType() {
-        return accountType;
-    }
 
     public void rentItem (ItemModel item){}
     public void returnItem(ItemModel item) {
@@ -102,16 +98,16 @@ public class UserModel {
         }
     }
 
+    public ArrayList<UserModel> getUsersList() {
+        return usersList;
+    }
+
+    public void setUsersList(ArrayList<UserModel> users) {
+        this.usersList = users;
+    }
+
     @Override
     public String toString() {
-        return "UserModel{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", id='" + id + '\'' +
-                ", address='" + address + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", rentedItemList=" + rentedItemList +
-                '}';
+        return "UserModel{" + "username='" + username + '\'' + ", password='" + password + '\'' + ", id='" + id + '\'' + ", address='" + address + '\'' + ", phoneNumber=" + phoneNumber + ", accountType='" + accountType + '\'' + ", rentedItemList=" + rentedItemList + ", usersList=" + usersList + '}';
     }
 }
