@@ -18,7 +18,7 @@ public class UserModel {
 
     protected String address;
     protected int phoneNumber;
-    protected ArrayList<ItemModel> rentedItemList = new ArrayList<>();
+    protected ArrayList<ItemModel> rentedItemList;
     protected String accountType;
 
     public UserModel(String username, String password, String name, String id, String address, int phoneNumber, ArrayList<ItemModel> rentedItemList) {
@@ -87,11 +87,11 @@ public class UserModel {
         this.rentedItemList = rentedItemList;
     }
 
-    public String getCustomerType() {
+    public String getAccountType() {
         return accountType;
     }
 
-    public void rentItem (ItemModel item){};
+    public void rentItem (ItemModel item){}
     public void returnItem(ItemModel item) {
         try {
             rentedItemList.remove(item);
