@@ -97,7 +97,7 @@ public class PromoteController {
 //            UserFileReader reader = new UserFileReader();
 
                 UsersFileWriter writer = new UsersFileWriter();
-                writer.writeUsers(new UserFileReader().readUser());
+                writer.FileWriter(new UserFileReader().readUser());
 //            writer.writeUsers(user.getUsername(), user.getPassword());
 
         } else {

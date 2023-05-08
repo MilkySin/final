@@ -81,7 +81,7 @@ public class SignupPage {
             UserFileReader read = new UserFileReader();
             UsersFileWriter writer = new UsersFileWriter();
             read.getUserList().add(registeredUser);
-            writer.writeUsers(read.readUser());
+            writer.FileWriter(read.readUser());
 
         } else {
             System.out.println("Invalid Pass or ID");
