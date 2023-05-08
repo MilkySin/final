@@ -2,7 +2,7 @@ package com.example.hello2.Model;
 
 import java.util.ArrayList;
 
-abstract class UserModel {
+public class UserModel {
 //    Username: shirin
 //    Password: 09SHhi!67
 //    ID: C987
@@ -19,6 +19,7 @@ abstract class UserModel {
     protected String address;
     protected int phoneNumber;
     protected ArrayList<ItemModel> rentedItemList = new ArrayList<>();
+    protected String customerType;
 
     public UserModel(String username, String password, String name, String id, String address, int phoneNumber, ArrayList<ItemModel> rentedItemList) {
         this.username = username;
@@ -86,13 +87,18 @@ abstract class UserModel {
         this.rentedItemList = rentedItemList;
     }
 
-    public abstract void rentItem (ItemModel item);
+    public String getCustomerType() {
+        return customerType;
+    }
+
+    public void rentItem (ItemModel item){};
     public void returnItem(ItemModel item) {
         try {
             rentedItemList.remove(item);
         }
         catch (RuntimeException ex) {
             System.out.println("cannot return item if not borrowed");
+            //implement in javafx
         }
     }
 

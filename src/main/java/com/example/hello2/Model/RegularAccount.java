@@ -8,6 +8,7 @@ public class RegularAccount extends UserModel {
     public RegularAccount(String username, String password, String name, String id, String address, int phoneNumber, ArrayList<ItemModel> rentedItemList) {
         super(username, password, name, id, address, phoneNumber, rentedItemList);
         numReturned = 0;
+        customerType = "Regular";
     }
 
     public int getNumReturned() {
