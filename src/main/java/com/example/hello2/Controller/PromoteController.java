@@ -48,10 +48,6 @@ public class PromoteController {
     }
     public void searchItem(ActionEvent event) throws IOException {
         String idToSearch = searchIdField.getText(); // Change this to the ID you want to search for
-
-//        UserFileReader temp = new UserFileReader();
-//        ArrayList<UserModel> itemList = temp.readUser();
-
         boolean found = false;
         UserModel user = null;
 
@@ -73,10 +69,8 @@ public class PromoteController {
     public void saveChange(ActionEvent e) throws IOException {
         String idToModify = searchIdField.getText();
         String newAccountType = PromoteChoice.getValue();
-//        System.out.println(idToModify);
         boolean found = false;
 
-//        UserFileReader temp = new UserFileReader();
 
 
         UserModel user = null;
@@ -95,7 +89,6 @@ public class PromoteController {
 
         }
         if (found) {
-//            UserFileReader reader = new UserFileReader();
             UsersFileWriter writer = new UsersFileWriter();
             for(UserModel temo : userList){
                 if(Objects.equals(temo.getId(), idToModify)){
@@ -103,7 +96,6 @@ public class PromoteController {
                 }
             }
             writer.FileWriter(userList);
-//            writer.writeUsers(user.getUsername(), user.getPassword());
 
         } else {
             text.setVisible(true);
