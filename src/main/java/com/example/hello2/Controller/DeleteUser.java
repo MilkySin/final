@@ -16,15 +16,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
-
 import java.io.*;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 public class DeleteUser {
     public ChoiceBox<String> IDchoicebox;
@@ -36,7 +31,7 @@ public class DeleteUser {
         ArrayList<UserModel> Userlist = temp.readUser();
         for (UserModel User : Userlist) {
             IDchoicebox.getItems().add(User.getId());
-            IDchoicebox.setValue("Select Item to Delete");
+            IDchoicebox.setValue("Select User to Delete");
 
         }
     }

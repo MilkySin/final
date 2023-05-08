@@ -1,3 +1,2 @@
 I444-444,Harry Potter,DVD,1 Week Loan,5,70.0,Available
-I123-203,Gay,DVD,1 Week Loan,1,23.0,Available
 I123-205,Gay2,DVD,1 Week Loan,1,23.0,Available

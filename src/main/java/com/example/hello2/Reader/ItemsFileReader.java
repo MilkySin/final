@@ -27,7 +27,19 @@ public class ItemsFileReader {
     public ArrayList<ItemModel> getItemList(){
         return itemList;
     }
-    public ArrayList<ItemModel> readItems() {
+   // public ArrayList<ItemModel> readItems() {
+      //  return itemList;
+   // }
+    public ArrayList<ItemModel> readItems() throws IOException {
+        File file = new File("new_items.txt");
+        FileReader fw = new FileReader(file);
+        BufferedReader bw = new BufferedReader(fw);
+        String line;
+        while((line = bw.readLine()) != null){
+            String[] field = line.split(",");
+            ItemModel item = new ItemModel(field[0], field[1],field[2],field[3],Integer.parseInt(field[4]),Double.parseDouble(field[5]),field[6]);
+            itemList.add(item);
+        }
         return itemList;
     }
 

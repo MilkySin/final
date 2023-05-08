@@ -1,5 +1,7 @@
 package com.example.hello2.Controller;
 
+import com.example.hello2.Model.UserModel;
+import com.example.hello2.Reader.UserFileReader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +18,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class DisplayGuest {
     @FXML
@@ -24,57 +28,28 @@ public class DisplayGuest {
 
     public Button back;
 
+    public String toString(UserModel u) {
+        return "ID: " + u.getId() + "\n Username: " + u.getUsername() + "\n Password: " + u.getPassword()
+                + "\n Address: " + u.getAddress() + "\n Phone Number: " + u.getPhoneNumber()
+                + ", Account Type: " + u.getAccountType();
+    }
+
+
 
 
     @FXML
     public void initialize() throws IOException {
-        Path path = Paths.get("userinfo.txt");
-        File file = new File(path.toUri());
-
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-            String Username = "", Password = "", ID = "", Account_Type = "", Address = "", Phonenum = "";
-            StringBuilder sb = new StringBuilder();
-
-            while ((line = br.readLine()) != null) {
-                String[] fields = line.split(":\\s");
-                switch (fields[0]) {
-                    case "Username":
-                        Username = fields[1];
-                        break;
-                    case "Password":
-                        Password = fields[1];
-                        break;
-                    case "ID":
-                        ID = fields[1];
-                        break;
-                    case "Address":
-                        Address = fields[1];
-                        break;
-                    case "Phone Number":
-                        Phonenum = fields[1];
-                        break;
-                    case "Account Type":
-                        if (fields[1].equals("Guest")) {
-                            sb.append("Username:  ").append(Username).append("\n");
-                            sb.append("Password: ").append(Password).append("\n");
-                            sb.append("ID: ").append(ID).append("\n");
-                            sb.append("Address: ").append(Address).append("\n");
-                            sb.append("Phone NUmber: ").append(Phonenum).append("\n\n");
-                        }
-
-                        customerTextArea.setText(String.valueOf(sb));
-                }
+        UserFileReader temp = new UserFileReader();
+        ArrayList<UserModel> Userlist = temp.readUser();
+        for (UserModel User : Userlist){
+            if (Objects.equals(User.getAccountType(), "Guest")){
+                customerTextArea.setText(toString(User));
             }
-        }catch(IOException e){
-            e.printStackTrace();
         }
     }
-
-
     @FXML
     public void Back(ActionEvent event) throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
