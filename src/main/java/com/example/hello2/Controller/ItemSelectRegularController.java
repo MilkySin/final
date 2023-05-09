@@ -86,59 +86,7 @@ public class ItemSelectRegularController {
 
     // save the selected items to a file
     public void saveSelectedItems() throws IOException {
-        Path path = Paths.get("selected_items.txt");
-        Files.write(path, "".getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
-        String userIdString = Integer.toString(userID);
-        String fileContent = Files.readString(path);
 
-        // check if userID exists in the file
-        if (fileContent.contains("ID " + userIdString)) {
-            // if user ID exists, check if any selected items already exist for the same user
-            String[] sections = fileContent.split("ID " + userIdString);
-            for (int i = 1; i < sections.length; i++) {
-                String[] lines = sections[i].split("\n");
-                for (String line : lines) {
-                    if (line.contains(":")) {
-                        String items = line.split(":")[1].trim();
-                        Set<String> existingItems = new HashSet<>(Arrays.asList(items.split(",")));
-                        // trim items and remove empty ones
-                        Set<String> newItems = new HashSet<>(selectedItems);
-                        newItems.removeIf(String::isBlank);
-                        if (!Collections.disjoint(existingItems, newItems)) {
-                            // if any selected items already exist for the same user, display an error message
-                            Alert alert = new Alert(Alert.AlertType.ERROR);
-                            alert.setTitle("Error");
-                            alert.setHeaderText("Selected items already exist for this user");
-                            alert.showAndWait();
-                            return;
-                        } else {
-                            // if no selected items already exist for the same user, append the new items to the existing line
-                            StringBuilder sb = new StringBuilder(fileContent);
-                            sb.replace(fileContent.indexOf(line), fileContent.indexOf(line) + line.length(),
-                                    "ID " + userIdString + ": " + existingItems.toString().replaceAll("\\[|\\]", "") + ", " + newItems.toString().replaceAll("\\[|\\]", ""));
-                            Files.write(path, sb.toString().getBytes(), StandardOpenOption.WRITE);
-                            // clear the selected items list
-                            selectedItems.clear();
-                            return;
-                        }
-                    }
-                }
-            }
-        }
-
-        // if user ID doesn't exist or selected items don't already exist for the same user, append the selected items as a new line
-        Set<String> newItems = new HashSet<>(selectedItems);
-        newItems.removeIf(item -> item.isBlank());
-
-        if (!newItems.isEmpty()) {
-            StringBuilder sb = new StringBuilder(fileContent);
-            sb.append("ID ").append(userIdString).append(": ");
-            sb.append(newItems.toString().replaceAll("\\[|\\]", "")).append("\n");
-            Files.write(path, sb.toString().getBytes(), StandardOpenOption.APPEND);
-        }
-
-        // clear the selected items list
-        selectedItems.clear();
     }
 
     public void Back(ActionEvent event) throws IOException {

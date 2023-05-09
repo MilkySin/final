@@ -28,6 +28,7 @@ public class SceneAdminController {
     public Button DisplayUnavailableItems;
     public Button AddUser;
     public Button EditUser;
+    public Button AddStock;
     @FXML
     private Button AddItem;
 
@@ -196,6 +197,16 @@ public class SceneAdminController {
     @FXML
     void EditUser(ActionEvent event) throws IOException{
         Path path = Paths.get("src/main/resources/com/example/hello2/EditUser.fxml");
+        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) EditItem.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    void AddStock(ActionEvent event) throws IOException{
+        Path path = Paths.get("src/main/resources/com/example/hello2/AddStock.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
