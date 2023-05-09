@@ -15,7 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Objects;
-
+//fixed
 public class DisplayGuest {
     @FXML
     public TextArea customerTextArea;

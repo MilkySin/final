@@ -1,5 +1,6 @@
 package com.example.hello2.Controller;
 //choose sign up or login
+//fixed
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
