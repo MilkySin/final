@@ -2,7 +2,6 @@ package com.example.hello2.Controller;
 
 import com.example.hello2.Model.UserModel;
 import com.example.hello2.Reader.UserFileReader;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,19 +22,17 @@ public class DisplayGuest {
 
     public Button back;
 
+
     public String toString(UserModel u) {
         return "ID: " + u.getId() + "\n Username: " + u.getUsername() + "\n Password: " + u.getPassword()
                 + "\n Address: " + u.getAddress() + "\n Phone Number: " + u.getPhoneNumber()
                 + ", Account Type: " + u.getAccountType();
     }
 
-
-
-
     @FXML
     public void initialize() throws IOException {
-        UserFileReader temp = new UserFileReader();
-        ArrayList<UserModel> Userlist = temp.readFileUser();
+        UserFileReader reader = new UserFileReader();
+        ArrayList<UserModel> Userlist = reader.readFileUser();
         for (UserModel User : Userlist){
             if (Objects.equals(User.getAccountType(), "Guest")){
                 customerTextArea.setText(toString(User));
@@ -43,7 +40,7 @@ public class DisplayGuest {
         }
     }
     @FXML
-    public void Back(ActionEvent event) throws IOException {
+    public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();

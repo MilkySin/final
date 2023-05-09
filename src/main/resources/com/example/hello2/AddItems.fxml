@@ -21,8 +21,7 @@
         <TextField fx:id="titleField" layoutX="214.0" layoutY="111.0" />
         <TextField fx:id="copiesField" layoutX="214.0" layoutY="234.0" promptText="Number of copies" />
         <TextField fx:id="rentalFeeField" layoutX="214.0" layoutY="275.0" promptText="Rental fee (in USD)" />
-        <Button fx:id="addItemButton" layoutX="214.0" layoutY="354.0" mnemonicParsing="false" onAction="#addItem" text="Add Item" />
-        <Label fx:id="successLabel" layoutX="389.0" layoutY="117.0" prefHeight="70.0" prefWidth="169.0" textFill="#008000" />
+        <Button layoutX="214.0" layoutY="354.0" mnemonicParsing="false" onAction="#addItem" text="Add Item" />
         <ChoiceBox fx:id="loanTypeChoiceBox" layoutX="214.0" layoutY="193.0" prefHeight="26.0" prefWidth="160.0">
         </ChoiceBox>
       <ChoiceBox fx:id="rentalStatusChoiceBox" layoutX="213.0" layoutY="316.0" prefHeight="26.0" prefWidth="160.0" />

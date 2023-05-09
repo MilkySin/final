@@ -29,9 +29,6 @@ public String toString(UserModel u) {
             + ", Account Type: " + u.getAccountType();
 }
 
-
-
-
     @FXML
     public void initialize() throws IOException {
         UserFileReader temp = new UserFileReader();

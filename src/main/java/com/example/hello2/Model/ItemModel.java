@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class ItemModel {
 
 
-//    ID: I123-321
+    //    ID: I123-321
 //    Title: FFF
 //    Rental Type: DVD
 //    Loan Type: 1 Week Loan
@@ -27,14 +27,14 @@ public class ItemModel {
 
     private static ArrayList<ItemModel> itemList = new ArrayList<>();
 
-    public ItemModel(String ID, String title, String rentalType, String loanType, int copies, double fee,  String status) {
+    public ItemModel(String ID, String title, String rentalType, String loanType, int copies, double fee, String status) {
         this.ID = ID;
         this.title = title;
         this.rentalType = rentalType;
         this.loanType = loanType;
         this.copies = copies;
         this.fee = fee;
-        this.status=status;
+        this.status = status;
     }
 
     public ItemModel() {
@@ -104,6 +104,11 @@ public class ItemModel {
 
     public void setItemList(ArrayList<ItemModel> itemList) {
         this.itemList = itemList;
+    }
+
+    @Override
+    public String toString() {
+        return "ID: " + ID + "\n" + "Title: " + title + "\n" + "Rental Type: " + rentalType + "\n" + "Loan Type: " + loanType + "\n" + "Copies: " + copies + "\n" + "Rental Fee (USD): " + fee + "\n" + "Rental Status: " + status + "\n\n";
     }
 }
 

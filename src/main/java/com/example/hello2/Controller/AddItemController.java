@@ -1,22 +1,20 @@
 package com.example.hello2.Controller;
 
+//Fixed
 import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Reader.ItemsFileReader;
 import com.example.hello2.Writer.ItemsFileWriter;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -44,12 +42,8 @@ public class AddItemController {
     @FXML
     private ChoiceBox<String> rentalStatusChoiceBox;
 
-    @FXML
-    private Button addItemButton;
     public Button back;
     public Text text;
-    @FXML
-    private Label successLabel;
 
     public void initialize() {
         // Initialize loan type choice box with two options
@@ -88,21 +82,9 @@ public class AddItemController {
             text.setFill(Color.RED);
             text.setText("Added Successfully");
         }
-//        try {
-//            UserWriteFile writer = new UserWriteFile("new_items.txt", true);
-//            writer.write(id + "," + title + ","  + rentalType + "," + loanType + "," + copies + "," + rentalFee +
-//                                   "," + rentalStatus);
-//            writer.write("\n");
-//            writer.close();
-//
-//            // Show success message
-//            successLabel.setText("Item added successfully!");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
     @FXML
-    public void Back(ActionEvent event) throws IOException {
+    public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();

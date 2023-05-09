@@ -3,7 +3,6 @@ package com.example.hello2.Controller;
 import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Reader.ItemsFileReader;
 import com.example.hello2.Writer.ItemsFileWriter;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -34,10 +33,10 @@ public class DeleteItemController {
 
     @FXML
     void Delete() throws IOException {
-        ItemsFileReader temp = new ItemsFileReader();
-        ItemsFileWriter writee = new ItemsFileWriter();
+        ItemsFileReader reader = new ItemsFileReader();
+        ItemsFileWriter writer = new ItemsFileWriter();
         String searchId = IDchoicebox.getValue();
-        ArrayList<ItemModel> itemlist = temp.readFileItems();
+        ArrayList<ItemModel> itemlist = reader.readFileItems();
         String selectedID = IDchoicebox.getValue();
         if (selectedID == null || selectedID.equals("Select Item to Delete")) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Please select an item to delete.");
@@ -47,7 +46,7 @@ public class DeleteItemController {
         for (int i = 0; i < itemlist.size(); i++) {
             if (itemlist.get(i).getID().equals(searchId)) {
                 itemlist.remove(i);
-                writee.ItemsWriteFile(itemlist);
+                writer.ItemsWriteFile(itemlist);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Item Successfully deleted.");
                 alert.showAndWait();
                 break;
@@ -56,7 +55,7 @@ public class DeleteItemController {
     }
 
     @FXML
-    public void Back(ActionEvent event) throws IOException {
+    public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();

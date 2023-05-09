@@ -108,6 +108,8 @@ public class UserModel {
 
     @Override
     public String toString() {
-        return "UserModel{" + "username='" + username + '\'' + ", password='" + password + '\'' + ", id='" + id + '\'' + ", address='" + address + '\'' + ", phoneNumber=" + phoneNumber + ", accountType='" + accountType + '\'' + ", rentedItemList=" + rentedItemList + ", usersList=" + usersList + '}';
+        return "ID: " + id + "\nUsername: " + username + "\nPassword: " + password
+                + "\nAddress: " + address + "\nPhone Number: " + phoneNumber
+                + "\nAccount Type: " + accountType + "\n\n";
     }
 }

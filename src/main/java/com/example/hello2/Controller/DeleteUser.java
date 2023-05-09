@@ -34,10 +34,10 @@ public class DeleteUser {
 
     @FXML
     void Delete() throws IOException {
-        UserFileReader temp = new UserFileReader();
-        UsersFileWriter writee = new UsersFileWriter();
+        UserFileReader reader = new UserFileReader();
+        UsersFileWriter writer = new UsersFileWriter();
         String searchId = IDchoicebox.getValue();
-        ArrayList<UserModel> Userlist = temp.readFileUser();
+        ArrayList<UserModel> Userlist = reader.readFileUser();
         String selectedID = IDchoicebox.getValue();
         if (selectedID == null || selectedID.equals("Select user to Delete")) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a User to delete.");
@@ -47,7 +47,7 @@ public class DeleteUser {
         for (int i = 0; i < Userlist.size(); i++) {
             if (Userlist.get(i).getId().equals(searchId)) {
                 Userlist.remove(i);
-                writee.UserWriteFile(Userlist);
+                writer.UserWriteFile(Userlist);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Item Successfully deleted.");
                 alert.showAndWait();
                 break;
@@ -56,7 +56,7 @@ public class DeleteUser {
     }
 
     @FXML
-    public void Back(ActionEvent event) throws IOException {
+    public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();

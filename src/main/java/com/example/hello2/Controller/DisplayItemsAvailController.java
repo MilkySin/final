@@ -13,13 +13,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
 
 public class DisplayItemsAvailController {
     @FXML
@@ -93,7 +88,7 @@ public class DisplayItemsAvailController {
             }
         }
         @FXML
-        public void Back(ActionEvent event) throws IOException {
+        public void Back() throws IOException {
             Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
             FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
             Parent root = loader.load();
