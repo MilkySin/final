@@ -1,7 +1,6 @@
 package com.example.hello2.Reader;
 
 import com.example.hello2.Model.ItemModel;
-import com.example.hello2.Model.UserModel;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,10 +26,10 @@ public class ItemsFileReader {
     public ArrayList<ItemModel> getItemList(){
         return itemList;
     }
-   // public ArrayList<ItemModel> readItems() {
+   // public ArrayList<ItemModel> readFileItems() {
       //  return itemList;
    // }
-    public ArrayList<ItemModel> readItems() throws IOException {
+    public ArrayList<ItemModel> readFileItems() throws IOException {
         File file = new File("new_items.txt");
         FileReader fw = new FileReader(file);
         BufferedReader bw = new BufferedReader(fw);

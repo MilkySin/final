@@ -1,5 +1,8 @@
 package com.example.hello2.Controller;
 
+import com.example.hello2.Model.ItemModel;
+import com.example.hello2.Reader.ItemsFileReader;
+import com.example.hello2.Writer.ItemsFileWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.FileWriter;
@@ -42,7 +47,7 @@ public class AddItemController {
     @FXML
     private Button addItemButton;
     public Button back;
-
+    public Text text;
     @FXML
     private Label successLabel;
 
@@ -60,7 +65,7 @@ public class AddItemController {
     }
 
     @FXML
-    void addItem() {
+    void addItem() throws IOException {
         // Get input values
         String id = idField.getText();
         String title = titleField.getText();
@@ -70,18 +75,31 @@ public class AddItemController {
         double rentalFee = Double.parseDouble(rentalFeeField.getText());
         String rentalStatus = rentalStatusChoiceBox.getValue();
 
-        try {
-            FileWriter writer = new FileWriter("new_items.txt", true);
-            writer.write(id + "," + title + ","  + rentalType + "," + loanType + "," + copies + "," + rentalFee +
-                                   "," + rentalStatus);
-            writer.write("\n");
-            writer.close();
-
-            // Show success message
-            successLabel.setText("Item added successfully!");
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (id == null || title == null || rentalType == null || loanType == null || rentalStatus == null) {
+            // handle the null values here
+            text.setFill(Color.RED);
+            text.setText("Failed to add");
+        }else {
+            ItemModel item = new ItemModel(id, title, rentalType, loanType, copies, rentalFee, rentalStatus);
+            ItemsFileReader read = new ItemsFileReader();
+            ItemsFileWriter writer = new ItemsFileWriter();
+            read.getItemList().add(item);
+            writer.ItemsWriteFile(read.readFileItems());
+            text.setFill(Color.RED);
+            text.setText("Added Successfully");
         }
+//        try {
+//            UserWriteFile writer = new UserWriteFile("new_items.txt", true);
+//            writer.write(id + "," + title + ","  + rentalType + "," + loanType + "," + copies + "," + rentalFee +
+//                                   "," + rentalStatus);
+//            writer.write("\n");
+//            writer.close();
+//
+//            // Show success message
+//            successLabel.setText("Item added successfully!");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
     @FXML
     public void Back(ActionEvent event) throws IOException {

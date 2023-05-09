@@ -24,7 +24,7 @@ public class DeleteItemController {
 
     public void initialize() throws IOException {
         ItemsFileReader temp = new ItemsFileReader();
-        ArrayList<ItemModel> itemlist = temp.readItems();
+        ArrayList<ItemModel> itemlist = temp.readFileItems();
         for (ItemModel item : itemlist) {
             IDchoicebox.getItems().add(item.getID());
             IDchoicebox.setValue("Select Item to Delete");
@@ -37,7 +37,7 @@ public class DeleteItemController {
         ItemsFileReader temp = new ItemsFileReader();
         ItemsFileWriter writee = new ItemsFileWriter();
         String searchId = IDchoicebox.getValue();
-        ArrayList<ItemModel> itemlist = temp.readItems();
+        ArrayList<ItemModel> itemlist = temp.readFileItems();
         String selectedID = IDchoicebox.getValue();
         if (selectedID == null || selectedID.equals("Select Item to Delete")) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Please select an item to delete.");
@@ -47,7 +47,7 @@ public class DeleteItemController {
         for (int i = 0; i < itemlist.size(); i++) {
             if (itemlist.get(i).getID().equals(searchId)) {
                 itemlist.remove(i);
-                writee.FileWriter(itemlist);
+                writee.ItemsWriteFile(itemlist);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Item Successfully deleted.");
                 alert.showAndWait();
                 break;

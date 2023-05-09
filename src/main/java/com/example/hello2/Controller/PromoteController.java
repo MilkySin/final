@@ -27,7 +27,7 @@ import java.util.Objects;
 public class PromoteController {
 
     public UserFileReader temp = new UserFileReader();
-    private ArrayList<UserModel> userList = temp.readUser();
+    private ArrayList<UserModel> userList = temp.readFileUser();
     @FXML
     private TextField searchIdField;
     public Button searchCustomerButton;
@@ -95,7 +95,7 @@ public class PromoteController {
                     temo.setAccountType(newAccountType);
                 }
             }
-            writer.FileWriter(userList);
+            writer.UserWriteFile(userList);
 
         } else {
             text.setVisible(true);

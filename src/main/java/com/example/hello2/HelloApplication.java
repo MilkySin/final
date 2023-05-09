@@ -35,9 +35,9 @@ public class HelloApplication extends Application {
     public static void main(String[] args) {
 //        new ItemsFileReader();
 //        ItemsFileReader temp = new ItemsFileReader();
-////        temp.readItems();
+////        temp.readFileItems();
 //
-//        ArrayList<ItemModel> itemList  = temp.readItems();
+//        ArrayList<ItemModel> itemList  = temp.readFileItems();
 //
 ////        System.out.println(itemList.get(0).getRentalType() == );
 //

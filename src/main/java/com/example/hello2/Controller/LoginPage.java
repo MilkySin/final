@@ -32,7 +32,7 @@ public class LoginPage {
     @FXML
     void handleLogIn(ActionEvent event) throws IOException {
         UserFileReader temp = new UserFileReader();
-        ArrayList<UserModel> itemList = temp.readUser();
+        ArrayList<UserModel> itemList = temp.readFileUser();
 
         String ID = IDField.getText().trim();
         String password = passwordField.getText().trim();

@@ -1,6 +1,5 @@
 package com.example.hello2.Writer;
 
-import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Model.UserModel;
 
 import java.io.BufferedWriter;
@@ -17,7 +16,7 @@ public class UsersFileWriter {
     private String Address, AccountType;
     private int PhoneNumber;
 
-    public void FileWriter(ArrayList<UserModel> Userlist) throws IOException {
+    public void UserWriteFile(ArrayList<UserModel> Userlist) throws IOException {
         File file = new File("userinfo.txt");
         FileWriter fw = new FileWriter(file, false); // set append to false
         BufferedWriter bw = new BufferedWriter(fw);

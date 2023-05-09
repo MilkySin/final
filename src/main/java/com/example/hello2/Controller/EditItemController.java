@@ -1,13 +1,9 @@
 package com.example.hello2.Controller;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Reader.ItemsFileReader;
@@ -66,7 +62,7 @@ public class EditItemController {
 
     public void searchItem(ActionEvent event) throws IOException {
         ItemsFileReader temp = new ItemsFileReader();
-        ArrayList<ItemModel> itemlist = temp.readItems();
+        ArrayList<ItemModel> itemlist = temp.readFileItems();
         String searchId = searchIdField.getText();
         String itemDetails = "";
         for (ItemModel item : itemlist) {
@@ -82,7 +78,7 @@ public class EditItemController {
     public void saveChanges(ActionEvent event) throws IOException {
         String searchId = searchIdField.getText();
 
-        ArrayList<ItemModel> itemlist =  new ItemsFileReader().readItems();
+        ArrayList<ItemModel> itemlist =  new ItemsFileReader().readFileItems();
         ItemsFileWriter write = new ItemsFileWriter();
 //        ItemModel temp=new ItemModel();
 //        temp.setID(searchId);
@@ -94,14 +90,14 @@ public class EditItemController {
                 itemlist.get(i).setTitle(titleField.getText());
                 itemlist.get(i).setStatus((String) rentalStatusChoiceBox.getValue());
                 itemlist.get(i).setLoanType((String)loanTypeChoiceBox.getValue());
-                write.FileWriter(itemlist);
+                write.ItemsWriteFile(itemlist);
                 break;
             }
         }
 
 
 
-        write.FileWriter(itemlist);
+        write.ItemsWriteFile(itemlist);
 
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Success");

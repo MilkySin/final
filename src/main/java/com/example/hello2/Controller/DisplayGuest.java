@@ -7,19 +7,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class DisplayGuest {
@@ -40,7 +35,7 @@ public class DisplayGuest {
     @FXML
     public void initialize() throws IOException {
         UserFileReader temp = new UserFileReader();
-        ArrayList<UserModel> Userlist = temp.readUser();
+        ArrayList<UserModel> Userlist = temp.readFileUser();
         for (UserModel User : Userlist){
             if (Objects.equals(User.getAccountType(), "Guest")){
                 customerTextArea.setText(toString(User));

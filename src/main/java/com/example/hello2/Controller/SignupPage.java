@@ -72,7 +72,7 @@ public class SignupPage {
         String number = NumberField.getText();
         String accountType = accountTypeChoiceBox.getValue();
 
-        String passwordRegex = "^(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?])(?=.*\\d)(?=.*[A-Z]).{8,}$";
+        String passwordRegex = "^(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|.<>\\/?])(?=.*\\d)(?=.*[A-Z])[^,]{8,}$";
         String IDRegex = "^C\\d{3}$";
 
         if (password.matches(passwordRegex) && ID.matches(IDRegex)) {
@@ -81,7 +81,7 @@ public class SignupPage {
             UserFileReader read = new UserFileReader();
             UsersFileWriter writer = new UsersFileWriter();
             read.getUserList().add(registeredUser);
-            writer.FileWriter(read.readUser());
+            writer.UserWriteFile(read.readFileUser());
 
         } else {
             System.out.println("Invalid Pass or ID");

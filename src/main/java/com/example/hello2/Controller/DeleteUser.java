@@ -1,12 +1,8 @@
 package com.example.hello2.Controller;
 
-import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Model.UserModel;
-import com.example.hello2.Reader.ItemsFileReader;
 import com.example.hello2.Reader.UserFileReader;
-import com.example.hello2.Writer.ItemsFileWriter;
 import com.example.hello2.Writer.UsersFileWriter;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +24,7 @@ public class DeleteUser {
 
     public void initialize() throws IOException {
         UserFileReader temp = new UserFileReader();
-        ArrayList<UserModel> Userlist = temp.readUser();
+        ArrayList<UserModel> Userlist = temp.readFileUser();
         for (UserModel User : Userlist) {
             IDchoicebox.getItems().add(User.getId());
             IDchoicebox.setValue("Select User to Delete");
@@ -41,7 +37,7 @@ public class DeleteUser {
         UserFileReader temp = new UserFileReader();
         UsersFileWriter writee = new UsersFileWriter();
         String searchId = IDchoicebox.getValue();
-        ArrayList<UserModel> Userlist = temp.readUser();
+        ArrayList<UserModel> Userlist = temp.readFileUser();
         String selectedID = IDchoicebox.getValue();
         if (selectedID == null || selectedID.equals("Select user to Delete")) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a User to delete.");
@@ -51,7 +47,7 @@ public class DeleteUser {
         for (int i = 0; i < Userlist.size(); i++) {
             if (Userlist.get(i).getId().equals(searchId)) {
                 Userlist.remove(i);
-                writee.FileWriter(Userlist);
+                writee.UserWriteFile(Userlist);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Item Successfully deleted.");
                 alert.showAndWait();
                 break;
