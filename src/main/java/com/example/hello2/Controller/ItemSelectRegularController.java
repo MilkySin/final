@@ -50,24 +50,11 @@ public class ItemSelectRegularController {
         VBox vbox = new VBox();
         List<CheckBox> checkBoxList = new ArrayList<>(); // keep track of selected CheckBoxes
 
-        final int[] selectedCount = {0}; // keep track of selected CheckBox count
         for (ItemModel items : reader.readFileItems()) {
             CheckBox checkBox = new CheckBox(items.toString());
             HBox itemBox = new HBox();
             if (items.getCopies() == 0) {
                 checkBox.setDisable(true);
-            } else {
-                checkBox.setOnAction((ActionEvent event) -> {
-                    if (checkBox.isSelected()) {
-                        if (selectedCount[0] < 2) {
-                            selectedCount[0]++;
-                        } else {
-                            checkBox.setSelected(false);
-                        }
-                    } else {
-                        selectedCount[0]--;
-                    }
-                });
             }
             checkBoxList.add(checkBox);
             itemBox.getChildren().addAll(checkBox);
