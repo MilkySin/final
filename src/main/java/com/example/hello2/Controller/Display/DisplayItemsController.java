@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class DisplayItemsController {
     @FXML
@@ -23,12 +24,11 @@ public class DisplayItemsController {
     @FXML
     public void initialize() throws Exception {
         ItemsFileReader reader = new ItemsFileReader();
-        StringBuilder fileContents = new StringBuilder();
-
+        StringBuilder fileContent = new StringBuilder();
         for(ItemModel items : reader.readFileItems()){
-            fileContents.append(items.toString());
+            fileContent.append(items.toString());
         }
-        selectedItemLabel.setText(fileContents.toString());
+            selectedItemLabel.setText(fileContent.toString());
     }
     @FXML
     public void Back() throws IOException {

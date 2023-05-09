@@ -1,4 +1,2 @@
-I999-999,hello,Record,1 Week Loan,4,45.0,Available
-I222-123,Lord Of the Rings,DVD,2 Days Loan,0,56.0,Borrowed
-I444-444,Harry Potter,DVD,1 Week Loan,5,70.0,Available
-I123-205,Gay2,DVD,1 Week Loan,1,23.0,Available
+I444-444,Harry Potter,DVD,1 Week Loan,0,70.0,Borrowed
+I123-205,Gay2,DVD,1 Week Loan,0,23.0,Borrowed

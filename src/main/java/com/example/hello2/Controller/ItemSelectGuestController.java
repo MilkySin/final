@@ -1,5 +1,8 @@
 package com.example.hello2.Controller;
 
+import com.example.hello2.Model.ItemModel;
+import com.example.hello2.Reader.ItemsFileReader;
+import com.example.hello2.Writer.ItemsFileWriter;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -34,115 +38,55 @@ public class ItemSelectGuestController {
     public Button back;
 
     @FXML
-    public void viewTextFile(ActionEvent event) {
-        Task<List<String>> task = new Task<List<String>>() {
-            @Override
-            protected List<String> call() throws Exception {
-                List<String> lines = Files.readAllLines(Paths.get("new_items.txt"));
-                return new ArrayList<String>(lines);
-            }
-        };
-
-        progressBar.progressProperty().bind(task.progressProperty());
-        progressBar.setVisible(true);
-
-        task.setOnSucceeded(e -> {
-            List<String> contentList = task.getValue();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText("Select an item from the list:");
-
-            VBox vbox = new VBox();
-            // create a container for the CheckBoxes
-
-            List<CheckBox> checkBoxList = new ArrayList<>(); // keep track of selected CheckBoxes
-            ToggleGroup group = new ToggleGroup();
-            String item = null;
-            int copies = 0;
-
-            final int[] selectedCount = {0}; // keep track of selected CheckBox count
-            for (String line : contentList) {
-                String[] fields = line.split(":\\s+");
-                if (Objects.equals(fields[0], "Copies")){
-                    copies = Integer.parseInt(fields[1]);
-                    
-                }
-                if (line.startsWith("ID")) {
-                    item = line.trim();
-                    // create a container for the button and the text
-                    CheckBox checkBox = new CheckBox(item);
-                    if (copies == 0) {
-                        checkBox.setDisable(true);
-                    } else {
-                        checkBox.setOnAction((ActionEvent event1) -> {
-                            if (checkBox.isSelected()) {
-                                if (selectedCount[0] < 2) {
-                                    selectedCount[0]++;
-                                } else {
-                                    checkBox.setSelected(false);
-                                }
-                            } else {
-                                selectedCount[0]--;
-                            }
-                        });
-                    }
-
-                    vbox.getChildren().add(checkBox); // add the CheckBox to the container
-                    checkBoxList.add(checkBox);
+    public void viewTextFile() throws IOException {
 
 
-                    setLabelText(item);
-                    // add the container to the main container
-                } else {
-                    vbox.getChildren().add(new Label(line)); // add the text to the main container
-                }
-            }
+        ItemsFileReader reader = new ItemsFileReader();
+        ItemsFileWriter writer = new ItemsFileWriter();
+        VBox vbox = new VBox();
+        List<CheckBox> checkBoxList = new ArrayList<>(); // keep track of selected CheckBoxes
 
-            ScrollPane scrollPane = new ScrollPane();
-            selectedItemLabel.setVisible(false);
-            scrollPane.setFitToWidth(true);
-            scrollPane.setPrefHeight(200);
-            scrollPane.setContent(vbox);
-            scrollPane.setMaxHeight(200);
-            alert.getDialogPane().setContent(scrollPane); // set the container as the content of the dialog pane
-
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                StringBuilder selectedItemBuilder = new StringBuilder();
-                for (CheckBox checkBox1 : checkBoxList) {
-                    if (checkBox1.isSelected()) {
-                        selectedItemBuilder.append(checkBox1.getText()).append(", ");
-                        try {
-                            Deduction(checkBox1.getText().split("ID: ")[1]);
-                        } catch (Exception ex) {
-                            Alert errorAlert = new Alert(Alert.AlertType.ERROR, "Error updating file: " + ex.getMessage());
-                            errorAlert.showAndWait();
+        final int[] selectedCount = {0}; // keep track of selected CheckBox count
+        for (ItemModel items : reader.readFileItems()) {
+            CheckBox checkBox = new CheckBox(items.toString());
+            HBox itemBox = new HBox();
+            if (items.getCopies() == 0) {
+                checkBox.setDisable(true);
+            } else {
+                checkBox.setOnAction((ActionEvent event) -> {
+                    if (checkBox.isSelected()) {
+                        if (selectedCount[0] < 2) {
+                            selectedCount[0]++;
+                        } else {
+                            checkBox.setSelected(false);
                         }
+                    } else {
+                        selectedCount[0]--;
                     }
-                }
-                String selectedItem = selectedItemBuilder.toString();
-                if (!selectedItem.isEmpty()) {
-                    selectedItem = selectedItem.substring(0, selectedItem.length() - 2); // remove the trailing ", "
-                }
-                setLabelText(selectedItem);
-
+                });
             }
-            selectedItemLabel.setVisible(true);
-            progressBar.setVisible(false);
+            checkBoxList.add(checkBox);
+            itemBox.getChildren().addAll(checkBox);
+            vbox.getChildren().addAll(itemBox);
+        }
 
-        });
+        // decrement copies value of selected item
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Select an item from the list:");
+        alert.getDialogPane().setContent(vbox);
+        alert.showAndWait();
 
-        task.setOnFailed(e -> {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Error reading file: " + task.getException().getMessage());
-            alert.showAndWait();
-            progressBar.setVisible(false);
-        });
+        ArrayList<ItemModel> content = reader.getItemList();
 
-        new Thread(task).start();
-    }
-
-
-    public void setLabelText(String text) {
-        selectedItemLabel.setText(text);
+        for (CheckBox checkBox : checkBoxList) {
+            for (ItemModel item : content) {
+                if (checkBox.getText().equals(item.toString()) && checkBox.isSelected()) {
+                    item.setCopies(item.getCopies() - 1); // decrement the copies value
+                    writer.ItemsWriteFile(content); // write the updated items to the file
+                    break;
+                }
+            }
+        }
     }
 
     public void Back(ActionEvent event) throws IOException {
@@ -153,52 +97,6 @@ public class ItemSelectGuestController {
         Stage stage = (Stage) back.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
-    }
-
-    public void Deduction(String id) throws IOException {
-        Path path = Paths.get("new_items.txt");
-        List<String> fileContent = new ArrayList<>(Files.readAllLines(path));
-        boolean itemFound = false;
-        int copies;
-
-        for (int i = 0; i < fileContent.size(); i++) {
-            String line = fileContent.get(i);
-            String[] fields = line.split(":\\s+");
-            if (fields[0].equals("ID") && fields[1].equals(id)) {
-                int copiesIndex = i + 4;
-                int rentalStatusIndex = i + 6;
-                if (copiesIndex >= fileContent.size()) {
-                    System.out.println("Error: Copies field not found.");
-                    return;
-                }
-                String copiesLine = fileContent.get(copiesIndex);
-                String[] copiesFields = copiesLine.split(":\\s+");
-                copies = Integer.parseInt(copiesFields[1]);
-                copies--;
-                if (copies < 0) {
-                    System.out.println("Error: Copies field cannot be negative.");
-                    return;
-                }
-                String updatedLine = String.format("Copies: %d", copies);
-                fileContent.set(copiesIndex, updatedLine);
-
-                if (copies == 0) {
-                    String updatedRentalStatusLine = "Rental Status: Borrowed";
-                    fileContent.set(rentalStatusIndex, updatedRentalStatusLine);
-                }
-
-                itemFound = true;
-                break;
-            }
-        }
-
-        if (!itemFound) {
-            System.out.println("Item not found.");
-            return;
-        }
-
-        Files.write(path, fileContent, StandardCharsets.UTF_8);
-        System.out.println("Item updated successfully.");
     }
 }
 

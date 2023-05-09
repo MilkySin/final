@@ -29,14 +29,13 @@ public class DisplayItemsAvailController {
     public void initialize() throws IOException {
         ItemsFileReader reader = new ItemsFileReader();
         ArrayList<ItemModel> Itemlist=reader.readFileItems();
-        ArrayList<ItemModel> Availlist =new ArrayList<>();
+        StringBuilder fileContent = new StringBuilder();
         for (ItemModel item : Itemlist){
             if (Objects.equals(item.getStatus(), "Available")){
-
-                Availlist.add(item);
+                fileContent.append(item);
             }
         }
-        textArea.setText(Availlist.toString());
+        textArea.setText(fileContent.toString());
     }
         @FXML
         public void Back() throws IOException {
