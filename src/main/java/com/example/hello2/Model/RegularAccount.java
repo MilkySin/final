@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class RegularAccount extends UserModel {
     private int numReturned;
 
-
-    public RegularAccount(String username, String password, String id, String address, String accountType, int phoneNumber) {
-        super(username, password, id, address, accountType, phoneNumber);
+    public RegularAccount(String username, String password, String name, String id, String address, int phoneNumber, ArrayList<ItemModel> rentedItemList) {
+        super(username, password, name, id, address, phoneNumber);
+        numReturned = 0;
+        accountType = "Regular";
     }
-
 
     public int getNumReturned() {
         return numReturned;
