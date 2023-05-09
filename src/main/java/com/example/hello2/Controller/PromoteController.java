@@ -5,7 +5,6 @@ package com.example.hello2.Controller;
 import com.example.hello2.Model.UserModel;
 import com.example.hello2.Reader.UserFileReader;
 import com.example.hello2.Writer.UsersFileWriter;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,7 +26,7 @@ import java.util.Objects;
 public class PromoteController {
 
     public UserFileReader temp = new UserFileReader();
-    private ArrayList<UserModel> userList = temp.readFileUser();
+    private final ArrayList<UserModel> userList = temp.readFileUser();
     @FXML
     private TextField searchIdField;
     public Button searchCustomerButton;
@@ -40,71 +39,52 @@ public class PromoteController {
     public PromoteController() throws IOException {
     }
 
-    public void initialize(){
+    public void initialize() {
         PromoteChoice.getItems().addAll("Guest", "Regular", "VIP");
         PromoteChoice.setValue("Guest");
-
-        text.setVisible(false);
     }
-    public void searchItem(ActionEvent event) throws IOException {
+
+    public void searchItem() {
         String idToSearch = searchIdField.getText(); // Change this to the ID you want to search for
         boolean found = false;
         UserModel user = null;
 
-        for(UserModel users: userList){
-            if(Objects.equals(users.getId(), idToSearch)){
-                user =  users;
+        for (UserModel users : userList) {
+            if (Objects.equals(users.getId(), idToSearch)) {
+                user = users;
                 found = true;
                 break;
             }
         }
-        
+
         if (found) {
-            CustomerDetail.setText(user.getId());
+            CustomerDetail.setText(user.toString());
         } else {
-            System.out.println("User not found");
+            text.setFill(Color.RED);
+            text.setText("User with ID " + idToSearch + " not found.");
         }
     }
 
-    public void saveChange(ActionEvent e) throws IOException {
+    public void saveChange() throws IOException {
         String idToModify = searchIdField.getText();
         String newAccountType = PromoteChoice.getValue();
-        boolean found = false;
-
-
-
-        UserModel user = null;
+        UsersFileWriter writer = new UsersFileWriter();
         for (UserModel users : userList) {
-            if (Objects.equals(users.getId(), idToModify)){
-                user = users;
-                found = true;
+            if (Objects.equals(users.getId(), idToModify)) {
                 if (Objects.equals(users.getAccountType(), newAccountType)) {
-                    text.setVisible(true);
                     text.setFill(Color.RED);
                     text.setText("New account type is the same as the old one.");
-                    break;
+                } else {
+                    users.setAccountType(newAccountType);
+                    text.setFill(Color.GREEN);
+                    text.setText("Changes Saved Successfully");
+                    writer.UserWriteFile(userList);
+
                 }
             }
-
-
-        }
-        if (found) {
-            UsersFileWriter writer = new UsersFileWriter();
-            for(UserModel temo : userList){
-                if(Objects.equals(temo.getId(), idToModify)){
-                    temo.setAccountType(newAccountType);
-                }
-            }
-            writer.UserWriteFile(userList);
-
-        } else {
-            text.setVisible(true);
-            text.setFill(Color.RED);
-            text.setText("User with ID " + idToModify + " not found.");
         }
     }
-
-    public void Back(ActionEvent event) throws IOException {
+    public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
