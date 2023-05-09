@@ -2,7 +2,9 @@ package com.example.hello2.Controller.Display;
 
 //Fixed
 import com.example.hello2.Model.ItemModel;
+import com.example.hello2.Model.UserModel;
 import com.example.hello2.Reader.ItemsFileReader;
+import com.example.hello2.Reader.UserFileReader;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,11 +17,13 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class DisplayItemsController {
     @FXML
     public TextArea selectedItemLabel;
     public Button back;
+    public TextArea itemstextArea;
 
     @FXML
     public void initialize() throws Exception {
@@ -28,7 +32,41 @@ public class DisplayItemsController {
         for(ItemModel items : reader.readFileItems()){
             fileContent.append(items.toString());
         }
-            selectedItemLabel.setText(fileContent.toString());
+            itemstextArea.setText(fileContent.toString());
+    }
+    @FXML
+
+
+    void SortByID() throws IOException {
+        System.out.println("Sorting by ID...");
+        ItemsFileReader read = new ItemsFileReader();
+        StringBuilder content = new StringBuilder();
+
+        // Sort by ID
+        read.readFileItems().sort(Comparator.comparing(ItemModel::getID));
+        itemstextArea.clear();
+
+        for(ItemModel item: read.readFileItems()){
+            content.append(item.toString());
+            System.out.println(item.toString());
+        }
+
+        itemstextArea.setText(content.toString());
+    }
+    @FXML
+    void SortByName() throws IOException {
+        System.out.println("Sorting by name...");
+        ItemsFileReader reader = new ItemsFileReader();
+        StringBuilder content = new StringBuilder();
+
+        // Sort by name
+        reader.readFileItems().sort(Comparator.comparing(ItemModel::getTitle));
+
+        itemstextArea.clear();
+        for(ItemModel item: reader.readFileItems()){
+            content.append(item.toString());
+        }
+        itemstextArea.setText(content.toString());
     }
     @FXML
     public void Back() throws IOException {

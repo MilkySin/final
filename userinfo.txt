@@ -1,3 +1,5 @@
+baby,Baby123!,C004,home,Regular,987654
+test,Test123!,C126,whatever,Guest,987654
 Minh,Minh123!,C002,C002,Regular,1234567
 Minh,ShirinPretty1!,C001,dsaf,Guest,90909090
 Admin,Admin000!,C000,RMIT,VIP,2023

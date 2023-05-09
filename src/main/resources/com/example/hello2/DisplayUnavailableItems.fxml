@@ -8,7 +8,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.Display.DisplayUnavailableItems">
     <children>
         <TextArea fx:id="textArea" editable="false" layoutY="54.0" prefHeight="313.0" prefWidth="600.0" />
-        <Text layoutX="161.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All Available Items In Shop" textAlignment="CENTER" wrappingWidth="277.07958984375" />
+        <Text layoutX="161.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All Unavailable Items In Shop" textAlignment="CENTER" wrappingWidth="277.07958984375" />
         <Button fx:id="back" layoutX="268.0" layoutY="373.0" mnemonicParsing="false" onAction="#Back" text="Go back" />
     </children>
 </AnchorPane>
