@@ -43,8 +43,10 @@ public class LoginPage {
             alert.setHeaderText(null);
             alert.setContentText("The ID should start with a capital 'C' followed by three digits.");
             alert.showAndWait();
+            return;
         }
 
+        boolean userFound = false;
         for (UserModel users : itemList) {
             if (ID.equals(users.getId()) && password.equals(users.getPassword())) {
                 if (Objects.equals(users.getId(), "C000") && Objects.equals(users.getUsername(), "Admin")) {
@@ -80,15 +82,19 @@ public class LoginPage {
                         Stage stage = (Stage) LogIn.getScene().getWindow();
                         stage.setScene(scene);
                         stage.show();
-                    } else {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Invalid Credentials");
-                        alert.setHeaderText(null);
-                        alert.setContentText("The ID and/or password is incorrect.");
-                        alert.showAndWait();
                     }
                 }
+                userFound = true;
+                break;
             }
+        }
+
+        if (!userFound) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Credentials");
+            alert.setHeaderText(null);
+            alert.setContentText("The ID and/or password is incorrect.");
+            alert.showAndWait();
         }
     }
 
