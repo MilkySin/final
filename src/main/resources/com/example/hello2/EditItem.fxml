@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;"
             xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.hello2.Controller.EditItemController">
+            fx:controller="com.example.hello2.Controller.Items.EditItemController">
     <VBox prefHeight="400.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #F1F1F1;"
           AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
         <VBox.margin>

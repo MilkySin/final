@@ -1,5 +1,8 @@
 package com.example.hello2.Controller;
 //fixed
+import com.example.hello2.Controller.Items.AddItemController;
+import com.example.hello2.Controller.Items.DeleteItemController;
+import com.example.hello2.Controller.Items.EditItemController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -117,7 +120,7 @@ public class SceneAdminController {
         Scene scene = new Scene(root);
         Stage stage = (Stage) EditItem.getScene().getWindow();
         stage.setScene(scene);
-        DeleteUser controller = loader.getController();
+        com.example.hello2.Controller.Users.DeleteUser controller = loader.getController();
         stage.show();
     }
     public void Promote(ActionEvent event) throws IOException {

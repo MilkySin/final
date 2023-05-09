@@ -9,4 +9,8 @@ module com.example.hello2 {
     opens com.example.hello2.Controller to javafx.fxml;
     exports com.example.hello2.Reader;
     opens com.example.hello2.Reader to javafx.fxml;
+    exports com.example.hello2.Controller.Items;
+    opens com.example.hello2.Controller.Items to javafx.fxml;
+    exports com.example.hello2.Controller.Users;
+    opens com.example.hello2.Controller.Users to javafx.fxml;
 }

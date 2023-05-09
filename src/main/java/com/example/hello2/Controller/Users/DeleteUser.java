@@ -1,4 +1,4 @@
-package com.example.hello2.Controller;
+package com.example.hello2.Controller.Users;
 //fixed
 import com.example.hello2.Model.UserModel;
 import com.example.hello2.Reader.UserFileReader;
