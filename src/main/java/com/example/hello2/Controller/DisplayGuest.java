@@ -31,13 +31,15 @@ public class DisplayGuest {
 
     @FXML
     public void initialize() throws IOException {
-        UserFileReader reader = new UserFileReader();
-        ArrayList<UserModel> Userlist = reader.readFileUser();
+        UserFileReader temp = new UserFileReader();
+        ArrayList<UserModel> Userlist = temp.readFileUser();
+        ArrayList<UserModel> Guestlist=new ArrayList<>();
         for (UserModel User : Userlist){
             if (Objects.equals(User.getAccountType(), "Guest")){
-                customerTextArea.setText(toString(User));
+                Guestlist.add(User);
             }
         }
+        customerTextArea.setText(Guestlist.toString());
     }
     @FXML
     public void Back() throws IOException {

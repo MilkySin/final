@@ -1,5 +1,7 @@
 package com.example.hello2.Controller;
 
+import com.example.hello2.Model.ItemModel;
+import com.example.hello2.Reader.ItemsFileReader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,11 +18,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-
+import java.util.*;
+//fixed
 public class DisplayUnavailableItems {
     @FXML
     public TextArea textArea;
@@ -28,56 +27,19 @@ public class DisplayUnavailableItems {
     public Button back;
     @FXML
     public void initialize() throws IOException {
-//        Path path = Paths.get("new_items.txt");
-//        File file = new File(path.toUri());
-//
-//        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-//            String line;
-//            String id = "", title = "", rentalType = "", loanType = "", copies = "", rentalFee = "";
-//            StringBuilder sb = new StringBuilder();
-//
-//            while ((line = br.readLine()) != null) {
-//                String[] fields = line.split(":\\s");
-//                switch (fields[0]) {
-//                    case "ID":
-//                        id = fields[1];
-//                        break;
-//                    case "Title":
-//                        title = fields[1];
-//                        break;
-//                    case "Rental Type":
-//                        rentalType = fields[1];
-//                        break;
-//                    case "Loan Type":
-//                        loanType = fields[1];
-//                        break;
-//                    case "Copies":
-//                        copies = fields[1];
-//                        break;
-//                    case "Rental Fee (USD)":
-//                        rentalFee = fields[1];
-//                        break;
-//                    case "Rental Status":
-//                        if (fields[1].equals("Borrowed")) {
-//                            sb.append("ID: ").append(id).append("\n");
-//                            sb.append("Title: ").append(title).append("\n");
-//                            sb.append("Rental Type: ").append(rentalType).append("\n");
-//                            sb.append("Loan Type: ").append(loanType).append("\n");
-//                            sb.append("Copies: ").append(copies).append("\n");
-//                            sb.append("Rental Fee: ").append(rentalFee).append("\n\n");
-//                        }
-//
-//                        textArea.setText(String.valueOf(sb));
-//                }
-//            }
-//        }catch(IOException e){
-//            e.printStackTrace();
-//        }
+        ItemsFileReader reader = new ItemsFileReader();
+        ArrayList<ItemModel> Itemlist=reader.readFileItems();
+        ArrayList<ItemModel> UNAvaillist =new ArrayList<>();
+        for (ItemModel item : Itemlist){
+            if (Objects.equals(item.getStatus(), "Borrowed")){
 
-
+                UNAvaillist.add(item);
+            }
+        }
+        textArea.setText(UNAvaillist.toString());
     }
     @FXML
-    public void Back(ActionEvent event) throws IOException {
+    public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();

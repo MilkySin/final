@@ -33,11 +33,13 @@ public String toString(UserModel u) {
     public void initialize() throws IOException {
         UserFileReader temp = new UserFileReader();
         ArrayList<UserModel> Userlist = temp.readFileUser();
+        ArrayList<UserModel> Regularlist=new ArrayList<>();
         for (UserModel User : Userlist){
             if (Objects.equals(User.getAccountType(), "Regular")){
-                customerTextArea.setText(toString(User));
+                Regularlist.add(User);
             }
         }
+        customerTextArea.setText(Regularlist.toString());
     }
     @FXML
     public void Back(ActionEvent event) throws IOException {

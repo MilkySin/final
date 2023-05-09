@@ -21,6 +21,7 @@ public class DisplayVIP {
     @FXML
     public TextArea customerTextArea;
 
+
     public Button back;
 
     public String toString(UserModel u) {
@@ -36,11 +37,13 @@ public class DisplayVIP {
     public void initialize() throws IOException {
         UserFileReader temp = new UserFileReader();
         ArrayList<UserModel> Userlist = temp.readFileUser();
+        ArrayList<UserModel> Viplist=new ArrayList<>();
         for (UserModel User : Userlist){
             if (Objects.equals(User.getAccountType(), "VIP")){
-                customerTextArea.setText(toString(User));
+                Viplist.add(User);
             }
         }
+        customerTextArea.setText(Viplist.toString());
     }
     @FXML
     public void Back(ActionEvent event) throws IOException {
