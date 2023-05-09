@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.hello2.Controller.PromoteController">
+            fx:controller="com.example.hello2.Controller.Users.PromoteController">
    <TextField fx:id="searchIdField" layoutY="54.0" prefHeight="26.0" prefWidth="192.0" promptText="ID"/>
    <Text layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search ID"/>
    <TextArea fx:id="CustomerDetail" editable="false" layoutY="129.0" prefHeight="200.0" prefWidth="192.0"/>

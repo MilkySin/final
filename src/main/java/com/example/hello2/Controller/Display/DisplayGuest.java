@@ -1,8 +1,7 @@
-package com.example.hello2.Controller;
-//fixed
+package com.example.hello2.Controller.Display;
+
 import com.example.hello2.Model.UserModel;
 import com.example.hello2.Reader.UserFileReader;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,33 +15,34 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Objects;
-
-public class DisplayRegular {
+//fixed
+public class DisplayGuest {
     @FXML
     public TextArea customerTextArea;
 
     public Button back;
 
-public String toString(UserModel u) {
-    return "ID: " + u.getId() + "\n Username: " + u.getUsername() + "\n Password: " + u.getPassword()
-            + "\n Address: " + u.getAddress() + "\n Phone Number: " + u.getPhoneNumber()
-            + ", Account Type: " + u.getAccountType();
-}
+
+    public String toString(UserModel u) {
+        return "ID: " + u.getId() + "\n Username: " + u.getUsername() + "\n Password: " + u.getPassword()
+                + "\n Address: " + u.getAddress() + "\n Phone Number: " + u.getPhoneNumber()
+                + ", Account Type: " + u.getAccountType();
+    }
 
     @FXML
     public void initialize() throws IOException {
         UserFileReader temp = new UserFileReader();
         ArrayList<UserModel> Userlist = temp.readFileUser();
-        ArrayList<UserModel> Regularlist=new ArrayList<>();
+        ArrayList<UserModel> Guestlist=new ArrayList<>();
         for (UserModel User : Userlist){
-            if (Objects.equals(User.getAccountType(), "Regular")){
-                Regularlist.add(User);
+            if (Objects.equals(User.getAccountType(), "Guest")){
+                Guestlist.add(User);
             }
         }
-        customerTextArea.setText(Regularlist.toString());
+        customerTextArea.setText(Guestlist.toString());
     }
     @FXML
-    public void Back(ActionEvent event) throws IOException {
+    public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();

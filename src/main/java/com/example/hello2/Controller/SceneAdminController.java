@@ -1,5 +1,8 @@
 package com.example.hello2.Controller;
 //fixed
+import com.example.hello2.Controller.Display.DisplayCustomersController;
+import com.example.hello2.Controller.Display.DisplayItemsAvailController;
+import com.example.hello2.Controller.Display.DisplayItemsController;
 import com.example.hello2.Controller.Items.AddItemController;
 import com.example.hello2.Controller.Items.DeleteItemController;
 import com.example.hello2.Controller.Items.EditItemController;

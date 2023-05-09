@@ -1,4 +1,4 @@
-package com.example.hello2.Controller;
+package com.example.hello2.Controller.Display;
 
 import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Reader.ItemsFileReader;

@@ -1,4 +1,4 @@
-package com.example.hello2.Controller;
+package com.example.hello2.Controller.Display;
 
 //Fixed
 import com.example.hello2.Model.ItemModel;
