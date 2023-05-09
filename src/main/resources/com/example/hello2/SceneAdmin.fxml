@@ -18,5 +18,7 @@
       <Button fx:id="RegularCustomer" layoutX="392.0" layoutY="161.0" mnemonicParsing="false" onAction="#DisplayRegular" text="Display Regular Account" />
       <Button fx:id="GuestAccount" layoutX="33.0" layoutY="212.0" mnemonicParsing="false" onAction="#DisplayGuest" text="Display Guest Account " />
       <Button fx:id="DisplayUnavailableItems" layoutX="221.0" layoutY="212.0" mnemonicParsing="false" onAction="#DisplayUnavailableItems" text="Display Unavailable Items" />
+      <Button fx:id="AddUser" layoutX="439.0" layoutY="212.0" mnemonicParsing="false" onAction="#AddUser" text="Add User" />
+      <Button fx:id="EditUser" layoutX="60.0" layoutY="264.0" mnemonicParsing="false" onAction="#EditUser" text="Edit User" />
    </children>
 </AnchorPane>

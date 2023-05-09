@@ -26,6 +26,8 @@ public class SceneAdminController {
     public Button RegularCustomer;
     public Button GuestAccount;
     public Button DisplayUnavailableItems;
+    public Button AddUser;
+    public Button EditUser;
     @FXML
     private Button AddItem;
 
@@ -181,4 +183,27 @@ public class SceneAdminController {
         stage.setScene(scene);
         stage.show();
     }
+    @FXML
+    void AddUser(ActionEvent event) throws IOException{
+        Path path = Paths.get("src/main/resources/com/example/hello2/Signup.fxml");
+        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) EditItem.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    void EditUser(ActionEvent event) throws IOException{
+        Path path = Paths.get("src/main/resources/com/example/hello2/EditUser.fxml");
+        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) EditItem.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+
 }

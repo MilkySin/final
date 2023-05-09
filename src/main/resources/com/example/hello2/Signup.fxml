@@ -10,7 +10,7 @@
 
    <TextField fx:id="usernameField" layoutX="375.0" layoutY="60.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter Your Name" />
    <PasswordField fx:id="passwordField" layoutX="14.0" layoutY="135.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter your password" />
-   <Button layoutX="457.0" layoutY="346.0" mnemonicParsing="false" onAction="#signup" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px;" text="Sign Up" />
+   <Button layoutX="457.0" layoutY="346.0" mnemonicParsing="false" onAction="#signup" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px;" text="Done" />
    <TextField fx:id="IDField" layoutX="14.0" layoutY="60.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter Your ID" />
    <TextField fx:id="AddressField" layoutX="375.0" layoutY="135.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter Your Address" />
    <TextField fx:id="NumberField" layoutX="14.0" layoutY="211.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter Your Phone Number" />
