@@ -1,5 +1,8 @@
 package com.example.hello2.Controller;
 
+import com.example.hello2.Model.ItemModel;
+import com.example.hello2.Reader.ItemsFileReader;
+import com.example.hello2.Writer.ItemsFileWriter;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -33,63 +37,55 @@ public class ItemSelectVIPController {
     public Button back;
 
     @FXML
-    public void viewTextFile(ActionEvent event) {
-        Task<List<String>> task = new Task<List<String>>() {
-            @Override
-            protected List<String> call() throws Exception {
-                List<String> lines = Files.readAllLines(Paths.get("new_items.txt"));
-                return new ArrayList<String>(lines);
-            }
-        };
+    public void viewTextFile() throws IOException {
 
-        progressBar.progressProperty().bind(task.progressProperty());
-        progressBar.setVisible(true);
+        ItemsFileReader reader = new ItemsFileReader();
+        ItemsFileWriter writer = new ItemsFileWriter();
+        VBox vbox = new VBox();
+        List<CheckBox> checkBoxList = new ArrayList<>(); // keep track of selected CheckBoxes
 
-        task.setOnSucceeded(e -> {
-            List<String> contentList = task.getValue();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText("Select an item from the list:");
-
-            VBox vbox = new VBox(); // create a container for the CheckBoxes
-
-            List<CheckBox> checkBoxList = new ArrayList<>(); // keep track of selected CheckBoxes
-            for (String line : contentList) {
-                if (line.startsWith("ID")) {
-                    String item = line.trim();
-                    CheckBox checkBox = new CheckBox(item);
-                    vbox.getChildren().add(checkBox); // add the CheckBox to the container
-                    checkBoxList.add(checkBox);
-                }
-            }
-            alert.getDialogPane().setContent(vbox); // set the container as the content of the dialog pane
-
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                StringBuilder selectedItemBuilder = new StringBuilder();
-                for (CheckBox checkBox : checkBoxList) {
+        final int[] selectedCount = {0}; // keep track of selected CheckBox count
+        for (ItemModel items : reader.readFileItems()) {
+            CheckBox checkBox = new CheckBox(items.toString());
+            HBox itemBox = new HBox();
+            if (items.getCopies() == 0) {
+                checkBox.setDisable(true);
+            } else {
+                checkBox.setOnAction((ActionEvent event) -> {
                     if (checkBox.isSelected()) {
-                        selectedItemBuilder.append(checkBox.getText()).append(", ");
+                        if (selectedCount[0] < 2) {
+                            selectedCount[0]++;
+                        } else {
+                            checkBox.setSelected(false);
+                        }
+                    } else {
+                        selectedCount[0]--;
                     }
-                }
-                String selectedItem = selectedItemBuilder.toString();
-                if (!selectedItem.isEmpty()) {
-                    selectedItem = selectedItem.substring(0, selectedItem.length() - 2); // remove the trailing ", "
-                }
-                setLabelText(selectedItem);
+                });
             }
-            progressBar.setVisible(false);
-        });
+            checkBoxList.add(checkBox);
+            itemBox.getChildren().addAll(checkBox);
+            vbox.getChildren().addAll(itemBox);
+        }
 
-        task.setOnFailed(e -> {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Error reading file: " + task.getException().getMessage());
-            alert.showAndWait();
-            progressBar.setVisible(false);
-        });
+        // decrement copies value of selected item
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Select an item from the list:");
+        alert.getDialogPane().setContent(vbox);
+        alert.showAndWait();
 
-        new Thread(task).start();
+        ArrayList<ItemModel> content = reader.getItemList();
+
+        for (CheckBox checkBox : checkBoxList) {
+            for (ItemModel item : content) {
+                if (checkBox.getText().equals(item.toString()) && checkBox.isSelected()) {
+                    item.setCopies(item.getCopies() - 1); // decrement the copies value
+                    writer.ItemsWriteFile(content); // write the updated items to the file
+                    break;
+                }
+            }
+        }
     }
-
-
 
     public void setLabelText(String text) {
         selectedItemLabel.setText(text);

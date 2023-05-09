@@ -40,7 +40,6 @@ public class ItemSelectGuestController {
     @FXML
     public void viewTextFile() throws IOException {
 
-
         ItemsFileReader reader = new ItemsFileReader();
         ItemsFileWriter writer = new ItemsFileWriter();
         VBox vbox = new VBox();
