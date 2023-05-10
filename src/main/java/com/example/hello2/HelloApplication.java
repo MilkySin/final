@@ -22,28 +22,28 @@ import java.util.Objects;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        // Load the FXML file for the login/signup screen (Scene 3)
-//        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoginSignup.fxml")));
-//        Scene scene = new Scene(root);
-//        scene.setFill(Color.rgb(255, 204, 204)); // sets the background color to baby pink
-//        stage.setTitle("Login or Signup");
-//        Image icon = new Image("file:/C:/Users/ShirinLP/Pictures/OIP.png");
-//        stage.getIcons().add(icon);
-//        stage.setScene(scene);
-//        stage.show();
+         //Load the FXML file for the login/signup screen (Scene 3)
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("LoginSignup.fxml")));
+        Scene scene = new Scene(root);
+        scene.setFill(Color.rgb(255, 204, 204)); // sets the background color to baby pink
+        stage.setTitle("Login or Signup");
+        Image icon = new Image("file:/C:/Users/ShirinLP/Pictures/OIP.png");
+        stage.getIcons().add(icon);
+        stage.setScene(scene);
+        stage.show();
     }
 
-    public static void main(String[] args) throws IOException {
-        UserModel user = new UserModel("Minh","Minh123!","C002","C002","Regular",1234567);
-        ItemModel item = new ItemModel("I444-444","Harry Potter","DVD", "Week Loan",499988,70.0,"Borrowed");
-        ItemModel item2 = new ItemModel("I444-444","Harry Potter","DVD", "Week Loan",499988,70.0,"Borrowed");
-
-        ArrayList<String> items = new ArrayList<>();
-        items.add(item.getID());
-        items.add(item2.getID());
-        SelectedItems selectedItems = new SelectedItems(user.getId(), items);
-        new SelectedItemsWriter().SelectedItemsWriteFIle(user, items);
-        System.out.println(new SelectedItemsReader().readFileSelectedItems());
-        launch();
-    }
+//    public static void main(String[] args) throws IOException {
+//        UserModel user = new UserModel("Minh","Minh123!","C002","C002","Regular",1234567);
+//        ItemModel item = new ItemModel("I444-444","Harry Potter","DVD", "Week Loan",499988,70.0,"Borrowed");
+//        ItemModel item2 = new ItemModel("I444-444","Harry Potter","DVD", "Week Loan",499988,70.0,"Borrowed");
+//
+//        ArrayList<String> items = new ArrayList<>();
+//        items.add(item.getID());
+//        items.add(item2.getID());
+//        SelectedItems selectedItems = new SelectedItems(user.getId(), items);
+//        new SelectedItemsWriter().SelectedItemsWriteFIle(user, items);
+//        System.out.println(new SelectedItemsReader().readFileSelectedItems());
+//        launch();
+//    }
 }

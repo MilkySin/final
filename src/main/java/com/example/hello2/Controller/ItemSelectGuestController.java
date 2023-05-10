@@ -29,6 +29,7 @@ public class ItemSelectGuestController {
     public Label selectedItemLabel;
     @FXML
     private Label label;
+    private String ID;
 
     @FXML
     private ProgressBar progressBar;
@@ -36,6 +37,10 @@ public class ItemSelectGuestController {
     @FXML
     private Button viewTextFileButton;
     public Button back;
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 
     @FXML
     public void viewTextFile() throws IOException {
@@ -81,7 +86,7 @@ public class ItemSelectGuestController {
             for (ItemModel item : content) {
                 if (checkBox.getText().equals(item.toString()) && checkBox.isSelected()) {
                     item.setCopies(item.getCopies() - 1); // decrement the copies value
-                    writer.ItemsWriteFile(content); // write the updated items to the file
+                    writer.ItemsWriteFile(ID,content); // write the updated items to the file
                     break;
                 }
             }

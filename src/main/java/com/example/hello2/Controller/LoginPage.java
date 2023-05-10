@@ -58,12 +58,13 @@ public class LoginPage {
                     stage.setScene(scene);
                     stage.show();
                 } else {
-                    if (Objects.equals(users.getAccountType(), "Guest")) {
-                        Path path = Paths.get("src/main/resources/com/example/hello2/GuestUser.fxml");
+                    if (Objects.equals(users.getAccountType(), "Guest")) { Path path = Paths.get("src/main/resources/com/example/hello2/GuestUser.fxml");
                         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
                         Stage stage = (Stage) LogIn.getScene().getWindow();
+                        ItemSelectGuestController guestUserController = loader.getController(); // Create an instance of ItemSelectGuestController
+                        guestUserController.setID(ID); // Set the ID value
                         stage.setScene(scene);
                         stage.show();
                     } else if (Objects.equals(users.getAccountType(), "Regular")) {
