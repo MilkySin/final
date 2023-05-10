@@ -10,6 +10,7 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.CacheHint;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -53,7 +54,7 @@ public class ItemSelectGuestController {
         SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
         VBox vbox = new VBox();
-        List<CheckBox> checkBoxList = new ArrayList<>(); // keep track of selected CheckBoxes
+        List<CheckBox> checkBoxList = new ArrayList<>();
 
         final int[] selectedCount = {0}; // keep track of selected CheckBox count
         for (ItemModel items : itemsFileReader.readFileItems()) {
@@ -86,7 +87,9 @@ public class ItemSelectGuestController {
         alert.showAndWait();
 
         ArrayList<ItemModel> content = itemsFileReader.getItemList();
-        
+        ArrayList<SelectedItems> selectedItems = new ArrayList<>(new SelectedItemsReader().readFileSelectedItems());
+
+
         for (CheckBox checkBox : checkBoxList) {
             for (ItemModel item : content) {
                 if (checkBox.getText().equals(item.toString()) && checkBox.isSelected()) {
