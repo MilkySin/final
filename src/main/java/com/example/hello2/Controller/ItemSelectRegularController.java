@@ -28,6 +28,7 @@ public class ItemSelectRegularController {
     public Label selectedItemLabel;
     @FXML
     private Label label;
+    private String ID;
 
     @FXML
     private ProgressBar progressBar;
@@ -36,6 +37,9 @@ public class ItemSelectRegularController {
     private Button viewTextFileButton;
     public Button back;
     private int userID;
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 
     public ItemSelectRegularController() throws IOException {
     }

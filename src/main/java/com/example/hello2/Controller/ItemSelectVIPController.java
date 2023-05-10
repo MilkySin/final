@@ -28,6 +28,7 @@ public class ItemSelectVIPController {
     public Label selectedItemLabel;
     @FXML
     private Label label;
+    private String ID;
 
     @FXML
     private ProgressBar progressBar;
@@ -35,6 +36,10 @@ public class ItemSelectVIPController {
     @FXML
     private Button viewTextFileButton;
     public Button back;
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 
     @FXML
     public void viewTextFile() throws IOException {

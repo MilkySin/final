@@ -73,6 +73,8 @@ public class LoginPage {
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
                         Stage stage = (Stage) LogIn.getScene().getWindow();
+                        ItemSelectRegularController guestUserController = loader.getController(); // Create an instance of ItemSelectGuestController
+                        guestUserController.setID(ID); // Set the ID value
                         stage.setScene(scene);
                         stage.show();
                     } else if (Objects.equals(users.getAccountType(), "VIP")) {
@@ -81,6 +83,8 @@ public class LoginPage {
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
                         Stage stage = (Stage) LogIn.getScene().getWindow();
+                        ItemSelectVIPController guestUserController = loader.getController(); // Create an instance of ItemSelectGuestController
+                        guestUserController.setID(ID); // Set the ID value
                         stage.setScene(scene);
                         stage.show();
                     }
