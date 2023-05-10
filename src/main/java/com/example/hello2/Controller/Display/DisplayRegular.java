@@ -42,7 +42,7 @@ public String toString(UserModel u) {
         customerTextArea.setText(Regularlist.toString());
     }
     @FXML
-    public void Back(ActionEvent event) throws IOException {
+    public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
