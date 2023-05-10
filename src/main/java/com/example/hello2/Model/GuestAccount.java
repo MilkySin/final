@@ -32,7 +32,7 @@ public class GuestAccount extends UserModel {
 
         // Guest can only borrow 1 week
         if (item.getLoanType().equals("1-week")){
-            rentedItemList.add(item);
+            rentedItemList.add(item.getID());
             // set item rented status to "borrowed"
         } else {
             System.out.println("placeholder"); // display error in javafx

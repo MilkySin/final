@@ -12,19 +12,23 @@ import java.util.Arrays;
 import java.util.Set;
 
 public class SelectedItemsReader {
-    public ArrayList<String> selectedItemsList = new ArrayList<>();
+    public ArrayList<SelectedItems> selectedItemsList = new ArrayList<>();
 
-    public SelectedItems readFileSelectedItems() throws IOException {
+    public ArrayList<SelectedItems> getSelectedItemsList(){
+        return selectedItemsList;
+    }
+    public ArrayList<SelectedItems> readFileSelectedItems() throws IOException {
         File file = new File("selected_items.txt");
         FileReader fw = new FileReader(file);
         BufferedReader bw = new BufferedReader(fw);
         String line;
-        SelectedItems selectedItems = null;
         while ((line = bw.readLine()) != null) {
             String[] field = line.split(",");
-            selectedItemsList.addAll(Arrays.asList(field).subList(1, field.length));
-            selectedItems = new SelectedItems(field[0], selectedItemsList);
+            String ID = field[0];
+            ArrayList<String> ItemsList = new ArrayList<>(Arrays.asList(field).subList(1, field.length));
+            SelectedItems selectedItems = new SelectedItems(ID, ItemsList);
+            selectedItemsList.add(selectedItems);
         }
-        return selectedItems;
+        return selectedItemsList;
     }
 }

@@ -20,7 +20,7 @@ public class RegularAccount extends UserModel {
     }
 
     public void rentItem (ItemModel item){
-        rentedItemList.add(item);
+        rentedItemList.add(item.getID());
     }
 
 

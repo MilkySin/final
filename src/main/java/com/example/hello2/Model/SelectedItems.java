@@ -3,7 +3,7 @@ package com.example.hello2.Model;
 import java.util.ArrayList;
 
 public class SelectedItems {
-    private String ID;
+    private  String ID;
     private ArrayList<String> selectedItemsList;
 
     public SelectedItems(String ID, ArrayList<String> selectedItemsList) {
@@ -33,7 +33,7 @@ public class SelectedItems {
 
     @Override
     public String toString() {
-        return "SelectedItems{" + "ID='" + ID + '\'' + ", selectedItemsList=" + selectedItemsList + '}';
+        return ID + "," + selectedItemsList;
     }
 
 }

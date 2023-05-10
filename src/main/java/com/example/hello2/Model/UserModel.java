@@ -18,8 +18,8 @@ public class UserModel {
     protected String address;
     protected int phoneNumber;
     protected String accountType;
-    protected ArrayList<ItemModel> rentedItemList;
-    protected static ArrayList<UserModel> usersList = new ArrayList<>();
+    protected ArrayList<String> rentedItemList;
+    protected ArrayList<UserModel> usersList = new ArrayList<>();
 
     public UserModel(String username, String password, String id, String address, String accountType, int phoneNumber) {
         this.username = username;
@@ -78,11 +78,11 @@ public class UserModel {
         this.phoneNumber = phoneNumber;
     }
 
-    public ArrayList<ItemModel> getRentedItemList() {
+    public ArrayList<String> getRentedItemList() {
         return rentedItemList;
     }
 
-    public void setRentedItemList(ArrayList<ItemModel> rentedItemList) {
+    public void setRentedItemList(ArrayList<String> rentedItemList) {
         this.rentedItemList = rentedItemList;
     }
 
@@ -90,7 +90,7 @@ public class UserModel {
     public void rentItem (ItemModel item){}
     public void returnItem(ItemModel item) {
         try {
-            rentedItemList.remove(item);
+            rentedItemList.remove(item.getID());
         }
         catch (RuntimeException ex) {
             System.out.println("cannot return item if not borrowed");

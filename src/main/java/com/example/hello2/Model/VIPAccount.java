@@ -12,7 +12,7 @@ public class VIPAccount extends UserModel{
     }
 
     public void rentItem (ItemModel item){
-        rentedItemList.add(item);
+        rentedItemList.add(item.getID());
         rewardPoints += 10;
         if (rewardPoints >= 100){
             System.out.println("yay you get to rent the item for free"); // implement congratulations in javafx

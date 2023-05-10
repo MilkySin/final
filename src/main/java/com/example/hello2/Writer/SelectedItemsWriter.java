@@ -11,12 +11,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class SelectedItemsWriter {
-    public void SelectedItemsWriteFIle(UserModel user, ArrayList<String> itemsList) throws IOException {
+    public void SelectedItemsWriteFIle(SelectedItems Items) throws IOException {
         File file = new File("selected_items.txt");
         FileWriter fw = new FileWriter(file, false); // set append to false
         BufferedWriter bw = new BufferedWriter(fw);
-        bw.write(user.getId());
-        for (String itemID : itemsList) bw.write("," + itemID);
+        bw.write(Items.getID());
+        for (String itemID : Items.getSelectedItemsList()) bw.write("," + itemID);
         bw.write("\n");
         bw.close();
         fw.close();

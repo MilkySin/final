@@ -33,17 +33,7 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-//    public static void main(String[] args) throws IOException {
-//        UserModel user = new UserModel("Minh","Minh123!","C002","C002","Regular",1234567);
-//        ItemModel item = new ItemModel("I444-444","Harry Potter","DVD", "Week Loan",499988,70.0,"Borrowed");
-//        ItemModel item2 = new ItemModel("I444-444","Harry Potter","DVD", "Week Loan",499988,70.0,"Borrowed");
-//
-//        ArrayList<String> items = new ArrayList<>();
-//        items.add(item.getID());
-//        items.add(item2.getID());
-//        SelectedItems selectedItems = new SelectedItems(user.getId(), items);
-//        new SelectedItemsWriter().SelectedItemsWriteFIle(user, items);
-//        System.out.println(new SelectedItemsReader().readFileSelectedItems());
-//        launch();
-//    }
+    public static void main(String[] args) throws IOException {
+        launch();
+    }
 }

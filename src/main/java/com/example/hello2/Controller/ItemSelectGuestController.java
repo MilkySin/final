@@ -1,8 +1,11 @@
 package com.example.hello2.Controller;
 
 import com.example.hello2.Model.ItemModel;
+import com.example.hello2.Model.SelectedItems;
 import com.example.hello2.Reader.ItemsFileReader;
+import com.example.hello2.Reader.SelectedItemsReader;
 import com.example.hello2.Writer.ItemsFileWriter;
+import com.example.hello2.Writer.SelectedItemsWriter;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,13 +48,15 @@ public class ItemSelectGuestController {
     @FXML
     public void viewTextFile() throws IOException {
 
-        ItemsFileReader reader = new ItemsFileReader();
-        ItemsFileWriter writer = new ItemsFileWriter();
+        ItemsFileReader itemsFileReader = new ItemsFileReader();
+        ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
+        SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
+        SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
         VBox vbox = new VBox();
         List<CheckBox> checkBoxList = new ArrayList<>(); // keep track of selected CheckBoxes
 
         final int[] selectedCount = {0}; // keep track of selected CheckBox count
-        for (ItemModel items : reader.readFileItems()) {
+        for (ItemModel items : itemsFileReader.readFileItems()) {
             CheckBox checkBox = new CheckBox(items.toString());
             HBox itemBox = new HBox();
             if (items.getCopies() == 0) {
@@ -80,13 +85,13 @@ public class ItemSelectGuestController {
         alert.getDialogPane().setContent(vbox);
         alert.showAndWait();
 
-        ArrayList<ItemModel> content = reader.getItemList();
-
+        ArrayList<ItemModel> content = itemsFileReader.getItemList();
+        
         for (CheckBox checkBox : checkBoxList) {
             for (ItemModel item : content) {
                 if (checkBox.getText().equals(item.toString()) && checkBox.isSelected()) {
                     item.setCopies(item.getCopies() - 1); // decrement the copies value
-                    writer.ItemsWriteFile(ID,content); // write the updated items to the file
+                    itemsFileWriter.ItemsWriteFile(content); // write the updated items to the file
                     break;
                 }
             }
