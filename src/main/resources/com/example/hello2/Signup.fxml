@@ -4,20 +4,27 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.SignupPage">
+<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #444444;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.SignupPage">
 
-   <TextField fx:id="usernameField" layoutX="375.0" layoutY="60.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter Your Name" />
-   <PasswordField fx:id="passwordField" layoutX="14.0" layoutY="135.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter your password" />
-   <Button layoutX="457.0" layoutY="346.0" mnemonicParsing="false" onAction="#signup" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px;" text="Done" />
-   <TextField fx:id="IDField" layoutX="14.0" layoutY="60.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter Your ID" />
-   <TextField fx:id="AddressField" layoutX="375.0" layoutY="135.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter Your Address" />
-   <TextField fx:id="NumberField" layoutX="14.0" layoutY="211.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter Your Phone Number" />
-   <Button fx:id="back" layoutX="75.0" layoutY="346.0" mnemonicParsing="false" onAction="#Back" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #F44336; -fx-text-fill: white; -fx-font-size: 16px;" text="back" />
-   <ChoiceBox fx:id="accountTypeChoiceBox" layoutX="375.0" layoutY="211.0" prefHeight="40.0" prefWidth="210.0">
+   <TextField fx:id="usernameField" layoutX="457.0" layoutY="60.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter Your Name" style="-fx-border-color: #eaaad1; -fx-border-width: 0 0 3 0; -fx-background-color: transparent;" />
+   <PasswordField fx:id="passwordField" layoutX="14.0" layoutY="135.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter your password" style="-fx-background-color: transparent; -fx-border-width: 0 0 3 0; -fx-border-color: #eaaad1;" />
+   <Button layoutX="76.0" layoutY="322.0" mnemonicParsing="false" onAction="#signup" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #eaaad1; -fx-text-fill: black; -fx-font-size: 16px; -fx-background-radius: 20;" text="Done" />
+   <TextField fx:id="IDField" layoutX="14.0" layoutY="60.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter Your ID" style="-fx-background-color: transparent; -fx-border-color: pink; -fx-border-width: 0 0 3 0;" />
+   <TextField fx:id="AddressField" layoutX="457.0" layoutY="135.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter Your Address" style="-fx-border-color: #eaaad1; -fx-border-width: 0 0 3 0; -fx-background-color: transparent;" />
+   <TextField fx:id="NumberField" layoutX="14.0" layoutY="211.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter Your Phone Number" style="-fx-border-color: #eaaad1; -fx-border-width: 0 0 3 0; -fx-background-color: transparent;" />
+   <Button fx:id="back" layoutX="508.0" layoutY="322.0" mnemonicParsing="false" onAction="#Back" prefHeight="40.0" prefWidth="122.0" style="-fx-background-color: #eaaad1; -fx-text-fill: black; -fx-font-size: 16px; -fx-background-radius: 20;" text="Back" />
+   <ChoiceBox fx:id="accountTypeChoiceBox" layoutX="464.0" layoutY="210.0" prefHeight="40.0" prefWidth="210.0" style="-fx-border-color: #eaaad1; -fx-background-color: transparent; -fx-border-width: 0 0 3 0;">
 
    </ChoiceBox>
+   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="275.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@Images/signup.png" />
+      </image>
+   </ImageView>
 
 
 </AnchorPane>

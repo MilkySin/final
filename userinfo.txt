@@ -1,3 +1,4 @@
+gfj,HIhi2345!,C457,saigoj,Regular,98765
 baby,Baby123!,C004,home,Regular,987654
 test,Test123!,C126,whatever,Guest,987654
 Minh,Minh123!,C002,C002,Regular,1234567

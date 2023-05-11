@@ -55,7 +55,7 @@ public class ItemSelectVIPController {
     }
 
     @FXML
-    public void viewTextFile() throws IOException {
+    public void rentItems() throws IOException {
         ItemsFileReader itemsFileReader = new ItemsFileReader();
         ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
         SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
@@ -64,8 +64,11 @@ public class ItemSelectVIPController {
 
         VBox vbox = new VBox();
         ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
+
         for (ItemModel items : itemModelArrayList) {
             CheckBox checkBox = new CheckBox(items.toString());
+            checkBox.setUserData(items.getID());
+
             HBox itemBox = new HBox();
             if (items.getCopies() == 0) {
                 checkBox.setDisable(true);
@@ -110,7 +113,8 @@ public class ItemSelectVIPController {
             if (checkBox.isSelected()) {
                 temp.add((String) checkBox.getUserData());
                 SelectedItems yes = new SelectedItems(getUserID(), temp);
-                selectedItemsWriter.SelectedItemsWriteFIle(yes);
+                selectedItemsReader.readFileSelectedItems().add(yes);
+                selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
             }
         }
     }
@@ -175,7 +179,7 @@ public class ItemSelectVIPController {
             if(checkBox.isSelected()) {
                 temp.remove((String) checkBox.getUserData());
                 SelectedItems yes = new SelectedItems(getUserID(), temp);
-                selectedItemsWriter.SelectedItemsWriteFIle(yes);
+                selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
             }
         }
     }

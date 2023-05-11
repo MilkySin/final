@@ -41,12 +41,15 @@ public class ItemSelectRegularController {
     private Button viewTextFileButton;
     public Button back;
     private int userID;
+
     public void setID(String ID) {
         this.ID = ID;
     }
-    public String getUserID(){
+
+    public String getUserID() {
         return ID;
     }
+
     public ItemSelectRegularController() throws IOException {
     }
 
@@ -55,7 +58,8 @@ public class ItemSelectRegularController {
     }
 
     @FXML
-    public void viewTextFile() throws IOException {
+    public void rentItems() throws IOException {
+        System.out.println(ID);
         ItemsFileReader itemsFileReader = new ItemsFileReader();
         ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
         SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
@@ -66,6 +70,8 @@ public class ItemSelectRegularController {
         ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
         for (ItemModel items : itemModelArrayList) {
             CheckBox checkBox = new CheckBox(items.toString());
+            checkBox.setUserData(items.getID());
+
             HBox itemBox = new HBox();
             if (items.getCopies() == 0) {
                 checkBox.setDisable(true);
@@ -74,6 +80,7 @@ public class ItemSelectRegularController {
             itemBox.getChildren().addAll(checkBox);
             vbox.getChildren().addAll(itemBox);
         }
+
         for (SelectedItems items : selectedItemsReader.readFileSelectedItems()) {
             for (CheckBox check : checkBoxList) {
                 if (Objects.equals(items.getID(), getUserID())) {
@@ -104,15 +111,18 @@ public class ItemSelectRegularController {
             }
         }
 
+        ArrayList<SelectedItems> list = selectedItemsReader.readFileSelectedItems();
         // save the selected items to a file
         ArrayList<String> temp = new ArrayList<>();
         for (CheckBox checkBox : checkBoxList) {
             if (checkBox.isSelected()) {
                 temp.add((String) checkBox.getUserData());
-                SelectedItems yes = new SelectedItems(getUserID(), temp);
-                selectedItemsWriter.SelectedItemsWriteFIle(yes);
             }
         }
+        SelectedItems yes = new SelectedItems(getUserID(), temp);
+        System.out.println(yes);
+        list.add(yes);
+        selectedItemsWriter.SelectedItemsWriteFIle(list);
     }
 
     public void Back(ActionEvent event) throws IOException {
@@ -138,11 +148,12 @@ public class ItemSelectRegularController {
 
         ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
 
-        for(SelectedItems temp : selectedItemsReader.readFileSelectedItems()) {
+        for (SelectedItems temp : selectedItemsReader.readFileSelectedItems()) {
             for (ItemModel items : itemModelArrayList) {
                 if (temp.getSelectedItemsList().contains(items.getID())) {
                     CheckBox checkBox = new CheckBox(items.toString());
                     checkBox.setUserData(items.getID());
+
                     HBox itemBox = new HBox();
                     if (items.getCopies() == 0) {
                         checkBox.setDisable(false);
@@ -169,13 +180,21 @@ public class ItemSelectRegularController {
                 }
             }
         }
-
         ArrayList<String> temp = new ArrayList<>();
         for(CheckBox checkBox : checkBoxList){
-            if(checkBox.isSelected()) {
+            temp.add((String) checkBox.getUserData());
+            if(checkBox.isSelected()){
                 temp.remove((String) checkBox.getUserData());
-                SelectedItems yes = new SelectedItems(getUserID(), temp);
-                selectedItemsWriter.SelectedItemsWriteFIle(yes);
+            }
+        }
+
+        System.out.println(temp);
+        for(SelectedItems sh : selectedItemsReader.readFileSelectedItems()){
+            for (CheckBox ch : checkBoxList){
+                if(ch.isSelected()){
+                    sh.setSelectedItemsList(temp);
+                    selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
+                }
             }
         }
     }

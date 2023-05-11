@@ -11,7 +11,7 @@
 
     <ProgressBar fx:id="progressBar" layoutX="224.0" layoutY="229.0" prefHeight="22.0" prefWidth="178.0" progress="0.0" visible="false" />
 
-    <Button fx:id="viewTextFileButton" layoutX="73.0" layoutY="264.0" mnemonicParsing="false" onAction="#viewTextFile" style="-fx-background-color: #0072C6; -fx-text-fill: white; -fx-font-size: 18px; -fx-pref-width: 150px; -fx-pref-height: 40px;" text="Rent" />
+    <Button fx:id="viewTextFileButton" layoutX="73.0" layoutY="264.0" mnemonicParsing="false" onAction="#rentItems" style="-fx-background-color: #0072C6; -fx-text-fill: white; -fx-font-size: 18px; -fx-pref-width: 150px; -fx-pref-height: 40px;" text="Rent" />
 
     <Label fx:id="selectedItemLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="104.0" prefWidth="570.0" style="-fx-font-size: 18px;" text="" textAlignment="CENTER" />
    <Button fx:id="back" layoutX="260.0" layoutY="354.0" mnemonicParsing="false" onAction="#Back" text="Logout" />
