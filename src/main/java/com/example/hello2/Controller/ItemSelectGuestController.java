@@ -6,11 +6,9 @@ import com.example.hello2.Reader.ItemsFileReader;
 import com.example.hello2.Reader.SelectedItemsReader;
 import com.example.hello2.Writer.ItemsFileWriter;
 import com.example.hello2.Writer.SelectedItemsWriter;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.CacheHint;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -19,14 +17,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 public class ItemSelectGuestController {
     @FXML
@@ -45,20 +40,25 @@ public class ItemSelectGuestController {
     public void setID(String ID) {
         this.ID = ID;
     }
+    public String getUserID(){
+        return ID;
+    }
 
     @FXML
     public void viewTextFile() throws IOException {
-
         ItemsFileReader itemsFileReader = new ItemsFileReader();
         ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
         SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
-        VBox vbox = new VBox();
         List<CheckBox> checkBoxList = new ArrayList<>();
 
+        VBox vbox = new VBox();
+        ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
+
         final int[] selectedCount = {0}; // keep track of selected CheckBox count
-        for (ItemModel items : itemsFileReader.readFileItems()) {
+        for (ItemModel items : itemModelArrayList) {
             CheckBox checkBox = new CheckBox(items.toString());
+            checkBox.setUserData(items.getID());
             HBox itemBox = new HBox();
             if (items.getCopies() == 0) {
                 checkBox.setDisable(true);
@@ -75,21 +75,32 @@ public class ItemSelectGuestController {
                     }
                 });
             }
+
             checkBoxList.add(checkBox);
             itemBox.getChildren().addAll(checkBox);
             vbox.getChildren().addAll(itemBox);
         }
 
-        // decrement copies value of selected item
+        for (SelectedItems items : selectedItemsReader.readFileSelectedItems()) {
+            for (CheckBox check : checkBoxList) {
+                if (Objects.equals(items.getID(), getUserID())) {
+                    for (String i : items.getSelectedItemsList()) {
+                        if (Objects.equals(i, check.getUserData())) {
+                            check.setSelected(true);
+                            check.setDisable(true);
+                        }
+                    }
+                }
+            }
+        }
+
+            // decrement copies value of selected item
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Select an item from the list:");
         alert.getDialogPane().setContent(vbox);
         alert.showAndWait();
 
         ArrayList<ItemModel> content = itemsFileReader.getItemList();
-        ArrayList<SelectedItems> selectedItems = new ArrayList<>(new SelectedItemsReader().readFileSelectedItems());
-
-
         for (CheckBox checkBox : checkBoxList) {
             for (ItemModel item : content) {
                 if (checkBox.getText().equals(item.toString()) && checkBox.isSelected()) {

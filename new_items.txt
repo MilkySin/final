@@ -1,2 +1,2 @@
-I444-444,Harry Potter,DVD,1 Week Loan,499986,70.0,Available
+I444-444,Harry Potter,DVD,1 Week Loan,499984,70.0,Available
 I123-205,Gay2,DVD,1 Week Loan,0,23.0,Borrowed

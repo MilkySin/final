@@ -25,17 +25,22 @@ public class LoginPage {
     private TextField IDField;
     @FXML
     private PasswordField passwordField;
+    String ID;
+
     @FXML
     private Button LogIn;
     @FXML
     private Button back;
 
+    public String getID(){
+        return ID;
+    }
+
     @FXML
-    void handleLogIn(ActionEvent event) throws IOException {
+    public String handleLogIn() throws IOException {
         UserFileReader temp = new UserFileReader();
         ArrayList<UserModel> itemList = temp.readFileUser();
-
-        String ID = IDField.getText().trim();
+        this.ID = IDField.getText().trim();
         String password = passwordField.getText().trim();
         if (!ID.matches("C\\d{3}")) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -43,7 +48,6 @@ public class LoginPage {
             alert.setHeaderText(null);
             alert.setContentText("The ID should start with a capital 'C' followed by three digits.");
             alert.showAndWait();
-            return;
         }
 
         boolean userFound = false;
@@ -101,6 +105,7 @@ public class LoginPage {
             alert.setContentText("The ID and/or password is incorrect.");
             alert.showAndWait();
         }
+        return ID;
     }
 
     public void Back(ActionEvent event) throws IOException {

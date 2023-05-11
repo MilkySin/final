@@ -57,7 +57,7 @@ public class EditItemController {
         rentalStatusChoiceBox.setValue("Available");
     }
 //    public String toString(ItemModel i ){
-//        return "ID: "+ i.getID()+ " \n"+ "Title: "+i.getTitle()+"\n"+ "Type: "+ i.getRentalType()+"\n"+ "Loan type: "+i.getLoanType()+"\n"+"Copies: "+
+//        return "ID: "+ i.getUserID()+ " \n"+ "Title: "+i.getTitle()+"\n"+ "Type: "+ i.getRentalType()+"\n"+ "Loan type: "+i.getLoanType()+"\n"+"Copies: "+
 //                i.getCopies()+"\n"+"fee: "+i.getFee()+"\n"+" Availability: "+ i.getStatus()+"\n";
 //    }
 

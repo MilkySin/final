@@ -34,6 +34,29 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) throws IOException {
+//        UserModel user = new UserModel("Minh","Minh123!","C002","C002","Regular",1234567);
+//        UserModel user2 = new UserModel("Lol","Minh123!","C002","C002","Regular",1234567);
+//        ItemModel item = new ItemModel("I444-444","Harry Potter","DVD", "Week Loan",499988,70.0,"Borrowed");
+//        ItemModel item2 = new ItemModel("I444-442","Harry Potter","DVD", "Week Loan",499988,70.0,"Borrowed");
+//
+//        ArrayList<String> items = new ArrayList<>();
+//        ArrayList<String> items2 = new ArrayList<>();
+//
+//        items.add(item.getUserID());
+//        items.add(item2.getUserID());
+//
+//        items2.add(item.getUserID());
+//        SelectedItems selectedItems = new SelectedItems(user.getId(), items);
+//        SelectedItems selectedItems2 = new SelectedItems(user2.getId(), items2);
+//
+//        SelectedItemsWriter writer = new SelectedItemsWriter();
+//        writer.SelectedItemsWriteFIle(selectedItems);
+//        writer.SelectedItemsWriteFIle(selectedItems2);
+
+//        ArrayList<SelectedItems> reader = new SelectedItemsReader().readFileSelectedItems();
+//        for(SelectedItems i : reader){
+//            System.out.println(i.getSelectedItemsList());
+//        }
         launch();
     }
 }
