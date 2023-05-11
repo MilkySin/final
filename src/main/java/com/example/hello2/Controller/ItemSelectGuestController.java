@@ -46,7 +46,7 @@ public class ItemSelectGuestController {
     }
 
     @FXML
-    public void viewTextFile() throws IOException {
+    public void rentItems() throws IOException {
         ItemsFileReader itemsFileReader = new ItemsFileReader();
         ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
         SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
@@ -87,14 +87,12 @@ public class ItemSelectGuestController {
                 if (Objects.equals(items.getID(), getUserID())) {
                     for (String i : items.getSelectedItemsList()) {
                         if (Objects.equals(i, check.getUserData())) {
-                            check.setSelected(true);
                             check.setDisable(true);
                         }
                     }
                 }
             }
         }
-
             // decrement copies value of selected item
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Select an item from the list:");
@@ -111,6 +109,15 @@ public class ItemSelectGuestController {
                 }
             }
         }
+
+        ArrayList<String> temp = new ArrayList<>();
+        for(CheckBox checkBox : checkBoxList){
+            if(checkBox.isSelected()) {
+                temp.add((String) checkBox.getUserData());
+                SelectedItems yes = new SelectedItems(getUserID(), temp);
+                selectedItemsWriter.SelectedItemsWriteFIle(yes);
+            }
+        }
     }
 
     public void Back(ActionEvent event) throws IOException {
@@ -123,7 +130,59 @@ public class ItemSelectGuestController {
         stage.show();
     }
 
-    public void Return(ActionEvent event) {
+    public void Return(ActionEvent event) throws IOException {
+        SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
+        SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
+
+        ItemsFileReader itemsFileReader = new ItemsFileReader();
+        ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
+
+        List<CheckBox> checkBoxList = new ArrayList<>();
+
+        VBox vbox = new VBox();
+
+        ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
+
+        for(SelectedItems temp : selectedItemsReader.readFileSelectedItems()) {
+            for (ItemModel items : itemModelArrayList) {
+                if (temp.getSelectedItemsList().contains(items.getID())) {
+                    CheckBox checkBox = new CheckBox(items.toString());
+                    checkBox.setUserData(items.getID());
+                    HBox itemBox = new HBox();
+                    if (items.getCopies() == 0) {
+                        checkBox.setDisable(false);
+                    }
+                    checkBoxList.add(checkBox);
+                    itemBox.getChildren().addAll(checkBox);
+                    vbox.getChildren().addAll(itemBox);
+                }
+            }
+        }
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Select an item from the list:");
+        alert.getDialogPane().setContent(vbox);
+        alert.showAndWait();
+
+        ArrayList<ItemModel> content = itemsFileReader.getItemList();
+        for (CheckBox checkBox : checkBoxList) {
+            for (ItemModel item : content) {
+                if (checkBox.getText().equals(item.toString()) && checkBox.isSelected()) {
+                    item.setCopies(item.getCopies() + 1); // decrement the copies value
+                    itemsFileWriter.ItemsWriteFile(content); // write the updated items to the file
+                    break;
+                }
+            }
+        }
+
+        ArrayList<String> temp = new ArrayList<>();
+        for(CheckBox checkBox : checkBoxList){
+            if(checkBox.isSelected()) {
+                temp.remove((String) checkBox.getUserData());
+                SelectedItems yes = new SelectedItems(getUserID(), temp);
+                selectedItemsWriter.SelectedItemsWriteFIle(yes);
+            }
+        }
     }
 }
 
