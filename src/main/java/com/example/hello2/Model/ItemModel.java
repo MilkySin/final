@@ -24,7 +24,6 @@ public class ItemModel {
 
     private String status;
 
-
     private static ArrayList<ItemModel> itemList = new ArrayList<>();
 
     public ItemModel(String ID, String title, String rentalType, String loanType, int copies, double fee, String status) {
