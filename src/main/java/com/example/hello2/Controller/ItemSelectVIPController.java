@@ -29,23 +29,19 @@ public class ItemSelectVIPController {
     @FXML
     private Label label;
     private String ID;
-
     @FXML
     private ProgressBar progressBar;
-
     @FXML
     private Button viewTextFileButton;
     public Button back;
-
     public void setID(String ID) {
         this.ID = ID;
     }
-
     @FXML
     public void viewTextFile() throws IOException {
-
         ItemsFileReader reader = new ItemsFileReader();
         ItemsFileWriter writer = new ItemsFileWriter();
+
         VBox vbox = new VBox();
         List<CheckBox> checkBoxList = new ArrayList<>(); // keep track of selected CheckBoxes
 
@@ -59,7 +55,6 @@ public class ItemSelectVIPController {
             itemBox.getChildren().addAll(checkBox);
             vbox.getChildren().addAll(itemBox);
         }
-
         // decrement copies value of selected item
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Select an item from the list:");
@@ -78,11 +73,9 @@ public class ItemSelectVIPController {
             }
         }
     }
-
     public void setLabelText(String text) {
         selectedItemLabel.setText(text);
     }
-
     public void Back(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());

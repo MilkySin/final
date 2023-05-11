@@ -29,10 +29,6 @@ public class DisplayVIP {
                 + "\n Address: " + u.getAddress() + "\n Phone Number: " + u.getPhoneNumber()
                 + ", Account Type: " + u.getAccountType();
     }
-
-
-
-
     @FXML
     public void initialize() throws IOException {
         UserFileReader temp = new UserFileReader();
