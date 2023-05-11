@@ -12,15 +12,11 @@ public class ItemsFileWriter {
     private String ID;
     private String title;
     private String rentalType;
-
     private String loanType;
     private String Availability;
-
     private int copies;
-
     private double fee;
-     private String status;
-
+    private String status;
 
     public void ItemsWriteFile(ArrayList<ItemModel> itemlist) throws IOException {
         File file = new File("new_items.txt");

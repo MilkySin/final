@@ -1,4 +1,7 @@
-package com.example.hello2.Model;
+package com.example.hello2.Model.User;
+
+import com.example.hello2.Model.ItemModel;
+import com.example.hello2.Model.UserModel;
 
 import java.util.ArrayList;
 
@@ -23,9 +26,16 @@ public class RegularAccount extends UserModel {
         rentedItemList.add(item.getID());
     }
 
-
     @Override
     public String toString() {
-        return "RegularAccount{" + "numReturned=" + numReturned + ", username='" + username + '\'' + ", password='" + password + '\'' + ", id='" + id + '\'' + ", address='" + address + '\'' + ", phoneNumber=" + phoneNumber + ", accountType='" + accountType + '\'' + ", rentedItemList=" + rentedItemList + ", usersList=" + usersList + '}';
+        return "RegularAccount{" +
+                "numReturned=" + numReturned +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", id='" + id + '\'' +
+                ", address='" + address + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", accountType='" + accountType + '\'' +
+                '}';
     }
 }
