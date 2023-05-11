@@ -13,7 +13,6 @@ public class UserFileReader {
     public Path filePath = Paths.get("userinfo.txt");
 
     private ArrayList<UserModel> userList  = new ArrayList<>();
-
     public UserFileReader(Path filePath) {
         this.filePath = filePath;
     }
