@@ -1,11 +1,13 @@
-package com.example.hello2.Model;
+package com.example.hello2.Model.User;
+
+import com.example.hello2.Model.ItemModel;
+import com.example.hello2.Model.UserModel;
 
 import java.util.ArrayList;
 
 public class GuestAccount extends UserModel {
     private final int rentLimit = 2;
     private int numReturned;
-
 
     public GuestAccount(String username, String password, String name, String id, String address, int phoneNumber, ArrayList<ItemModel> rentedItemList) {
         super(username, password, name, id, address, phoneNumber);
@@ -41,6 +43,6 @@ public class GuestAccount extends UserModel {
 
     @Override
     public String toString() {
-        return "GuestAccount{" + "rentLimit=" + rentLimit + ", numReturned=" + numReturned + ", username='" + username + '\'' + ", password='" + password + '\'' + ", id='" + id + '\'' + ", address='" + address + '\'' + ", phoneNumber=" + phoneNumber + ", accountType='" + accountType + '\'' + ", rentedItemList=" + rentedItemList + ", usersList=" + usersList + '}';
+        return "GuestAccount{" + "rentLimit=" + rentLimit + ", numReturned=" + numReturned + ", username='" + username + '\'' + ", password='" + password + '\'' + ", id='" + id + '\'' + ", address='" + address + '\'' + ", phoneNumber=" + phoneNumber + ", accountType='" + accountType + '\'' + ", rentedItemList=" + rentedItemList +'}';
     }
 }
