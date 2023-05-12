@@ -78,7 +78,6 @@ public class ItemSelectRegularController {
     public void rentItems() throws IOException {
         ItemsFileReader itemsFileReader = new ItemsFileReader();
         ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
-        UserFileReader userFileReader = new UserFileReader();
         SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
         List<CheckBox> checkBoxList = new ArrayList<>();
