@@ -1,7 +1,6 @@
 package com.example.hello2.Controller;
 //fixed
 import com.example.hello2.Controller.Display.DisplayCustomersController;
-import com.example.hello2.Controller.Display.DisplayItemsAvailController;
 import com.example.hello2.Controller.Display.DisplayItemsController;
 import com.example.hello2.Controller.Items.AddItemController;
 import com.example.hello2.Controller.Items.DeleteItemController;
@@ -107,17 +106,7 @@ public class SceneAdminController {
         stage.show();
     }
 
-    @FXML
-    void showAvailItems(ActionEvent event) throws IOException{
-        Path path = Paths.get("src/main/resources/com/example/hello2/DisplayItemsAvail.fxml");
-        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) DisplayAvailItems.getScene().getWindow();
-        stage.setScene(scene);
-        DisplayItemsAvailController controller = loader.getController();
-        stage.show();
-    }
+
     @FXML
     void deleteUser(ActionEvent event) throws IOException{
         Path path = Paths.get("src/main/resources/com/example/hello2/deleteUser.fxml");
@@ -147,43 +136,10 @@ public class SceneAdminController {
         stage.setScene(scene);
         stage.show();
     }
-    public void DisplayVIP (ActionEvent event) throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/DisplayVIP.fxml");
-        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) back.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void DisplayRegular (ActionEvent event) throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/DisplayRegular.fxml");
-        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) back.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void DisplayGuest (ActionEvent event) throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/DisplayGuest.fxml");
-        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) back.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
-    @FXML
-    void DisplayUnavailableItems(ActionEvent event) throws IOException{
-        Path path = Paths.get("src/main/resources/com/example/hello2/DisplayUnavailableItems.fxml");
-        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) EditItem.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
+
+
+
+
     @FXML
     void AddUser(ActionEvent event) throws IOException{
         Path path = Paths.get("src/main/resources/com/example/hello2/Signup.fxml");

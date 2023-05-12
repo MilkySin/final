@@ -17,15 +17,20 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Objects;
 
 public class DisplayCustomersController {
+    public  Button VIP ;
     @FXML
     public TextArea customerTextArea;
 
     public Button back;
     public Button SortByID;
     public Button SortByName;
+    public Button Regular;
+    public Button Guest;
 
 
     @FXML
@@ -52,9 +57,9 @@ public class DisplayCustomersController {
         read.readFileUser().sort(Comparator.comparing(UserModel::getId));
         customerTextArea.clear();
 
-        for(UserModel users: read.readFileUser()){
+        for(UserModel users: read.getUserList()){
             content.append(users.toString());
-            System.out.println(users.toString());
+
         }
 
         customerTextArea.setText(content.toString());
@@ -81,10 +86,46 @@ public class DisplayCustomersController {
         reader.readFileUser().sort(Comparator.comparing(UserModel::getUsername));
 
         customerTextArea.clear();
-        for(UserModel users: reader.readFileUser()){
+        for(UserModel users: reader.getUserList()){
             content.append(users.toString());
         }
         customerTextArea.setText(content.toString());
     }
 
+
+    public void Regular(ActionEvent event) throws IOException {
+        UserFileReader temp = new UserFileReader();
+        ArrayList<UserModel> Userlist = temp.readFileUser();
+        ArrayList<UserModel> Regularlist=new ArrayList<>();
+        for (UserModel User : Userlist){
+            if (Objects.equals(User.getAccountType(), "Regular")){
+                Regularlist.add(User);
+            }
+        }
+        customerTextArea.setText(Regularlist.toString());
+    }
+
+    public void Guest(ActionEvent event) throws IOException {
+        UserFileReader temp = new UserFileReader();
+        ArrayList<UserModel> Userlist = temp.readFileUser();
+        ArrayList<UserModel> Guestlist=new ArrayList<>();
+        for (UserModel User : Userlist){
+            if (Objects.equals(User.getAccountType(), "Guest")){
+                Guestlist.add(User);
+            }
+        }
+        customerTextArea.setText(Guestlist.toString());
+    }
+
+    public void VIP(ActionEvent event) throws IOException {
+        UserFileReader temp = new UserFileReader();
+        ArrayList<UserModel> Userlist = temp.readFileUser();
+        ArrayList<UserModel> Viplist=new ArrayList<>();
+        for (UserModel User : Userlist){
+            if (Objects.equals(User.getAccountType(), "VIP")){
+                Viplist.add(User);
+            }
+        }
+        customerTextArea.setText(Viplist.toString());
+    }
 }

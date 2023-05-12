@@ -5,6 +5,7 @@ import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Model.UserModel;
 import com.example.hello2.Reader.ItemsFileReader;
 import com.example.hello2.Reader.UserFileReader;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,18 +19,21 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Objects;
 
 public class DisplayItemsController {
     @FXML
     public TextArea selectedItemLabel;
     public Button back;
     public TextArea itemstextArea;
+    public Button Available;
+    public Button Unavilable;
 
     @FXML
     public void initialize() throws Exception {
         ItemsFileReader reader = new ItemsFileReader();
         StringBuilder fileContent = new StringBuilder();
-        for(ItemModel items : reader.readFileItems()){
+        for(ItemModel items : reader.getItemList()){
             fileContent.append(items.toString());
         }
             itemstextArea.setText(fileContent.toString());
@@ -46,7 +50,7 @@ public class DisplayItemsController {
         read.readFileItems().sort(Comparator.comparing(ItemModel::getID));
         itemstextArea.clear();
 
-        for(ItemModel item: read.readFileItems()){
+        for(ItemModel item: read.getItemList()){
             content.append(item.toString());
             System.out.println(item.toString());
         }
@@ -77,5 +81,30 @@ public class DisplayItemsController {
         Stage stage = (Stage) back.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void Available(ActionEvent event) throws IOException {
+        ItemsFileReader reader = new ItemsFileReader();
+        ArrayList<ItemModel> Itemlist=reader.readFileItems();
+        StringBuilder fileContent = new StringBuilder();
+        for (ItemModel item : Itemlist){
+            if (Objects.equals(item.getStatus(), "Available")){
+                fileContent.append(item);
+            }
+        }
+        itemstextArea.setText(fileContent.toString());
+    }
+
+    public void Unavilable(ActionEvent event) throws IOException {
+        ItemsFileReader reader = new ItemsFileReader();
+        ArrayList<ItemModel> Itemlist=reader.readFileItems();
+        ArrayList<ItemModel> UNAvaillist =new ArrayList<>();
+        for (ItemModel item : Itemlist){
+            if (Objects.equals(item.getStatus(), "Borrowed")){
+
+                UNAvaillist.add(item);
+            }
+        }
+        itemstextArea.setText(UNAvaillist.toString());
     }
 }

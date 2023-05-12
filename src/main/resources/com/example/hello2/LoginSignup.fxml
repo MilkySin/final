@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #20120F;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.LoginSignupController">
+<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #515151;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.LoginSignupController">
    <children>
       <Button fx:id="signupButton" layoutX="58.0" layoutY="330.0" minHeight="40.0" minWidth="100.0" onAction="#signup" prefHeight="40.0" prefWidth="221.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="Sign Up">
          <font>
@@ -17,7 +17,10 @@
          </font></Button>
       <AnchorPane layoutX="350.0" layoutY="50.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #F2CCE3;">
          <children>
-            <Button fx:id="LogIn" layoutX="47.0" layoutY="227.0" minHeight="40.0" minWidth="100.0" onAction="#handleLogIn" prefHeight="40.0" prefWidth="205.0" style="-fx-background-color: black; -fx-background-radius: 20; -fx-text-fill: #eaaad1;" text="Log In" textAlignment="CENTER" textFill="#eaaad1" />
+            <Button fx:id="LogIn" layoutX="47.0" layoutY="227.0" minHeight="40.0" minWidth="100.0" onAction="#handleLogIn" prefHeight="40.0" prefWidth="205.0" style="-fx-background-color: #515151; -fx-background-radius: 20; -fx-text-fill: #eaaad1;" text="Log In" textAlignment="CENTER" textFill="#eaaad1">
+               <font>
+                  <Font size="19.0" />
+               </font></Button>
             <TextField fx:id="IDField" layoutX="48.0" layoutY="87.0" prefHeight="26.0" prefWidth="186.0" promptText="ID" style="-fx-background-color: transparent; -fx-border-width: 0 0 3 0; -fx-border-color: black;" />
             <PasswordField fx:id="passwordField" layoutX="48.0" layoutY="150.0" prefHeight="26.0" prefWidth="186.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-width: 0 0 3 0; -fx-border-color: black;" />
             <Text layoutX="91.0" layoutY="50.0" stroke="BLACK" strokeWidth="3.0" text="Log In" textAlignment="CENTER" wrappingWidth="99.61016845703125">
