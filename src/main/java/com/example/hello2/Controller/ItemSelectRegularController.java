@@ -2,8 +2,10 @@ package com.example.hello2.Controller;
 
 import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Model.SelectedItems;
+import com.example.hello2.Model.UserModel;
 import com.example.hello2.Reader.ItemsFileReader;
 import com.example.hello2.Reader.SelectedItemsReader;
+import com.example.hello2.Reader.UserFileReader;
 import com.example.hello2.Writer.ItemsFileWriter;
 import com.example.hello2.Writer.SelectedItemsWriter;
 import javafx.concurrent.Task;
@@ -57,11 +59,26 @@ public class ItemSelectRegularController {
         this.userID = userID;
     }
 
+    public void initialize() throws IOException {
+        UserFileReader userFileReader = new UserFileReader();
+        SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
+
+        ArrayList<SelectedItems> con = new SelectedItemsReader().readFileSelectedItems();
+
+        if (con.isEmpty()) {
+            for (UserModel user : userFileReader.readFileUser()) {
+                SelectedItems con3 = new SelectedItems(user.getId());
+                con.add(con3);
+                selectedItemsWriter.SelectedItemsWriteFIle(con);
+            }
+        }
+    }
+
     @FXML
     public void rentItems() throws IOException {
-        System.out.println(ID);
         ItemsFileReader itemsFileReader = new ItemsFileReader();
         ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
+        UserFileReader userFileReader = new UserFileReader();
         SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
         List<CheckBox> checkBoxList = new ArrayList<>();
@@ -81,17 +98,19 @@ public class ItemSelectRegularController {
             vbox.getChildren().addAll(itemBox);
         }
 
+
         for (SelectedItems items : selectedItemsReader.readFileSelectedItems()) {
             for (CheckBox check : checkBoxList) {
                 if (Objects.equals(items.getID(), getUserID())) {
-                    for (String i : items.getSelectedItemsList()) {
-                        if (Objects.equals(i, check.getUserData())) {
+                    for (String sd : items.getSelectedItemsList()) {
+                        if (Objects.equals(sd, check.getUserData())) {
                             check.setDisable(true);
                         }
                     }
                 }
             }
         }
+
         // decrement copies value of selected item
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Select an item from the list:");
@@ -110,20 +129,29 @@ public class ItemSelectRegularController {
                 }
             }
         }
-
-        ArrayList<SelectedItems> list = selectedItemsReader.readFileSelectedItems();
-        // save the selected items to a file
         ArrayList<String> temp = new ArrayList<>();
         for (CheckBox checkBox : checkBoxList) {
             if (checkBox.isSelected()) {
                 temp.add((String) checkBox.getUserData());
             }
         }
-        SelectedItems yes = new SelectedItems(getUserID(), temp);
-        System.out.println(yes);
-        list.add(yes);
-        selectedItemsWriter.SelectedItemsWriteFIle(list);
+
+        for (SelectedItems list : selectedItemsReader.getSelectedItemsList()) {
+            if (list.getSelectedItemsList().isEmpty() && Objects.equals(list.getID(), ID)) {
+                list.setSelectedItemsList(temp);
+                System.out.println(list.getSelectedItemsList());
+                selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
+                break;
+            }
+            if (!(list.getSelectedItemsList().isEmpty()) && Objects.equals(list.getID(), ID)) {
+                list.getSelectedItemsList().addAll(temp);
+                System.out.println(list.getSelectedItemsList());
+                selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
+                break;
+            }
+        }
     }
+
 
     public void Back(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
@@ -150,7 +178,7 @@ public class ItemSelectRegularController {
 
         for (SelectedItems temp : selectedItemsReader.readFileSelectedItems()) {
             for (ItemModel items : itemModelArrayList) {
-                if (temp.getSelectedItemsList().contains(items.getID())) {
+                if (temp.getSelectedItemsList().contains(items.getID()) && Objects.equals(temp.getID(), ID)) {
                     CheckBox checkBox = new CheckBox(items.toString());
                     checkBox.setUserData(items.getID());
 
@@ -181,20 +209,16 @@ public class ItemSelectRegularController {
             }
         }
         ArrayList<String> temp = new ArrayList<>();
-        for(CheckBox checkBox : checkBoxList){
-            temp.add((String) checkBox.getUserData());
-            if(checkBox.isSelected()){
-                temp.remove((String) checkBox.getUserData());
+        for (CheckBox checkBox : checkBoxList) {
+            if (checkBox.isSelected()) {
+                temp.add((String) checkBox.getUserData());
             }
         }
 
-        System.out.println(temp);
-        for(SelectedItems sh : selectedItemsReader.readFileSelectedItems()){
-            for (CheckBox ch : checkBoxList){
-                if(ch.isSelected()){
-                    sh.setSelectedItemsList(temp);
-                    selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
-                }
+        for (SelectedItems list : selectedItemsReader.getSelectedItemsList()) {
+            if (Objects.equals(list.getID(), ID)) {
+                list.getSelectedItemsList().removeAll(temp);
+                selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
             }
         }
     }

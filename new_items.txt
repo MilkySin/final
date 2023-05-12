@@ -1,4 +1,4 @@
-I123-444,Clueless,DVD,1 Week Loan,11,22.0,Available
-I444-444,Harry Potter,DVD,1 Week Loan,499927,70.0,Available
-I123-205,Star Wars,DVD,1 Week Loan,6554,54.0,Available
-I123-206,Lord Of The Rings ,DVD,1 Week Loan,48,523.0,Available
+I123-444,Clueless,DVD,1 Week Loan,899995,22.0,Available
+I444-444,Harry Potter,DVD,1 Week Loan,499864,70.0,Available
+I123-205,Star Wars,DVD,1 Week Loan,6431,54.0,Available
+I123-206,Lord Of The Rings ,DVD,1 Week Loan,89999997,523.0,Available

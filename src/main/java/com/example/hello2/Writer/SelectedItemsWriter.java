@@ -15,13 +15,18 @@ public class SelectedItemsWriter {
         File file = new File("selected_items.txt");
         FileWriter fw = new FileWriter(file, false); // set append to false
         BufferedWriter bw = new BufferedWriter(fw);
-        bw.write(Items.get(0).getID());
+
         for(SelectedItems items : Items){
-            for(String i : items.getSelectedItemsList()){
-                bw.write("," + i);
+            if(items.getSelectedItemsList() == null) {
+                bw.write(items.getID());
+            } else {
+                bw.write(items.getID());
+                for(String i : items.getSelectedItemsList()){
+                    bw.write("," + i);
+                }
             }
+            bw.write("\n");
         }
-        bw.write("\n");
         bw.close();
         fw.close();
     }

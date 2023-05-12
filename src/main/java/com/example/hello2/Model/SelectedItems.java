@@ -11,6 +11,10 @@ public class SelectedItems {
         this.selectedItemsList = selectedItemsList;
     }
 
+    public SelectedItems(String ID) {
+        this.ID = ID;
+    }
+
     public SelectedItems() {
 
     }
