@@ -52,7 +52,6 @@ public class DisplayItemsController {
 
         for(ItemModel item: read.getItemList()){
             content.append(item.toString());
-            System.out.println(item.toString());
         }
 
         itemstextArea.setText(content.toString());
