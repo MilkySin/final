@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -20,16 +22,28 @@ public class DeleteItemController {
     public ChoiceBox<String> IDchoicebox;
     public Button delete;
     public Button back;
+    public javafx.scene.control.TextArea TextArea;
 
     public void initialize() throws IOException {
         ItemsFileReader temp = new ItemsFileReader();
         ArrayList<ItemModel> itemlist = temp.readFileItems();
+
         for (ItemModel item : itemlist) {
             IDchoicebox.getItems().add(item.getID());
             IDchoicebox.setValue("Select Item to Delete");
-
         }
+
+        IDchoicebox.setOnAction(event -> {
+            String searchId = IDchoicebox.getValue();
+            for (ItemModel item : itemlist) {
+                if (item.getID().equals(searchId)) {
+                    TextArea.setText(item.toString());
+                    break; // Exit the loop once a match is found
+                }
+            }
+        });
     }
+
 
     @FXML
     void Delete() throws IOException {
@@ -64,4 +78,6 @@ public class DeleteItemController {
         stage.setScene(scene);
         stage.show();
     }
+
+
 }

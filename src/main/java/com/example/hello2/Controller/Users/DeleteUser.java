@@ -1,5 +1,6 @@
 package com.example.hello2.Controller.Users;
 //fixed
+import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Model.UserModel;
 import com.example.hello2.Reader.UserFileReader;
 import com.example.hello2.Writer.UsersFileWriter;
@@ -11,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import java.io.*;
 import java.nio.file.Path;
@@ -21,6 +23,7 @@ public class DeleteUser {
     public ChoiceBox<String> IDchoicebox;
     public Button delete;
     public Button back;
+    public javafx.scene.control.TextArea TextArea;
 
     public void initialize() throws IOException {
         UserFileReader temp = new UserFileReader();
@@ -28,8 +31,16 @@ public class DeleteUser {
         for (UserModel User : Userlist) {
             IDchoicebox.getItems().add(User.getId());
             IDchoicebox.setValue("Select User to Delete");
-
         }
+        IDchoicebox.setOnAction(event -> {
+            String searchId = IDchoicebox.getValue();
+            for (UserModel user : Userlist) {
+                if (user.getId().equals(searchId)) {
+                    TextArea.setText(user.toString());
+                    break; // Exit the loop once a match is found
+                }
+            }
+        });
     }
 
     @FXML

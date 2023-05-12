@@ -26,6 +26,7 @@ public class EditItemController {
     public Label title;
     public ChoiceBox<String> loanTypeChoiceBox;
     public ChoiceBox<String> rentalStatusChoiceBox;
+    public ChoiceBox ItemID;
     @FXML
     private TextField searchIdField;
 
@@ -47,7 +48,7 @@ public class EditItemController {
     private Button saveChangesButton;
 
 
-    public void initialize() {
+    public void initialize() throws IOException {
         // Initialize loan type choice box with two options
         loanTypeChoiceBox.getItems().addAll("1 Week Loan", "2 Days Loan");
         loanTypeChoiceBox.setValue("1 Week Loan");
@@ -55,11 +56,16 @@ public class EditItemController {
         // Initialize rental status choice box with two options
         rentalStatusChoiceBox.getItems().addAll("Available", "Borrowed");
         rentalStatusChoiceBox.setValue("Available");
+        ItemsFileReader temp = new ItemsFileReader();
+        ArrayList<ItemModel> itemlist = temp.readFileItems();
+
+        for (ItemModel item : itemlist) {
+            ItemID.getItems().add(item.getID());
+            ItemID.setValue("Select Item to Edit");
+        }
+
     }
-//    public String toString(ItemModel i ){
-//        return "ID: "+ i.getUserID()+ " \n"+ "Title: "+i.getTitle()+"\n"+ "Type: "+ i.getRentalType()+"\n"+ "Loan type: "+i.getLoanType()+"\n"+"Copies: "+
-//                i.getCopies()+"\n"+"fee: "+i.getFee()+"\n"+" Availability: "+ i.getStatus()+"\n";
-//    }
+
 
     public void searchItem() throws IOException {
         ItemsFileReader temp = new ItemsFileReader();

@@ -2,15 +2,24 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.Users.DeleteUser">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #515151;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.Users.DeleteUser">
     <children>
-        <ChoiceBox fx:id="IDchoicebox" layoutX="225.0" layoutY="52.0" pickOnBounds="false" prefWidth="150.0" />
-        <Text layoutX="85.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title: " />
-        <Text layoutX="269.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delete Item" />
-        <Button fx:id="delete" layoutX="273.0" layoutY="114.0" mnemonicParsing="false" onAction="#Delete" text="DELETE" />
-      <Button fx:id="back" layoutX="277.0" layoutY="360.0" mnemonicParsing="false" onAction="#Back" text="Back" />
+        <ChoiceBox fx:id="IDchoicebox" layoutX="222.0" layoutY="61.0" pickOnBounds="false" prefWidth="150.0" style="-fx-background-color: #f6d9eb;" />
+        <Text fill="#eaaad1" layoutX="115.0" layoutY="81.0" stroke="#eaaad1" text="ID: ">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+        <Text fill="#eaaad1" layoutX="238.0" layoutY="39.0" stroke="#eaaad1" strokeWidth="2.0" text="Delete User">
+         <font>
+            <Font size="23.0" />
+         </font></Text>
+        <Button fx:id="delete" layoutX="241.0" layoutY="104.0" mnemonicParsing="false" onAction="#Delete" prefHeight="26.0" prefWidth="117.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="DELETE" />
+      <Button fx:id="back" layoutX="237.0" layoutY="359.0" mnemonicParsing="false" onAction="#Back" prefHeight="26.0" prefWidth="118.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="Back" />
+      <TextArea fx:id="TextArea" layoutX="174.0" layoutY="142.0" prefHeight="200.0" prefWidth="250.0" />
     </children>
 </AnchorPane>

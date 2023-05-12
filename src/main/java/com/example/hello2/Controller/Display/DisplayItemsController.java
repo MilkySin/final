@@ -33,10 +33,10 @@ public class DisplayItemsController {
     public void initialize() throws Exception {
         ItemsFileReader reader = new ItemsFileReader();
         StringBuilder fileContent = new StringBuilder();
-        for(ItemModel items : reader.getItemList()){
+        for(ItemModel items : reader.readFileItems()){
             fileContent.append(items.toString());
         }
-            itemstextArea.setText(fileContent.toString());
+        itemstextArea.setText(fileContent.toString());
     }
     @FXML
 
@@ -67,7 +67,7 @@ public class DisplayItemsController {
         reader.readFileItems().sort(Comparator.comparing(ItemModel::getTitle));
 
         itemstextArea.clear();
-        for(ItemModel item: reader.readFileItems()){
+        for(ItemModel item: reader.getItemList()){
             content.append(item.toString());
         }
         itemstextArea.setText(content.toString());
