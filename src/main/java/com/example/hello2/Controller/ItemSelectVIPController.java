@@ -32,8 +32,6 @@ public class ItemSelectVIPController {
     @FXML
     public Label selectedItemLabel;
     public Button Return;
-    @FXML
-    private Label label;
     private String ID;
 
     @FXML
@@ -42,7 +40,6 @@ public class ItemSelectVIPController {
     @FXML
     private Button viewTextFileButton;
     public Button back;
-    private int userID;
     public void setID(String ID) {
         this.ID = ID;
     }
@@ -52,20 +49,32 @@ public class ItemSelectVIPController {
     public ItemSelectVIPController() throws IOException {
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
     public void initialize() throws IOException {
         UserFileReader userFileReader = new UserFileReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
 
-        ArrayList<SelectedItems> con = new SelectedItemsReader().readFileSelectedItems();
+        ArrayList<SelectedItems> selectedItemsArrayList = new SelectedItemsReader().readFileSelectedItems();
 
-        if (con.isEmpty()) {
+        if (!selectedItemsArrayList.isEmpty()) {
+            ArrayList<String> temp = new ArrayList<>();
+            for (SelectedItems items : selectedItemsArrayList) {
+                temp.add(items.getID());
+            }
+
             for (UserModel user : userFileReader.readFileUser()) {
-                SelectedItems con3 = new SelectedItems(user.getId());
-                con.add(con3);
-                selectedItemsWriter.SelectedItemsWriteFIle(con);
+                if(!temp.contains(user.getId())){
+                    SelectedItems selectedItems = new SelectedItems(user.getId());
+                    selectedItemsArrayList.add(selectedItems);
+                    selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsArrayList);
+                }
+            }
+        }
+
+        if (selectedItemsArrayList.isEmpty()) {
+            for (UserModel user : userFileReader.readFileUser()) {
+                SelectedItems selectedItems = new SelectedItems(user.getId());
+                selectedItemsArrayList.add(selectedItems);
+                selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsArrayList);
             }
         }
     }
@@ -123,22 +132,22 @@ public class ItemSelectVIPController {
                 }
             }
         }
-        ArrayList<String> temp = new ArrayList<>();
+        ArrayList<String> tempArray = new ArrayList<>();
         for (CheckBox checkBox : checkBoxList) {
             if (checkBox.isSelected()) {
-                temp.add((String) checkBox.getUserData());
+                tempArray.add((String) checkBox.getUserData());
             }
         }
 
         for (SelectedItems list : selectedItemsReader.getSelectedItemsList()) {
             if (list.getSelectedItemsList().isEmpty() && Objects.equals(list.getID(), ID)) {
-                list.setSelectedItemsList(temp);
+                list.setSelectedItemsList(tempArray);
                 System.out.println(list.getSelectedItemsList());
                 selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
                 break;
             }
             if (!(list.getSelectedItemsList().isEmpty()) && Objects.equals(list.getID(), ID)) {
-                list.getSelectedItemsList().addAll(temp);
+                list.getSelectedItemsList().addAll(tempArray);
                 System.out.println(list.getSelectedItemsList());
                 selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
                 break;
@@ -201,16 +210,16 @@ public class ItemSelectVIPController {
                 }
             }
         }
-        ArrayList<String> temp = new ArrayList<>();
+        ArrayList<String> tempArray = new ArrayList<>();
         for (CheckBox checkBox : checkBoxList) {
             if (checkBox.isSelected()) {
-                temp.add((String) checkBox.getUserData());
+                tempArray.add((String) checkBox.getUserData());
             }
         }
 
         for (SelectedItems list : selectedItemsReader.getSelectedItemsList()) {
             if (Objects.equals(list.getID(), ID)) {
-                list.getSelectedItemsList().removeAll(temp);
+                list.getSelectedItemsList().removeAll(tempArray);
                 selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
             }
         }

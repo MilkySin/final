@@ -71,6 +71,7 @@ public class SignupPage {
         String address = AddressField.getText();
         String number = NumberField.getText();
         String accountType = accountTypeChoiceBox.getValue();
+        int numReturned = 0;
 
         String passwordRegex = "^(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|.<>\\/?])(?=.*\\d)(?=.*[A-Z])[^,]{8,}$";
         String IDRegex = "^C\\d{3}$";
@@ -78,6 +79,7 @@ public class SignupPage {
         if (password.matches(passwordRegex) && ID.matches(IDRegex)) {
             UserModel registeredUser = new UserModel(username, password, ID, address, accountType,
                                                  Integer.parseInt(number));
+            registeredUser.setNumReturned(numReturned);
             UserFileReader read = new UserFileReader();
             UsersFileWriter writer = new UsersFileWriter();
             read.getUserList().add(registeredUser);

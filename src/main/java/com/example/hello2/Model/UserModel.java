@@ -21,6 +21,8 @@ public class UserModel {
     protected ArrayList<String> rentedItemList;
     protected ArrayList<UserModel> usersList = new ArrayList<>();
 
+    protected int numReturned;
+
     public UserModel(String username, String password, String id, String address, String accountType, int phoneNumber) {
         this.username = username;
         this.password = password;
@@ -28,6 +30,14 @@ public class UserModel {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.accountType = accountType;
+    }
+
+    public int getNumReturned() {
+        return numReturned;
+    }
+
+    public void setNumReturned(int numReturned) {
+        this.numReturned = numReturned;
     }
 
     public String getAccountType() {
@@ -78,6 +88,8 @@ public class UserModel {
         this.phoneNumber = phoneNumber;
     }
 
+
+
     public ArrayList<String> getRentedItemList() {
         return rentedItemList;
     }
@@ -85,7 +97,6 @@ public class UserModel {
     public void setRentedItemList(ArrayList<String> rentedItemList) {
         this.rentedItemList = rentedItemList;
     }
-
 
     public void rentItem (ItemModel item){}
     public void returnItem(ItemModel item) {

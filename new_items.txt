@@ -1,2 +1,5 @@
+I123-999,Test,DVD,2 Days Loan,999999,23.0,Available
 I123-444,Clueless,DVD,1 Week Loan,899995,22.0,Available
-I123-206,Lord Of The Rings ,DVD,1 Week Loan,89999997,523.0,Available
+I444-444,Harry Potter,DVD,1 Week Loan,499863,70.0,Available
+I123-205,Star Wars,DVD,1 Week Loan,6430,54.0,Available
+I123-206,Lord Of The Rings,DVD,1 Week Loan,89999997,523.0,Available
