@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 public class EditItemController {
 
     public TextField itemIdField;
-    public Button searchItemButton;
+
 
     public Label title;
     public ChoiceBox<String> loanTypeChoiceBox;
@@ -44,8 +44,7 @@ public class EditItemController {
     @FXML
     private TextField titleField;
 
-    @FXML
-    private Button saveChangesButton;
+
 
 
     public void initialize() throws IOException {
@@ -63,22 +62,20 @@ public class EditItemController {
             ItemID.getItems().add(item.getID());
             ItemID.setValue("Select Item to Edit");
         }
-
-    }
-
-
-    public void searchItem() throws IOException {
-        ItemsFileReader temp = new ItemsFileReader();
-        ArrayList<ItemModel> itemlist = temp.readFileItems();
-        String searchId = searchIdField.getText();
-        for (ItemModel item : itemlist) {
-            if (item.getID().equals(searchId)) {
-                itemDetailsArea.setText(item.toString());
-
+        ItemID.setOnAction(event -> {
+            String searchId = (String) ItemID.getValue();
+            for (ItemModel item : itemlist) {
+                if (item.getID().equals(searchId)) {
+                    itemDetailsArea.setText(item.toString());
+                    break; // Exit the loop once a match is found
+                }
             }
-        }
+        });
 
     }
+
+
+
     public void saveChanges() throws IOException {
         String searchId = searchIdField.getText();
 
