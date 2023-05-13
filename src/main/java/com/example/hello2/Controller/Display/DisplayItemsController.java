@@ -42,7 +42,6 @@ public class DisplayItemsController {
 
 
     void SortByID() throws IOException {
-        System.out.println("Sorting by ID...");
         ItemsFileReader read = new ItemsFileReader();
         StringBuilder content = new StringBuilder();
 
@@ -58,7 +57,6 @@ public class DisplayItemsController {
     }
     @FXML
     void SortByName() throws IOException {
-        System.out.println("Sorting by name...");
         ItemsFileReader reader = new ItemsFileReader();
         StringBuilder content = new StringBuilder();
 

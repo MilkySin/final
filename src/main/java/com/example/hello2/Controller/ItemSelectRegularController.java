@@ -13,9 +13,11 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -93,7 +95,15 @@ public class ItemSelectRegularController {
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
         List<CheckBox> checkBoxList = new ArrayList<>();
 
-        VBox vbox = new VBox();
+        FlowPane flowPane = new FlowPane();
+        flowPane.setHgap(10); // Set horizontal gap between elements
+        flowPane.setVgap(10); // Set vertical gap between elements
+        flowPane.setAlignment(Pos.TOP_LEFT);
+        flowPane.setPrefSize(530,400);
+        ScrollPane scrollPane = new ScrollPane();
+
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
         ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
         for (ItemModel items : itemModelArrayList) {
             CheckBox checkBox = new CheckBox(items.toString());
@@ -105,7 +115,7 @@ public class ItemSelectRegularController {
             }
             checkBoxList.add(checkBox);
             itemBox.getChildren().addAll(checkBox);
-            vbox.getChildren().addAll(itemBox);
+            flowPane.getChildren().addAll(itemBox);
         }
 
         for (SelectedItems items : selectedItemsReader.readFileSelectedItems()) {
@@ -119,11 +129,11 @@ public class ItemSelectRegularController {
                 }
             }
         }
-
+        scrollPane.setContent(flowPane);
         // decrement copies value of selected item
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Select an item from the list:");
-        alert.getDialogPane().setContent(vbox);
+        alert.getDialogPane().setContent(flowPane);
         alert.showAndWait();
 
         ArrayList<ItemModel> content = itemsFileReader.getItemList();

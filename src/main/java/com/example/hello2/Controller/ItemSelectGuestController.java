@@ -12,9 +12,11 @@ import com.example.hello2.Writer.UsersFileWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -86,7 +88,16 @@ public class ItemSelectGuestController {
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
         List<CheckBox> checkBoxList = new ArrayList<>();
 
-        VBox vbox = new VBox();
+        FlowPane flowPane = new FlowPane();
+        flowPane.setHgap(10); // Set horizontal gap between elements
+        flowPane.setVgap(10); // Set vertical gap between elements
+        flowPane.setAlignment(Pos.TOP_LEFT);
+        flowPane.setPrefSize(530,400);
+        ScrollPane scrollPane = new ScrollPane();
+
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
         ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
 
         // keep track of selected CheckBox count
@@ -96,7 +107,7 @@ public class ItemSelectGuestController {
             checkBox.setUserData(items.getID());
             HBox itemBox = new HBox();
 
-            if (items.getCopies() == 0 || Objects.equals(items.getLoanType(), "1 Week Loan")) {
+            if (items.getCopies() == 0 || Objects.equals(items.getLoanType(), "2 Days Loan")) {
                 checkBox.setDisable(true);
             } else {
                 checkBox.setOnAction((ActionEvent event) -> {
@@ -114,7 +125,7 @@ public class ItemSelectGuestController {
 
             checkBoxList.add(checkBox);
             itemBox.getChildren().addAll(checkBox);
-            vbox.getChildren().addAll(itemBox);
+            flowPane.getChildren().addAll(itemBox);
         }
 
         for (SelectedItems items : selectedItemsReader.readFileSelectedItems()) {
@@ -128,10 +139,10 @@ public class ItemSelectGuestController {
                 }
             }
         }
-
+        scrollPane.setContent(flowPane);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Select an item from the list:");
-        alert.getDialogPane().setContent(vbox);
+        alert.getDialogPane().setContent(scrollPane);
         alert.showAndWait();
 
         // decrement copies value of selected item
