@@ -19,6 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -36,6 +37,8 @@ public class ItemSelectGuestController {
 
     @FXML
     private ProgressBar progressBar;
+    public Text Balance;
+    public Text Welcome;
 
     @FXML
     private Button viewTextFileButton;
@@ -55,6 +58,12 @@ public class ItemSelectGuestController {
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
 
         ArrayList<SelectedItems> selectedItemsArrayList = new SelectedItemsReader().readFileSelectedItems();
+        for (UserModel user : userFileReader.readFileUser()) {
+            if (Objects.equals(user.getId(), getUserID())) {
+                Balance.setText("Balance: $" + user.getBalance());
+                Welcome.setText("Welcome: " + user.getUsername());
+            }
+        }
 
         if (!selectedItemsArrayList.isEmpty()) {
             ArrayList<String> temp = new ArrayList<>();
@@ -87,6 +96,8 @@ public class ItemSelectGuestController {
         ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
         SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
+        UsersFileWriter usersFileWriter = new UsersFileWriter();
+        UserFileReader userFileReader = new UserFileReader();
         List<CheckBox> checkBoxList = new ArrayList<>();
 
         FlowPane flowPane = new FlowPane();
@@ -146,6 +157,28 @@ public class ItemSelectGuestController {
         alert.getDialogPane().setContent(scrollPane);
         alert.showAndWait();
 
+        float total = 0;
+        for (ItemModel items : itemModelArrayList) {
+            for (CheckBox checkBox : checkBoxList) {
+                if (Objects.equals(checkBox.getUserData(), items.getID()) && checkBox.isSelected()) {
+                    total += items.getFee();
+                }
+            }
+        }
+
+        for (UserModel user : userFileReader.readFileUser()) {
+            if (Objects.equals(user.getId(), getUserID())) {
+                if (user.getBalance() >= total) {
+                    user.setBalance(user.getBalance() - total);
+                    usersFileWriter.UserWriteFile(userFileReader.getUserList());
+                    Balance.setText("Balance: $" + user.getBalance());
+                } else {
+                    System.out.println("not enough money");
+                    return;
+                }
+            }
+        }
+
         // decrement copies value of selected item
         ArrayList<ItemModel> content = itemsFileReader.getItemList();
         for (CheckBox checkBox : checkBoxList) {
@@ -157,6 +190,7 @@ public class ItemSelectGuestController {
                 }
             }
         }
+
 
         ArrayList<String> tempArray = new ArrayList<>();
         for (CheckBox checkBox : checkBoxList) {

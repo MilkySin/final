@@ -20,12 +20,12 @@ public class UserModel {
     protected String accountType;
     protected ArrayList<String> rentedItemList;
     protected ArrayList<UserModel> usersList = new ArrayList<>();
-    protected int balance;
+    protected float balance;
 
     protected int numReturned;
 
     public UserModel(String username, String password, String id, String address, String accountType, int phoneNumber
-            , int balance) {
+            , float balance) {
         this.username = username;
         this.password = password;
         this.id = id;
@@ -35,11 +35,11 @@ public class UserModel {
         this.balance = balance;
     }
 
-    public int getBalance() {
+    public float getBalance() {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(float balance) {
         this.balance = balance;
     }
 

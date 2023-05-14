@@ -32,7 +32,7 @@ public class UserFileReader {
         while ((line = bw.readLine()) != null) {
             String[] field = line.split(",");
             UserModel user = new UserModel(field[0], field[1], field[2], field[3], field[4], Integer.parseInt(field[5]),
-                                           Integer.parseInt(field[6]));
+                                           Float.parseFloat(field[7]));
             user.setNumReturned(Integer.parseInt(field[6]));
             userList.add(user);
         }

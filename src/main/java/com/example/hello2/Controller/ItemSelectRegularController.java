@@ -35,6 +35,8 @@ public class ItemSelectRegularController {
     private String ID;
     @FXML
     private Text Balance;
+    @FXML
+    private Text Welcome;
 
     @FXML
     private ProgressBar progressBar;
@@ -65,6 +67,7 @@ public class ItemSelectRegularController {
         for (UserModel user : userFileReader.readFileUser()) {
             if (Objects.equals(user.getId(), getUserID())) {
                 Balance.setText("Balance: $" + user.getBalance());
+                Welcome.setText("Welcome: " + user.getUsername());
             }
         }
 
@@ -98,6 +101,8 @@ public class ItemSelectRegularController {
         ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
         SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
+        UsersFileWriter usersFileWriter = new UsersFileWriter();
+        UserFileReader userFileReader = new UserFileReader();
         List<CheckBox> checkBoxList = new ArrayList<>();
 
         FlowPane flowPane = new FlowPane();
@@ -143,6 +148,28 @@ public class ItemSelectRegularController {
         alert.getDialogPane().setContent(flowPane);
         alert.showAndWait();
 
+        float total = 0;
+        for (ItemModel items : itemModelArrayList) {
+            for (CheckBox checkBox : checkBoxList) {
+                if (Objects.equals(checkBox.getUserData(), items.getID()) && checkBox.isSelected()) {
+                    total += items.getFee();
+                }
+            }
+        }
+
+        for (UserModel user : userFileReader.readFileUser()) {
+            if (Objects.equals(user.getId(), getUserID())) {
+                if (user.getBalance() >= total) {
+                    user.setBalance(user.getBalance() - total);
+                    usersFileWriter.UserWriteFile(userFileReader.getUserList());
+                    Balance.setText("Balance: $" + user.getBalance());
+                } else {
+                    System.out.println("not enough money");
+                    return;
+                }
+            }
+        }
+
         ArrayList<ItemModel> content = itemsFileReader.getItemList();
         for (CheckBox checkBox : checkBoxList) {
             for (ItemModel item : content) {
@@ -153,6 +180,7 @@ public class ItemSelectRegularController {
                 }
             }
         }
+
 
         ArrayList<String> tempArray = new ArrayList<>();
         for (CheckBox checkBox : checkBoxList) {
@@ -200,7 +228,15 @@ public class ItemSelectRegularController {
 
         List<CheckBox> checkBoxList = new ArrayList<>();
 
-        VBox vbox = new VBox();
+        FlowPane flowPane = new FlowPane();
+        flowPane.setHgap(10); // Set horizontal gap between elements
+        flowPane.setVgap(10); // Set vertical gap between elements
+        flowPane.setAlignment(Pos.TOP_LEFT);
+        flowPane.setPrefSize(530, 400);
+        ScrollPane scrollPane = new ScrollPane();
+
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
 
         ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
 
@@ -216,14 +252,15 @@ public class ItemSelectRegularController {
                     }
                     checkBoxList.add(checkBox);
                     itemBox.getChildren().addAll(checkBox);
-                    vbox.getChildren().addAll(itemBox);
+                    flowPane.getChildren().addAll(itemBox);
                 }
             }
         }
+        scrollPane.setContent(flowPane);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Select an item from the list:");
-        alert.getDialogPane().setContent(vbox);
+        alert.getDialogPane().setContent(scrollPane);
         alert.showAndWait();
 
         ArrayList<ItemModel> content = itemsFileReader.getItemList();

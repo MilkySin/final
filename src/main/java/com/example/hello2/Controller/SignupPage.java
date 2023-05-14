@@ -95,7 +95,7 @@ public class SignupPage {
 
         if (password.matches(passwordRegex) && ID.matches(IDRegex)) {
             UserModel registeredUser = new UserModel(username, password, ID, address, accountType,
-                                                     Integer.parseInt(number), Integer.parseInt(balance));
+                                                     Integer.parseInt(number), Float.parseFloat(balance));
             registeredUser.setNumReturned(numReturned);
             read.getUserList().add(registeredUser);
             writer.UserWriteFile(read.getUserList());

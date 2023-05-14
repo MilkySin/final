@@ -19,6 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -41,6 +42,9 @@ public class ItemSelectVIPController {
     private Button viewTextFileButton;
     public Button back;
 
+    public Text Welcome;
+    public Text Balance;
+
     public void setID(String ID) {
         this.ID = ID;
     }
@@ -57,6 +61,13 @@ public class ItemSelectVIPController {
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
 
         ArrayList<SelectedItems> selectedItemsArrayList = new SelectedItemsReader().readFileSelectedItems();
+
+        for (UserModel user : userFileReader.readFileUser()) {
+            if (Objects.equals(user.getId(), getUserID())) {
+                Balance.setText("Balance: $" + user.getBalance());
+                Welcome.setText("Welcome: " + user.getUsername());
+            }
+        }
 
         if (!selectedItemsArrayList.isEmpty()) {
             ArrayList<String> temp = new ArrayList<>();
@@ -88,6 +99,8 @@ public class ItemSelectVIPController {
         ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
         SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
+        UsersFileWriter usersFileWriter = new UsersFileWriter();
+        UserFileReader userFileReader = new UserFileReader();
         List<CheckBox> checkBoxList = new ArrayList<>();
 
         FlowPane flowPane = new FlowPane();
@@ -131,6 +144,29 @@ public class ItemSelectVIPController {
         alert.setHeaderText("Select an item from the list:");
         alert.getDialogPane().setContent(flowPane);
         alert.showAndWait();
+
+
+        float total = 0;
+        for (ItemModel items : itemModelArrayList) {
+            for (CheckBox checkBox : checkBoxList) {
+                if (Objects.equals(checkBox.getUserData(), items.getID()) && checkBox.isSelected()) {
+                    total += items.getFee();
+                }
+            }
+        }
+
+        for (UserModel user : userFileReader.readFileUser()) {
+            if (Objects.equals(user.getId(), getUserID())) {
+                if (user.getBalance() >= total) {
+                    user.setBalance(user.getBalance() - total);
+                    usersFileWriter.UserWriteFile(userFileReader.getUserList());
+                    Balance.setText("Balance: $" + user.getBalance());
+                } else {
+                    System.out.println("not enough money");
+                    return;
+                }
+            }
+        }
 
 //        ArrayList<ItemModel> content = reader.getItemList();
 
@@ -238,9 +274,6 @@ public class ItemSelectVIPController {
                 if (Objects.equals(list.getID(), ID) && Objects.equals(temp.getId(), ID) && !tempArray.isEmpty()) {
                     list.getSelectedItemsList().removeAll(tempArray);
                     temp.setNumReturned(temp.getNumReturned() + tempArray.size());
-                    if (temp.getNumReturned() == 10) {
-                        temp.setNumReturned(0);
-                    }
                     usersFileWriter.UserWriteFile(userFileReader.getUserList());
                     selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
                 }

@@ -2,10 +2,10 @@ I445-544,Lord of the Gays,DVD,2 Days Loan,999999,23.0,Available
 I123-999,Test,DVD,2 Days Loan,1000068,23.0,Available
 I123-444,Clueless,DVD,1 Week Loan,900005,22.0,Available
 I444-444,Harry Potter,DVD,1 Week Loan,499918,70.0,Available
-I123-206,Lord Of The Rings,DVD,1 Week Loan,89999997,523.0,Available
+I123-206,Lord Of The Rings,DVD,1 Week Loan,89999996,523.0,Available
 I445-546,Lord of the Gays,DVD,2 Days Loan,999999,23.0,Available
 I123-990,Test,DVD,2 Days Loan,999999,23.0,Available
-I123-443,Clueless,DVD,1 Week Loan,899994,22.0,Available
+I123-443,Clueless,DVD,1 Week Loan,899995,22.0,Available
 I444-440,Harry Potter,DVD,1 Week Loan,499867,70.0,Available
 I123-215,Star Wars,DVD,1 Week Loan,6430,54.0,Available
 I123-216,Lord Of The Rings,DVD,1 Week Loan,89999997,523.0,Available
