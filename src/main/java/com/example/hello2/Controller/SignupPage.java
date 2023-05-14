@@ -1,5 +1,6 @@
 package com.example.hello2.Controller;
 //sign up screen goes to scene3
+
 import com.example.hello2.Model.UserModel;
 import com.example.hello2.Reader.UserFileReader;
 import com.example.hello2.Writer.UsersFileWriter;
@@ -12,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -44,16 +46,19 @@ public class SignupPage {
     @FXML
     private TextField NumberField;
 
+    @FXML
+    private TextField Balance;
 
 
     public void setPreviousScene(Scene previousScene) {
         this.previousScene = previousScene;
     }
-    public void initialize() {
-        ObservableList<String> accountTypes = FXCollections.observableArrayList("Regular", "Guest", "VIP");
-        accountTypeChoiceBox.setItems(accountTypes);
-        accountTypeChoiceBox.setValue("Regular");
-    }
+
+//    public void setInitialize() {
+//        ObservableList<String> accountTypes = FXCollections.observableArrayList("Regular", "Guest", "VIP");
+//        accountTypeChoiceBox.setItems(accountTypes);
+//        accountTypeChoiceBox.setValue("Regular");
+//    }
 
 
     public void Back(ActionEvent event) throws IOException {
@@ -65,13 +70,15 @@ public class SignupPage {
         stage.setScene(scene);
         stage.show();
     }
+
     public void signup(ActionEvent event) throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
         String ID = IDField.getText();
         String address = AddressField.getText();
         String number = NumberField.getText();
-        String accountType = accountTypeChoiceBox.getValue();
+        String accountType = "Guest";
+        String balance = Balance.getText();
         int numReturned = 0;
         UsersFileWriter writer = new UsersFileWriter();
         UserFileReader read = new UserFileReader();
@@ -79,8 +86,8 @@ public class SignupPage {
         String passwordRegex = "^(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|.<>\\/?])(?=.*\\d)(?=.*[A-Z])[^,]{8,}$";
         String IDRegex = "^C\\d{3}$";
 
-        for(UserModel user : read.readFileUser()){
-            if(Objects.equals(user.getId(), ID)){
+        for (UserModel user : read.readFileUser()) {
+            if (Objects.equals(user.getId(), ID)) {
                 System.out.println("Same ID");
                 return;
             }
@@ -88,7 +95,7 @@ public class SignupPage {
 
         if (password.matches(passwordRegex) && ID.matches(IDRegex)) {
             UserModel registeredUser = new UserModel(username, password, ID, address, accountType,
-                                                 Integer.parseInt(number));
+                                                     Integer.parseInt(number), Integer.parseInt(balance));
             registeredUser.setNumReturned(numReturned);
             read.getUserList().add(registeredUser);
             writer.UserWriteFile(read.getUserList());

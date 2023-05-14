@@ -44,12 +44,13 @@ public class ItemSelectGuestController {
     public void setID(String ID) {
         this.ID = ID;
     }
-    public String getUserID(){
+
+    public String getUserID() {
         return ID;
     }
 
     //Read through both files, if selected is empty, add users from user lists
-    public void initialize() throws IOException {
+    public void setInitialize() throws IOException {
         UserFileReader userFileReader = new UserFileReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
 
@@ -62,7 +63,7 @@ public class ItemSelectGuestController {
             }
 
             for (UserModel user : userFileReader.readFileUser()) {
-                if(!temp.contains(user.getId())){
+                if (!temp.contains(user.getId())) {
                     SelectedItems selectedItems = new SelectedItems(user.getId());
                     selectedItemsArrayList.add(selectedItems);
                     selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsArrayList);
@@ -92,7 +93,7 @@ public class ItemSelectGuestController {
         flowPane.setHgap(10); // Set horizontal gap between elements
         flowPane.setVgap(10); // Set vertical gap between elements
         flowPane.setAlignment(Pos.TOP_LEFT);
-        flowPane.setPrefSize(530,400);
+        flowPane.setPrefSize(530, 400);
         ScrollPane scrollPane = new ScrollPane();
 
         scrollPane.setFitToWidth(true);
@@ -245,12 +246,12 @@ public class ItemSelectGuestController {
             }
         }
 
-        for(UserModel temp : userFileReader.readFileUser()) {
+        for (UserModel temp : userFileReader.readFileUser()) {
             for (SelectedItems list : selectedItemsReader.getSelectedItemsList()) {
                 if (Objects.equals(list.getID(), ID) && Objects.equals(temp.getId(), ID) && !tempArray.isEmpty()) {
                     list.getSelectedItemsList().removeAll(tempArray);
                     temp.setNumReturned(temp.getNumReturned() + tempArray.size());
-                    if(temp.getNumReturned() == 3){
+                    if (temp.getNumReturned() == 3) {
                         temp.setAccountType("Regular");
                         temp.setNumReturned(0);
                     }

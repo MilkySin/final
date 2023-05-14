@@ -11,7 +11,8 @@ import java.util.ArrayList;
 
 public class UserFileReader {
     public Path filePath = Paths.get("userinfo.txt");
-    private ArrayList<UserModel> userList  = new ArrayList<>();
+    private ArrayList<UserModel> userList = new ArrayList<>();
+
     public UserFileReader(Path filePath) {
         this.filePath = filePath;
     }
@@ -19,17 +20,19 @@ public class UserFileReader {
     public UserFileReader() {
     }
 
-    public ArrayList<UserModel> getUserList(){
+    public ArrayList<UserModel> getUserList() {
         return userList;
     }
+
     public ArrayList<UserModel> readFileUser() throws IOException {
         File file = new File("userinfo.txt");
         FileReader fw = new FileReader(file);
         BufferedReader bw = new BufferedReader(fw);
         String line;
-        while((line = bw.readLine()) != null){
+        while ((line = bw.readLine()) != null) {
             String[] field = line.split(",");
-            UserModel user = new UserModel(field[0], field[1],field[2],field[3],field[4],Integer.parseInt(field[5]));
+            UserModel user = new UserModel(field[0], field[1], field[2], field[3], field[4], Integer.parseInt(field[5]),
+                                           Integer.parseInt(field[6]));
             user.setNumReturned(Integer.parseInt(field[6]));
             userList.add(user);
         }

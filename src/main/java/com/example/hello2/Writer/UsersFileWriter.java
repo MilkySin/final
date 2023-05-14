@@ -21,8 +21,9 @@ public class UsersFileWriter {
         FileWriter fw = new FileWriter(file, false); // set append to false
         BufferedWriter bw = new BufferedWriter(fw);
         for (UserModel user : Userlist) {
-            bw.write(user.getUsername() + "," + user.getPassword() + "," + user.getId() + "," + user.getAddress() +
-                             "," + user.getAccountType() + "," + user.getPhoneNumber() + "," + user.getNumReturned());
+            bw.write(
+                    user.getUsername() + "," + user.getPassword() + "," + user.getId() + "," + user.getAddress() + ","
+                            + user.getAccountType() + "," + user.getPhoneNumber() + "," + user.getNumReturned() + "," + user.getBalance());
             bw.write("\n");
         }
         bw.close();

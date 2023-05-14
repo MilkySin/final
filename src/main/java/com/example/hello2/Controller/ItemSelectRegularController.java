@@ -9,7 +9,6 @@ import com.example.hello2.Reader.UserFileReader;
 import com.example.hello2.Writer.ItemsFileWriter;
 import com.example.hello2.Writer.SelectedItemsWriter;
 import com.example.hello2.Writer.UsersFileWriter;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,14 +19,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 public class ItemSelectRegularController {
@@ -36,6 +33,8 @@ public class ItemSelectRegularController {
     public Label selectedItemLabel;
     public Button Return;
     private String ID;
+    @FXML
+    private Text Balance;
 
     @FXML
     private ProgressBar progressBar;
@@ -57,11 +56,17 @@ public class ItemSelectRegularController {
 
 
     //Read through both files, if selected is empty, add users from user lists
-    public void initialize() throws IOException {
+    public void setInitialize() throws IOException {
         UserFileReader userFileReader = new UserFileReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
 
         ArrayList<SelectedItems> selectedItemsArrayList = new SelectedItemsReader().readFileSelectedItems();
+
+        for (UserModel user : userFileReader.readFileUser()) {
+            if (Objects.equals(user.getId(), getUserID())) {
+                Balance.setText("Balance: $" + user.getBalance());
+            }
+        }
 
         if (!selectedItemsArrayList.isEmpty()) {
             ArrayList<String> temp = new ArrayList<>();
@@ -69,8 +74,8 @@ public class ItemSelectRegularController {
                 temp.add(items.getID());
             }
 
-            for (UserModel user : userFileReader.readFileUser()) {
-                if(!temp.contains(user.getId())){
+            for (UserModel user : userFileReader.getUserList()) {
+                if (!temp.contains(user.getId())) {
                     SelectedItems selectedItems = new SelectedItems(user.getId());
                     selectedItemsArrayList.add(selectedItems);
                     selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsArrayList);
@@ -79,7 +84,7 @@ public class ItemSelectRegularController {
         }
 
         if (selectedItemsArrayList.isEmpty()) {
-            for (UserModel user : userFileReader.readFileUser()) {
+            for (UserModel user : userFileReader.getUserList()) {
                 SelectedItems selectedItems = new SelectedItems(user.getId());
                 selectedItemsArrayList.add(selectedItems);
                 selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsArrayList);
@@ -99,12 +104,14 @@ public class ItemSelectRegularController {
         flowPane.setHgap(10); // Set horizontal gap between elements
         flowPane.setVgap(10); // Set vertical gap between elements
         flowPane.setAlignment(Pos.TOP_LEFT);
-        flowPane.setPrefSize(530,400);
+        flowPane.setPrefSize(530, 400);
         ScrollPane scrollPane = new ScrollPane();
 
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
         ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
+
+
         for (ItemModel items : itemModelArrayList) {
             CheckBox checkBox = new CheckBox(items.toString());
             checkBox.setUserData(items.getID());
@@ -237,12 +244,12 @@ public class ItemSelectRegularController {
             }
         }
 
-        for(UserModel temp : userFileReader.readFileUser()) {
+        for (UserModel temp : userFileReader.readFileUser()) {
             for (SelectedItems list : selectedItemsReader.getSelectedItemsList()) {
                 if (Objects.equals(list.getID(), ID) && Objects.equals(temp.getId(), ID) && !tempArray.isEmpty()) {
                     list.getSelectedItemsList().removeAll(tempArray);
                     temp.setNumReturned(temp.getNumReturned() + tempArray.size());
-                    if(temp.getNumReturned() == 5){
+                    if (temp.getNumReturned() == 5) {
                         temp.setAccountType("VIP");
                         temp.setNumReturned(0);
                     }

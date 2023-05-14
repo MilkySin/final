@@ -8,7 +8,7 @@ import com.example.hello2.Reader.SelectedItemsReader;
 import com.example.hello2.Reader.UserFileReader;
 import com.example.hello2.Writer.ItemsFileWriter;
 import com.example.hello2.Writer.SelectedItemsWriter;
-import javafx.concurrent.Task;
+import com.example.hello2.Writer.UsersFileWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,11 +22,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 public class ItemSelectVIPController {
@@ -34,6 +31,7 @@ public class ItemSelectVIPController {
     @FXML
     public Label selectedItemLabel;
     public Button Return;
+    @FXML
     private String ID;
 
     @FXML
@@ -42,16 +40,19 @@ public class ItemSelectVIPController {
     @FXML
     private Button viewTextFileButton;
     public Button back;
+
     public void setID(String ID) {
         this.ID = ID;
     }
-    public String getUserID(){
+
+    public String getUserID() {
         return ID;
     }
+
     public ItemSelectVIPController() throws IOException {
     }
 
-    public void initialize() throws IOException {
+    public void setInitialize() throws IOException {
         UserFileReader userFileReader = new UserFileReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
 
@@ -64,7 +65,7 @@ public class ItemSelectVIPController {
             }
 
             for (UserModel user : userFileReader.readFileUser()) {
-                if(!temp.contains(user.getId())){
+                if (!temp.contains(user.getId())) {
                     SelectedItems selectedItems = new SelectedItems(user.getId());
                     selectedItemsArrayList.add(selectedItems);
                     selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsArrayList);
@@ -93,7 +94,7 @@ public class ItemSelectVIPController {
         flowPane.setHgap(10); // Set horizontal gap between elements
         flowPane.setVgap(10); // Set vertical gap between elements
         flowPane.setAlignment(Pos.TOP_LEFT);
-        flowPane.setPrefSize(530,400);
+        flowPane.setPrefSize(530, 400);
         ScrollPane scrollPane = new ScrollPane();
 
         scrollPane.setFitToWidth(true);
@@ -183,6 +184,9 @@ public class ItemSelectVIPController {
         ItemsFileReader itemsFileReader = new ItemsFileReader();
         ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
 
+        UsersFileWriter usersFileWriter = new UsersFileWriter();
+        UserFileReader userFileReader = new UserFileReader();
+
         List<CheckBox> checkBoxList = new ArrayList<>();
 
         VBox vbox = new VBox();
@@ -229,10 +233,17 @@ public class ItemSelectVIPController {
             }
         }
 
-        for (SelectedItems list : selectedItemsReader.getSelectedItemsList()) {
-            if (Objects.equals(list.getID(), ID)) {
-                list.getSelectedItemsList().removeAll(tempArray);
-                selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
+        for (UserModel temp : userFileReader.readFileUser()) {
+            for (SelectedItems list : selectedItemsReader.getSelectedItemsList()) {
+                if (Objects.equals(list.getID(), ID) && Objects.equals(temp.getId(), ID) && !tempArray.isEmpty()) {
+                    list.getSelectedItemsList().removeAll(tempArray);
+                    temp.setNumReturned(temp.getNumReturned() + tempArray.size());
+                    if (temp.getNumReturned() == 10) {
+                        temp.setNumReturned(0);
+                    }
+                    usersFileWriter.UserWriteFile(userFileReader.getUserList());
+                    selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
+                }
             }
         }
     }
