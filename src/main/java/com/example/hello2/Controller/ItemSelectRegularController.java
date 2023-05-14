@@ -145,7 +145,7 @@ public class ItemSelectRegularController {
         // decrement copies value of selected item
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Select an item from the list:");
-        alert.getDialogPane().setContent(flowPane);
+        alert.getDialogPane().setContent(scrollPane);
         alert.showAndWait();
 
         float total = 0;
