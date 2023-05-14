@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 public class SignupPage {
     public Button back;
@@ -72,18 +73,25 @@ public class SignupPage {
         String number = NumberField.getText();
         String accountType = accountTypeChoiceBox.getValue();
         int numReturned = 0;
+        UsersFileWriter writer = new UsersFileWriter();
+        UserFileReader read = new UserFileReader();
 
         String passwordRegex = "^(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|.<>\\/?])(?=.*\\d)(?=.*[A-Z])[^,]{8,}$";
         String IDRegex = "^C\\d{3}$";
+
+        for(UserModel user : read.readFileUser()){
+            if(Objects.equals(user.getId(), ID)){
+                System.out.println("Same ID");
+                return;
+            }
+        }
 
         if (password.matches(passwordRegex) && ID.matches(IDRegex)) {
             UserModel registeredUser = new UserModel(username, password, ID, address, accountType,
                                                  Integer.parseInt(number));
             registeredUser.setNumReturned(numReturned);
-            UserFileReader read = new UserFileReader();
-            UsersFileWriter writer = new UsersFileWriter();
             read.getUserList().add(registeredUser);
-            writer.UserWriteFile(read.readFileUser());
+            writer.UserWriteFile(read.getUserList());
 
         } else {
             System.out.println("Invalid Pass or ID");
