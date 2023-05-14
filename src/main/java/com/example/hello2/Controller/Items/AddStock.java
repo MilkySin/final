@@ -65,9 +65,13 @@ public class AddStock {
                 items.setCopies(x + numY);
                 if (items.getCopies()>0)
                     items.setStatus("Available");
+
+                itemDetailsArea.setText(items.toString());
             }
+
         }
         writer.ItemsWriteFile(reader.getItemList());
+
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
