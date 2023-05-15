@@ -1,6 +1,8 @@
 package com.example.hello2.Controller.Users;
 //fixed
+import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Model.UserModel;
+import com.example.hello2.Reader.ItemsFileReader;
 import com.example.hello2.Reader.UserFileReader;
 import com.example.hello2.Writer.UsersFileWriter;
 import javafx.fxml.FXML;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class EditUser {
+    public ChoiceBox ID ;
     public Button back;
     public TextField itemIdField;
     public Label title;
@@ -31,36 +34,62 @@ public class EditUser {
     public TextField searchIdField;
     public TextField NumberField;
 
-    public void initialize (){
+    public void initialize () throws IOException {
         AccountTypeChoicebox.getItems().addAll("Guest","Regular","VIP");
         AccountTypeChoicebox.setValue("Guest");
+        UserFileReader temp = new UserFileReader();
+        ArrayList<UserModel> Userlist = temp.readFileUser();
+        for (UserModel user : Userlist) {
+            ID.getItems().add(user.getId());
+            ID.setValue("Select User to Edit");
+        }
+        ID.setOnAction(event -> {
+            String searchId = (String) ID.getValue();
+            for (UserModel user : Userlist) {
+                if (user.getId().equals(searchId)) {
+                    itemDetailsArea.setText(user.toString());
+                    break; // Exit the loop once a match is found
+                }
+            }
+        });
+
     }
-    public void searchUser()throws IOException{
-        UserFileReader temp= new UserFileReader();
-        ArrayList<UserModel> Userlist= temp.readFileUser();
-        String searchID = searchIdField.getText();
-        for (UserModel user : Userlist){
-            if (user.getId().equals(searchID)){
+
+    public void saveChanges() throws IOException{
+        String searchId = (String) ID.getValue();
+        UserFileReader reader = new UserFileReader();
+        UsersFileWriter writer = new UsersFileWriter();
+
+        for (UserModel user : reader.readFileUser()) {
+            if (Objects.equals(user.getId(), searchId)) {
+                if (itemIdField != null && !itemIdField.getText().isEmpty()) {
+                    user.setId(itemIdField.getText());
+                }
+
+                if (!Addressfield.getText().isEmpty()) {
+                    user.setAddress(Addressfield.getText());
+                }
+
+                if (!PasswordField.getText().isEmpty()) {
+                    user.setPassword(PasswordField.getText());
+                }
+
+                if (!UsernameField.getText().isEmpty()) {
+                    user.setUsername(UsernameField.getText());
+                }
+
+                if (!NumberField.getText().isEmpty()) {
+                    user.setPhoneNumber(Integer.parseInt(NumberField.getText()));
+                }
+
+                if (AccountTypeChoicebox != null && !AccountTypeChoicebox.getValue().toString().isEmpty()) {
+                    user.setAccountType(AccountTypeChoicebox.getValue().toString());
+                }
+
                 itemDetailsArea.setText(user.toString());
             }
         }
-    }
-    public void saveChanges() throws IOException{
-        String searchId = searchIdField.getText();
-        UserFileReader reader= new UserFileReader();
-        UsersFileWriter writer = new UsersFileWriter();
-        for(UserModel User: reader.readFileUser()){
-            if(Objects.equals(User.getId(), searchId)){
-                User.setId(itemIdField.getText());
-                User.setAddress(itemIdField.getText());
-                User.setAccountType((String) AccountTypeChoicebox.getValue());
-                User.setPassword(PasswordField.getText());
-                User.setUsername(UsernameField.getText());
-                User.setPhoneNumber(Integer.parseInt(NumberField.getText()));
 
-
-            }
-        }
         writer.UserWriteFile(reader.getUserList());
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

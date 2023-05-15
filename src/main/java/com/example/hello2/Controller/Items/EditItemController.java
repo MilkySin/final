@@ -77,21 +77,39 @@ public class EditItemController {
 
 
     public void saveChanges() throws IOException {
-        String searchId = searchIdField.getText();
+        String searchId = (String) ItemID.getValue();
 
         ItemsFileReader reader = new ItemsFileReader();
         ItemsFileWriter writer = new ItemsFileWriter();
 
-        for(ItemModel items: reader.readFileItems()){
-            if(Objects.equals(items.getID(), searchId)){
-                items.setID(itemIdField.getText());
-                items.setFee(Double.parseDouble(rentalFeeField.getText()));
-                items.setCopies(Integer.parseInt(copiesField.getText()));
-                items.setTitle(titleField.getText());
-                items.setStatus(rentalStatusChoiceBox.getValue());
-                items.setLoanType(loanTypeChoiceBox.getValue());
+        for (ItemModel item : reader.readFileItems()) {
+            if (Objects.equals(item.getID(), searchId)) {
+                if (itemIdField != null && !itemIdField.getText().isEmpty()) {
+                    item.setID(itemIdField.getText());
+                }
+
+                if (!rentalFeeField.getText().isEmpty()) {
+                    item.setFee(Double.parseDouble(rentalFeeField.getText()));
+                }
+
+                if (!copiesField.getText().isEmpty()) {
+                    item.setCopies(Integer.parseInt(copiesField.getText()));
+                }
+
+                if (!titleField.getText().isEmpty()) {
+                    item.setTitle(titleField.getText());
+                }
+
+                if (rentalStatusChoiceBox.getValue() != null) {
+                    item.setStatus(rentalStatusChoiceBox.getValue());
+                }
+
+                if (loanTypeChoiceBox.getValue() != null) {
+                    item.setLoanType(loanTypeChoiceBox.getValue());
+                }
             }
         }
+
         writer.ItemsWriteFile(reader.getItemList());
 
         Alert alert = new Alert(AlertType.INFORMATION);
@@ -99,8 +117,8 @@ public class EditItemController {
         alert.setHeaderText(null);
         alert.setContentText("Changes saved successfully.");
         alert.showAndWait();
-
     }
+
     @FXML
     public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
