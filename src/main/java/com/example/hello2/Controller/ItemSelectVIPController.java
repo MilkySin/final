@@ -80,7 +80,7 @@ public class ItemSelectVIPController {
                 temp.add(items.getID());
             }
 
-            for (UserModel user : userFileReader.readFileUser()) {
+            for (UserModel user : userFileReader.getUserList()) {
                 if (!temp.contains(user.getId())) {
                     SelectedItems selectedItems = new SelectedItems(user.getId());
                     selectedItemsArrayList.add(selectedItems);
@@ -90,7 +90,7 @@ public class ItemSelectVIPController {
         }
 
         if (selectedItemsArrayList.isEmpty()) {
-            for (UserModel user : userFileReader.readFileUser()) {
+            for (UserModel user : userFileReader.getUserList()) {
                 SelectedItems selectedItems = new SelectedItems(user.getId());
                 selectedItemsArrayList.add(selectedItems);
                 selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsArrayList);

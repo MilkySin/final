@@ -71,7 +71,7 @@ public class ItemSelectGuestController {
                 temp.add(items.getID());
             }
 
-            for (UserModel user : userFileReader.readFileUser()) {
+            for (UserModel user : userFileReader.getUserList()) {
                 if (!temp.contains(user.getId())) {
                     SelectedItems selectedItems = new SelectedItems(user.getId());
                     selectedItemsArrayList.add(selectedItems);
@@ -81,12 +81,11 @@ public class ItemSelectGuestController {
         }
 
         if (selectedItemsArrayList.isEmpty()) {
-            for (UserModel user : userFileReader.readFileUser()) {
+            for (UserModel user : userFileReader.getUserList()) {
                 SelectedItems selectedItems = new SelectedItems(user.getId());
                 selectedItemsArrayList.add(selectedItems);
                 selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsArrayList);
             }
-            System.out.println(selectedItemsArrayList);
         }
     }
 
@@ -113,7 +112,7 @@ public class ItemSelectGuestController {
         ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
 
         int maxSelect = 2;
-        for (SelectedItems items : selectedItemsReader.readFileSelectedItems()) {
+        for (SelectedItems items : selectedItemsReader.getSelectedItemsList()) {
             if (Objects.equals(items.getID(), getUserID())) {
                 maxSelect -= items.getSelectedItemsList().size();
             }
