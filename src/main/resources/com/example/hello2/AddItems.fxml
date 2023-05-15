@@ -5,28 +5,39 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.Items.AddItemController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #444444;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.Items.AddItemController">
     <children>
-        <Label layoutX="247.0" layoutY="20.0" text="Add Item to Shop" />
-        <Label layoutX="80.0" layoutY="74.0" text="ID:" />
-        <Label layoutX="80.0" layoutY="115.0" text="Title:" />
-        <Label layoutX="80.0" layoutY="156.0" text="Rental Type:" />
-        <Label layoutX="80.0" layoutY="197.0" text="Loan Type:" />
-        <Label layoutX="80.0" layoutY="238.0" text="Copies:" />
-        <Label layoutX="80.0" layoutY="279.0" text="Rental Fee (USD):" />
-        <Label layoutX="80.0" layoutY="320.0" text="Rental Status:" />
-        <TextField fx:id="idField" layoutX="214.0" layoutY="70.0" promptText="Ixxx-yyyy" />
-        <TextField fx:id="titleField" layoutX="214.0" layoutY="111.0" />
-        <TextField fx:id="copiesField" layoutX="214.0" layoutY="234.0" promptText="Number of copies" />
-        <TextField fx:id="rentalFeeField" layoutX="214.0" layoutY="275.0" promptText="Rental fee (in USD)" />
-        <Button layoutX="214.0" layoutY="354.0" mnemonicParsing="false" onAction="#addItem" text="Add Item" />
-        <ChoiceBox fx:id="loanTypeChoiceBox" layoutX="214.0" layoutY="193.0" prefHeight="26.0" prefWidth="160.0">
+        <Label layoutX="162.0" layoutY="36.0" style="-fx-font-weight: bold;" text="Add Item to Shop" textFill="#eeeeee">
+         <font>
+            <Font size="31.0" />
+         </font></Label>
+        <Label layoutX="430.0" layoutY="162.0" style="-fx-font-weight: bold;" text="Loan Type:" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+        <TextField fx:id="idField" layoutX="21.0" layoutY="104.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter your ID: Ixxx-yyyy" style="-fx-background-color: transparent; -fx-border-color: pink; -fx-border-width: 0 0 3 0;" />
+        <Button layoutX="149.0" layoutY="340.0" mnemonicParsing="false" onAction="#addItem" prefHeight="30.0" prefWidth="125.0" style="-fx-font-weight: bold; -fx-background-color: #eaaad1; -fx-background-radius: 20;" text="Add Item" />
+        <ChoiceBox fx:id="loanTypeChoiceBox" layoutX="396.0" layoutY="193.0" prefHeight="26.0" prefWidth="160.0" style="-fx-background-color: #f6d9eb; -fx-background-radius: 20;">
         </ChoiceBox>
-      <ChoiceBox fx:id="rentalStatusChoiceBox" layoutX="213.0" layoutY="316.0" prefHeight="26.0" prefWidth="160.0" />
-      <ChoiceBox fx:id="RentalTypeChoiceBox" layoutX="214.0" layoutY="152.0" prefHeight="26.0" prefWidth="160.0" />
-      <Button fx:id="back" layoutX="300.0" layoutY="354.0" mnemonicParsing="false" onAction="#Back" text="Back" />
+      <ChoiceBox fx:id="rentalStatusChoiceBox" layoutX="396.0" layoutY="270.0" prefHeight="26.0" prefWidth="160.0" style="-fx-background-color: #f6d9eb; -fx-background-radius: 20;" />
+      <ChoiceBox fx:id="RentalTypeChoiceBox" layoutX="396.0" layoutY="122.0" prefHeight="26.0" prefWidth="160.0" style="-fx-background-color: #f6d9eb; -fx-background-radius: 20;" />
+      <Button fx:id="back" layoutX="327.0" layoutY="340.0" mnemonicParsing="false" onAction="#Back" prefHeight="30.0" prefWidth="125.0" style="-fx-font-weight: bold; -fx-background-color: #eaaad1; -fx-background-radius: 20;" text="Back" />
       <Text fx:id="text" layoutX="389.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <TextField fx:id="titleField" layoutX="21.0" layoutY="156.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter the Title" style="-fx-background-color: transparent; -fx-border-color: pink; -fx-border-width: 0 0 3 0;" />
+      <TextField fx:id="copiesField" layoutX="21.0" layoutY="206.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter the Copies" style="-fx-background-color: transparent; -fx-border-color: pink; -fx-border-width: 0 0 3 0;" />
+      <TextField fx:id="rentalFeeField" layoutX="21.0" layoutY="257.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter the Rental Fee (in USD)" style="-fx-background-color: transparent; -fx-border-color: pink; -fx-border-width: 0 0 3 0;" />
+      <Label layoutX="421.0" layoutY="243.0" style="-fx-font-weight: bold;" text="Rental Status" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="426.0" layoutY="90.0" style="-fx-font-weight: bold;" text="Rental Type" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

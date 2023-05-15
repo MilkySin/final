@@ -13,9 +13,9 @@
       <ChoiceBox fx:id="Items" layoutX="439.0" layoutY="32.0" prefHeight="38.0" prefWidth="167.0" style="-fx-background-color: #f6d9eb; -fx-background-radius: 20;" />
       <TextArea fx:id="itemDetailsArea" layoutX="143.0" layoutY="161.0" prefHeight="217.0" prefWidth="413.0" />
       <TextField fx:id="Number" layoutX="259.0" layoutY="396.0" prefHeight="38.0" prefWidth="179.0" promptText="Enter Number Of stock To Add" style="-fx-background-color: #f6d9eb; -fx-background-radius: 20;" />
-      <Button fx:id="saveChanges" layoutX="535.0" layoutY="429.0" mnemonicParsing="false" onAction="#saveChanges" prefHeight="38.0" prefWidth="150.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="Save Changes" />
-      <Button fx:id="back" layoutX="31.0" layoutY="429.0" mnemonicParsing="false" onAction="#Back" prefHeight="38.0" prefWidth="143.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="back" />
-      <Button fx:id="ShowItemInfo" layoutX="259.0" layoutY="109.0" mnemonicParsing="false" onAction="#ShowItemInfo" prefHeight="38.0" prefWidth="179.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="Show Item Info" />
+      <Button fx:id="saveChanges" layoutX="535.0" layoutY="429.0" mnemonicParsing="false" onAction="#saveChanges" prefHeight="38.0" prefWidth="150.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20; -fx-font-weight: bold;" text="Save Changes" />
+      <Button fx:id="back" layoutX="31.0" layoutY="429.0" mnemonicParsing="false" onAction="#Back" prefHeight="38.0" prefWidth="143.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20; -fx-font-weight: bold;" text="Back" />
+      <Button fx:id="ShowItemInfo" layoutX="259.0" layoutY="109.0" mnemonicParsing="false" onAction="#ShowItemInfo" prefHeight="38.0" prefWidth="179.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20; -fx-font-weight: bold;" text="Show Item Info" />
       <Text fill="#eaaad1" layoutX="31.0" layoutY="62.0" stroke="#eaaad1" strokeWidth="2.0" text="Choose an item to add stock to" wrappingWidth="383.06488037109375">
          <font>
             <Font size="27.0" />
