@@ -33,6 +33,7 @@ public class EditUser {
     public Button searchItemButton;
     public TextField searchIdField;
     public TextField NumberField;
+    public TextField balanceField;
 
     public void initialize () throws IOException {
         AccountTypeChoicebox.getItems().addAll("Guest","Regular","VIP");
@@ -84,6 +85,9 @@ public class EditUser {
 
                 if (AccountTypeChoicebox != null && !AccountTypeChoicebox.getValue().toString().isEmpty()) {
                     user.setAccountType(AccountTypeChoicebox.getValue().toString());
+                }
+                if (!balanceField.getText().isEmpty()) {
+                    user.setBalance(Integer.parseInt(balanceField.getText()));
                 }
 
                 itemDetailsArea.setText(user.toString());
