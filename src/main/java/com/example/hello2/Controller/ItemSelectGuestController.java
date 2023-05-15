@@ -31,7 +31,7 @@ import java.util.Objects;
 
 public class ItemSelectGuestController {
     @FXML
-    public Label selectedItemLabel;
+    public Label Account;
     public Button Return;
     private String ID;
 
@@ -126,6 +126,7 @@ public class ItemSelectGuestController {
             HBox itemBox = new HBox();
 
             if (items.getCopies() == 0 || Objects.equals(items.getLoanType(), "2 Days Loan")) {
+                System.out.println(items.getLoanType());
                 checkBox.setDisable(true);
             } else {
                 int finalMaxSelect = maxSelect;
@@ -296,8 +297,21 @@ public class ItemSelectGuestController {
                 if (Objects.equals(list.getID(), ID) && Objects.equals(temp.getId(), ID) && !tempArray.isEmpty()) {
                     list.getSelectedItemsList().removeAll(tempArray);
                     temp.setNumReturned(temp.getNumReturned() + tempArray.size());
-                    if (temp.getNumReturned() == 3) {
+                    if (temp.getNumReturned() >= 3) {
                         temp.setAccountType("Regular");
+                        Path path = Paths.get("src/main/resources/com/example/hello2/RegularUser.fxml");
+                        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+                        Parent root = loader.load();
+                        Scene scene = new Scene(root);
+                        Stage stage = (Stage) Account.getScene().getWindow();
+                        ItemSelectRegularController regularUserController = loader.getController(); // Create an
+                        // instance
+                        // of
+                        // ItemSelectGuestController
+                        regularUserController.setID(ID);// Set the ID value
+                        regularUserController.setInitialize();
+                        stage.setScene(scene);
+                        stage.show();
                         temp.setNumReturned(0);
                     }
                     usersFileWriter.UserWriteFile(userFileReader.getUserList());
