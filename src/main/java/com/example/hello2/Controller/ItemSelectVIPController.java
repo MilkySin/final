@@ -34,14 +34,12 @@ public class ItemSelectVIPController {
     public Button Return;
     @FXML
     private String ID;
-
     @FXML
     private ProgressBar progressBar;
-
     @FXML
     private Button viewTextFileButton;
-    public Button back;
 
+    public Button back;
     public Text Welcome;
     public Text Balance;
     public Text Points;

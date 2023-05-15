@@ -3,15 +3,6 @@ package com.example.hello2.Model;
 import java.util.ArrayList;
 
 public class ItemModel {
-
-
-    //    ID: I123-321
-//    Title: FFF
-//    Rental Type: DVD
-//    Loan Type: 1 Week Loan
-//    Copies: 0
-//    Rental Fee (USD): 39
-//    Rental Status: Borrowed
     private String ID;
     private String title;
     private String rentalType;

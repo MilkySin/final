@@ -85,6 +85,12 @@
          </font>
       </Text>
       <TextField fx:id="PasswordField" promptText="Enter Password" style="-fx-background-color: #fae9f3;" />
+      <Text fill="#eaaad1" stroke="#eaaad1" text="User Account Balance: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="balanceField" promptText="Enter Account Balamce" style="-fx-background-color: #fae9f3;" />
         <HBox spacing="10.0" />
     </VBox>
 </AnchorPane>
