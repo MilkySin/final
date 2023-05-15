@@ -39,5 +39,11 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <ChoiceBox fx:id="genreChoiceBox" layoutX="231.0" layoutY="180.0" prefHeight="26.0" prefWidth="160.0" style="-fx-background-color: #f6d9eb; -fx-background-radius: 20;" />
+      <Label layoutX="288.0" layoutY="145.0" style="-fx-font-weight: bold;" text="Genre" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

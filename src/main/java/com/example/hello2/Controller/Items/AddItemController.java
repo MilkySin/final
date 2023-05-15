@@ -1,6 +1,7 @@
 package com.example.hello2.Controller.Items;
 
 //Fixed
+
 import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Reader.ItemsFileReader;
 import com.example.hello2.Writer.ItemsFileWriter;
@@ -18,6 +19,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 public class AddItemController {
 
@@ -31,8 +33,8 @@ public class AddItemController {
     @FXML
     private TextField titleField;
 
-
-
+    @FXML
+    private ChoiceBox<String> genreChoiceBox;
     @FXML
     private TextField copiesField;
 
@@ -49,11 +51,12 @@ public class AddItemController {
         // Initialize loan type choice box with two options
         loanTypeChoiceBox.getItems().addAll("1 Week Loan", "2 Days Loan");
         loanTypeChoiceBox.setValue("1 Week Loan");
+        genreChoiceBox.setDisable(true);
 
         // Initialize rental status choice box with two options
         rentalStatusChoiceBox.getItems().addAll("Available", "Borrowed");
         rentalStatusChoiceBox.setValue("Available");
-        RentalTypeChoiceBox.getItems().addAll("DVD","Record","Game");
+        RentalTypeChoiceBox.getItems().addAll("DVD", "Record", "Game");
         RentalTypeChoiceBox.setValue("DVD");
 
     }
@@ -65,16 +68,28 @@ public class AddItemController {
         String title = titleField.getText();
         String rentalType = RentalTypeChoiceBox.getValue();
         String loanType = loanTypeChoiceBox.getValue();
+
+        if (Objects.equals(rentalType, "DVD") || Objects.equals(rentalType, "Record")) {
+            genreChoiceBox.setDisable(false);
+            genreChoiceBox.getItems().addAll("Action", "Horror", "Drama", "Comedy");
+            genreChoiceBox.setValue("Action");
+        } else {
+            genreChoiceBox.setDisable(true);
+            genreChoiceBox.setValue("All age");
+        }
+
+        String genre = genreChoiceBox.getValue();
+
         int copies = Integer.parseInt(copiesField.getText());
         double rentalFee = Double.parseDouble(rentalFeeField.getText());
         String rentalStatus = rentalStatusChoiceBox.getValue();
 
-        if (id == null || title == null || rentalType == null || loanType == null || rentalStatus == null) {
+        if (id == null || title == null || genre == null || rentalType == null || loanType == null || rentalStatus == null) {
             // handle the null values here
             text.setFill(Color.RED);
             text.setText("Failed to add");
-        }else {
-            ItemModel item = new ItemModel(id, title, rentalType, loanType, copies, rentalFee, rentalStatus);
+        } else {
+            ItemModel item = new ItemModel(id, title, genre, rentalType, loanType, copies, rentalFee, rentalStatus);
             ItemsFileReader read = new ItemsFileReader();
             ItemsFileWriter writer = new ItemsFileWriter();
             read.getItemList().add(item);
@@ -83,6 +98,7 @@ public class AddItemController {
             text.setText("Added Successfully");
         }
     }
+
     @FXML
     public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
