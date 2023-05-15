@@ -297,12 +297,12 @@ public class ItemSelectRegularController {
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
                         Stage stage = (Stage) Account.getScene().getWindow();
-                        ItemSelectRegularController regularUserController = loader.getController(); // Create an
+                        ItemSelectVIPController VIPUserController = loader.getController(); // Create an
                         // instance
                         // of
                         // ItemSelectGuestController
-                        regularUserController.setID(ID);// Set the ID value
-                        regularUserController.setInitialize();
+                        VIPUserController.setID(ID);// Set the ID value
+                        VIPUserController.setInitialize();
                         stage.setScene(scene);
                         stage.show();
                         temp.setNumReturned(0);

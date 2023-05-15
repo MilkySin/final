@@ -48,18 +48,7 @@ public class SignupPage {
 
     @FXML
     private TextField Balance;
-
-
-    public void setPreviousScene(Scene previousScene) {
-        this.previousScene = previousScene;
-    }
-
-//    public void setInitialize() {
-//        ObservableList<String> accountTypes = FXCollections.observableArrayList("Regular", "Guest", "VIP");
-//        accountTypeChoiceBox.setItems(accountTypes);
-//        accountTypeChoiceBox.setValue("Regular");
-//    }
-
+    
 
     public void Back(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");

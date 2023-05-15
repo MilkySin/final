@@ -249,8 +249,15 @@ public class ItemSelectGuestController {
 
         List<CheckBox> checkBoxList = new ArrayList<>();
 
-        VBox vbox = new VBox();
+        FlowPane flowPane = new FlowPane();
+        flowPane.setHgap(10); // Set horizontal gap between elements
+        flowPane.setVgap(10); // Set vertical gap between elements
+        flowPane.setAlignment(Pos.TOP_LEFT);
+        flowPane.setPrefSize(530, 400);
+        ScrollPane scrollPane = new ScrollPane();
 
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
         ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
 
         for (SelectedItems temp : selectedItemsReader.readFileSelectedItems()) {
@@ -265,14 +272,15 @@ public class ItemSelectGuestController {
                     }
                     checkBoxList.add(checkBox);
                     itemBox.getChildren().addAll(checkBox);
-                    vbox.getChildren().addAll(itemBox);
+                    flowPane.getChildren().addAll(itemBox);
                 }
             }
         }
 
+        scrollPane.setContent(flowPane);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Select an item from the list:");
-        alert.getDialogPane().setContent(vbox);
+        alert.getDialogPane().setContent(scrollPane);
         alert.showAndWait();
 
         ArrayList<ItemModel> content = itemsFileReader.getItemList();

@@ -10,3 +10,4 @@ Tester,lhbkjHLJB*)(&890,C111,dsfasfasf,Guest,123,0,0.0
 fasfas,MNBmnb089)(*,C231,dfa,Guest,123,0,0.0
 sacas,mnbBMNbmn980()*,C999,fdafadf,Guest,123,0,900.0
 Tester,bnNB21!@,C333,dfadasf,Guest,123,0,99.99
+Shirin,mnNM21@!,C690,Saigon,Regular,12345678,0,9580.0
