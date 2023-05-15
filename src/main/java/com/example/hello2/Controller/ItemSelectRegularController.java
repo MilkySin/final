@@ -164,7 +164,11 @@ public class ItemSelectRegularController {
                     usersFileWriter.UserWriteFile(userFileReader.getUserList());
                     Balance.setText("Balance: $" + user.getBalance());
                 } else {
-                    System.out.println("not enough money");
+                    Alert alerts = new Alert(Alert.AlertType.ERROR);
+                    alerts.setTitle("Insufficient Balance");
+                    alerts.setHeaderText(null);
+                    alerts.setContentText("Not enough money");
+                    alerts.showAndWait();
                     return;
                 }
             }

@@ -100,6 +100,7 @@ public class ItemSelectVIPController {
 
     public void freeItem() throws IOException {
         ItemsFileReader itemsFileReader = new ItemsFileReader();
+        ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
         SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
         UsersFileWriter usersFileWriter = new UsersFileWriter();
@@ -177,7 +178,16 @@ public class ItemSelectVIPController {
         alert.getDialogPane().setContent(scrollPane);
         alert.showAndWait();
 
-
+        ArrayList<ItemModel> content = itemsFileReader.getItemList();
+        for (CheckBox checkBox : checkBoxList) {
+            for (ItemModel item : content) {
+                if (checkBox.getText().equals(item.toString()) && checkBox.isSelected()) {
+                    item.setCopies(item.getCopies() - 1); // decrement the copies value
+                    itemsFileWriter.ItemsWriteFile(content); // write the updated items to the file
+                    break;
+                }
+            }
+        }
         ArrayList<String> tempArray = new ArrayList<>();
         for (CheckBox checkBox : checkBoxList) {
             if (checkBox.isSelected()) {
@@ -279,7 +289,11 @@ public class ItemSelectVIPController {
                     usersFileWriter.UserWriteFile(userFileReader.getUserList());
                     Balance.setText("Balance: $" + user.getBalance());
                 } else {
-                    System.out.println("not enough money");
+                    Alert alerts = new Alert(Alert.AlertType.ERROR);
+                    alerts.setTitle("Insufficient Balance");
+                    alerts.setHeaderText(null);
+                    alerts.setContentText("Not enough money");
+                    alerts.showAndWait();
                     return;
                 }
             }
