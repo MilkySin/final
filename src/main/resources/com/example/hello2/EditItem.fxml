@@ -68,12 +68,24 @@
          </font>
       </Text>
         <TextField fx:id="rentalFeeField" promptText="Enter Rental Fee" style="-fx-background-color: #fae9f3;" />
-      <Text fill="#eaaad1" stroke="#eaaad1" text="Rental Type:">
+      <Text fill="#eaaad1" stroke="#eaaad1" text="Loan Type:">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
         <ChoiceBox fx:id="loanTypeChoiceBox" prefWidth="150.0" style="-fx-background-color: #f6d9eb;" />
+      <Text fill="#eaaad1" stroke="#eaaad1" text="Rental Type: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <ChoiceBox fx:id="RentalTypeChoiceBox" prefWidth="150.0" style="-fx-background-color: #f6d9eb;" />
+      <Text fill="#eaaad1" stroke="#eaaad1" text="Genre: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <ChoiceBox fx:id="genreChoiceBox" prefWidth="150.0" style="-fx-background-color: #f6d9eb;" />
       <Text fill="#eaaad1" stroke="#eaaad1" text="Copies Number: ">
          <font>
             <Font size="14.0" />
