@@ -22,25 +22,20 @@ public class EditItemController {
 
     public TextField itemIdField;
 
-
     public Label title;
     public ChoiceBox<String> loanTypeChoiceBox;
     public ChoiceBox<String> rentalStatusChoiceBox;
     public ChoiceBox ItemID;
     @FXML
     private TextField searchIdField;
-
     @FXML
     private TextArea itemDetailsArea;
-
     @FXML
     private TextField rentalFeeField;
-
     @FXML
     private TextField copiesField;
 
     public Button back;
-
     @FXML
     private TextField titleField;
 
@@ -51,6 +46,7 @@ public class EditItemController {
         // Initialize loan type choice box with two options
         loanTypeChoiceBox.getItems().addAll("1 Week Loan", "2 Days Loan");
         loanTypeChoiceBox.setValue("1 Week Loan");
+
 
         // Initialize rental status choice box with two options
         rentalStatusChoiceBox.getItems().addAll("Available", "Borrowed");
