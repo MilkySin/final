@@ -18,8 +18,6 @@ import java.util.Objects;
 
 public class AddStock {
     public ChoiceBox<String> Items;
-
-
     public Button saveChanges;
 
     public TextField item;
@@ -29,6 +27,7 @@ public class AddStock {
     public Button ShowItemInfo;
 
     public void initialize() throws IOException {
+        Number.setStyle("-fx-text-fill: black;");
         ItemsFileReader temp = new ItemsFileReader();
         ArrayList<ItemModel> itemlist = temp.readFileItems();
         for (ItemModel item : itemlist) {
