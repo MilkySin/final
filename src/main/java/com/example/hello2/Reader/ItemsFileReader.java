@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 
 public class ItemsFileReader {
-    public Path filePath = Paths.get("new_items.txt");
+    public Path filePath = Paths.get("items.txt");
 
     public ArrayList<ItemModel> itemList  = new ArrayList<>(new ItemModel().getItemList());
 
@@ -30,7 +30,7 @@ public class ItemsFileReader {
         //  return itemList;
    // }
     public ArrayList<ItemModel> readFileItems() throws IOException {
-        File file = new File("new_items.txt");
+        File file = new File("items.txt");
         FileReader fw = new FileReader(file);
         BufferedReader bw = new BufferedReader(fw);
         String line;

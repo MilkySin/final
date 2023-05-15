@@ -19,7 +19,7 @@ public class ItemsFileWriter {
     private String status;
 
     public void ItemsWriteFile(ArrayList<ItemModel> itemlist) throws IOException {
-        File file = new File("new_items.txt");
+        File file = new File("items.txt");
         FileWriter fw = new FileWriter(file, false); // set append to false
         BufferedWriter bw = new BufferedWriter(fw);
         for (ItemModel item : itemlist) {
