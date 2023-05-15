@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #515151;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.Users.PromoteController">
+<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #515151; -fx-border-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.Users.PromoteController">
    <TextArea fx:id="CustomerDetail" editable="false" layoutX="143.0" layoutY="104.0" prefHeight="217.0" prefWidth="413.0" />
    <ChoiceBox fx:id="PromoteChoice" layoutX="406.0" layoutY="351.0" prefWidth="150.0" style="-fx-background-color: #f6d9eb; -fx-background-radius: 20;" />
    <Text fx:id="text" layoutX="225.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" />
