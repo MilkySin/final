@@ -118,9 +118,7 @@ public class ItemModel {
 
     @Override
     public String toString() {
-        return "ID: " + ID + "\n" + "Title: " + title + "Genre: " + genre + "\n" + "Rental Type: " + rentalType + "\n"
-                + "Loan Type: " + loanType + "\n" + "Copies: " + copies + "\n" + "Rental Fee (USD): " + fee + "\n" +
-                "Rental Status: " + status + "\n\n";
+        return "ID: " + ID + "\n" + "Title: " + title + "\n" + "Genre: " + genre + "\n" + "Rental Type: " + rentalType + "\n" + "Loan Type: " + loanType + "\n" + "Copies: " + copies + "\n" + "Rental Fee (USD): " + fee + "\n" + "Rental Status: " + status + "\n\n";
     }
 }
 

@@ -1,6 +1,2 @@
-I001-2001,Medal of Honour,Game,1-week,4,3.99,Available
-I002-1988,White Castle,Record,1-week,3,0.99,Available
-I003-1992,Alpha Dog,Record,1-week,3,1.99,Available
-I004-1999,Rat Race,DVD,1-week,3,1.99,Available
-I005-2015,Halo,Game,2-day,2,4.99,Available
-I006-2013,Halloween,DVD,2-day,1,0.99,Available
+I000-001,FFXI,Fantasy,DVD,1 Week Loan,3,30.0,Available
+I111-111,Lord Of the Kink,None,Game,1 Week Loan,99999,60.0,Available
