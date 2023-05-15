@@ -112,6 +112,13 @@ public class ItemSelectGuestController {
 
         ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
 
+        int maxSelect = 2;
+        for (SelectedItems items : selectedItemsReader.readFileSelectedItems()) {
+            if (Objects.equals(items.getID(), getUserID())) {
+                maxSelect -= items.getSelectedItemsList().size();
+            }
+        }
+
         // keep track of selected CheckBox count
         final int[] selectedCount = {0};
         for (ItemModel items : itemModelArrayList) {
@@ -122,9 +129,10 @@ public class ItemSelectGuestController {
             if (items.getCopies() == 0 || Objects.equals(items.getLoanType(), "2 Days Loan")) {
                 checkBox.setDisable(true);
             } else {
+                int finalMaxSelect = maxSelect;
                 checkBox.setOnAction((ActionEvent event) -> {
                     if (checkBox.isSelected()) {
-                        if (selectedCount[0] < 2) {
+                        if (selectedCount[0] < finalMaxSelect) {
                             selectedCount[0]++;
                         } else {
                             checkBox.setSelected(false);
@@ -140,7 +148,7 @@ public class ItemSelectGuestController {
             flowPane.getChildren().addAll(itemBox);
         }
 
-        for (SelectedItems items : selectedItemsReader.readFileSelectedItems()) {
+        for (SelectedItems items : selectedItemsReader.getSelectedItemsList()) {
             for (CheckBox check : checkBoxList) {
                 if (Objects.equals(items.getID(), getUserID())) {
                     for (String sd : items.getSelectedItemsList()) {

@@ -1,2 +1,6 @@
 I000-001,FFXI,Fantasy,DVD,1 Week Loan,3,30.0,Available
-I111-111,Lord Of the Kink,None,Game,1 Week Loan,99999,60.0,Available
+I111-112,Lord Of the Kink,None,Game,1 Week Loan,99999,60.0,Available
+I000-002,FFXI,Fantasy,DVD,1 Week Loan,2,30.0,Available
+I111-113,Lord Of the Kink,None,Game,1 Week Loan,99999,60.0,Available
+I000-003,FFXI,Fantasy,DVD,1 Week Loan,2,30.0,Available
+I111-114,Lord Of the Kink,None,Game,1 Week Loan,99999,60.0,Available
