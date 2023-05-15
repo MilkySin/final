@@ -112,7 +112,7 @@ public class ItemSelectGuestController {
         ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
 
         int maxSelect = 2;
-        for (SelectedItems items : selectedItemsReader.getSelectedItemsList()) {
+        for (SelectedItems items : selectedItemsReader.readFileSelectedItems()) {
             if (Objects.equals(items.getID(), getUserID())) {
                 maxSelect -= items.getSelectedItemsList().size();
             }
