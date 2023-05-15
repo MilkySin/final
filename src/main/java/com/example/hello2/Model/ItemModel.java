@@ -21,14 +21,17 @@ public class ItemModel {
     private int copies;
 
     private double fee;
+    private String genre;
 
     private String status;
 
     private static ArrayList<ItemModel> itemList = new ArrayList<>();
 
-    public ItemModel(String ID, String title, String rentalType, String loanType, int copies, double fee, String status) {
+    public ItemModel(String ID, String title, String genre, String rentalType, String loanType, int copies,
+                     double fee, String status) {
         this.ID = ID;
         this.title = title;
+        this.genre = genre;
         this.rentalType = rentalType;
         this.loanType = loanType;
         this.copies = copies;
@@ -37,6 +40,14 @@ public class ItemModel {
     }
 
     public ItemModel() {
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public String getID() {
@@ -107,7 +118,9 @@ public class ItemModel {
 
     @Override
     public String toString() {
-        return "ID: " + ID + "\n" + "Title: " + title + "\n" + "Rental Type: " + rentalType + "\n" + "Loan Type: " + loanType + "\n" + "Copies: " + copies + "\n" + "Rental Fee (USD): " + fee + "\n" + "Rental Status: " + status + "\n\n";
+        return "ID: " + ID + "\n" + "Title: " + title + "Genre: " + genre + "\n" + "Rental Type: " + rentalType + "\n"
+                + "Loan Type: " + loanType + "\n" + "Copies: " + copies + "\n" + "Rental Fee (USD): " + fee + "\n" +
+                "Rental Status: " + status + "\n\n";
     }
 }
 

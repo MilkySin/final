@@ -23,12 +23,12 @@ public class ItemsFileWriter {
         FileWriter fw = new FileWriter(file, false); // set append to false
         BufferedWriter bw = new BufferedWriter(fw);
         for (ItemModel item : itemlist) {
-            if(item.getCopies() == 0){
+            if (item.getCopies() == 0) {
                 item.setStatus("Borrowed");
 
-            } else
-                item.setStatus("Available");
-            bw.write(item.getID() + "," + item.getTitle() + "," + item.getRentalType() + "," + item.getLoanType() + "," + item.getCopies() + "," + item.getFee()+","+item.getStatus());
+            } else item.setStatus("Available");
+            bw.write(
+                    item.getID() + "," + item.getTitle() + "," + item.getGenre() + "," + item.getRentalType() + "," + item.getLoanType() + "," + item.getCopies() + "," + item.getFee() + "," + item.getStatus());
             bw.write("\n");
         }
         bw.close();
