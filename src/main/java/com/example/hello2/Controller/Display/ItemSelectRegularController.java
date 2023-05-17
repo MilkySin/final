@@ -302,6 +302,7 @@ public class ItemSelectRegularController {
                         VIPUserController.setID(ID);// Set the ID value
                         VIPUserController.setInitialize();
                         stage.setScene(scene);
+                        stage.setResizable(false);
                         stage.show();
                         temp.setNumReturned(0);
                     }

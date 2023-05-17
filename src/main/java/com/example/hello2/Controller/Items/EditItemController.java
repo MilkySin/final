@@ -51,7 +51,7 @@ public class EditItemController {
         // Initialize Rental type choice box with two options
         RentalTypeChoiceBox.getItems().addAll("DVD", "Record", "Game");
         RentalTypeChoiceBox.setValue("rental type");
-        
+
         // Initialize rental status choice box with two options
         rentalStatusChoiceBox.getItems().addAll("Available", "Borrowed");
         rentalStatusChoiceBox.setValue("rental status");
@@ -152,6 +152,7 @@ public class EditItemController {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) back.getScene().getWindow();
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }

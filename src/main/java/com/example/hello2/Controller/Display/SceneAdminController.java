@@ -56,6 +56,7 @@ public class SceneAdminController {
         Scene scene = new Scene(root);
         Stage stage = (Stage) AddItem.getScene().getWindow();
         stage.setScene(scene);
+        stage.setResizable(false);
         AddItemController controller = loader.getController();
         stage.show();
     }
@@ -69,6 +70,7 @@ public class SceneAdminController {
         Scene scene = new Scene(root);
         Stage stage = (Stage) EditItem.getScene().getWindow();
         stage.setScene(scene);
+        stage.setResizable(false);
         EditItemController controller = loader.getController();
         stage.show();
     }
@@ -81,6 +83,7 @@ public class SceneAdminController {
         Scene scene = new Scene(root);
         Stage stage = (Stage) DeleteItem.getScene().getWindow();
         stage.setScene(scene);
+        stage.setResizable(false);
         DeleteItemController controller = loader.getController();
         stage.show();
     }
@@ -93,6 +96,7 @@ public class SceneAdminController {
         Scene scene = new Scene(root);
         Stage stage = (Stage) EditItem.getScene().getWindow();
         stage.setScene(scene);
+        stage.setResizable(false);
         DisplayCustomersController controller = loader.getController();
         stage.show();
     }
@@ -105,6 +109,7 @@ public class SceneAdminController {
         Scene scene = new Scene(root);
         Stage stage = (Stage) DisplayAllItems.getScene().getWindow();
         stage.setScene(scene);
+        stage.setResizable(false);
         DisplayItemsController controller = loader.getController();
         stage.show();
     }
@@ -118,6 +123,7 @@ public class SceneAdminController {
         Scene scene = new Scene(root);
         Stage stage = (Stage) EditItem.getScene().getWindow();
         stage.setScene(scene);
+        stage.setResizable(false);
         com.example.hello2.Controller.Users.DeleteUser controller = loader.getController();
         stage.show();
     }
@@ -128,6 +134,7 @@ public class SceneAdminController {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) promote.getScene().getWindow();
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -138,6 +145,7 @@ public class SceneAdminController {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) back.getScene().getWindow();
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -150,6 +158,7 @@ public class SceneAdminController {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) EditItem.getScene().getWindow();
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -161,6 +170,7 @@ public class SceneAdminController {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) EditItem.getScene().getWindow();
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -172,6 +182,7 @@ public class SceneAdminController {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) EditItem.getScene().getWindow();
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }

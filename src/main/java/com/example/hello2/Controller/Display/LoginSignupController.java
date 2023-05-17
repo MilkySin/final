@@ -57,6 +57,7 @@ public class LoginSignupController {
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) LogIn.getScene().getWindow();
+                    stage.setResizable(false);
                     stage.setScene(scene);
                     stage.show();
                 } else {
@@ -70,6 +71,7 @@ public class LoginSignupController {
                         // of ItemSelectGuestController
                         guestUserController.setID(ID); // Set the ID value
                         guestUserController.setInitialize();
+                        stage.setResizable(false);
                         stage.setScene(scene);
                         stage.show();
                     } else if (Objects.equals(users.getAccountType(), "Regular")) {
@@ -84,6 +86,7 @@ public class LoginSignupController {
                         // ItemSelectGuestController
                         regularUserController.setID(ID);// Set the ID value
                         regularUserController.setInitialize();
+                        stage.setResizable(false);
                         stage.setScene(scene);
                         stage.show();
                     } else if (Objects.equals(users.getAccountType(), "VIP")) {
@@ -96,6 +99,7 @@ public class LoginSignupController {
                         // ItemSelectGuestController
                         VIPUserController.setID(ID); // Set the ID value
                         VIPUserController.setInitialize();
+                        stage.setResizable(false);
                         stage.setScene(scene);
                         stage.show();
                     }

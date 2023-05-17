@@ -55,6 +55,7 @@ public class SignupPage {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) back.getScene().getWindow();
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -106,6 +107,7 @@ public class SignupPage {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         if (stage != null) {
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.show();
         } else {
             System.out.println("Error: Stage is null");

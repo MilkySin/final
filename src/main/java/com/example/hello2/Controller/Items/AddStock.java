@@ -86,6 +86,7 @@ public class AddStock {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) back.getScene().getWindow();
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }

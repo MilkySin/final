@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -110,7 +111,7 @@ public class ItemSelectGuestController {
                 if (temp.getSelectedItemsList().contains(items.getID()) && Objects.equals(temp.getID(), ID)) {
                     Text owned = new Text(items.toString());
                     owned.setStyle("-fx-fill: white;"); // Set text color of the Text
-
+                    owned.setFont(Font.font(14));
                     HBox itemBox = new HBox();
                     itemBox.getChildren().add(owned);
                     flowPane.getChildren().add(itemBox);
@@ -352,6 +353,7 @@ public class ItemSelectGuestController {
                         regularUserController.setID(ID);// Set the ID value
                         regularUserController.setInitialize();
                         stage.setScene(scene);
+                        stage.setResizable(false);
                         stage.show();
                         temp.setNumReturned(0);
                     }
