@@ -1,6 +1,7 @@
 package com.example.hello2.Controller.Items;
 
 //Fixed
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -43,17 +44,14 @@ public class EditItemController {
     private TextField titleField;
 
 
-
-
     public void initialize() throws IOException {
         // Initialize loan type choice box with two options
         loanTypeChoiceBox.getItems().addAll("1 Week Loan", "2 Days Loan");
         loanTypeChoiceBox.setValue("loan type");
         // Initialize Rental type choice box with two options
-        RentalTypeChoiceBox.getItems().addAll("DVD", "Record","Game");
+        RentalTypeChoiceBox.getItems().addAll("DVD", "Record", "Game");
         RentalTypeChoiceBox.setValue("rental type");
-
-
+        
         // Initialize rental status choice box with two options
         rentalStatusChoiceBox.getItems().addAll("Available", "Borrowed");
         rentalStatusChoiceBox.setValue("rental status");
@@ -73,20 +71,17 @@ public class EditItemController {
                     String initialRentalType = item.getRentalType();
                     updateGenreOptions(initialRentalType);
                     // Set genre options based on the selected rental type
-                    RentalTypeChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                        updateGenreOptions((String) newValue);
-                    });
+                    RentalTypeChoiceBox.getSelectionModel().selectedItemProperty().addListener(
+                            (observable, oldValue, newValue) -> {
+                                updateGenreOptions((String) newValue);
+                            });
                     break; // Exit the loop once a match is found
 
 
                 }
             }
         });
-
-
     }
-
-
 
     public void saveChanges() throws IOException {
         String searchId = (String) ItemID.getValue();
@@ -138,6 +133,7 @@ public class EditItemController {
         alert.setContentText("Changes saved successfully.");
         alert.showAndWait();
     }
+
     private void updateGenreOptions(String rentalType) {
         if (rentalType.equals("DVD") || rentalType.equals("Record")) {
             genreChoiceBox.getItems().setAll("Action", "Drama", "Horror", "Comedy");

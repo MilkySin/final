@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #444444; -fx-border-color: white;"
             xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.hello2.Controller.SignupPage">
+            fx:controller="com.example.hello2.Controller.Display.SignupPage">
 
     <TextField fx:id="usernameField" layoutX="457.0" layoutY="60.0" prefHeight="40.0" prefWidth="210.0"
                promptText="Enter Your Name"

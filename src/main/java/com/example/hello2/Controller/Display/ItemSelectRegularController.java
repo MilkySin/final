@@ -1,4 +1,4 @@
-package com.example.hello2.Controller;
+package com.example.hello2.Controller.Display;
 
 import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Model.SelectedItems;
@@ -18,7 +18,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -27,24 +26,23 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class ItemSelectVIPController {
+public class ItemSelectRegularController {
 
     @FXML
-    public Label selectedItemLabel;
+    public Label Account;
     public Button Return;
-    @FXML
     private String ID;
     @FXML
+    private Text Balance;
+    @FXML
+    private Text Welcome;
+
+    @FXML
     private ProgressBar progressBar;
+
     @FXML
     private Button viewTextFileButton;
-
     public Button back;
-    public Text Welcome;
-    public Text Balance;
-    public Text Points;
-    @FXML
-    private Button freebutton;
 
     public void setID(String ID) {
         this.ID = ID;
@@ -54,9 +52,11 @@ public class ItemSelectVIPController {
         return ID;
     }
 
-    public ItemSelectVIPController() throws IOException {
+    public ItemSelectRegularController() throws IOException {
     }
 
+
+    //Read through both files, if selected is empty, add users from user lists
     public void setInitialize() throws IOException {
         UserFileReader userFileReader = new UserFileReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
@@ -67,8 +67,6 @@ public class ItemSelectVIPController {
             if (Objects.equals(user.getId(), getUserID())) {
                 Balance.setText("Balance: $" + user.getBalance());
                 Welcome.setText("Welcome: " + user.getUsername());
-                Points.setText("Current Points: " + (user.getNumReturned() * 10));
-                freebutton.setVisible(user.getNumReturned() >= 10);
             }
         }
 
@@ -96,128 +94,6 @@ public class ItemSelectVIPController {
         }
     }
 
-    public void freeItem() throws IOException {
-        ItemsFileReader itemsFileReader = new ItemsFileReader();
-        ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
-        SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
-        SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
-        UsersFileWriter usersFileWriter = new UsersFileWriter();
-        UserFileReader userFileReader = new UserFileReader();
-        List<CheckBox> checkBoxList = new ArrayList<>();
-
-        FlowPane flowPane = new FlowPane();
-        flowPane.setHgap(10); // Set horizontal gap between elements
-        flowPane.setVgap(10); // Set vertical gap between elements
-        flowPane.setAlignment(Pos.TOP_LEFT);
-        flowPane.setPrefSize(530, 400);
-        ScrollPane scrollPane = new ScrollPane();
-
-        scrollPane.setFitToWidth(true);
-        scrollPane.setFitToHeight(true);
-
-        ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
-
-        int points = 0;
-        for (UserModel user : userFileReader.readFileUser()) {
-            if (Objects.equals(user.getId(), getUserID())) {
-                points = user.getNumReturned();
-            }
-        }
-
-        if (points < 100) {
-            freebutton.setVisible(false);
-        }
-
-
-        final int[] selectedCount = {0};
-        for (ItemModel items : itemModelArrayList) {
-            CheckBox checkBox = new CheckBox(items.toString());
-            checkBox.setUserData(items.getID());
-            HBox itemBox = new HBox();
-
-            if (items.getCopies() == 0) {
-                checkBox.setDisable(true);
-            } else {
-                int finalPoints = points;
-                checkBox.setOnAction((ActionEvent event) -> {
-                    if (checkBox.isSelected()) {
-                        if (selectedCount[0] < finalPoints / 10) {
-                            selectedCount[0]++;
-                        } else {
-                            checkBox.setSelected(false);
-                        }
-                    } else {
-                        selectedCount[0]--;
-                    }
-                });
-            }
-
-            checkBoxList.add(checkBox);
-            itemBox.getChildren().addAll(checkBox);
-            flowPane.getChildren().addAll(itemBox);
-        }
-
-        for (SelectedItems items : selectedItemsReader.readFileSelectedItems()) {
-            for (CheckBox check : checkBoxList) {
-                if (Objects.equals(items.getID(), getUserID())) {
-                    for (String sd : items.getSelectedItemsList()) {
-                        if (Objects.equals(sd, check.getUserData())) {
-                            check.setDisable(true);
-                        }
-                    }
-                }
-            }
-        }
-
-        scrollPane.setContent(flowPane);
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText("Select free items from the list:");
-        alert.getDialogPane().setContent(scrollPane);
-        alert.showAndWait();
-
-        ArrayList<ItemModel> content = itemsFileReader.getItemList();
-        for (CheckBox checkBox : checkBoxList) {
-            for (ItemModel item : content) {
-                if (checkBox.getText().equals(item.toString()) && checkBox.isSelected()) {
-                    item.setCopies(item.getCopies() - 1); // decrement the copies value
-                    itemsFileWriter.ItemsWriteFile(content); // write the updated items to the file
-                    break;
-                }
-            }
-        }
-        ArrayList<String> tempArray = new ArrayList<>();
-        for (CheckBox checkBox : checkBoxList) {
-            if (checkBox.isSelected()) {
-                tempArray.add((String) checkBox.getUserData());
-            }
-        }
-
-
-        for (UserModel user : userFileReader.getUserList()) {
-            if (Objects.equals(user.getId(), getUserID())) {
-                user.setNumReturned(user.getNumReturned() - tempArray.size() * 10);
-                Points.setText("Current Points: " + (user.getNumReturned() * 10));
-                usersFileWriter.UserWriteFile(userFileReader.getUserList());
-            }
-        }
-
-        for (SelectedItems list : selectedItemsReader.getSelectedItemsList()) {
-            if (list.getSelectedItemsList().isEmpty() && Objects.equals(list.getID(), ID)) {
-                list.setSelectedItemsList(tempArray);
-                System.out.println(list.getSelectedItemsList());
-                selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
-                break;
-            }
-            if (!(list.getSelectedItemsList().isEmpty()) && Objects.equals(list.getID(), ID)) {
-                list.getSelectedItemsList().addAll(tempArray);
-                System.out.println(list.getSelectedItemsList());
-                selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
-                break;
-            }
-        }
-    }
-
     @FXML
     public void rentItems() throws IOException {
         ItemsFileReader itemsFileReader = new ItemsFileReader();
@@ -239,6 +115,7 @@ public class ItemSelectVIPController {
         scrollPane.setFitToHeight(true);
         ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
 
+
         for (ItemModel items : itemModelArrayList) {
             CheckBox checkBox = new CheckBox(items.toString());
             checkBox.setUserData(items.getID());
@@ -251,6 +128,7 @@ public class ItemSelectVIPController {
             itemBox.getChildren().addAll(checkBox);
             flowPane.getChildren().addAll(itemBox);
         }
+
         for (SelectedItems items : selectedItemsReader.readFileSelectedItems()) {
             for (CheckBox check : checkBoxList) {
                 if (Objects.equals(items.getID(), getUserID())) {
@@ -263,13 +141,11 @@ public class ItemSelectVIPController {
             }
         }
         scrollPane.setContent(flowPane);
-
         // decrement copies value of selected item
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Select an item from the list:");
         alert.getDialogPane().setContent(scrollPane);
         alert.showAndWait();
-
 
         float total = 0;
         for (ItemModel items : itemModelArrayList) {
@@ -297,18 +173,17 @@ public class ItemSelectVIPController {
             }
         }
 
-//        ArrayList<ItemModel> content = reader.getItemList();
-
         ArrayList<ItemModel> content = itemsFileReader.getItemList();
         for (CheckBox checkBox : checkBoxList) {
             for (ItemModel item : content) {
                 if (checkBox.getText().equals(item.toString()) && checkBox.isSelected()) {
-                    item.setCopies(item.getCopies() - 1); // decrement the copies value
-                    itemsFileWriter.ItemsWriteFile(content); // write the updated items to the file
+                    item.setCopies(item.getCopies() - 1);
+                    itemsFileWriter.ItemsWriteFile(content);
                     break;
                 }
             }
         }
+
         ArrayList<String> tempArray = new ArrayList<>();
         for (CheckBox checkBox : checkBoxList) {
             if (checkBox.isSelected()) {
@@ -331,6 +206,7 @@ public class ItemSelectVIPController {
             }
         }
     }
+
 
     public void Back(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
@@ -382,8 +258,8 @@ public class ItemSelectVIPController {
                 }
             }
         }
-
         scrollPane.setContent(flowPane);
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Select an item from the list:");
         alert.getDialogPane().setContent(scrollPane);
@@ -399,6 +275,7 @@ public class ItemSelectVIPController {
                 }
             }
         }
+
         ArrayList<String> tempArray = new ArrayList<>();
         for (CheckBox checkBox : checkBoxList) {
             if (checkBox.isSelected()) {
@@ -411,8 +288,23 @@ public class ItemSelectVIPController {
                 if (Objects.equals(list.getID(), ID) && Objects.equals(temp.getId(), ID) && !tempArray.isEmpty()) {
                     list.getSelectedItemsList().removeAll(tempArray);
                     temp.setNumReturned(temp.getNumReturned() + tempArray.size());
-                    Points.setText("Current Points: " + (temp.getNumReturned() * 10));
-                    freebutton.setVisible(temp.getNumReturned() >= 10);
+                    if (temp.getNumReturned() >= 5) {
+                        temp.setAccountType("VIP");
+                        Path path = Paths.get("src/main/resources/com/example/hello2/VIPUser.fxml");
+                        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+                        Parent root = loader.load();
+                        Scene scene = new Scene(root);
+                        Stage stage = (Stage) Account.getScene().getWindow();
+                        ItemSelectVIPController VIPUserController = loader.getController(); // Create an
+                        // instance
+                        // of
+                        // ItemSelectGuestController
+                        VIPUserController.setID(ID);// Set the ID value
+                        VIPUserController.setInitialize();
+                        stage.setScene(scene);
+                        stage.show();
+                        temp.setNumReturned(0);
+                    }
                     usersFileWriter.UserWriteFile(userFileReader.getUserList());
                     selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
                 }

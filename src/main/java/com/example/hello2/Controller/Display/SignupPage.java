@@ -1,4 +1,4 @@
-package com.example.hello2.Controller;
+package com.example.hello2.Controller.Display;
 //sign up screen goes to scene3
 
 import com.example.hello2.Model.UserModel;
@@ -48,7 +48,6 @@ public class SignupPage {
 
     @FXML
     private TextField Balance;
-    
 
     public void Back(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");

@@ -39,10 +39,10 @@ public class AddStock {
             }
 
 
-
         }
     }
-    public void ShowItemInfo()throws IOException{
+
+    public void ShowItemInfo() throws IOException {
         ItemsFileReader temp = new ItemsFileReader();
         ArrayList<ItemModel> itemlist = temp.readFileItems();
         for (ItemModel item : itemlist) {
@@ -53,17 +53,16 @@ public class AddStock {
         }
     }
 
-    public void saveChanges() throws IOException{
+    public void saveChanges() throws IOException {
         ItemsFileReader reader = new ItemsFileReader();
         ItemsFileWriter writer = new ItemsFileWriter();
-        for(ItemModel items: reader.readFileItems()){
-            if(items.getID().equals(Items.getValue())) {
-                int x= items.getCopies();
-                String y= Number.getText();
+        for (ItemModel items : reader.readFileItems()) {
+            if (items.getID().equals(Items.getValue())) {
+                int x = items.getCopies();
+                String y = Number.getText();
                 int numY = Integer.parseInt(y); // convert y to an integer
                 items.setCopies(x + numY);
-                if (items.getCopies()>0)
-                    items.setStatus("Available");
+                if (items.getCopies() > 0) items.setStatus("Available");
 
                 itemDetailsArea.setText(items.toString());
             }
@@ -79,6 +78,7 @@ public class AddStock {
         alert.showAndWait();
 
     }
+
     @FXML
     public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");

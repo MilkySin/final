@@ -1,6 +1,7 @@
 package com.example.hello2.Controller.Display;
 
 //Fixed
+
 import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Model.UserModel;
 import com.example.hello2.Reader.ItemsFileReader;
@@ -33,14 +34,13 @@ public class DisplayItemsController {
     public void initialize() throws Exception {
         ItemsFileReader reader = new ItemsFileReader();
         StringBuilder fileContent = new StringBuilder();
-        for(ItemModel items : reader.readFileItems()){
+        for (ItemModel items : reader.readFileItems()) {
             fileContent.append(items.toString());
         }
         itemstextArea.setText(fileContent.toString());
     }
+
     @FXML
-
-
     void SortByID() throws IOException {
         ItemsFileReader read = new ItemsFileReader();
         StringBuilder content = new StringBuilder();
@@ -49,12 +49,13 @@ public class DisplayItemsController {
         read.readFileItems().sort(Comparator.comparing(ItemModel::getID));
         itemstextArea.clear();
 
-        for(ItemModel item: read.getItemList()){
+        for (ItemModel item : read.getItemList()) {
             content.append(item.toString());
         }
 
         itemstextArea.setText(content.toString());
     }
+
     @FXML
     void SortByName() throws IOException {
         ItemsFileReader reader = new ItemsFileReader();
@@ -64,11 +65,12 @@ public class DisplayItemsController {
         reader.readFileItems().sort(Comparator.comparing(ItemModel::getTitle));
 
         itemstextArea.clear();
-        for(ItemModel item: reader.getItemList()){
+        for (ItemModel item : reader.getItemList()) {
             content.append(item.toString());
         }
         itemstextArea.setText(content.toString());
     }
+
     @FXML
     public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
@@ -82,10 +84,10 @@ public class DisplayItemsController {
 
     public void Available(ActionEvent event) throws IOException {
         ItemsFileReader reader = new ItemsFileReader();
-        ArrayList<ItemModel> Itemlist=reader.readFileItems();
+        ArrayList<ItemModel> Itemlist = reader.readFileItems();
         StringBuilder fileContent = new StringBuilder();
-        for (ItemModel item : Itemlist){
-            if (Objects.equals(item.getStatus(), "Available")){
+        for (ItemModel item : Itemlist) {
+            if (Objects.equals(item.getStatus(), "Available")) {
                 fileContent.append(item);
             }
         }
@@ -94,10 +96,10 @@ public class DisplayItemsController {
 
     public void Unavilable(ActionEvent event) throws IOException {
         ItemsFileReader reader = new ItemsFileReader();
-        ArrayList<ItemModel> Itemlist=reader.readFileItems();
-        ArrayList<ItemModel> UNAvaillist =new ArrayList<>();
-        for (ItemModel item : Itemlist){
-            if (Objects.equals(item.getStatus(), "Borrowed")){
+        ArrayList<ItemModel> Itemlist = reader.readFileItems();
+        ArrayList<ItemModel> UNAvaillist = new ArrayList<>();
+        for (ItemModel item : Itemlist) {
+            if (Objects.equals(item.getStatus(), "Borrowed")) {
 
                 UNAvaillist.add(item);
             }

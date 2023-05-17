@@ -1,6 +1,7 @@
 package com.example.hello2.Controller.Display;
 
 //Fixed
+
 import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Model.UserModel;
 import com.example.hello2.Reader.ItemsFileReader;
@@ -22,7 +23,7 @@ import java.util.Comparator;
 import java.util.Objects;
 
 public class DisplayCustomersController {
-    public  Button VIP ;
+    public Button VIP;
     @FXML
     public TextArea customerTextArea;
 
@@ -38,7 +39,7 @@ public class DisplayCustomersController {
         UserFileReader reader = new UserFileReader();
         StringBuilder fileContent = new StringBuilder();
 
-        for(UserModel Users : reader.readFileUser()){
+        for (UserModel Users : reader.readFileUser()) {
             fileContent.append(Users.toString());
         }
         customerTextArea.setText(fileContent.toString());
@@ -46,8 +47,6 @@ public class DisplayCustomersController {
     }
 
     @FXML
-
-
     void SortByID() throws IOException {
         System.out.println("Sorting by ID...");
         UserFileReader read = new UserFileReader();
@@ -57,7 +56,7 @@ public class DisplayCustomersController {
         read.readFileUser().sort(Comparator.comparing(UserModel::getId));
         customerTextArea.clear();
 
-        for(UserModel users: read.getUserList()){
+        for (UserModel users : read.getUserList()) {
             content.append(users.toString());
 
         }
@@ -86,7 +85,7 @@ public class DisplayCustomersController {
         reader.readFileUser().sort(Comparator.comparing(UserModel::getUsername));
 
         customerTextArea.clear();
-        for(UserModel users: reader.getUserList()){
+        for (UserModel users : reader.getUserList()) {
             content.append(users.toString());
         }
         customerTextArea.setText(content.toString());
@@ -96,9 +95,9 @@ public class DisplayCustomersController {
     public void Regular(ActionEvent event) throws IOException {
         UserFileReader temp = new UserFileReader();
         ArrayList<UserModel> Userlist = temp.readFileUser();
-        ArrayList<UserModel> Regularlist=new ArrayList<>();
-        for (UserModel User : Userlist){
-            if (Objects.equals(User.getAccountType(), "Regular")){
+        ArrayList<UserModel> Regularlist = new ArrayList<>();
+        for (UserModel User : Userlist) {
+            if (Objects.equals(User.getAccountType(), "Regular")) {
                 Regularlist.add(User);
             }
         }
@@ -108,9 +107,9 @@ public class DisplayCustomersController {
     public void Guest(ActionEvent event) throws IOException {
         UserFileReader temp = new UserFileReader();
         ArrayList<UserModel> Userlist = temp.readFileUser();
-        ArrayList<UserModel> Guestlist=new ArrayList<>();
-        for (UserModel User : Userlist){
-            if (Objects.equals(User.getAccountType(), "Guest")){
+        ArrayList<UserModel> Guestlist = new ArrayList<>();
+        for (UserModel User : Userlist) {
+            if (Objects.equals(User.getAccountType(), "Guest")) {
                 Guestlist.add(User);
             }
         }
@@ -120,9 +119,9 @@ public class DisplayCustomersController {
     public void VIP(ActionEvent event) throws IOException {
         UserFileReader temp = new UserFileReader();
         ArrayList<UserModel> Userlist = temp.readFileUser();
-        ArrayList<UserModel> Viplist=new ArrayList<>();
-        for (UserModel User : Userlist){
-            if (Objects.equals(User.getAccountType(), "VIP")){
+        ArrayList<UserModel> Viplist = new ArrayList<>();
+        for (UserModel User : Userlist) {
+            if (Objects.equals(User.getAccountType(), "VIP")) {
                 Viplist.add(User);
             }
         }

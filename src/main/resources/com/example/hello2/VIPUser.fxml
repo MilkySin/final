@@ -7,45 +7,60 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="300.0" prefWidth="550.0" style="-fx-background-color: #515151; -fx-border-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.ItemSelectVIPController">
+<AnchorPane prefHeight="300.0" prefWidth="550.0" style="-fx-background-color: #515151; -fx-border-color: white;"
+            xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.hello2.Controller.Display.ItemSelectVIPController">
 
-    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="119.0" layoutY="122.0" prefHeight="57.0" prefWidth="313.0" style="-fx-font-size: 30px; -fx-font-weight: bold;" text="This is a VIP Account" textAlignment="CENTER" textFill="WHITE" />
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="119.0" layoutY="122.0" prefHeight="57.0"
+           prefWidth="313.0" style="-fx-font-size: 30px; -fx-font-weight: bold;" text="This is a VIP Account"
+           textAlignment="CENTER" textFill="WHITE"/>
 
-    <ProgressBar fx:id="progressBar" layoutX="224.0" layoutY="229.0" prefHeight="22.0" prefWidth="178.0" progress="0.0" visible="false" />
-   <Button fx:id="viewTextFileButton" layoutX="49.0" layoutY="199.0" mnemonicParsing="false" onAction="#rentItems" prefHeight="39.0" prefWidth="141.0" style="-fx-background-color: #eaaad1; -fx-text-fill: black; -fx-font-size: 18px; -fx-background-radius: 125; -fx-font-weight: bold;" text="Rent">
-      <font>
-         <Font name="System Bold" size="12.0" />
-      </font>
-   </Button>
-   <Button fx:id="Return" layoutX="341.0" layoutY="199.0" mnemonicParsing="false" onAction="#Return" prefHeight="39.0" prefWidth="141.0" style="-fx-background-color: #eaaad1; -fx-text-fill: black; -fx-font-size: 18px; -fx-background-radius: 125; -fx-font-weight: bold;" text="Return">
-      <font>
-         <Font name="System Bold" size="12.0" />
-      </font>
-   </Button>
-   <Button fx:id="back" layoutX="234.0" layoutY="251.0" mnemonicParsing="false" onAction="#Back" prefHeight="25.0" prefWidth="82.0" style="-fx-background-radius: 20;" text="Logout">
-      <font>
-         <Font size="13.0" />
-      </font>
-   </Button>
-   <Button fx:id="freebutton" layoutX="402.0" layoutY="14.0" mnemonicParsing="false" onAction="#freeItem" prefHeight="22.0" prefWidth="128.0" style="-fx-background-color: #eaaad1; -fx-text-fill: black; -fx-font-size: 15; -fx-background-radius: 125; -fx-font-weight: bold;" text="Get Free Items">
-      <font>
-         <Font name="System Bold" size="10.0" />
-      </font>
-   </Button>
-   <Text fx:id="Welcome" fill="#eaaad1" layoutX="14.0" layoutY="32.0" stroke="#eaaad1" text="text">
-      <font>
-         <Font size="20.0" />
-      </font>
-   </Text>
-   <Text fx:id="Balance" fill="#eaaad1" layoutX="14.0" layoutY="60.0" stroke="#eaaad1" text="text">
-      <font>
-         <Font size="20.0" />
-      </font>
-   </Text>
-   <Text fx:id="Points" fill="#eaaad1" layoutX="14.0" layoutY="88.0" stroke="#eaaad1" text="text">
-      <font>
-         <Font size="20.0" />
-      </font>
-   </Text>
+    <ProgressBar fx:id="progressBar" layoutX="224.0" layoutY="229.0" prefHeight="22.0" prefWidth="178.0" progress="0.0"
+                 visible="false"/>
+    <Button fx:id="viewTextFileButton" layoutX="49.0" layoutY="199.0" mnemonicParsing="false" onAction="#rentItems"
+            prefHeight="39.0" prefWidth="141.0"
+            style="-fx-background-color: #eaaad1; -fx-text-fill: black; -fx-font-size: 18px; -fx-background-radius: 125; -fx-font-weight: bold;"
+            text="Rent">
+        <font>
+            <Font name="System Bold" size="12.0"/>
+        </font>
+    </Button>
+    <Button fx:id="Return" layoutX="341.0" layoutY="199.0" mnemonicParsing="false" onAction="#Return" prefHeight="39.0"
+            prefWidth="141.0"
+            style="-fx-background-color: #eaaad1; -fx-text-fill: black; -fx-font-size: 18px; -fx-background-radius: 125; -fx-font-weight: bold;"
+            text="Return">
+        <font>
+            <Font name="System Bold" size="12.0"/>
+        </font>
+    </Button>
+    <Button fx:id="back" layoutX="234.0" layoutY="251.0" mnemonicParsing="false" onAction="#Back" prefHeight="25.0"
+            prefWidth="82.0" style="-fx-background-radius: 20;" text="Logout">
+        <font>
+            <Font size="13.0"/>
+        </font>
+    </Button>
+    <Button fx:id="freebutton" layoutX="402.0" layoutY="14.0" mnemonicParsing="false" onAction="#freeItem"
+            prefHeight="22.0" prefWidth="128.0"
+            style="-fx-background-color: #eaaad1; -fx-text-fill: black; -fx-font-size: 15; -fx-background-radius: 125; -fx-font-weight: bold;"
+            text="Get Free Items">
+        <font>
+            <Font name="System Bold" size="10.0"/>
+        </font>
+    </Button>
+    <Text fx:id="Welcome" fill="#eaaad1" layoutX="14.0" layoutY="32.0" stroke="#eaaad1" text="text">
+        <font>
+            <Font size="20.0"/>
+        </font>
+    </Text>
+    <Text fx:id="Balance" fill="#eaaad1" layoutX="14.0" layoutY="60.0" stroke="#eaaad1" text="text">
+        <font>
+            <Font size="20.0"/>
+        </font>
+    </Text>
+    <Text fx:id="Points" fill="#eaaad1" layoutX="14.0" layoutY="88.0" stroke="#eaaad1" text="text">
+        <font>
+            <Font size="20.0"/>
+        </font>
+    </Text>
 
 </AnchorPane>

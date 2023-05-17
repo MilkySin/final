@@ -1,5 +1,6 @@
 package com.example.hello2.Controller.Items;
 //fixed
+
 import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Reader.ItemsFileReader;
 import com.example.hello2.Writer.ItemsFileWriter;
@@ -10,9 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;

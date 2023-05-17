@@ -6,17 +6,29 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #515151; -fx-border-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.Display.DisplayItemsController">
-   <children>
-      <TextArea fx:id="itemstextArea" editable="false" layoutX="156.0" layoutY="113.0" prefHeight="300.0" prefWidth="400.0" />
-      <Text fill="#eaaad1" layoutX="217.0" layoutY="97.0" stroke="#eaaad1" strokeWidth="3.0" text="Items In Shop" textAlignment="CENTER" wrappingWidth="277.07958984375">
-         <font>
-            <Font size="27.0" />
-         </font></Text>
-      <Button fx:id="back" layoutX="274.0" layoutY="430.0" mnemonicParsing="false" onAction="#Back" prefHeight="26.0" prefWidth="180.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="Go back" />
-      <Button fx:id="SortByID" layoutX="51.0" layoutY="456.0" mnemonicParsing="false" onAction="#SortByID" prefHeight="26.0" prefWidth="180.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="Sort By ID" />
-      <Button fx:id="SortByName" layoutX="497.0" layoutY="456.0" mnemonicParsing="false" onAction="#SortByName" prefHeight="26.0" prefWidth="180.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="Sort By Name" />
-      <Button fx:id="Available" layoutX="51.0" layoutY="33.0" mnemonicParsing="false" onAction="#Available" prefHeight="26.0" prefWidth="180.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="Show Only Available Items" />
-      <Button fx:id="Unavilable" layoutX="497.0" layoutY="33.0" mnemonicParsing="false" onAction="#Unavilable" prefHeight="26.0" prefWidth="180.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="Show Only Unavailable" />
-   </children>
+<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #515151; -fx-border-color: white;"
+            xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.hello2.Controller.Display.DisplayItemsController">
+    <TextArea fx:id="itemstextArea" editable="false" layoutX="156.0" layoutY="113.0" prefHeight="300.0"
+              prefWidth="400.0"/>
+    <Text fill="#eaaad1" layoutX="217.0" layoutY="97.0" stroke="#eaaad1" strokeWidth="3.0" text="Items In Shop"
+          textAlignment="CENTER" wrappingWidth="277.07958984375">
+        <font>
+            <Font size="27.0"/>
+        </font>
+    </Text>
+    <Button fx:id="back" layoutX="274.0" layoutY="430.0" mnemonicParsing="false" onAction="#Back" prefHeight="26.0"
+            prefWidth="180.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="Go back"/>
+    <Button fx:id="SortByID" layoutX="51.0" layoutY="456.0" mnemonicParsing="false" onAction="#SortByID"
+            prefHeight="26.0" prefWidth="180.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;"
+            text="Sort By ID"/>
+    <Button fx:id="SortByName" layoutX="497.0" layoutY="456.0" mnemonicParsing="false" onAction="#SortByName"
+            prefHeight="26.0" prefWidth="180.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;"
+            text="Sort By Name"/>
+    <Button fx:id="Available" layoutX="51.0" layoutY="33.0" mnemonicParsing="false" onAction="#Available"
+            prefHeight="26.0" prefWidth="180.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;"
+            text="Show Only Available Items"/>
+    <Button fx:id="Unavilable" layoutX="497.0" layoutY="33.0" mnemonicParsing="false" onAction="#Unavilable"
+            prefHeight="26.0" prefWidth="180.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;"
+            text="Show Only Unavailable"/>
 </AnchorPane>

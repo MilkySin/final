@@ -98,7 +98,6 @@ public class ItemModel {
         this.status = status;
     }
 
-
     public ArrayList<ItemModel> getItemList() {
         return itemList;
     }

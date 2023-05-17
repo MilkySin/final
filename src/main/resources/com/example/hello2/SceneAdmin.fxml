@@ -7,37 +7,66 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #515151;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.SceneAdminController">
-   <children>
-      <Button fx:id="DisplayCustomers" layoutX="450.0" layoutY="109.0" mnemonicParsing="false" onAction="#displayCustomers" prefHeight="26.0" prefWidth="164.0" style="-fx-background-radius: 20; -fx-background-color: #f2cce3;" text="Display Customers " />
-      <Button fx:id="DeleteUser" layoutX="450.0" layoutY="153.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="26.0" prefWidth="164.0" style="-fx-background-radius: 20; -fx-background-color: #f2cce3;" text="Delete Customer" />
-      <Button fx:id="promote" layoutX="450.0" layoutY="236.0" mnemonicParsing="false" onAction="#Promote" prefHeight="26.0" prefWidth="164.0" style="-fx-background-radius: 20; -fx-background-color: #f2cce3;" text="Promote Customer" />
-      <Button fx:id="AddUser" layoutX="450.0" layoutY="284.0" mnemonicParsing="false" onAction="#AddUser" prefHeight="26.0" prefWidth="164.0" style="-fx-background-radius: 20; -fx-background-color: #f2cce3;" text="Add Customer" />
-      <Button fx:id="EditUser" layoutX="450.0" layoutY="193.0" mnemonicParsing="false" onAction="#EditUser" prefHeight="26.0" prefWidth="164.0" style="-fx-background-radius: 20; -fx-background-color: #f2cce3;" text="Edit User" />
-      <AnchorPane prefHeight="400.0" prefWidth="349.0" style="-fx-background-color: #F2CCE3;">
-         <children>
-            <Text layoutX="132.0" layoutY="67.0" stroke="BLACK" text="Items" textAlignment="CENTER">
-               <font>
-                  <Font size="35.0" />
-               </font>
-            </Text>
-            <Button fx:id="EditItem" layoutX="96.0" layoutY="193.0" mnemonicParsing="false" onAction="#editItem" prefHeight="26.0" prefWidth="164.0" style="-fx-background-color: #515151; -fx-background-radius: 20;" text="Edit Item" textFill="#fcfcfc" />
-            <Button fx:id="AddStock" layoutX="96.0" layoutY="236.0" mnemonicParsing="false" onAction="#AddStock" prefHeight="26.0" prefWidth="164.0" style="-fx-background-color: #515151; -fx-background-radius: 20;" text="Add stock" textFill="#fffefe" />
-            <Button fx:id="DisplayAllItems" layoutX="96.0" layoutY="109.0" mnemonicParsing="false" onAction="#showAllItems" prefHeight="26.0" prefWidth="164.0" style="-fx-background-color: #515151; -fx-background-radius: 20;" text="Display Items" textFill="#fafafa" />
-            <Button fx:id="AddItem" layoutX="96.0" layoutY="284.0" mnemonicParsing="false" onAction="#addItem" prefHeight="26.0" prefWidth="164.0" style="-fx-background-color: #515151; -fx-background-radius: 20;" text="Add Item" textFill="#fafafa" />
-            <Button fx:id="DeleteItem" layoutX="96.0" layoutY="153.0" mnemonicParsing="false" onAction="#deleteItem" prefHeight="26.0" prefWidth="164.0" style="-fx-background-color: #515151; -fx-background-radius: 20;" text="Delete Item" textFill="#f7f1f1" />
-         </children>
-      </AnchorPane>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="275.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Images/904925.png" />
-         </image>
-      </ImageView>
-      <Text fill="#f2cce3" layoutX="449.0" layoutY="73.0" stroke="#f2cce3" text="Customers">
-         <font>
-            <Font size="35.0" />
-         </font>
-      </Text>
-      <Button fx:id="back" layoutX="268.0" layoutY="359.0" mnemonicParsing="false" onAction="#Back" prefHeight="26.0" prefWidth="164.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Logout" />
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #515151;"
+            xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.hello2.Controller.Display.SceneAdminController">
+    <children>
+        <Button fx:id="DisplayCustomers" layoutX="450.0" layoutY="109.0" mnemonicParsing="false"
+                onAction="#displayCustomers" prefHeight="26.0" prefWidth="164.0"
+                style="-fx-background-radius: 20; -fx-background-color: #f2cce3;" text="Display Customers "/>
+        <Button fx:id="DeleteUser" layoutX="450.0" layoutY="153.0" mnemonicParsing="false" onAction="#deleteUser"
+                prefHeight="26.0" prefWidth="164.0" style="-fx-background-radius: 20; -fx-background-color: #f2cce3;"
+                text="Delete Customer"/>
+        <Button fx:id="promote" layoutX="450.0" layoutY="236.0" mnemonicParsing="false" onAction="#Promote"
+                prefHeight="26.0" prefWidth="164.0" style="-fx-background-radius: 20; -fx-background-color: #f2cce3;"
+                text="Promote Customer"/>
+        <Button fx:id="AddUser" layoutX="450.0" layoutY="284.0" mnemonicParsing="false" onAction="#AddUser"
+                prefHeight="26.0" prefWidth="164.0" style="-fx-background-radius: 20; -fx-background-color: #f2cce3;"
+                text="Add Customer"/>
+        <Button fx:id="EditUser" layoutX="450.0" layoutY="193.0" mnemonicParsing="false" onAction="#EditUser"
+                prefHeight="26.0" prefWidth="164.0" style="-fx-background-radius: 20; -fx-background-color: #f2cce3;"
+                text="Edit User"/>
+        <AnchorPane prefHeight="400.0" prefWidth="349.0" style="-fx-background-color: #F2CCE3;">
+            <children>
+                <Text layoutX="132.0" layoutY="67.0" stroke="BLACK" text="Items" textAlignment="CENTER">
+                    <font>
+                        <Font size="35.0"/>
+                    </font>
+                </Text>
+                <Button fx:id="EditItem" layoutX="96.0" layoutY="193.0" mnemonicParsing="false" onAction="#editItem"
+                        prefHeight="26.0" prefWidth="164.0"
+                        style="-fx-background-color: #515151; -fx-background-radius: 20;" text="Edit Item"
+                        textFill="#fcfcfc"/>
+                <Button fx:id="AddStock" layoutX="96.0" layoutY="236.0" mnemonicParsing="false" onAction="#AddStock"
+                        prefHeight="26.0" prefWidth="164.0"
+                        style="-fx-background-color: #515151; -fx-background-radius: 20;" text="Add stock"
+                        textFill="#fffefe"/>
+                <Button fx:id="DisplayAllItems" layoutX="96.0" layoutY="109.0" mnemonicParsing="false"
+                        onAction="#showAllItems" prefHeight="26.0" prefWidth="164.0"
+                        style="-fx-background-color: #515151; -fx-background-radius: 20;" text="Display Items"
+                        textFill="#fafafa"/>
+                <Button fx:id="AddItem" layoutX="96.0" layoutY="284.0" mnemonicParsing="false" onAction="#addItem"
+                        prefHeight="26.0" prefWidth="164.0"
+                        style="-fx-background-color: #515151; -fx-background-radius: 20;" text="Add Item"
+                        textFill="#fafafa"/>
+                <Button fx:id="DeleteItem" layoutX="96.0" layoutY="153.0" mnemonicParsing="false" onAction="#deleteItem"
+                        prefHeight="26.0" prefWidth="164.0"
+                        style="-fx-background-color: #515151; -fx-background-radius: 20;" text="Delete Item"
+                        textFill="#f7f1f1"/>
+            </children>
+        </AnchorPane>
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="275.0" layoutY="99.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@Images/904925.png"/>
+            </image>
+        </ImageView>
+        <Text fill="#f2cce3" layoutX="449.0" layoutY="73.0" stroke="#f2cce3" text="Customers">
+            <font>
+                <Font size="35.0"/>
+            </font>
+        </Text>
+        <Button fx:id="back" layoutX="268.0" layoutY="359.0" mnemonicParsing="false" onAction="#Back" prefHeight="26.0"
+                prefWidth="164.0" style="-fx-background-color: white; -fx-background-radius: 20;" text="Logout"/>
+    </children>
 </AnchorPane>

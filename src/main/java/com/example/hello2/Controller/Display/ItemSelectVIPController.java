@@ -1,4 +1,4 @@
-package com.example.hello2.Controller;
+package com.example.hello2.Controller.Display;
 
 import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Model.SelectedItems;
@@ -22,27 +22,29 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.*;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
-public class ItemSelectGuestController {
+public class ItemSelectVIPController {
+
     @FXML
-    public Label Account;
+    public Label selectedItemLabel;
     public Button Return;
+    @FXML
     private String ID;
-
     @FXML
     private ProgressBar progressBar;
-    public Text Balance;
-    public Text Welcome;
-
     @FXML
     private Button viewTextFileButton;
+
     public Button back;
+    public Text Welcome;
+    public Text Balance;
+    public Text Points;
+    @FXML
+    private Button freebutton;
 
     public void setID(String ID) {
         this.ID = ID;
@@ -52,16 +54,21 @@ public class ItemSelectGuestController {
         return ID;
     }
 
-    //Read through both files, if selected is empty, add users from user lists
+    public ItemSelectVIPController() throws IOException {
+    }
+
     public void setInitialize() throws IOException {
         UserFileReader userFileReader = new UserFileReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
 
         ArrayList<SelectedItems> selectedItemsArrayList = new SelectedItemsReader().readFileSelectedItems();
+
         for (UserModel user : userFileReader.readFileUser()) {
             if (Objects.equals(user.getId(), getUserID())) {
                 Balance.setText("Balance: $" + user.getBalance());
                 Welcome.setText("Welcome: " + user.getUsername());
+                Points.setText("Current Points: " + (user.getNumReturned() * 10));
+                freebutton.setVisible(user.getNumReturned() >= 10);
             }
         }
 
@@ -89,8 +96,7 @@ public class ItemSelectGuestController {
         }
     }
 
-    @FXML
-    public void rentItems() throws IOException {
+    public void freeItem() throws IOException {
         ItemsFileReader itemsFileReader = new ItemsFileReader();
         ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
         SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
@@ -111,28 +117,31 @@ public class ItemSelectGuestController {
 
         ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
 
-        int maxSelect = 2;
-        for (SelectedItems items : selectedItemsReader.readFileSelectedItems()) {
-            if (Objects.equals(items.getID(), getUserID())) {
-                maxSelect -= items.getSelectedItemsList().size();
+        int points = 0;
+        for (UserModel user : userFileReader.readFileUser()) {
+            if (Objects.equals(user.getId(), getUserID())) {
+                points = user.getNumReturned();
             }
         }
 
-        // keep track of selected CheckBox count
+        if (points < 100) {
+            freebutton.setVisible(false);
+        }
+
+
         final int[] selectedCount = {0};
         for (ItemModel items : itemModelArrayList) {
             CheckBox checkBox = new CheckBox(items.toString());
             checkBox.setUserData(items.getID());
             HBox itemBox = new HBox();
 
-            if (items.getCopies() == 0 || Objects.equals(items.getLoanType(), "2 Days Loan")) {
-                System.out.println(items.getLoanType());
+            if (items.getCopies() == 0) {
                 checkBox.setDisable(true);
             } else {
-                int finalMaxSelect = maxSelect;
+                int finalPoints = points;
                 checkBox.setOnAction((ActionEvent event) -> {
                     if (checkBox.isSelected()) {
-                        if (selectedCount[0] < finalMaxSelect) {
+                        if (selectedCount[0] < finalPoints / 10) {
                             selectedCount[0]++;
                         } else {
                             checkBox.setSelected(false);
@@ -148,7 +157,101 @@ public class ItemSelectGuestController {
             flowPane.getChildren().addAll(itemBox);
         }
 
-        for (SelectedItems items : selectedItemsReader.getSelectedItemsList()) {
+        for (SelectedItems items : selectedItemsReader.readFileSelectedItems()) {
+            for (CheckBox check : checkBoxList) {
+                if (Objects.equals(items.getID(), getUserID())) {
+                    for (String sd : items.getSelectedItemsList()) {
+                        if (Objects.equals(sd, check.getUserData())) {
+                            check.setDisable(true);
+                        }
+                    }
+                }
+            }
+        }
+
+        scrollPane.setContent(flowPane);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Select free items from the list:");
+        alert.getDialogPane().setContent(scrollPane);
+        alert.showAndWait();
+
+        ArrayList<ItemModel> content = itemsFileReader.getItemList();
+        for (CheckBox checkBox : checkBoxList) {
+            for (ItemModel item : content) {
+                if (checkBox.getText().equals(item.toString()) && checkBox.isSelected()) {
+                    item.setCopies(item.getCopies() - 1); // decrement the copies value
+                    itemsFileWriter.ItemsWriteFile(content); // write the updated items to the file
+                    break;
+                }
+            }
+        }
+        ArrayList<String> tempArray = new ArrayList<>();
+        for (CheckBox checkBox : checkBoxList) {
+            if (checkBox.isSelected()) {
+                tempArray.add((String) checkBox.getUserData());
+            }
+        }
+
+
+        for (UserModel user : userFileReader.getUserList()) {
+            if (Objects.equals(user.getId(), getUserID())) {
+                user.setNumReturned(user.getNumReturned() - tempArray.size() * 10);
+                Points.setText("Current Points: " + (user.getNumReturned() * 10));
+                usersFileWriter.UserWriteFile(userFileReader.getUserList());
+            }
+        }
+
+        for (SelectedItems list : selectedItemsReader.getSelectedItemsList()) {
+            if (list.getSelectedItemsList().isEmpty() && Objects.equals(list.getID(), ID)) {
+                list.setSelectedItemsList(tempArray);
+                System.out.println(list.getSelectedItemsList());
+                selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
+                break;
+            }
+            if (!(list.getSelectedItemsList().isEmpty()) && Objects.equals(list.getID(), ID)) {
+                list.getSelectedItemsList().addAll(tempArray);
+                System.out.println(list.getSelectedItemsList());
+                selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
+                break;
+            }
+        }
+    }
+
+    @FXML
+    public void rentItems() throws IOException {
+        ItemsFileReader itemsFileReader = new ItemsFileReader();
+        ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
+        SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
+        SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
+        UsersFileWriter usersFileWriter = new UsersFileWriter();
+        UserFileReader userFileReader = new UserFileReader();
+        List<CheckBox> checkBoxList = new ArrayList<>();
+
+        FlowPane flowPane = new FlowPane();
+        flowPane.setHgap(10); // Set horizontal gap between elements
+        flowPane.setVgap(10); // Set vertical gap between elements
+        flowPane.setAlignment(Pos.TOP_LEFT);
+        flowPane.setPrefSize(530, 400);
+        ScrollPane scrollPane = new ScrollPane();
+
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+        ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
+
+        for (ItemModel items : itemModelArrayList) {
+            CheckBox checkBox = new CheckBox(items.toString());
+            checkBox.setUserData(items.getID());
+
+            HBox itemBox = new HBox();
+            if (items.getCopies() == 0) {
+                checkBox.setDisable(true);
+            }
+            checkBoxList.add(checkBox);
+            itemBox.getChildren().addAll(checkBox);
+            flowPane.getChildren().addAll(itemBox);
+        }
+        for (SelectedItems items : selectedItemsReader.readFileSelectedItems()) {
             for (CheckBox check : checkBoxList) {
                 if (Objects.equals(items.getID(), getUserID())) {
                     for (String sd : items.getSelectedItemsList()) {
@@ -160,10 +263,13 @@ public class ItemSelectGuestController {
             }
         }
         scrollPane.setContent(flowPane);
+
+        // decrement copies value of selected item
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Select an item from the list:");
         alert.getDialogPane().setContent(scrollPane);
         alert.showAndWait();
+
 
         float total = 0;
         for (ItemModel items : itemModelArrayList) {
@@ -190,8 +296,8 @@ public class ItemSelectGuestController {
                 }
             }
         }
+//        ArrayList<ItemModel> content = reader.getItemList();
 
-        // decrement copies value of selected item
         ArrayList<ItemModel> content = itemsFileReader.getItemList();
         for (CheckBox checkBox : checkBoxList) {
             for (ItemModel item : content) {
@@ -202,8 +308,6 @@ public class ItemSelectGuestController {
                 }
             }
         }
-
-
         ArrayList<String> tempArray = new ArrayList<>();
         for (CheckBox checkBox : checkBoxList) {
             if (checkBox.isSelected()) {
@@ -241,11 +345,11 @@ public class ItemSelectGuestController {
         SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
 
-        UserFileReader userFileReader = new UserFileReader();
-        UsersFileWriter usersFileWriter = new UsersFileWriter();
-
         ItemsFileReader itemsFileReader = new ItemsFileReader();
         ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
+
+        UsersFileWriter usersFileWriter = new UsersFileWriter();
+        UserFileReader userFileReader = new UserFileReader();
 
         List<CheckBox> checkBoxList = new ArrayList<>();
 
@@ -258,6 +362,7 @@ public class ItemSelectGuestController {
 
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
+
         ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
 
         for (SelectedItems temp : selectedItemsReader.readFileSelectedItems()) {
@@ -305,23 +410,8 @@ public class ItemSelectGuestController {
                 if (Objects.equals(list.getID(), ID) && Objects.equals(temp.getId(), ID) && !tempArray.isEmpty()) {
                     list.getSelectedItemsList().removeAll(tempArray);
                     temp.setNumReturned(temp.getNumReturned() + tempArray.size());
-                    if (temp.getNumReturned() >= 3) {
-                        temp.setAccountType("Regular");
-                        Path path = Paths.get("src/main/resources/com/example/hello2/RegularUser.fxml");
-                        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
-                        Parent root = loader.load();
-                        Scene scene = new Scene(root);
-                        Stage stage = (Stage) Account.getScene().getWindow();
-                        ItemSelectRegularController regularUserController = loader.getController(); // Create an
-                        // instance
-                        // of
-                        // ItemSelectGuestController
-                        regularUserController.setID(ID);// Set the ID value
-                        regularUserController.setInitialize();
-                        stage.setScene(scene);
-                        stage.show();
-                        temp.setNumReturned(0);
-                    }
+                    Points.setText("Current Points: " + (temp.getNumReturned() * 10));
+                    freebutton.setVisible(temp.getNumReturned() >= 10);
                     usersFileWriter.UserWriteFile(userFileReader.getUserList());
                     selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
                 }
@@ -329,4 +419,3 @@ public class ItemSelectGuestController {
         }
     }
 }
-

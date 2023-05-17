@@ -1,5 +1,6 @@
-package com.example.hello2.Controller;
+package com.example.hello2.Controller.Display;
 //fixed
+
 import com.example.hello2.Controller.Display.DisplayCustomersController;
 import com.example.hello2.Controller.Display.DisplayItemsController;
 import com.example.hello2.Controller.Items.AddItemController;
@@ -19,7 +20,7 @@ import java.nio.file.Paths;
 
 public class SceneAdminController {
 
-    public  Button VIPCUSTOMER ;
+    public Button VIPCUSTOMER;
     public Button DisplayCustomers;
     public Button DeleteUser;
     public Button RegularCustomer;
@@ -30,7 +31,6 @@ public class SceneAdminController {
     public Button AddStock;
     @FXML
     private Button AddItem;
-
     @FXML
     private Button EditItem;
 
@@ -59,7 +59,9 @@ public class SceneAdminController {
         AddItemController controller = loader.getController();
         stage.show();
     }
-    @FXML //pl
+
+    @FXML
+        //pl
     void editItem(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/EditItem.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
@@ -72,7 +74,7 @@ public class SceneAdminController {
     }
 
     @FXML
-    void deleteItem(ActionEvent event) throws IOException{
+    void deleteItem(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/DeleteItem.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
@@ -82,8 +84,9 @@ public class SceneAdminController {
         DeleteItemController controller = loader.getController();
         stage.show();
     }
+
     @FXML
-    void displayCustomers(ActionEvent event) throws IOException{
+    void displayCustomers(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/displayCustomers.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
@@ -95,7 +98,7 @@ public class SceneAdminController {
     }
 
     @FXML
-    void showAllItems(ActionEvent event) throws IOException{
+    void showAllItems(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/DisplayItems.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
@@ -108,7 +111,7 @@ public class SceneAdminController {
 
 
     @FXML
-    void deleteUser(ActionEvent event) throws IOException{
+    void deleteUser(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/deleteUser.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
@@ -118,6 +121,7 @@ public class SceneAdminController {
         com.example.hello2.Controller.Users.DeleteUser controller = loader.getController();
         stage.show();
     }
+
     public void Promote(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/Promote.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
@@ -127,6 +131,7 @@ public class SceneAdminController {
         stage.setScene(scene);
         stage.show();
     }
+
     public void Back(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
@@ -138,10 +143,8 @@ public class SceneAdminController {
     }
 
 
-
-
     @FXML
-    void AddUser(ActionEvent event) throws IOException{
+    void AddUser(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/Signup.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
@@ -150,8 +153,9 @@ public class SceneAdminController {
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
-    void EditUser(ActionEvent event) throws IOException{
+    void EditUser(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/EditUser.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
@@ -160,8 +164,9 @@ public class SceneAdminController {
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
-    void AddStock(ActionEvent event) throws IOException{
+    void AddStock(ActionEvent event) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/AddStock.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
@@ -170,7 +175,6 @@ public class SceneAdminController {
         stage.setScene(scene);
         stage.show();
     }
-
 
 
 }

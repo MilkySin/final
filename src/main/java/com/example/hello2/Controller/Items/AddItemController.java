@@ -28,7 +28,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class AddItemController {
-
     public ChoiceBox<String> RentalTypeChoiceBox;
     @FXML
     private ChoiceBox<String> loanTypeChoiceBox;

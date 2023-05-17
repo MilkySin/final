@@ -7,19 +7,25 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #515151; -fx-border-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.Items.DeleteItemController">
-    <children>
-        <ChoiceBox fx:id="IDchoicebox" layoutX="222.0" layoutY="64.0" pickOnBounds="false" prefWidth="150.0" style="-fx-background-color: #f6d9eb;" />
-        <Text fill="#eaaad1" layoutX="115.0" layoutY="84.0" stroke="#eaaad1" text="ID: " wrappingWidth="40.799999999999955">
-         <font>
-            <Font size="18.0" />
-         </font></Text>
-        <Text fill="#eaaad1" layoutX="242.0" layoutY="39.0" stroke="#eaaad1" strokeWidth="2.0" text="Delete Item" textAlignment="CENTER">
-         <font>
-            <Font size="23.0" />
-         </font></Text>
-      <Button fx:id="delete" layoutX="248.0" layoutY="108.0" mnemonicParsing="false" onAction="#Delete" prefHeight="26.0" prefWidth="104.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="DELETE" />
-      <Button fx:id="back" layoutX="249.0" layoutY="359.0" mnemonicParsing="false" onAction="#Back" prefHeight="26.0" prefWidth="104.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="Back" />
-      <TextArea fx:id="TextArea" layoutX="175.0" layoutY="145.0" prefHeight="200.0" prefWidth="250.0" />
-    </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #515151; -fx-border-color: white;"
+            xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.hello2.Controller.Items.DeleteItemController">
+    <ChoiceBox fx:id="IDchoicebox" layoutX="222.0" layoutY="64.0" pickOnBounds="false" prefWidth="150.0"
+               style="-fx-background-color: #f6d9eb;"/>
+    <Text fill="#eaaad1" layoutX="115.0" layoutY="84.0" stroke="#eaaad1" text="ID: " wrappingWidth="40.799999999999955">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Text fill="#eaaad1" layoutX="242.0" layoutY="39.0" stroke="#eaaad1" strokeWidth="2.0" text="Delete Item"
+          textAlignment="CENTER">
+        <font>
+            <Font size="23.0"/>
+        </font>
+    </Text>
+    <Button fx:id="delete" layoutX="248.0" layoutY="108.0" mnemonicParsing="false" onAction="#Delete" prefHeight="26.0"
+            prefWidth="104.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="DELETE"/>
+    <Button fx:id="back" layoutX="249.0" layoutY="359.0" mnemonicParsing="false" onAction="#Back" prefHeight="26.0"
+            prefWidth="104.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="Back"/>
+    <TextArea fx:id="TextArea" layoutX="175.0" layoutY="145.0" prefHeight="200.0" prefWidth="250.0"/>
 </AnchorPane>

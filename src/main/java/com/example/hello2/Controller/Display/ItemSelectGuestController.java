@@ -1,4 +1,4 @@
-package com.example.hello2.Controller;
+package com.example.hello2.Controller.Display;
 
 import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Model.SelectedItems;
@@ -12,34 +12,34 @@ import com.example.hello2.Writer.UsersFileWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-public class ItemSelectRegularController {
-
+public class ItemSelectGuestController {
     @FXML
     public Label Account;
     public Button Return;
     private String ID;
-    @FXML
-    private Text Balance;
-    @FXML
-    private Text Welcome;
 
     @FXML
     private ProgressBar progressBar;
+    public Text Balance;
+    public ScrollPane ownedItemsDisplay;
+    public Text Welcome;
 
     @FXML
     private Button viewTextFileButton;
@@ -53,17 +53,13 @@ public class ItemSelectRegularController {
         return ID;
     }
 
-    public ItemSelectRegularController() throws IOException {
-    }
-
-
     //Read through both files, if selected is empty, add users from user lists
     public void setInitialize() throws IOException {
         UserFileReader userFileReader = new UserFileReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
 
+        ArrayList<ItemModel> itemModelArrayList = new ItemsFileReader().readFileItems();
         ArrayList<SelectedItems> selectedItemsArrayList = new SelectedItemsReader().readFileSelectedItems();
-
         for (UserModel user : userFileReader.readFileUser()) {
             if (Objects.equals(user.getId(), getUserID())) {
                 Balance.setText("Balance: $" + user.getBalance());
@@ -95,6 +91,36 @@ public class ItemSelectRegularController {
         }
     }
 
+    public void ownedItems() throws IOException {
+        ArrayList<ItemModel> itemModelArrayList = new ItemsFileReader().readFileItems();
+        ArrayList<SelectedItems> selectedItemsArrayList = new SelectedItemsReader().readFileSelectedItems();
+        FlowPane flowPane = new FlowPane();
+        flowPane.setHgap(30); // Set horizontal gap between elements
+        flowPane.setVgap(10); // Set vertical gap between elements
+        flowPane.setAlignment(Pos.TOP_LEFT);
+        flowPane.setPrefSize(600, 400);
+        flowPane.setPadding(new Insets(10));
+
+        ownedItemsDisplay.setFitToWidth(true);
+        ownedItemsDisplay.setFitToHeight(true);
+        flowPane.setStyle("-fx-background-color: #515151;"); // Set background color of ScrollPane
+
+        for (SelectedItems temp : selectedItemsArrayList) {
+            for (ItemModel items : itemModelArrayList) {
+                if (temp.getSelectedItemsList().contains(items.getID()) && Objects.equals(temp.getID(), ID)) {
+                    Text owned = new Text(items.toString());
+                    owned.setStyle("-fx-fill: white;"); // Set text color of the Text
+
+                    HBox itemBox = new HBox();
+                    itemBox.getChildren().add(owned);
+                    flowPane.getChildren().add(itemBox);
+                }
+            }
+        }
+
+        ownedItemsDisplay.setContent(flowPane);
+    }
+
     @FXML
     public void rentItems() throws IOException {
         ItemsFileReader itemsFileReader = new ItemsFileReader();
@@ -105,6 +131,7 @@ public class ItemSelectRegularController {
         UserFileReader userFileReader = new UserFileReader();
         List<CheckBox> checkBoxList = new ArrayList<>();
 
+
         FlowPane flowPane = new FlowPane();
         flowPane.setHgap(10); // Set horizontal gap between elements
         flowPane.setVgap(10); // Set vertical gap between elements
@@ -114,23 +141,47 @@ public class ItemSelectRegularController {
 
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
+
         ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
 
+        int maxSelect = 2;
+        for (SelectedItems items : selectedItemsReader.readFileSelectedItems()) {
+            if (Objects.equals(items.getID(), getUserID())) {
+                maxSelect -= items.getSelectedItemsList().size();
+            }
+        }
 
+        // keep track of selected CheckBox count
+        final int[] selectedCount = {0};
         for (ItemModel items : itemModelArrayList) {
             CheckBox checkBox = new CheckBox(items.toString());
             checkBox.setUserData(items.getID());
-
             HBox itemBox = new HBox();
-            if (items.getCopies() == 0) {
+
+            if (items.getCopies() == 0 || Objects.equals(items.getLoanType(), "2 Days Loan")) {
+                System.out.println(items.getLoanType());
                 checkBox.setDisable(true);
+            } else {
+                int finalMaxSelect = maxSelect;
+                checkBox.setOnAction((ActionEvent event) -> {
+                    if (checkBox.isSelected()) {
+                        if (selectedCount[0] < finalMaxSelect) {
+                            selectedCount[0]++;
+                        } else {
+                            checkBox.setSelected(false);
+                        }
+                    } else {
+                        selectedCount[0]--;
+                    }
+                });
             }
+
             checkBoxList.add(checkBox);
             itemBox.getChildren().addAll(checkBox);
             flowPane.getChildren().addAll(itemBox);
         }
 
-        for (SelectedItems items : selectedItemsReader.readFileSelectedItems()) {
+        for (SelectedItems items : selectedItemsReader.getSelectedItemsList()) {
             for (CheckBox check : checkBoxList) {
                 if (Objects.equals(items.getID(), getUserID())) {
                     for (String sd : items.getSelectedItemsList()) {
@@ -142,7 +193,6 @@ public class ItemSelectRegularController {
             }
         }
         scrollPane.setContent(flowPane);
-        // decrement copies value of selected item
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Select an item from the list:");
         alert.getDialogPane().setContent(scrollPane);
@@ -174,12 +224,13 @@ public class ItemSelectRegularController {
             }
         }
 
+        // decrement copies value of selected item
         ArrayList<ItemModel> content = itemsFileReader.getItemList();
         for (CheckBox checkBox : checkBoxList) {
             for (ItemModel item : content) {
                 if (checkBox.getText().equals(item.toString()) && checkBox.isSelected()) {
-                    item.setCopies(item.getCopies() - 1);
-                    itemsFileWriter.ItemsWriteFile(content);
+                    item.setCopies(item.getCopies() - 1); // decrement the copies value
+                    itemsFileWriter.ItemsWriteFile(content); // write the updated items to the file
                     break;
                 }
             }
@@ -209,8 +260,7 @@ public class ItemSelectRegularController {
         }
     }
 
-
-    public void Back(ActionEvent event) throws IOException {
+    public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
@@ -220,15 +270,15 @@ public class ItemSelectRegularController {
         stage.show();
     }
 
-    public void Return(ActionEvent event) throws IOException {
+    public void Return() throws IOException {
         SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
 
+        UserFileReader userFileReader = new UserFileReader();
+        UsersFileWriter usersFileWriter = new UsersFileWriter();
+
         ItemsFileReader itemsFileReader = new ItemsFileReader();
         ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
-
-        UsersFileWriter usersFileWriter = new UsersFileWriter();
-        UserFileReader userFileReader = new UserFileReader();
 
         List<CheckBox> checkBoxList = new ArrayList<>();
 
@@ -241,7 +291,6 @@ public class ItemSelectRegularController {
 
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
-
         ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
 
         for (SelectedItems temp : selectedItemsReader.readFileSelectedItems()) {
@@ -260,8 +309,8 @@ public class ItemSelectRegularController {
                 }
             }
         }
-        scrollPane.setContent(flowPane);
 
+        scrollPane.setContent(flowPane);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Select an item from the list:");
         alert.getDialogPane().setContent(scrollPane);
@@ -277,7 +326,6 @@ public class ItemSelectRegularController {
                 }
             }
         }
-
         ArrayList<String> tempArray = new ArrayList<>();
         for (CheckBox checkBox : checkBoxList) {
             if (checkBox.isSelected()) {
@@ -290,19 +338,19 @@ public class ItemSelectRegularController {
                 if (Objects.equals(list.getID(), ID) && Objects.equals(temp.getId(), ID) && !tempArray.isEmpty()) {
                     list.getSelectedItemsList().removeAll(tempArray);
                     temp.setNumReturned(temp.getNumReturned() + tempArray.size());
-                    if (temp.getNumReturned() >= 5) {
-                        temp.setAccountType("VIP");
-                        Path path = Paths.get("src/main/resources/com/example/hello2/VIPUser.fxml");
+                    if (temp.getNumReturned() >= 3) {
+                        temp.setAccountType("Regular");
+                        Path path = Paths.get("src/main/resources/com/example/hello2/RegularUser.fxml");
                         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
                         Stage stage = (Stage) Account.getScene().getWindow();
-                        ItemSelectVIPController VIPUserController = loader.getController(); // Create an
+                        ItemSelectRegularController regularUserController = loader.getController(); // Create an
                         // instance
                         // of
                         // ItemSelectGuestController
-                        VIPUserController.setID(ID);// Set the ID value
-                        VIPUserController.setInitialize();
+                        regularUserController.setID(ID);// Set the ID value
+                        regularUserController.setInitialize();
                         stage.setScene(scene);
                         stage.show();
                         temp.setNumReturned(0);
@@ -314,3 +362,4 @@ public class ItemSelectRegularController {
         }
     }
 }
+

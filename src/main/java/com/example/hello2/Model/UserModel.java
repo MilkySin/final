@@ -21,7 +21,6 @@ public class UserModel {
     protected ArrayList<String> rentedItemList;
     protected ArrayList<UserModel> usersList = new ArrayList<>();
     protected float balance;
-
     protected int numReturned;
 
     public UserModel(String username, String password, String id, String address, String accountType, int phoneNumber
