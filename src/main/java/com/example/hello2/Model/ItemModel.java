@@ -16,7 +16,7 @@ public class ItemModel {
 
     private String status;
 
-    private static ArrayList<ItemModel> itemList = new ArrayList<>();
+    private ArrayList<ItemModel> itemList = new ArrayList<>();
 
     public ItemModel(String ID, String title, String genre, String rentalType, String loanType, int copies,
                      double fee, String status) {

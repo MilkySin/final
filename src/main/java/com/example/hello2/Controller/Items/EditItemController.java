@@ -23,15 +23,12 @@ public class EditItemController {
 
     public TextField itemIdField;
 
-    public Label title;
     public ChoiceBox<String> loanTypeChoiceBox;
     public ChoiceBox<String> rentalStatusChoiceBox;
-    public ChoiceBox ItemID;
-    public ChoiceBox genreChoiceBox;
-    public ChoiceBox RentalTypeChoiceBox;
+    public ChoiceBox<String> ItemID;
+    public ChoiceBox<String> genreChoiceBox;
+    public ChoiceBox<String> RentalTypeChoiceBox;
 
-    @FXML
-    private TextField searchIdField;
     @FXML
     private TextArea itemDetailsArea;
     @FXML
@@ -56,15 +53,15 @@ public class EditItemController {
         rentalStatusChoiceBox.getItems().addAll("Available", "Borrowed");
         rentalStatusChoiceBox.setValue("rental status");
         ItemsFileReader temp = new ItemsFileReader();
-        ArrayList<ItemModel> itemlist = temp.readFileItems();
+        ArrayList<ItemModel> itemList = temp.readFileItems();
 
-        for (ItemModel item : itemlist) {
+        for (ItemModel item : itemList) {
             ItemID.getItems().add(item.getID());
             ItemID.setValue("Select Item to Edit");
         }
         ItemID.setOnAction(event -> {
-            String searchId = (String) ItemID.getValue();
-            for (ItemModel item : itemlist) {
+            String searchId = ItemID.getValue();
+            for (ItemModel item : itemList) {
                 if (item.getID().equals(searchId)) {
                     itemDetailsArea.setText(item.toString());
                     // Initialize genre options based on the initial value of rental type
@@ -72,9 +69,7 @@ public class EditItemController {
                     updateGenreOptions(initialRentalType);
                     // Set genre options based on the selected rental type
                     RentalTypeChoiceBox.getSelectionModel().selectedItemProperty().addListener(
-                            (observable, oldValue, newValue) -> {
-                                updateGenreOptions((String) newValue);
-                            });
+                            (observable, oldValue, newValue) -> updateGenreOptions((newValue)));
                     break; // Exit the loop once a match is found
 
 
@@ -84,7 +79,7 @@ public class EditItemController {
     }
 
     public void saveChanges() throws IOException {
-        String searchId = (String) ItemID.getValue();
+        String searchId = ItemID.getValue();
 
         ItemsFileReader reader = new ItemsFileReader();
         ItemsFileWriter writer = new ItemsFileWriter();
@@ -115,10 +110,10 @@ public class EditItemController {
                     item.setLoanType(loanTypeChoiceBox.getValue());
                 }
                 if (genreChoiceBox.getValue() != null) {
-                    item.setGenre((String) genreChoiceBox.getValue());
+                    item.setGenre(genreChoiceBox.getValue());
                 }
                 if (RentalTypeChoiceBox.getValue() != null) {
-                    item.setRentalType((String) RentalTypeChoiceBox.getValue());
+                    item.setRentalType((RentalTypeChoiceBox.getValue()));
                 }
                 itemDetailsArea.setText(item.toString());
 

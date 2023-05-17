@@ -26,10 +26,7 @@ public class ItemsFileReader {
     public ArrayList<ItemModel> getItemList() {
         return itemList;
     }
-
-    // public ArrayList<ItemModel> readFileItems() {
-    //  return itemList;
-    // }
+    
     public ArrayList<ItemModel> readFileItems() throws IOException {
         File file = new File("items.txt");
         FileReader fw = new FileReader(file);

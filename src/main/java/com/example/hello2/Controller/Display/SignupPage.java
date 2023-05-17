@@ -4,8 +4,6 @@ package com.example.hello2.Controller.Display;
 import com.example.hello2.Model.UserModel;
 import com.example.hello2.Reader.UserFileReader;
 import com.example.hello2.Writer.UsersFileWriter;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -23,14 +20,6 @@ import java.util.Objects;
 
 public class SignupPage {
     public Button back;
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-    private Scene previousScene;
-
-    @FXML
-    private ChoiceBox<String> accountTypeChoiceBox;
-
     @FXML
     private TextField usernameField;
 
@@ -49,7 +38,7 @@ public class SignupPage {
     @FXML
     private TextField Balance;
 
-    public void Back(ActionEvent event) throws IOException {
+    public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
@@ -72,7 +61,7 @@ public class SignupPage {
         UsersFileWriter writer = new UsersFileWriter();
         UserFileReader read = new UserFileReader();
 
-        String passwordRegex = "^(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|.<>\\/?])(?=.*\\d)(?=.*[A-Z])[^,]{8,}$";
+        String passwordRegex = "^(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|.<>?])(?=.*\\d)(?=.*[A-Z])[^,]{8,}$";
         String IDRegex = "^C\\d{3}$";
 
         for (UserModel user : read.readFileUser()) {
@@ -99,10 +88,6 @@ public class SignupPage {
 
         Parent root = loader.load();
         Scene scene = new Scene(root);
-
-//        UNUSED controller = loader.getController();
-//        controller.setUsername(username);
-//        controller.setAccount(accountType);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         if (stage != null) {

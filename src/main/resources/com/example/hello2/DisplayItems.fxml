@@ -28,7 +28,7 @@
     <Button fx:id="Available" layoutX="51.0" layoutY="33.0" mnemonicParsing="false" onAction="#Available"
             prefHeight="26.0" prefWidth="180.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;"
             text="Show Only Available Items"/>
-    <Button fx:id="Unavilable" layoutX="497.0" layoutY="33.0" mnemonicParsing="false" onAction="#Unavilable"
+    <Button fx:id="Unavailable" layoutX="497.0" layoutY="33.0" mnemonicParsing="false" onAction="#Unavailable"
             prefHeight="26.0" prefWidth="180.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;"
             text="Show Only Unavailable"/>
 </AnchorPane>

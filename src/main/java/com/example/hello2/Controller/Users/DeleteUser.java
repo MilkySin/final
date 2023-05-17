@@ -1,11 +1,9 @@
 package com.example.hello2.Controller.Users;
 //fixed
 
-import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Model.UserModel;
 import com.example.hello2.Reader.UserFileReader;
 import com.example.hello2.Writer.UsersFileWriter;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -29,14 +26,14 @@ public class DeleteUser {
 
     public void initialize() throws IOException {
         UserFileReader temp = new UserFileReader();
-        ArrayList<UserModel> Userlist = temp.readFileUser();
-        for (UserModel User : Userlist) {
+        ArrayList<UserModel> userList = temp.readFileUser();
+        for (UserModel User : userList) {
             IDchoicebox.getItems().add(User.getId());
             IDchoicebox.setValue("Select User to Delete");
         }
         IDchoicebox.setOnAction(event -> {
             String searchId = IDchoicebox.getValue();
-            for (UserModel user : Userlist) {
+            for (UserModel user : userList) {
                 if (user.getId().equals(searchId)) {
                     TextArea.setText(user.toString());
                     break; // Exit the loop once a match is found
@@ -50,17 +47,17 @@ public class DeleteUser {
         UserFileReader reader = new UserFileReader();
         UsersFileWriter writer = new UsersFileWriter();
         String searchId = IDchoicebox.getValue();
-        ArrayList<UserModel> Userlist = reader.readFileUser();
+        ArrayList<UserModel> userList = reader.readFileUser();
         String selectedID = IDchoicebox.getValue();
         if (selectedID == null || selectedID.equals("Select user to Delete")) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a User to delete.");
             alert.showAndWait();
             return;
         }
-        for (int i = 0; i < Userlist.size(); i++) {
-            if (Userlist.get(i).getId().equals(searchId)) {
-                Userlist.remove(i);
-                writer.UserWriteFile(Userlist);
+        for (int i = 0; i < userList.size(); i++) {
+            if (userList.get(i).getId().equals(searchId)) {
+                userList.remove(i);
+                writer.UserWriteFile(userList);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Item Successfully deleted.");
                 alert.showAndWait();
                 break;

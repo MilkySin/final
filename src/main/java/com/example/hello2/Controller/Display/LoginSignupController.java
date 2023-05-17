@@ -2,9 +2,6 @@ package com.example.hello2.Controller.Display;
 //choose sign up or login
 //fixed
 
-import com.example.hello2.Controller.Display.ItemSelectGuestController;
-import com.example.hello2.Controller.Display.ItemSelectRegularController;
-import com.example.hello2.Controller.Display.ItemSelectVIPController;
 import com.example.hello2.Model.UserModel;
 import com.example.hello2.Reader.UserFileReader;
 import javafx.event.ActionEvent;
@@ -31,8 +28,6 @@ public class LoginSignupController {
     public PasswordField passwordField;
     @FXML
     public Button LogIn;
-    @FXML
-    private Button signupButton;
 
     @FXML
     public String handleLogIn() throws IOException {

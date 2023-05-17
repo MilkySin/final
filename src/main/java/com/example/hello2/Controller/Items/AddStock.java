@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class AddStock {
     public ChoiceBox<String> Items;
@@ -29,8 +28,8 @@ public class AddStock {
     public void initialize() throws IOException {
         Number.setStyle("-fx-text-fill: black;");
         ItemsFileReader temp = new ItemsFileReader();
-        ArrayList<ItemModel> itemlist = temp.readFileItems();
-        for (ItemModel item : itemlist) {
+        ArrayList<ItemModel> itemList = temp.readFileItems();
+        for (ItemModel item : itemList) {
             Items.getItems().add(item.getID());
             Items.setValue("Select Item to Add Stock to");
             if (item.getID().equals(Items.getValue())) {
@@ -44,8 +43,8 @@ public class AddStock {
 
     public void ShowItemInfo() throws IOException {
         ItemsFileReader temp = new ItemsFileReader();
-        ArrayList<ItemModel> itemlist = temp.readFileItems();
-        for (ItemModel item : itemlist) {
+        ArrayList<ItemModel> itemList = temp.readFileItems();
+        for (ItemModel item : itemList) {
             if (item.getID().equals(Items.getValue())) {
                 itemDetailsArea.setText(item.toString());
 

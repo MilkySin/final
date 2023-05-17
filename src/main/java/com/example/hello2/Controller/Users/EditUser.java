@@ -1,8 +1,7 @@
 package com.example.hello2.Controller.Users;
 //fixed
-import com.example.hello2.Model.ItemModel;
+
 import com.example.hello2.Model.UserModel;
-import com.example.hello2.Reader.ItemsFileReader;
 import com.example.hello2.Reader.UserFileReader;
 import com.example.hello2.Writer.UsersFileWriter;
 import javafx.fxml.FXML;
@@ -19,24 +18,21 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class EditUser {
-    public ChoiceBox ID ;
+    public ChoiceBox<String> ID;
     public Button back;
     public TextField itemIdField;
-    public Label title;
     public TextField UsernameField;
     public TextField PasswordField;
 
-    public ChoiceBox AccountTypeChoicebox;
+    public ChoiceBox<String> AccountTypeChoicebox;
     public TextField Addressfield;
     public Button saveChangesButton;
     public TextArea itemDetailsArea;
-    public Button searchItemButton;
-    public TextField searchIdField;
     public TextField NumberField;
     public TextField balanceField;
 
-    public void initialize () throws IOException {
-        AccountTypeChoicebox.getItems().addAll("Guest","Regular","VIP");
+    public void initialize() throws IOException {
+        AccountTypeChoicebox.getItems().addAll("Guest", "Regular", "VIP");
         AccountTypeChoicebox.setValue("Guest");
         UserFileReader temp = new UserFileReader();
         ArrayList<UserModel> Userlist = temp.readFileUser();
@@ -45,7 +41,7 @@ public class EditUser {
             ID.setValue("Select User to Edit");
         }
         ID.setOnAction(event -> {
-            String searchId = (String) ID.getValue();
+            String searchId = ID.getValue();
             for (UserModel user : Userlist) {
                 if (user.getId().equals(searchId)) {
                     itemDetailsArea.setText(user.toString());
@@ -56,8 +52,8 @@ public class EditUser {
 
     }
 
-    public void saveChanges() throws IOException{
-        String searchId = (String) ID.getValue();
+    public void saveChanges() throws IOException {
+        String searchId = ID.getValue();
         UserFileReader reader = new UserFileReader();
         UsersFileWriter writer = new UsersFileWriter();
 
@@ -83,8 +79,8 @@ public class EditUser {
                     user.setPhoneNumber(Integer.parseInt(NumberField.getText()));
                 }
 
-                if (AccountTypeChoicebox != null && !AccountTypeChoicebox.getValue().toString().isEmpty()) {
-                    user.setAccountType(AccountTypeChoicebox.getValue().toString());
+                if (AccountTypeChoicebox != null && !AccountTypeChoicebox.getValue().isEmpty()) {
+                    user.setAccountType(AccountTypeChoicebox.getValue());
                 }
                 if (!balanceField.getText().isEmpty()) {
                     user.setBalance(Integer.parseInt(balanceField.getText()));
@@ -104,6 +100,7 @@ public class EditUser {
 
 
     }
+
     @FXML
     public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");

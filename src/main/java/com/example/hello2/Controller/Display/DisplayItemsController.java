@@ -3,10 +3,7 @@ package com.example.hello2.Controller.Display;
 //Fixed
 
 import com.example.hello2.Model.ItemModel;
-import com.example.hello2.Model.UserModel;
 import com.example.hello2.Reader.ItemsFileReader;
-import com.example.hello2.Reader.UserFileReader;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,12 +20,10 @@ import java.util.Comparator;
 import java.util.Objects;
 
 public class DisplayItemsController {
-    @FXML
-    public TextArea selectedItemLabel;
     public Button back;
     public TextArea itemstextArea;
     public Button Available;
-    public Button Unavilable;
+    public Button Unavailable;
 
     @FXML
     public void initialize() throws Exception {
@@ -82,11 +77,11 @@ public class DisplayItemsController {
         stage.show();
     }
 
-    public void Available(ActionEvent event) throws IOException {
+    public void Available() throws IOException {
         ItemsFileReader reader = new ItemsFileReader();
-        ArrayList<ItemModel> Itemlist = reader.readFileItems();
+        ArrayList<ItemModel> itemList = reader.readFileItems();
         StringBuilder fileContent = new StringBuilder();
-        for (ItemModel item : Itemlist) {
+        for (ItemModel item : itemList) {
             if (Objects.equals(item.getStatus(), "Available")) {
                 fileContent.append(item);
             }
@@ -94,16 +89,16 @@ public class DisplayItemsController {
         itemstextArea.setText(fileContent.toString());
     }
 
-    public void Unavilable(ActionEvent event) throws IOException {
+    public void Unavailable() throws IOException {
         ItemsFileReader reader = new ItemsFileReader();
-        ArrayList<ItemModel> Itemlist = reader.readFileItems();
-        ArrayList<ItemModel> UNAvaillist = new ArrayList<>();
-        for (ItemModel item : Itemlist) {
+        ArrayList<ItemModel> itemList = reader.readFileItems();
+        ArrayList<ItemModel> unavailableList = new ArrayList<>();
+        for (ItemModel item : itemList) {
             if (Objects.equals(item.getStatus(), "Borrowed")) {
 
-                UNAvaillist.add(item);
+                unavailableList.add(item);
             }
         }
-        itemstextArea.setText(UNAvaillist.toString());
+        itemstextArea.setText(unavailableList.toString());
     }
 }
