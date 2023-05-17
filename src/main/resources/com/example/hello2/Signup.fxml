@@ -36,9 +36,7 @@
             text="Back"/>
     <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="275.0" layoutY="100.0" pickOnBounds="true"
                preserveRatio="true">
-        <image>
-            <Image url="@Images/signup.png"/>
-        </image>
+        <Image url="@Images/signup.png"/>
     </ImageView>
     <TextField fx:id="Balance" layoutX="457.0" layoutY="211.0" prefHeight="40.0" prefWidth="210.0"
                promptText="Enter Your Balance"

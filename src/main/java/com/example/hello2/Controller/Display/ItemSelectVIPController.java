@@ -12,13 +12,14 @@ import com.example.hello2.Writer.UsersFileWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -30,19 +31,16 @@ import java.util.*;
 public class ItemSelectVIPController {
 
     @FXML
-    public Label selectedItemLabel;
-    public Button Return;
+    public Label Account;
     @FXML
     private String ID;
-    @FXML
-    private ProgressBar progressBar;
-    @FXML
-    private Button viewTextFileButton;
 
     public Button back;
     public Text Welcome;
     public Text Balance;
     public Text Points;
+    public ScrollPane ownedItemsDisplay;
+
     @FXML
     private Button freebutton;
 
@@ -54,7 +52,7 @@ public class ItemSelectVIPController {
         return ID;
     }
 
-    public ItemSelectVIPController() throws IOException {
+    public ItemSelectVIPController() {
     }
 
     public void setInitialize() throws IOException {
@@ -94,6 +92,36 @@ public class ItemSelectVIPController {
                 selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsArrayList);
             }
         }
+    }
+
+    public void ownedItems() throws IOException {
+        ArrayList<ItemModel> itemModelArrayList = new ItemsFileReader().readFileItems();
+        ArrayList<SelectedItems> selectedItemsArrayList = new SelectedItemsReader().readFileSelectedItems();
+        FlowPane flowPane = new FlowPane();
+        flowPane.setHgap(30); // Set horizontal gap between elements
+        flowPane.setVgap(10); // Set vertical gap between elements
+        flowPane.setAlignment(Pos.TOP_LEFT);
+        flowPane.setPrefSize(600, 400);
+        flowPane.setPadding(new Insets(10));
+
+        ownedItemsDisplay.setFitToWidth(true);
+        ownedItemsDisplay.setFitToHeight(true);
+        flowPane.setStyle("-fx-background-color: #515151;"); // Set background color of ScrollPane
+
+        for (SelectedItems temp : selectedItemsArrayList) {
+            for (ItemModel items : itemModelArrayList) {
+                if (temp.getSelectedItemsList().contains(items.getID()) && Objects.equals(temp.getID(), ID)) {
+                    Text owned = new Text(items.toString());
+                    owned.setStyle("-fx-fill: white;"); // Set text color of the Text
+                    owned.setFont(Font.font(14));
+                    HBox itemBox = new HBox();
+                    itemBox.getChildren().add(owned);
+                    flowPane.getChildren().add(itemBox);
+                }
+            }
+        }
+
+        ownedItemsDisplay.setContent(flowPane);
     }
 
     public void freeItem() throws IOException {
@@ -331,7 +359,7 @@ public class ItemSelectVIPController {
         }
     }
 
-    public void Back(ActionEvent event) throws IOException {
+    public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
@@ -341,7 +369,7 @@ public class ItemSelectVIPController {
         stage.show();
     }
 
-    public void Return(ActionEvent event) throws IOException {
+    public void Return() throws IOException {
         SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
 

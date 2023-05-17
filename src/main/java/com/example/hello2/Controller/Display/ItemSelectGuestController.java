@@ -33,17 +33,10 @@ import java.util.Objects;
 public class ItemSelectGuestController {
     @FXML
     public Label Account;
-    public Button Return;
     private String ID;
-
-    @FXML
-    private ProgressBar progressBar;
     public Text Balance;
     public ScrollPane ownedItemsDisplay;
     public Text Welcome;
-
-    @FXML
-    private Button viewTextFileButton;
     public Button back;
 
     public void setID(String ID) {
@@ -59,7 +52,6 @@ public class ItemSelectGuestController {
         UserFileReader userFileReader = new UserFileReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
 
-        ArrayList<ItemModel> itemModelArrayList = new ItemsFileReader().readFileItems();
         ArrayList<SelectedItems> selectedItemsArrayList = new SelectedItemsReader().readFileSelectedItems();
         for (UserModel user : userFileReader.readFileUser()) {
             if (Objects.equals(user.getId(), getUserID())) {
@@ -160,7 +152,6 @@ public class ItemSelectGuestController {
             HBox itemBox = new HBox();
 
             if (items.getCopies() == 0 || Objects.equals(items.getLoanType(), "2 Days Loan")) {
-                System.out.println(items.getLoanType());
                 checkBox.setDisable(true);
             } else {
                 int finalMaxSelect = maxSelect;
@@ -248,13 +239,11 @@ public class ItemSelectGuestController {
         for (SelectedItems list : selectedItemsReader.getSelectedItemsList()) {
             if (list.getSelectedItemsList().isEmpty() && Objects.equals(list.getID(), ID)) {
                 list.setSelectedItemsList(tempArray);
-                System.out.println(list.getSelectedItemsList());
                 selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
                 break;
             }
             if (!(list.getSelectedItemsList().isEmpty()) && Objects.equals(list.getID(), ID)) {
                 list.getSelectedItemsList().addAll(tempArray);
-                System.out.println(list.getSelectedItemsList());
                 selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
                 break;
             }
