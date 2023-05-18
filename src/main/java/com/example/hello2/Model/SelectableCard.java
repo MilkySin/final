@@ -33,8 +33,8 @@ public class SelectableCard extends StackPane {
         background.setStroke(Color.BLACK);
 
         imageView = new ImageView();
-        imageView.setFitWidth(120);
-        imageView.setFitHeight(120);
+        imageView.setFitWidth(130);
+        imageView.setFitHeight(130);
         imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
         imageView.setCache(true);
@@ -48,7 +48,7 @@ public class SelectableCard extends StackPane {
 
         setOnMouseEntered(event -> {
             if (!cardIsDisabled() && !isSelected()) {
-                background.setFill(Color.PINK);
+                background.setFill(Color.web("#c3c3d4"));
             }
 
         });
@@ -67,6 +67,7 @@ public class SelectableCard extends StackPane {
         checkBox.setSelected(selected);
         updateStyle();
     }
+
 
     public boolean isEmpty() {
         return text.getText().isEmpty();

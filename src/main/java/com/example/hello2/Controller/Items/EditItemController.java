@@ -44,14 +44,14 @@ public class EditItemController {
     public void initialize() throws IOException {
         // Initialize loan type choice box with two options
         loanTypeChoiceBox.getItems().addAll("1 Week Loan", "2 Days Loan");
-        loanTypeChoiceBox.setValue("loan type");
+        loanTypeChoiceBox.setValue("1 Week Loan");
         // Initialize Rental type choice box with two options
         RentalTypeChoiceBox.getItems().addAll("DVD", "Record", "Game");
-        RentalTypeChoiceBox.setValue("rental type");
+        RentalTypeChoiceBox.setValue("DVD");
 
         // Initialize rental status choice box with two options
         rentalStatusChoiceBox.getItems().addAll("Available", "Borrowed");
-        rentalStatusChoiceBox.setValue("rental status");
+        rentalStatusChoiceBox.setValue("Available");
         ItemsFileReader temp = new ItemsFileReader();
         ArrayList<ItemModel> itemList = temp.readFileItems();
 
