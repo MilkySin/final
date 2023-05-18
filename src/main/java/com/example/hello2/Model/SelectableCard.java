@@ -50,6 +50,7 @@ public class SelectableCard extends StackPane {
             if (!cardIsDisabled() && !isSelected()) {
                 background.setFill(Color.PINK);
             }
+
         });
         setOnMouseExited(event -> {
             if (!cardIsDisabled() && !isSelected()) {
