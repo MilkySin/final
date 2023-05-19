@@ -17,6 +17,15 @@ public class ItemModel {
     private String status;
 
     private ArrayList<ItemModel> itemList = new ArrayList<>();
+    private boolean selected;
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 
     public ItemModel(String ID, String title, String genre, String rentalType, String loanType, int copies,
                      double fee, String status) {
