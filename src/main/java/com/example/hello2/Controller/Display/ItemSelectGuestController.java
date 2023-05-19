@@ -227,67 +227,32 @@ public class ItemSelectGuestController {
         dvdButton.setOnAction(event -> {
             // Filter items based on DVD type
             flowPane.getChildren().clear();
-            SelectableCard DVDcard = new SelectableCard();
             for (SelectableCard card : cardList) {
                 if (Objects.equals(card.getUserData(), "DVD")) {
                     flowPane.getChildren().add(card);
                 }
             }
-
-
         });
 
 
         recordButton.setOnAction(event -> {
             // Filter items based on Record type
             flowPane.getChildren().clear();
-            for (ItemModel item : itemModelArrayList) {
-                if (Objects.equals(item.getRentalType(), "Record")) {
-                    SelectableCard RecordCard = new SelectableCard();
-                    if (Objects.equals(item.getTitle(), "Casablanca")) {
-                        RecordCard.setImage(Casablanca);
-                    } else if (Objects.equals(item.getTitle(), "Star Wars")) {
-                        RecordCard.setImage(starWars);
-                    } else if (Objects.equals(item.getTitle(), "Easy Rider")) {
-                        RecordCard.setImage(EasyRider);
-                    } else if (Objects.equals(item.getTitle(), "Blade Runner")) {
-                        RecordCard.setImage(BladeRunner);
-                    }
-                    RecordCard.setText(item.toString());
-                    if (item.getCopies() == 0 || Objects.equals(item.getLoanType(), "2 Days Loan")) {
-                        RecordCard.cardSetDisable(true);
-                    }
-                    flowPane.getChildren().add(RecordCard);
+            for (SelectableCard card : cardList) {
+                if (Objects.equals(card.getUserData(), "Record")) {
+                    flowPane.getChildren().add(card);
                 }
             }
-
-
         });
 
         gameButton.setOnAction(event -> {
             // Filter items based on Game type
             flowPane.getChildren().clear();
-            for (ItemModel item : itemModelArrayList) {
-                SelectableCard GameCard = new SelectableCard();
-                if (Objects.equals(item.getRentalType(), "Game")) {
-                    if (Objects.equals(item.getTitle(), "Overwatch")) {
-                        GameCard.setImage(Overwatch);
-                    } else if (Objects.equals(item.getTitle(), "The Last of Us")) {
-                        GameCard.setImage(TheLastOfUs);
-                    } else if (Objects.equals(item.getTitle(), "RDR")) {
-                        GameCard.setImage(RedDeadRedemption);
-                    }
-
-                    GameCard.setText(item.toString());
-                    if (item.getCopies() == 0 || Objects.equals(item.getLoanType(), "2 Days Loan")) {
-                        GameCard.cardSetDisable(true);
-                    }
-                    flowPane.getChildren().add(GameCard);
+            for (SelectableCard card : cardList) {
+                if (Objects.equals(card.getUserData(), "Game")) {
+                    flowPane.getChildren().add(card);
                 }
-
             }
-
-
         });
 
 
@@ -366,7 +331,6 @@ public class ItemSelectGuestController {
                     }
                 }
             }
-
             // decrement copies value of selected item
             ArrayList<ItemModel> content = itemsFileReader.getItemList();
             for (SelectableCard card : cardList) {
@@ -378,9 +342,6 @@ public class ItemSelectGuestController {
                     }
                 }
             }
-
-
-
 
             for (SelectedItems list : selectedItemsReader.getSelectedItemsList()) {
                 if (list.getSelectedItemsList().isEmpty() && Objects.equals(list.getID(), ID)) {
@@ -397,12 +358,6 @@ public class ItemSelectGuestController {
         }
 
     }
-
-
-
-
-
-
 
     public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
@@ -445,6 +400,7 @@ public class ItemSelectGuestController {
                     SelectableCard selectableCard = new SelectableCard();
                     selectableCard.setUserData(items.getID());
                     selectableCard.setText(items.toString());
+
                     if (Objects.equals(items.getTitle(), "Casablanca")) {
                         selectableCard.setImage(Casablanca);
                     } else if (Objects.equals(items.getTitle(), "Star Wars")) {
@@ -470,8 +426,18 @@ public class ItemSelectGuestController {
                     if (items.getCopies() == 0) {
                         selectableCard.setDisable(false);
                     }
+                    selectableCard.setOnMouseClicked(event -> {
+                        if (!selectableCard.cardIsDisabled()) {
+                            if (selectableCard.isSelected()){
+                                selectableCard.setSelected(false);
+                            } else if (!selectableCard.isSelected() ) {
+                                selectableCard.setSelected(true);
+                            }
+                        }
+                    });
+
                     selectableCardslist.add(selectableCard);
-                    flowPane.getChildren().addAll(selectableCardslist);
+                    flowPane.getChildren().addAll(selectableCard);
                 }
             }
         }

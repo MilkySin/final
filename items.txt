@@ -1,5 +1,5 @@
 I013-2016,Overwatch,None,Game,2 Days Loan,3,2.99,Available
-I012-2013,The Last of Us,None,Game,1 Week Loan,3,8.99,Available
+I012-2013,The Last of Us,None,Game,1 Week Loan,4,8.99,Available
 I011-2010,RDR,None,Game,2 Days Loan,2,4.99,Available
 I010-2017,IT,Horror,DVD,2 Days Loan,1,2.99,Available
 I009-1999,Fight Club,Drama,DVD,2 Days Loan,3,5.99,Available
