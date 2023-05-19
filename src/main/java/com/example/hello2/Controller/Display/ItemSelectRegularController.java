@@ -284,6 +284,7 @@ public class ItemSelectRegularController {
                 }
             }
         }
+
         scrollPane.setContent(flowPane);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
