@@ -1,4 +1,4 @@
-help,Hellooooo123!,C245,sdfg,Guest,987654,-96,4475.01
+help,Hellooooo123!,C245,sdfg,VIP,987654,-96,4462.03
 Hello,Hello123!@,C345,LOL,Regular,909090909,0,0.0
 gfj,HIhi2345!,C457,saigoj,Regular,98765,0,0.0
 baby,Baby123!,C004,home,Regular,987654,0,0.0
