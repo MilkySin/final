@@ -298,7 +298,7 @@ public class ItemSelectGuestController {
         Optional<ButtonType> result = dialog.showAndWait();
 
         ArrayList<String> tempArray = new ArrayList<>();
-        for (SelectableCard card : cardList) {
+        for (SelectableCard card :cardList) {
             if (card.isSelected()) {
                 tempArray.add(card.getId());
             }
@@ -306,7 +306,7 @@ public class ItemSelectGuestController {
         float total = 0;
         for (ItemModel items : itemModelArrayList) {
             for (SelectableCard card : cardList) {
-                if (Objects.equals(card.getUserData(), items.getID()) && card.isSelected()) {
+                if (Objects.equals(card.getId(), items.getID()) && card.isSelected()) {
                     total += items.getFee();
                 }
             }
@@ -382,14 +382,16 @@ public class ItemSelectGuestController {
         List<SelectableCard> cardList = new ArrayList<>();
 
 
+
         FlowPane flowPane = new FlowPane();
-        flowPane.setHgap(10); // Set horizontal gap between elements
-        flowPane.setVgap(10); // Set vertical gap between elements
+        flowPane.setHgap(10);
+        flowPane.setVgap(10);
         flowPane.setAlignment(Pos.TOP_LEFT);
         flowPane.setPrefSize(860, 600);
         flowPane.setStyle("-fx-background-color: #e6becd;");
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setStyle("-fx-background-color: #e6becd;");
+
 
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
@@ -429,9 +431,9 @@ public class ItemSelectGuestController {
                     }
                     selectableCard.setOnMouseClicked(event -> {
                         if (!selectableCard.cardIsDisabled()) {
-                            if (selectableCard.isSelected()) {
+                            if (selectableCard.isSelected()){
                                 selectableCard.setSelected(false);
-                            } else if (!selectableCard.isSelected()) {
+                            } else if (!selectableCard.isSelected() ) {
                                 selectableCard.setSelected(true);
                             }
                         }
