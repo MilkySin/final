@@ -130,6 +130,28 @@ public class ItemSelectGuestController {
         Button gameButton = new Button("Game");
         Button allButton = new Button("All");
 
+        Path pathCasablanca = Paths.get("src/main/resources/com/example/hello2/Images/Casablanca.png");
+        Path pathStarWars = Paths.get("src/main/resources/com/example/hello2/Images/StarWars.png");
+        Path pathEasyRider = Paths.get("src/main/resources/com/example/hello2/Images/EasyRider.png");
+        Path pathBladeRunner = Paths.get("src/main/resources/com/example/hello2/Images/BladeRunner.png");
+        Path pathTheDarkKnight = Paths.get("src/main/resources/com/example/hello2/Images/TheDarkKnight.png");
+        Path pathFightClub = Paths.get("src/main/resources/com/example/hello2/Images/FightClub.png");
+        Path pathIT = Paths.get("src/main/resources/com/example/hello2/Images/IT.png");
+        Path pathOverwatch = Paths.get("src/main/resources/com/example/hello2/Images/overwatch.png");
+        Path pathRedDeadRedemption = Paths.get("src/main/resources/com/example/hello2/Images/RDR.png");
+        Path pathTheLastOfUs = Paths.get("src/main/resources/com/example/hello2/Images/ThelastOfUS.png");
+
+        Image Casablanca = new Image(String.valueOf(pathCasablanca.toUri()));
+        Image starWars = new Image(String.valueOf(pathStarWars.toUri()));
+        Image EasyRider = new Image(String.valueOf(pathEasyRider.toUri()));
+        Image BladeRunner = new Image(String.valueOf(pathBladeRunner.toUri()));
+        Image TheDarkKnight = new Image(String.valueOf(pathTheDarkKnight.toUri()));
+        Image FightClub = new Image(String.valueOf(pathFightClub.toUri()));
+        Image IT = new Image(String.valueOf(pathIT.toUri()));
+        Image Overwatch = new Image(String.valueOf(pathOverwatch.toUri()));
+        Image RedDeadRedemption = new Image(String.valueOf(pathRedDeadRedemption.toUri()));
+        Image TheLastOfUs = new Image(String.valueOf(pathTheLastOfUs.toUri()));
+
         FlowPane flowPane = new FlowPane();
         flowPane.setHgap(10);
         flowPane.setVgap(10);
@@ -154,28 +176,9 @@ public class ItemSelectGuestController {
         final int[] selectedCount = {0};
         for (ItemModel items : itemModelArrayList) {
             SelectableCard selectableCard = new SelectableCard();
-            Path pathCasablanca = Paths.get("src/main/resources/com/example/hello2/Images/Casablanca.png");
-            Path pathStarWars = Paths.get("src/main/resources/com/example/hello2/Images/StarWars.png");
-            Path pathEasyRider = Paths.get("src/main/resources/com/example/hello2/Images/EasyRider.png");
-            Path pathBladeRunner = Paths.get("src/main/resources/com/example/hello2/Images/BladeRunner.png");
-            Path pathTheDarkKnight = Paths.get("src/main/resources/com/example/hello2/Images/TheDarkKnight.png");
-            Path pathFightClub = Paths.get("src/main/resources/com/example/hello2/Images/FightClub.png");
-            Path pathIT = Paths.get("src/main/resources/com/example/hello2/Images/IT.png");
-            Path pathOverwatch = Paths.get("src/main/resources/com/example/hello2/Images/overwatch.png");
-            Path pathRedDeadRedemption = Paths.get("src/main/resources/com/example/hello2/Images/RDR.png");
-            Path pathTheLastOfUs = Paths.get("src/main/resources/com/example/hello2/Images/ThelastOfUS.png");
+            ;
 
             selectableCard.setText(items.toString());
-            Image Casablanca = new Image(String.valueOf(pathCasablanca.toUri()));
-            Image starWars = new Image(String.valueOf(pathStarWars.toUri()));
-            Image EasyRider = new Image(String.valueOf(pathEasyRider.toUri()));
-            Image BladeRunner = new Image(String.valueOf(pathBladeRunner.toUri()));
-            Image TheDarkKnight = new Image(String.valueOf(pathTheDarkKnight.toUri()));
-            Image FightClub = new Image(String.valueOf(pathFightClub.toUri()));
-            Image IT = new Image(String.valueOf(pathIT.toUri()));
-            Image Overwatch = new Image(String.valueOf(pathOverwatch.toUri()));
-            Image RedDeadRedemption = new Image(String.valueOf(pathRedDeadRedemption.toUri()));
-            Image TheLastOfUs = new Image(String.valueOf(pathTheLastOfUs.toUri()));
 
 
             if (Objects.equals(items.getTitle(), "Casablanca")) {
@@ -184,19 +187,19 @@ public class ItemSelectGuestController {
                 selectableCard.setImage(starWars);
             } else if (Objects.equals(items.getTitle(), "Easy Rider")) {
                 selectableCard.setImage(EasyRider);
-            }else if (Objects.equals(items.getTitle(), "Blade Runner")) {
+            } else if (Objects.equals(items.getTitle(), "Blade Runner")) {
                 selectableCard.setImage(BladeRunner);
-            }else if (Objects.equals(items.getTitle(), "The Dark Knight")) {
+            } else if (Objects.equals(items.getTitle(), "The Dark Knight")) {
                 selectableCard.setImage(TheDarkKnight);
-            }else if (Objects.equals(items.getTitle(), "Fight Club")) {
+            } else if (Objects.equals(items.getTitle(), "Fight Club")) {
                 selectableCard.setImage(FightClub);
-            }else if(Objects.equals(items.getTitle(),"IT")){
+            } else if (Objects.equals(items.getTitle(), "IT")) {
                 selectableCard.setImage(IT);
-            }else if (Objects.equals(items.getTitle(), "Overwatch")) {
+            } else if (Objects.equals(items.getTitle(), "Overwatch")) {
                 selectableCard.setImage(Overwatch);
-            }else if (Objects.equals(items.getTitle(), "The Last of Us")) {
+            } else if (Objects.equals(items.getTitle(), "The Last of Us")) {
                 selectableCard.setImage(TheLastOfUs);
-            }else if(Objects.equals(items.getTitle(),"RDR")) {
+            } else if (Objects.equals(items.getTitle(), "RDR")) {
                 selectableCard.setImage(RedDeadRedemption);
             }
             if (items.getCopies() == 0 || Objects.equals(items.getLoanType(), "2 Days Loan")) {
@@ -222,29 +225,31 @@ public class ItemSelectGuestController {
         dvdButton.setOnAction(event -> {
             // Filter items based on DVD type
             flowPane.getChildren().clear();
-            for (ItemModel item:itemModelArrayList ){
+            for (ItemModel item : itemModelArrayList) {
                 if (Objects.equals(item.getRentalType(), "DVD")) {
                     SelectableCard DVDcard = new SelectableCard();
-                    Path pathTheDarkKnight = Paths.get("src/main/resources/com/example/hello2/Images/TheDarkKnight.png");
-                    Path pathFightClub = Paths.get("src/main/resources/com/example/hello2/Images/FightClub.png");
-                    Path pathIT = Paths.get("src/main/resources/com/example/hello2/Images/IT.png");
-                    Image TheDarkKnight = new Image(String.valueOf(pathTheDarkKnight.toUri()));
-                    Image FightClub = new Image(String.valueOf(pathFightClub.toUri()));
-                    Image IT = new Image(String.valueOf(pathIT.toUri()));
+//                    Path pathTheDarkKnight = Paths.get("src/main/resources/com/example/hello2/Images/TheDarkKnight
+//                    .png");
+//                    Path pathFightClub = Paths.get("src/main/resources/com/example/hello2/Images/FightClub.png");
+//                    Path pathIT = Paths.get("src/main/resources/com/example/hello2/Images/IT.png");
+//                    Image TheDarkKnight = new Image(String.valueOf(pathTheDarkKnight.toUri()));
+//                    Image FightClub = new Image(String.valueOf(pathFightClub.toUri()));
+//                    Image IT = new Image(String.valueOf(pathIT.toUri()));
                     if (Objects.equals(item.getTitle(), "The Dark Knight")) {
                         DVDcard.setImage(TheDarkKnight);
-                    }else if (Objects.equals(item.getTitle(), "Fight Club")) {
+                    } else if (Objects.equals(item.getTitle(), "Fight Club")) {
                         DVDcard.setImage(FightClub);
-                    }else if(Objects.equals(item.getTitle(),"IT")){
-                        DVDcard.setImage(IT);}
+                    } else if (Objects.equals(item.getTitle(), "IT")) {
+                        DVDcard.setImage(IT);
+                    }
                     DVDcard.setText(item.toString());
-                    if (item.getCopies() == 0 || Objects.equals(item.getLoanType(), "2 Days Loan") ){
+                    if (item.getCopies() == 0 || Objects.equals(item.getLoanType(), "2 Days Loan")) {
                         DVDcard.cardSetDisable(true);
                     }
 
 
-
-                    flowPane.getChildren().add(DVDcard);}
+                    flowPane.getChildren().add(DVDcard);
+                }
             }
 
         });
@@ -253,11 +258,11 @@ public class ItemSelectGuestController {
         recordButton.setOnAction(event -> {
             // Filter items based on Record type
             flowPane.getChildren().clear();
-            for (ItemModel item:itemModelArrayList ){
+            for (ItemModel item : itemModelArrayList) {
                 if (Objects.equals(item.getRentalType(), "Record")) {
                     SelectableCard RecordCard = new SelectableCard();
                     RecordCard.setText(item.toString());
-                    if (item.getCopies() == 0 || Objects.equals(item.getLoanType(), "2 Days Loan") ){
+                    if (item.getCopies() == 0 || Objects.equals(item.getLoanType(), "2 Days Loan")) {
                         RecordCard.cardSetDisable(true);
                     }
                     flowPane.getChildren().add(RecordCard);
@@ -270,11 +275,11 @@ public class ItemSelectGuestController {
         gameButton.setOnAction(event -> {
             // Filter items based on Game type
             flowPane.getChildren().clear();
-            for (ItemModel item:itemModelArrayList ){
+            for (ItemModel item : itemModelArrayList) {
                 if (Objects.equals(item.getRentalType(), "Game")) {
                     SelectableCard GameCard = new SelectableCard();
                     GameCard.setText(item.toString());
-                    if (item.getCopies() == 0 || Objects.equals(item.getLoanType(), "2 Days Loan") ){
+                    if (item.getCopies() == 0 || Objects.equals(item.getLoanType(), "2 Days Loan")) {
                         GameCard.cardSetDisable(true);
                     }
                     flowPane.getChildren().add(GameCard);
