@@ -379,7 +379,7 @@ public class ItemSelectGuestController {
         ItemsFileReader itemsFileReader = new ItemsFileReader();
         ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
 
-        List<SelectableCard> selectableCardslist = new ArrayList<>();
+        List<SelectableCard> cardList = new ArrayList<>();
 
 
 
@@ -436,7 +436,7 @@ public class ItemSelectGuestController {
                         }
                     });
 
-                    selectableCardslist.add(selectableCard);
+                    cardList.add(selectableCard);
                     flowPane.getChildren().addAll(selectableCard);
                 }
             }
@@ -449,7 +449,7 @@ public class ItemSelectGuestController {
         alert.showAndWait();
 
         ArrayList<ItemModel> content = itemsFileReader.getItemList();
-        for (SelectableCard selectableCard : selectableCardslist) {
+        for (SelectableCard selectableCard : cardList) {
             for (ItemModel item : content) {
                 if (selectableCard.getText().equals(item.toString()) && selectableCard.isSelected()) {
                     item.setCopies(item.getCopies() + 1); // decrement the copies value
@@ -459,7 +459,7 @@ public class ItemSelectGuestController {
             }
         }
         ArrayList<String> tempArray = new ArrayList<>();
-        for (SelectableCard selectablecard : selectableCardslist) {
+        for (SelectableCard selectablecard : cardList) {
             if (selectablecard.isSelected()) {
                 tempArray.add((String) selectablecard.getUserData());
             }
