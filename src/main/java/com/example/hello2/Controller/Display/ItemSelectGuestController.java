@@ -228,13 +228,7 @@ public class ItemSelectGuestController {
             for (ItemModel item : itemModelArrayList) {
                 if (Objects.equals(item.getRentalType(), "DVD")) {
                     SelectableCard DVDcard = new SelectableCard();
-//                    Path pathTheDarkKnight = Paths.get("src/main/resources/com/example/hello2/Images/TheDarkKnight
-//                    .png");
-//                    Path pathFightClub = Paths.get("src/main/resources/com/example/hello2/Images/FightClub.png");
-//                    Path pathIT = Paths.get("src/main/resources/com/example/hello2/Images/IT.png");
-//                    Image TheDarkKnight = new Image(String.valueOf(pathTheDarkKnight.toUri()));
-//                    Image FightClub = new Image(String.valueOf(pathFightClub.toUri()));
-//                    Image IT = new Image(String.valueOf(pathIT.toUri()));
+
                     if (Objects.equals(item.getTitle(), "The Dark Knight")) {
                         DVDcard.setImage(TheDarkKnight);
                     } else if (Objects.equals(item.getTitle(), "Fight Club")) {
@@ -261,6 +255,14 @@ public class ItemSelectGuestController {
             for (ItemModel item : itemModelArrayList) {
                 if (Objects.equals(item.getRentalType(), "Record")) {
                     SelectableCard RecordCard = new SelectableCard();
+                    if (Objects.equals(item.getTitle(), "Casablanca")) {
+                        RecordCard.setImage(Casablanca);
+                    } else if (Objects.equals(item.getTitle(), "Star Wars")) {
+                        RecordCard.setImage(starWars);
+                    } else if (Objects.equals(item.getTitle(), "Easy Rider")) {
+                        RecordCard.setImage(EasyRider);
+                    } else if (Objects.equals(item.getTitle(), "Blade Runner")) {
+                        RecordCard.setImage(BladeRunner);}
                     RecordCard.setText(item.toString());
                     if (item.getCopies() == 0 || Objects.equals(item.getLoanType(), "2 Days Loan")) {
                         RecordCard.cardSetDisable(true);
@@ -276,8 +278,16 @@ public class ItemSelectGuestController {
             // Filter items based on Game type
             flowPane.getChildren().clear();
             for (ItemModel item : itemModelArrayList) {
+                SelectableCard GameCard = new SelectableCard();
                 if (Objects.equals(item.getRentalType(), "Game")) {
-                    SelectableCard GameCard = new SelectableCard();
+                    if (Objects.equals(item.getTitle(), "Overwatch")) {
+                        GameCard.setImage(Overwatch);
+                    } else if (Objects.equals(item.getTitle(), "The Last of Us")) {
+                        GameCard.setImage(TheLastOfUs);
+                    } else if (Objects.equals(item.getTitle(), "RDR")) {
+                        GameCard.setImage(RedDeadRedemption);
+                    }
+
                     GameCard.setText(item.toString());
                     if (item.getCopies() == 0 || Objects.equals(item.getLoanType(), "2 Days Loan")) {
                         GameCard.cardSetDisable(true);
