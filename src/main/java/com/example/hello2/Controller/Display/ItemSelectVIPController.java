@@ -10,7 +10,6 @@ import com.example.hello2.Reader.UserFileReader;
 import com.example.hello2.Writer.ItemsFileWriter;
 import com.example.hello2.Writer.SelectedItemsWriter;
 import com.example.hello2.Writer.UsersFileWriter;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -33,8 +32,6 @@ import java.util.*;
 
 public class ItemSelectVIPController {
 
-    @FXML
-    public Label Account;
     @FXML
     private String ID;
 
@@ -88,7 +85,7 @@ public class ItemSelectVIPController {
 
         for (UserModel user : userFileReader.readFileUser()) {
             if (Objects.equals(user.getId(), getUserID())) {
-                Balance.setText("Balance: $" + user.getBalance());
+                Balance.setText("Balance: $" + String.format("%.2f", user.getBalance()));
                 Welcome.setText("Welcome: " + user.getUsername());
                 Points.setText("Current Points: " + (user.getNumReturned() * 10));
                 freebutton.setVisible(user.getNumReturned() >= 10);
@@ -156,20 +153,25 @@ public class ItemSelectVIPController {
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
         UsersFileWriter usersFileWriter = new UsersFileWriter();
         UserFileReader userFileReader = new UserFileReader();
-        List<CheckBox> checkBoxList = new ArrayList<>();
+        List<SelectableCard> cardList = new ArrayList<>();
+
+        Button dvdButton = new Button("DVD");
+        Button recordButton = new Button("Record");
+        Button gameButton = new Button("Game");
+        Button allButton = new Button("All");
 
         FlowPane flowPane = new FlowPane();
         flowPane.setHgap(10); // Set horizontal gap between elements
         flowPane.setVgap(10); // Set vertical gap between elements
         flowPane.setAlignment(Pos.TOP_LEFT);
-        flowPane.setPrefSize(530, 400);
+        flowPane.setPrefSize(860, 600);
+        flowPane.setStyle("-fx-background-color: #e6becd;");
         ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setStyle("-fx-background-color: #e6becd;");
 
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
-
         ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
-
         int points = 0;
         for (UserModel user : userFileReader.readFileUser()) {
             if (Objects.equals(user.getId(), getUserID())) {
@@ -177,45 +179,103 @@ public class ItemSelectVIPController {
             }
         }
 
-        if (points < 100) {
-            freebutton.setVisible(false);
-        }
-
-
         final int[] selectedCount = {0};
         for (ItemModel items : itemModelArrayList) {
-            CheckBox checkBox = new CheckBox(items.toString());
-            checkBox.setUserData(items.getID());
-            HBox itemBox = new HBox();
+            SelectableCard selectableCard = new SelectableCard();
 
+            selectableCard.setText(items.toString());
+            selectableCard.setUserData(items.getRentalType());
+            selectableCard.setId(items.getID());
+
+
+            if (Objects.equals(items.getTitle(), "Casablanca")) {
+                selectableCard.setImage(Casablanca);
+            } else if (Objects.equals(items.getTitle(), "Star Wars")) {
+                selectableCard.setImage(starWars);
+            } else if (Objects.equals(items.getTitle(), "Easy Rider")) {
+                selectableCard.setImage(EasyRider);
+            } else if (Objects.equals(items.getTitle(), "Blade Runner")) {
+                selectableCard.setImage(BladeRunner);
+            } else if (Objects.equals(items.getTitle(), "The Dark Knight")) {
+                selectableCard.setImage(TheDarkKnight);
+            } else if (Objects.equals(items.getTitle(), "Fight Club")) {
+                selectableCard.setImage(FightClub);
+            } else if (Objects.equals(items.getTitle(), "IT")) {
+                selectableCard.setImage(IT);
+            } else if (Objects.equals(items.getTitle(), "Overwatch")) {
+                selectableCard.setImage(Overwatch);
+            } else if (Objects.equals(items.getTitle(), "The Last of Us")) {
+                selectableCard.setImage(TheLastOfUs);
+            } else if (Objects.equals(items.getTitle(), "RDR")) {
+                selectableCard.setImage(RedDeadRedemption);
+            }
             if (items.getCopies() == 0) {
-                checkBox.setDisable(true);
+                selectableCard.cardSetDisable(true);
             } else {
                 int finalPoints = points;
-                checkBox.setOnAction((ActionEvent event) -> {
-                    if (checkBox.isSelected()) {
-                        if (selectedCount[0] < finalPoints / 10) {
+                selectableCard.setOnMouseClicked((event) -> {
+                    if (!selectableCard.cardIsDisabled()) {
+                        if (selectedCount[0] > 0 && selectableCard.isSelected()) {
+                            selectedCount[0]--;
+                            selectableCard.setSelected(false);
+                        } else if (!selectableCard.isSelected() && selectedCount[0] < finalPoints / 10) {
                             selectedCount[0]++;
-                        } else {
-                            checkBox.setSelected(false);
+                            selectableCard.setSelected(true);
                         }
-                    } else {
-                        selectedCount[0]--;
                     }
                 });
             }
 
-            checkBoxList.add(checkBox);
-            itemBox.getChildren().addAll(checkBox);
-            flowPane.getChildren().addAll(itemBox);
+            cardList.add(selectableCard);
+            flowPane.getChildren().add(selectableCard);
         }
 
+        dvdButton.setOnAction(event -> {
+            // Filter items based on DVD type
+            flowPane.getChildren().clear();
+            for (SelectableCard card : cardList) {
+                if (Objects.equals(card.getUserData(), "DVD")) {
+                    flowPane.getChildren().add(card);
+                }
+            }
+        });
+
+
+        recordButton.setOnAction(event -> {
+            // Filter items based on Record type
+            flowPane.getChildren().clear();
+            for (SelectableCard card : cardList) {
+                if (Objects.equals(card.getUserData(), "Record")) {
+                    flowPane.getChildren().add(card);
+                }
+            }
+        });
+
+        gameButton.setOnAction(event -> {
+            // Filter items based on Game type
+            flowPane.getChildren().clear();
+            for (SelectableCard card : cardList) {
+                if (Objects.equals(card.getUserData(), "Game")) {
+                    flowPane.getChildren().add(card);
+                }
+            }
+        });
+
+
+        allButton.setOnAction(event -> {
+            // Show all items
+            flowPane.getChildren().clear();
+            flowPane.getChildren().addAll(cardList);
+
+        });
+
+
         for (SelectedItems items : selectedItemsReader.readFileSelectedItems()) {
-            for (CheckBox check : checkBoxList) {
+            for (SelectableCard card : cardList) {
                 if (Objects.equals(items.getID(), getUserID())) {
                     for (String sd : items.getSelectedItemsList()) {
-                        if (Objects.equals(sd, check.getUserData())) {
-                            check.setDisable(true);
+                        if (Objects.equals(sd, card.getUserData())) {
+                            card.setDisable(true);
                         }
                     }
                 }
@@ -224,49 +284,69 @@ public class ItemSelectVIPController {
 
         scrollPane.setContent(flowPane);
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText("Select free items from the list:");
-        alert.getDialogPane().setContent(scrollPane);
-        alert.showAndWait();
+        HBox buttonContainer = new HBox(10);
+        buttonContainer.getChildren().addAll(dvdButton, recordButton, gameButton, allButton);
 
-        ArrayList<ItemModel> content = itemsFileReader.getItemList();
-        for (CheckBox checkBox : checkBoxList) {
-            for (ItemModel item : content) {
-                if (checkBox.getText().equals(item.toString()) && checkBox.isSelected()) {
-                    item.setCopies(item.getCopies() - 1); // decrement the copies value
-                    itemsFileWriter.ItemsWriteFile(content); // write the updated items to the file
-                    break;
+        // Create a VBox to hold the button container and flow pane
+        VBox contentContainer = new VBox();
+        contentContainer.getChildren().addAll(buttonContainer, scrollPane);
+        contentContainer.setStyle("-fx-background-color: #e6becd;");
+
+        // Create a new Dialog
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setHeaderText("Select an item from the list:");
+        ButtonType confirmButton = new ButtonType("Confirm", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().setAll(confirmButton, cancelButton);
+
+        // Set the content of the dialog to the contentContainer VBox
+        dialog.getDialogPane().setContent(contentContainer);
+
+        Optional<ButtonType> result = dialog.showAndWait();
+
+        ArrayList<String> tempArray = new ArrayList<>();
+        for (SelectableCard card : cardList) {
+            if (card.isSelected()) {
+                tempArray.add(card.getId());
+            }
+        }
+
+        if (result.isPresent() && result.get() == confirmButton) {
+            if (points < 100) {
+                freebutton.setVisible(false);
+            }
+
+            for (UserModel user : userFileReader.getUserList()) {
+                if (Objects.equals(user.getId(), getUserID())) {
+                    user.setNumReturned(user.getNumReturned() - tempArray.size() * 10);
+                    Points.setText("Current Points: " + (user.getNumReturned() * 10));
+                    usersFileWriter.UserWriteFile(userFileReader.getUserList());
                 }
             }
-        }
-        ArrayList<String> tempArray = new ArrayList<>();
-        for (CheckBox checkBox : checkBoxList) {
-            if (checkBox.isSelected()) {
-                tempArray.add((String) checkBox.getUserData());
+            // Confirm button is clicked
+            // decrement copies value of selected item
+            ArrayList<ItemModel> content = itemsFileReader.getItemList();
+            for (SelectableCard card : cardList) {
+                for (ItemModel item : content) {
+                    if (card.getText().equals(item.toString()) && card.isSelected()) {
+                        item.setCopies(item.getCopies() - 1); // decrement the copies value
+                        itemsFileWriter.ItemsWriteFile(content); // write the updated items to the file
+                        break;
+                    }
+                }
             }
-        }
 
-
-        for (UserModel user : userFileReader.getUserList()) {
-            if (Objects.equals(user.getId(), getUserID())) {
-                user.setNumReturned(user.getNumReturned() - tempArray.size() * 10);
-                Points.setText("Current Points: " + (user.getNumReturned() * 10));
-                usersFileWriter.UserWriteFile(userFileReader.getUserList());
-            }
-        }
-
-        for (SelectedItems list : selectedItemsReader.getSelectedItemsList()) {
-            if (list.getSelectedItemsList().isEmpty() && Objects.equals(list.getID(), ID)) {
-                list.setSelectedItemsList(tempArray);
-                System.out.println(list.getSelectedItemsList());
-                selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
-                break;
-            }
-            if (!(list.getSelectedItemsList().isEmpty()) && Objects.equals(list.getID(), ID)) {
-                list.getSelectedItemsList().addAll(tempArray);
-                System.out.println(list.getSelectedItemsList());
-                selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
-                break;
+            for (SelectedItems list : selectedItemsReader.getSelectedItemsList()) {
+                if (list.getSelectedItemsList().isEmpty() && Objects.equals(list.getID(), ID)) {
+                    list.setSelectedItemsList(tempArray);
+                    selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
+                    break;
+                }
+                if (!(list.getSelectedItemsList().isEmpty()) && Objects.equals(list.getID(), ID)) {
+                    list.getSelectedItemsList().addAll(tempArray);
+                    selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
+                    break;
+                }
             }
         }
     }
@@ -328,7 +408,7 @@ public class ItemSelectVIPController {
             } else if (Objects.equals(items.getTitle(), "RDR")) {
                 selectableCard.setImage(RedDeadRedemption);
             }
-            if (items.getCopies() == 0 || Objects.equals(items.getLoanType(), "2 Days Loan")) {
+            if (items.getCopies() == 0) {
                 selectableCard.cardSetDisable(true);
             } else {
                 selectableCard.setOnMouseClicked(event -> {
@@ -385,7 +465,7 @@ public class ItemSelectVIPController {
         });
 
 
-        for (SelectedItems items : selectedItemsReader.getSelectedItemsList()) {
+        for (SelectedItems items : selectedItemsReader.readFileSelectedItems()) {
             for (SelectableCard card : cardList) {
                 if (Objects.equals(items.getID(), getUserID())) {
                     for (String sd : items.getSelectedItemsList()) {
@@ -436,14 +516,13 @@ public class ItemSelectVIPController {
         }
 
         if (result.isPresent() && result.get() == confirmButton) {
+            // Confirm button is clicked
             for (UserModel user : userFileReader.readFileUser()) {
                 if (Objects.equals(user.getId(), getUserID())) {
                     if (user.getBalance() >= total) {
-                        System.out.println(user.getBalance());
-                        System.out.println(total);
                         user.setBalance(user.getBalance() - total);
                         usersFileWriter.UserWriteFile(userFileReader.getUserList());
-                        Balance.setText("Balance: $" + user.getBalance());
+                        Balance.setText("Balance: $" + String.format("%.2f", user.getBalance()));
                     } else {
                         Alert alerts = new Alert(Alert.AlertType.ERROR);
                         alerts.setTitle("Insufficient Balance");

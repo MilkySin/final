@@ -80,7 +80,7 @@ public class ItemSelectGuestController {
         ArrayList<SelectedItems> selectedItemsArrayList = new SelectedItemsReader().readFileSelectedItems();
         for (UserModel user : userFileReader.readFileUser()) {
             if (Objects.equals(user.getId(), getUserID())) {
-                Balance.setText("Balance: $" + user.getBalance());
+                Balance.setText("Balance: $" + String.format("%.2f", user.getBalance()));
                 Welcome.setText("Welcome: " + user.getUsername());
             }
         }
@@ -298,7 +298,7 @@ public class ItemSelectGuestController {
         Optional<ButtonType> result = dialog.showAndWait();
 
         ArrayList<String> tempArray = new ArrayList<>();
-        for (SelectableCard card :cardList) {
+        for (SelectableCard card : cardList) {
             if (card.isSelected()) {
                 tempArray.add(card.getId());
             }
@@ -320,7 +320,7 @@ public class ItemSelectGuestController {
                     if (user.getBalance() >= total) {
                         user.setBalance(user.getBalance() - total);
                         usersFileWriter.UserWriteFile(userFileReader.getUserList());
-                        Balance.setText("Balance: $" + user.getBalance());
+                        Balance.setText("Balance: $" + String.format("%.2f", user.getBalance()));
                     } else {
                         Alert alerts = new Alert(Alert.AlertType.ERROR);
                         alerts.setTitle("Insufficient Balance");
@@ -382,7 +382,6 @@ public class ItemSelectGuestController {
         List<SelectableCard> cardList = new ArrayList<>();
 
 
-
         FlowPane flowPane = new FlowPane();
         flowPane.setHgap(10);
         flowPane.setVgap(10);
@@ -431,9 +430,9 @@ public class ItemSelectGuestController {
                     }
                     selectableCard.setOnMouseClicked(event -> {
                         if (!selectableCard.cardIsDisabled()) {
-                            if (selectableCard.isSelected()){
+                            if (selectableCard.isSelected()) {
                                 selectableCard.setSelected(false);
-                            } else if (!selectableCard.isSelected() ) {
+                            } else if (!selectableCard.isSelected()) {
                                 selectableCard.setSelected(true);
                             }
                         }

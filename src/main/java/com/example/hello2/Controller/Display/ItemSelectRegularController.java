@@ -49,6 +49,7 @@ public class ItemSelectRegularController {
     public String getUserID() {
         return ID;
     }
+
     Path pathCasablanca = Paths.get("src/main/resources/com/example/hello2/Images/Casablanca.png");
     Path pathStarWars = Paths.get("src/main/resources/com/example/hello2/Images/StarWars.png");
     Path pathEasyRider = Paths.get("src/main/resources/com/example/hello2/Images/EasyRider.png");
@@ -72,8 +73,6 @@ public class ItemSelectRegularController {
     Image TheLastOfUs = new Image(String.valueOf(pathTheLastOfUs.toUri()));
 
 
-
-
     //Read through both files, if selected is empty, add users from user lists
     public void setInitialize() throws IOException {
         UserFileReader userFileReader = new UserFileReader();
@@ -82,7 +81,7 @@ public class ItemSelectRegularController {
         ArrayList<SelectedItems> selectedItemsArrayList = new SelectedItemsReader().readFileSelectedItems();
         for (UserModel user : userFileReader.readFileUser()) {
             if (Objects.equals(user.getId(), getUserID())) {
-                Balance.setText("Balance: $" + user.getBalance());
+                Balance.setText("Balance: $" + String.format("%.2f", user.getBalance()));
                 Welcome.setText("Welcome: " + user.getUsername());
             }
         }
@@ -169,7 +168,7 @@ public class ItemSelectRegularController {
 
         ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
 
-        int maxSelect =100;
+        int maxSelect = 100;
         for (SelectedItems items : selectedItemsReader.readFileSelectedItems()) {
             if (Objects.equals(items.getID(), getUserID())) {
                 maxSelect -= items.getSelectedItemsList().size();
@@ -206,7 +205,7 @@ public class ItemSelectRegularController {
             } else if (Objects.equals(items.getTitle(), "RDR")) {
                 selectableCard.setImage(RedDeadRedemption);
             }
-            if (items.getCopies() == 0 ) {
+            if (items.getCopies() == 0) {
                 selectableCard.cardSetDisable(true);
             } else {
                 int finalMaxSelect = maxSelect;
@@ -300,7 +299,7 @@ public class ItemSelectRegularController {
         Optional<ButtonType> result = dialog.showAndWait();
 
         ArrayList<String> tempArray = new ArrayList<>();
-        for (SelectableCard card :cardList) {
+        for (SelectableCard card : cardList) {
             if (card.isSelected()) {
                 tempArray.add(card.getId());
             }
@@ -322,7 +321,7 @@ public class ItemSelectRegularController {
                     if (user.getBalance() >= total) {
                         user.setBalance(user.getBalance() - total);
                         usersFileWriter.UserWriteFile(userFileReader.getUserList());
-                        Balance.setText("Balance: $" + user.getBalance());
+                        Balance.setText("Balance: $" + String.format("%.2f", user.getBalance()));
                     } else {
                         Alert alerts = new Alert(Alert.AlertType.ERROR);
                         alerts.setTitle("Insufficient Balance");
@@ -385,7 +384,6 @@ public class ItemSelectRegularController {
         List<SelectableCard> cardList = new ArrayList<>();
 
 
-
         FlowPane flowPane = new FlowPane();
         flowPane.setHgap(10);
         flowPane.setVgap(10);
@@ -434,9 +432,9 @@ public class ItemSelectRegularController {
                     }
                     selectableCard.setOnMouseClicked(event -> {
                         if (!selectableCard.cardIsDisabled()) {
-                            if (selectableCard.isSelected()){
+                            if (selectableCard.isSelected()) {
                                 selectableCard.setSelected(false);
-                            } else if (!selectableCard.isSelected() ) {
+                            } else if (!selectableCard.isSelected()) {
                                 selectableCard.setSelected(true);
                             }
                         }
