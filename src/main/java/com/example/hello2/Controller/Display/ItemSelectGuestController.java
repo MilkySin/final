@@ -384,11 +384,14 @@ public class ItemSelectGuestController {
 
 
         FlowPane flowPane = new FlowPane();
-        flowPane.setHgap(10); // Set horizontal gap between elements
-        flowPane.setVgap(10); // Set vertical gap between elements
+        flowPane.setHgap(10);
+        flowPane.setVgap(10);
         flowPane.setAlignment(Pos.TOP_LEFT);
-        flowPane.setPrefSize(530, 400);
+        flowPane.setPrefSize(860, 600);
+        flowPane.setStyle("-fx-background-color: #e6becd;");
         ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setStyle("-fx-background-color: #e6becd;");
+
 
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
