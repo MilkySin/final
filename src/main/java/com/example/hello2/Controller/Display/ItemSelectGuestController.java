@@ -306,7 +306,7 @@ public class ItemSelectGuestController {
         float total = 0;
         for (ItemModel items : itemModelArrayList) {
             for (SelectableCard card : cardList) {
-                if (Objects.equals(card.getUserData(), items.getID()) && card.isSelected()) {
+                if (Objects.equals(card.getId(), items.getID()) && card.isSelected()) {
                     total += items.getFee();
                 }
             }

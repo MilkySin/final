@@ -1,12 +1,12 @@
 help,Hellooooo123!,C245,sdfg,Guest,987654,-96,4475.01
 Hello,Hello123!@,C345,LOL,Regular,909090909,0,0.0
 gfj,HIhi2345!,C457,saigoj,Regular,98765,0,0.0
-baby,Baby123!,C004,home,Regular,987654,0,0.0
+baby,Baby123!,C004,home,VIP,987654,0,10.0
 test,Test123!,C126,whatever,Guest,987654,0,0.0
 Minh,Minh123!,C002,C002,VIP,1234567,1,1.0
 Minh,ShirinPretty1!,C001,dsaf,Guest,90909090,0,0.0
 Admin,Admin000!,C000,RMIT,VIP,2023,0,0.0
 Tester,Hello123!,C111,dsfasfasf,Guest,123,0,0.0
 fasfas,MNBmnb089)(*,C231,dfa,Regular,123,0,0.0
-Tester,bnNB21!@,C333,dfadasf,Guest,123,0,99.99
+Tester,bnNB21!@,C333,dfadasf,VIP,123,0,82.02
 Shirin,mnNM21@!,C690,Saigon,Regular,12345678,0,9580.0
