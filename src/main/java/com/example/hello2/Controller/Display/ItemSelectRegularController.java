@@ -24,6 +24,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.control.ProgressBar;
+
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -34,6 +36,7 @@ public class ItemSelectRegularController {
 
     @FXML
     public Label Account;
+    public ProgressBar loadingBar;
     private String ID;
     @FXML
     private Text Balance;
@@ -75,6 +78,8 @@ public class ItemSelectRegularController {
 
     //Read through both files, if selected is empty, add users from user lists
     public void setInitialize() throws IOException {
+        loadingBar.setVisible(true);
+        loadingBar.setProgress(0.2);
         UserFileReader userFileReader = new UserFileReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
 
@@ -141,6 +146,7 @@ public class ItemSelectRegularController {
     }
 
     public void rentItems() throws IOException {
+
         ItemsFileReader itemsFileReader = new ItemsFileReader();
         ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
         SelectedItemsReader selectedItemsReader = new SelectedItemsReader();
@@ -225,6 +231,8 @@ public class ItemSelectRegularController {
             flowPane.getChildren().add(selectableCard);
         }
 
+
+        loadingBar.setVisible(false);
         dvdButton.setOnAction(event -> {
             // Filter items based on DVD type
             flowPane.getChildren().clear();
@@ -314,6 +322,7 @@ public class ItemSelectRegularController {
         }
 
         if (result.isPresent() && result.get() == confirmButton) {
+
             // Confirm button is clicked
 
             for (UserModel user : userFileReader.readFileUser()) {
@@ -357,6 +366,7 @@ public class ItemSelectRegularController {
                 }
             }
         }
+
 
     }
 
