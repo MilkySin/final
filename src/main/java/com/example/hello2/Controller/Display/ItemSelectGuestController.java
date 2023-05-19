@@ -50,6 +50,28 @@ public class ItemSelectGuestController {
         return ID;
     }
 
+    Path pathCasablanca = Paths.get("src/main/resources/com/example/hello2/Images/Casablanca.png");
+    Path pathStarWars = Paths.get("src/main/resources/com/example/hello2/Images/StarWars.png");
+    Path pathEasyRider = Paths.get("src/main/resources/com/example/hello2/Images/EasyRider.png");
+    Path pathBladeRunner = Paths.get("src/main/resources/com/example/hello2/Images/BladeRunner.png");
+    Path pathTheDarkKnight = Paths.get("src/main/resources/com/example/hello2/Images/TheDarkKnight.png");
+    Path pathFightClub = Paths.get("src/main/resources/com/example/hello2/Images/FightClub.png");
+    Path pathIT = Paths.get("src/main/resources/com/example/hello2/Images/IT.png");
+    Path pathOverwatch = Paths.get("src/main/resources/com/example/hello2/Images/overwatch.png");
+    Path pathRedDeadRedemption = Paths.get("src/main/resources/com/example/hello2/Images/RDR.png");
+    Path pathTheLastOfUs = Paths.get("src/main/resources/com/example/hello2/Images/ThelastOfUS.png");
+
+    Image Casablanca = new Image(String.valueOf(pathCasablanca.toUri()));
+    Image starWars = new Image(String.valueOf(pathStarWars.toUri()));
+    Image EasyRider = new Image(String.valueOf(pathEasyRider.toUri()));
+    Image BladeRunner = new Image(String.valueOf(pathBladeRunner.toUri()));
+    Image TheDarkKnight = new Image(String.valueOf(pathTheDarkKnight.toUri()));
+    Image FightClub = new Image(String.valueOf(pathFightClub.toUri()));
+    Image IT = new Image(String.valueOf(pathIT.toUri()));
+    Image Overwatch = new Image(String.valueOf(pathOverwatch.toUri()));
+    Image RedDeadRedemption = new Image(String.valueOf(pathRedDeadRedemption.toUri()));
+    Image TheLastOfUs = new Image(String.valueOf(pathTheLastOfUs.toUri()));
+
     //Read through both files, if selected is empty, add users from user lists
     public void setInitialize() throws IOException {
         UserFileReader userFileReader = new UserFileReader();
@@ -130,27 +152,6 @@ public class ItemSelectGuestController {
         Button gameButton = new Button("Game");
         Button allButton = new Button("All");
 
-        Path pathCasablanca = Paths.get("src/main/resources/com/example/hello2/Images/Casablanca.png");
-        Path pathStarWars = Paths.get("src/main/resources/com/example/hello2/Images/StarWars.png");
-        Path pathEasyRider = Paths.get("src/main/resources/com/example/hello2/Images/EasyRider.png");
-        Path pathBladeRunner = Paths.get("src/main/resources/com/example/hello2/Images/BladeRunner.png");
-        Path pathTheDarkKnight = Paths.get("src/main/resources/com/example/hello2/Images/TheDarkKnight.png");
-        Path pathFightClub = Paths.get("src/main/resources/com/example/hello2/Images/FightClub.png");
-        Path pathIT = Paths.get("src/main/resources/com/example/hello2/Images/IT.png");
-        Path pathOverwatch = Paths.get("src/main/resources/com/example/hello2/Images/overwatch.png");
-        Path pathRedDeadRedemption = Paths.get("src/main/resources/com/example/hello2/Images/RDR.png");
-        Path pathTheLastOfUs = Paths.get("src/main/resources/com/example/hello2/Images/ThelastOfUS.png");
-
-        Image Casablanca = new Image(String.valueOf(pathCasablanca.toUri()));
-        Image starWars = new Image(String.valueOf(pathStarWars.toUri()));
-        Image EasyRider = new Image(String.valueOf(pathEasyRider.toUri()));
-        Image BladeRunner = new Image(String.valueOf(pathBladeRunner.toUri()));
-        Image TheDarkKnight = new Image(String.valueOf(pathTheDarkKnight.toUri()));
-        Image FightClub = new Image(String.valueOf(pathFightClub.toUri()));
-        Image IT = new Image(String.valueOf(pathIT.toUri()));
-        Image Overwatch = new Image(String.valueOf(pathOverwatch.toUri()));
-        Image RedDeadRedemption = new Image(String.valueOf(pathRedDeadRedemption.toUri()));
-        Image TheLastOfUs = new Image(String.valueOf(pathTheLastOfUs.toUri()));
 
         FlowPane flowPane = new FlowPane();
         flowPane.setHgap(10);
@@ -176,9 +177,9 @@ public class ItemSelectGuestController {
         final int[] selectedCount = {0};
         for (ItemModel items : itemModelArrayList) {
             SelectableCard selectableCard = new SelectableCard();
-            ;
 
             selectableCard.setText(items.toString());
+            selectableCard.setUserData(items.getRentalType());
 
 
             if (Objects.equals(items.getTitle(), "Casablanca")) {
@@ -225,26 +226,26 @@ public class ItemSelectGuestController {
         dvdButton.setOnAction(event -> {
             // Filter items based on DVD type
             flowPane.getChildren().clear();
-            for (ItemModel item : itemModelArrayList) {
-                if (Objects.equals(item.getRentalType(), "DVD")) {
-                    SelectableCard DVDcard = new SelectableCard();
-
-                    if (Objects.equals(item.getTitle(), "The Dark Knight")) {
-                        DVDcard.setImage(TheDarkKnight);
-                    } else if (Objects.equals(item.getTitle(), "Fight Club")) {
-                        DVDcard.setImage(FightClub);
-                    } else if (Objects.equals(item.getTitle(), "IT")) {
-                        DVDcard.setImage(IT);
-                    }
-                    DVDcard.setText(item.toString());
-                    if (item.getCopies() == 0 || Objects.equals(item.getLoanType(), "2 Days Loan")) {
-                        DVDcard.cardSetDisable(true);
-                    }
-
-
-                    flowPane.getChildren().add(DVDcard);
+            SelectableCard DVDcard = new SelectableCard();
+            for (SelectableCard card : cardList) {
+                if (Objects.equals(card.getUserData(), "DVD")) {
+                    flowPane.getChildren().add(card);
                 }
             }
+
+
+//                    if (Objects.equals(item.getTitle(), "The Dark Knight")) {
+//                        DVDcard.setImage(TheDarkKnight);
+//                    } else if (Objects.equals(item.getTitle(), "Fight Club")) {
+//                        DVDcard.setImage(FightClub);
+//                    } else if (Objects.equals(item.getTitle(), "IT")) {
+//                        DVDcard.setImage(IT);
+//                    }
+//                    DVDcard.setText(item.toString());
+//                    if (item.getCopies() == 0 || Objects.equals(item.getLoanType(), "2 Days Loan")) {
+//                        DVDcard.cardSetDisable(true);
+//                    }
+
 
         });
 
@@ -262,7 +263,8 @@ public class ItemSelectGuestController {
                     } else if (Objects.equals(item.getTitle(), "Easy Rider")) {
                         RecordCard.setImage(EasyRider);
                     } else if (Objects.equals(item.getTitle(), "Blade Runner")) {
-                        RecordCard.setImage(BladeRunner);}
+                        RecordCard.setImage(BladeRunner);
+                    }
                     RecordCard.setText(item.toString());
                     if (item.getCopies() == 0 || Objects.equals(item.getLoanType(), "2 Days Loan")) {
                         RecordCard.cardSetDisable(true);
