@@ -36,7 +36,7 @@ public class ItemSelectRegularController {
 
     @FXML
     public Label Account;
-    public ProgressBar loadingBar;
+
     private String ID;
     @FXML
     private Text Balance;
@@ -78,8 +78,7 @@ public class ItemSelectRegularController {
 
     //Read through both files, if selected is empty, add users from user lists
     public void setInitialize() throws IOException {
-        loadingBar.setVisible(true);
-        loadingBar.setProgress(0.2);
+
         UserFileReader userFileReader = new UserFileReader();
         SelectedItemsWriter selectedItemsWriter = new SelectedItemsWriter();
 
@@ -232,7 +231,7 @@ public class ItemSelectRegularController {
         }
 
 
-        loadingBar.setVisible(false);
+
         dvdButton.setOnAction(event -> {
             // Filter items based on DVD type
             flowPane.getChildren().clear();
@@ -491,12 +490,12 @@ public class ItemSelectRegularController {
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
                         Stage stage = (Stage) Account.getScene().getWindow();
-                        ItemSelectRegularController regularUserController = loader.getController(); // Create an
+                        ItemSelectVIPController VIPUserController = loader.getController(); // Create an
                         // instance
                         // of
                         // ItemSelectGuestController
-                        regularUserController.setID(ID);// Set the ID value
-                        regularUserController.setInitialize();
+                        VIPUserController.setID(ID);// Set the ID value
+                        VIPUserController.setInitialize();
                         stage.setScene(scene);
                         stage.setResizable(false);
                         stage.show();
