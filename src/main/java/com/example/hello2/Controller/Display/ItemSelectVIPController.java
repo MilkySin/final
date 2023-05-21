@@ -40,6 +40,7 @@ public class ItemSelectVIPController {
     public Text Balance;
     public Text Points;
     public ScrollPane ownedItemsDisplay;
+    public Label Account;
 
     @FXML
     private Button freebutton;
@@ -88,6 +89,7 @@ public class ItemSelectVIPController {
                 Balance.setText("Balance: $" + String.format("%.2f", user.getBalance()));
                 Welcome.setText("Welcome: " + user.getUsername());
                 Points.setText("Current Points: " + (user.getNumReturned() * 10));
+                Account.setText("Account Status: " + user.getAccountType());
                 freebutton.setVisible(user.getNumReturned() >= 10);
             }
         }

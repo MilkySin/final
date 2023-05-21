@@ -486,7 +486,7 @@ public class ItemSelectRegularController {
                     temp.setNumReturned(temp.getNumReturned() + tempArray.size());
                     if (temp.getNumReturned() >= 5) {
                         temp.setAccountType("VIP");
-                        Path path = Paths.get("src/main/resources/com/example/hello2/RegularUser.fxml");
+                        Path path = Paths.get("src/main/resources/com/example/hello2/VIPUser.fxml");
                         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
                         Parent root = loader.load();
                         Scene scene = new Scene(root);

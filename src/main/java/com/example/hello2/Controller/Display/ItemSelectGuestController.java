@@ -82,6 +82,7 @@ public class ItemSelectGuestController {
             if (Objects.equals(user.getId(), getUserID())) {
                 Balance.setText("Balance: $" + String.format("%.2f", user.getBalance()));
                 Welcome.setText("Welcome: " + user.getUsername());
+                Account.setText("Account Status: " + user.getAccountType());
             }
         }
 

@@ -1,10 +1,10 @@
 I013-2016,Overwatch,None,Game,2 Days Loan,3,2.99,Available
-I012-2013,The Last of Us,None,Game,1 Week Loan,0,8.99,Borrowed
+I012-2013,The Last of Us,None,Game,1 Week Loan,999,8.99,Available
 I011-2010,RDR,None,Game,2 Days Loan,2,4.99,Available
 I010-2017,IT,Horror,DVD,2 Days Loan,1,2.99,Available
 I009-1999,Fight Club,Drama,DVD,2 Days Loan,3,5.99,Available
-I008-2008,The Dark Knight,Action,DVD,1 Week Loan,0,3.99,Borrowed
-I004-1982,Blade Runner,Action,Record,1 Week Loan,0,1.99,Borrowed
+I008-2008,The Dark Knight,Action,DVD,1 Week Loan,999,3.99,Available
+I004-1982,Blade Runner,Action,Record,1 Week Loan,999,1.99,Available
 I003-1969,Easy Rider,Drama,Record,2 Days Loan,5,4.99,Available
 I002-1977,Star Wars,Action,Record,1 Week Loan,3,3.99,Available
 I001-1985,Casablanca,Drama,Record,2 Days Loan,2,2.99,Available

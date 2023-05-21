@@ -16,22 +16,21 @@
     <TabPane layoutX="2.0" prefHeight="400.0" prefWidth="600.0" style="-fx-padding: 0 0 0 0;" stylesheets="@CSS/styles.css" tabClosingPolicy="UNAVAILABLE">
         <Tab text="Main">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                <Text fx:id="Welcome" fill="WHITE" layoutX="272.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-               <font>
-                  <Font size="30.0" />
-               </font></Text>
-                <Text fx:id="Balance" fill="WHITE" layoutX="289.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                <Text fx:id="Welcome" fill="WHITE" layoutX="14.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome:">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Text>
+                <Text fx:id="Balance" fill="WHITE" layoutX="17.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:" />
 
-
-
-                <Button layoutX="45.0" layoutY="275.0" mnemonicParsing="false" onAction="#rentItems" style="-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 18px; -fx-pref-width: 150px; -fx-pref-height: 40px;" text="Rent" />
-                <Button layoutX="427.0" layoutY="275.0" mnemonicParsing="false" onAction="#Return" style="-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 18px; -fx-pref-width: 150px; -fx-pref-height: 40px;" text="Return" />
-                <Button fx:id="back" layoutX="273.0" layoutY="323.0" mnemonicParsing="false" onAction="#Back" style="-fx-background-color: pink;" text="Logout" />
-                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="225.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+                <Button layoutX="14.0" layoutY="261.0" mnemonicParsing="false" onAction="#rentItems" style="-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 18px; -fx-pref-width: 150px; -fx-pref-height: 40px;" text="Rent" />
+                <Button layoutX="436.0" layoutY="261.0" mnemonicParsing="false" onAction="#Return" style="-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 18px; -fx-pref-width: 150px; -fx-pref-height: 40px;" text="Return" />
+                <Button fx:id="back" layoutX="272.0" layoutY="315.0" mnemonicParsing="false" onAction="#Back" style="-fx-background-color: pink;" text="Logout" />
+                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="225.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
                     <Image url="@Images/Windows_10_Default_Profile_Picture.svg.png" />
                 </ImageView>
-                <ProgressBar fx:id="loadingBar" layoutX="91.0" layoutY="250.0" prefHeight="18.0" prefWidth="436.0" progress="0.0" visible="false" />
-            <Label fx:id="Account" layoutX="86.0" layoutY="54.0" text="Label" />
+                <Label fx:id="Account" layoutX="17.0" layoutY="63.0" text="Account Status:" textFill="WHITE" />
+            <ProgressBar fx:id="loadingBar" layoutX="200.0" layoutY="39.0" prefWidth="200.0" progress="0.0" />
             </AnchorPane>
         </Tab>
         <Tab onSelectionChanged="#ownedItems" text="Owned">
