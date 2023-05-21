@@ -1,8 +1,6 @@
 package com.example.hello2.Writer;
 
-import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Model.SelectedItems;
-import com.example.hello2.Model.UserModel;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -16,12 +14,12 @@ public class SelectedItemsWriter {
         FileWriter fw = new FileWriter(file, false); // set append to false
         BufferedWriter bw = new BufferedWriter(fw);
 
-        for(SelectedItems items : Items){
-            if(items.getSelectedItemsList() == null) {
+        for (SelectedItems items : Items) {
+            if (items.getSelectedItemsList() == null) {
                 bw.write(items.getID());
             } else {
                 bw.write(items.getID());
-                for(String i : items.getSelectedItemsList()){
+                for (String i : items.getSelectedItemsList()) {
                     bw.write("," + i);
                 }
             }

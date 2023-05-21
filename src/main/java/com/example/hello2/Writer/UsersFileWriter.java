@@ -10,12 +10,6 @@ import java.util.ArrayList;
 
 public class UsersFileWriter {
 
-    private String Username;
-    private String Password;
-    private String ID;
-    private String Address, AccountType;
-    private int PhoneNumber;
-
     public void UserWriteFile(ArrayList<UserModel> Userlist) throws IOException {
         File file = new File("userinfo.txt");
         FileWriter fw = new FileWriter(file, false); // set append to false

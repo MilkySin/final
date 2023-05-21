@@ -9,15 +9,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ItemsFileWriter {
-    private String ID;
-    private String title;
-    private String rentalType;
-    private String loanType;
-    private String Availability;
-    private int copies;
-    private double fee;
-    private String status;
-
     public void ItemsWriteFile(ArrayList<ItemModel> itemlist) throws IOException {
         File file = new File("items.txt");
         FileWriter fw = new FileWriter(file, false); // set append to false
