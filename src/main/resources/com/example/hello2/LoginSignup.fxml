@@ -42,7 +42,7 @@
             <Font size="14.0" />
         </font>
     </Text>
-   <Text fill="#eaaad1" layoutX="80.0" layoutY="57.0" stroke="#eaaad1" style="-fx-fill: black;" text="Game, DVD, Records">
+   <Text fill="#eaaad1" layoutX="80.0" layoutY="57.0" stroke="#eaaad1" strokeType="OUTSIDE" style="-fx-fill: black;" text="Game, DVD, Records">
       <font>
          <Font size="20.0" />
       </font>
