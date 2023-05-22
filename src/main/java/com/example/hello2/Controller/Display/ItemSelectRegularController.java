@@ -63,6 +63,11 @@ public class ItemSelectRegularController {
     Path pathOverwatch = Paths.get("src/main/resources/com/example/hello2/Images/overwatch.png");
     Path pathRedDeadRedemption = Paths.get("src/main/resources/com/example/hello2/Images/RDR.png");
     Path pathTheLastOfUs = Paths.get("src/main/resources/com/example/hello2/Images/ThelastOfUS.png");
+    Path pathSchindler = Paths.get("src/main/resources/com/example/hello2/Images/schindler's list.jpg");
+    Path pathNoteBook = Paths.get("src/main/resources/com/example/hello2/Images/Notebook.jpg");
+    Path pathInception = Paths.get("src/main/resources/com/example/hello2/Images/Inception.jpg");
+    Path pathSixthSense = Paths.get("src/main/resources/com/example/hello2/Images/Thesixthsense.jpg");
+
 
     Image Casablanca = new Image(String.valueOf(pathCasablanca.toUri()));
     Image starWars = new Image(String.valueOf(pathStarWars.toUri()));
@@ -74,6 +79,10 @@ public class ItemSelectRegularController {
     Image Overwatch = new Image(String.valueOf(pathOverwatch.toUri()));
     Image RedDeadRedemption = new Image(String.valueOf(pathRedDeadRedemption.toUri()));
     Image TheLastOfUs = new Image(String.valueOf(pathTheLastOfUs.toUri()));
+    Image Inception = new Image(String.valueOf(pathInception.toUri()));
+    Image Notebook = new Image(String.valueOf(pathNoteBook.toUri()));
+    Image Schindler = new Image(String.valueOf(pathSchindler.toUri()));
+    Image Sixthsense = new Image(String.valueOf(pathSixthSense.toUri()));
 
 
     //Read through both files, if selected is empty, add users from user lists
@@ -87,6 +96,8 @@ public class ItemSelectRegularController {
             if (Objects.equals(user.getId(), getUserID())) {
                 Balance.setText("Balance: $" + String.format("%.2f", user.getBalance()));
                 Welcome.setText("Welcome: " + user.getUsername());
+                Account.setText("Account Status: " + user.getAccountType());
+
             }
         }
 
@@ -207,9 +218,18 @@ public class ItemSelectRegularController {
                 selectableCard.setImage(Overwatch);
             } else if (Objects.equals(items.getTitle(), "The Last of Us")) {
                 selectableCard.setImage(TheLastOfUs);
+            } else if (Objects.equals(items.getTitle(), "The Sixth Sense")) {
+                selectableCard.setImage(Sixthsense);
+            } else if (Objects.equals(items.getTitle(), "Inception")) {
+                selectableCard.setImage(Inception);
+            } else if (Objects.equals(items.getTitle(), "The Notebook")) {
+                selectableCard.setImage(Notebook);
+            } else if (Objects.equals(items.getTitle(), "Schindler's List")) {
+                selectableCard.setImage(Schindler);
             } else if (Objects.equals(items.getTitle(), "RDR")) {
                 selectableCard.setImage(RedDeadRedemption);
             }
+
             if (items.getCopies() == 0) {
                 selectableCard.cardSetDisable(true);
             } else {
@@ -229,7 +249,6 @@ public class ItemSelectRegularController {
             cardList.add(selectableCard);
             flowPane.getChildren().add(selectableCard);
         }
-
 
 
         dvdButton.setOnAction(event -> {

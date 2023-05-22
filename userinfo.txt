@@ -1,5 +1,5 @@
 Admin,Admin000!,C000,RMIT,VIP,2023,0,0.0
-Emily,Secure456@,C002,456 Elm Avenue,VIP,98765,2,500.50
+Emily,Secure456@,C002,456 Elm Avenue,Regular,98765,0,379.81
 Michael,Password123$,C003,789 Oak Drive,Regular,54321,0,50.0
 Sarah,Sarah123!,C004,321 Pine Street,Guest,1289,0,0.0
 David,HelloWorld!1,C005,555 Maple Road,VIP,9871,1,1000.0
@@ -87,9 +87,9 @@ Olivia,Welcome123!,C086,999 Cedar Street,VIP,1239,0,300.0
 Noah,Secure456@,C087,111 Oak Avenue,Regular,9821,0,25.0
 Ava,Password123$,C088,222 Pine Court,Guest,1230,0,0.0
 William,HelloWorld!1,C089,333 Maple Street,VIP,94321,3,1000.0
-Sophia,Laura456$,C090,444 Cherry Avenue,Regular,06789,0,180.0
+Sophia,Laura456$,C090,444 Cherry Avenue,Regular,6789,0,180.0
 James,Password123@,C091,888 Walnut Road,Guest,98010,0,0.0
-Isabella,Welcome123!,C092,999 Cedar Street,VIP,0789,2,650.0
+Isabella,Welcome123!,C092,999 Cedar Street,VIP,789,2,650.0
 Oliver,Secure456@,C093,111 Oak Avenue,Regular,9021,0,30.0
 Emma,Password123$,C094,222 Pine Court,Guest,12890,0,0.0
 Henry,HelloWorld!1,C095,333 Maple Street,VIP,9001,3,900.0
