@@ -11,10 +11,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -36,20 +34,7 @@ public class SignupPage {
 
     @FXML
     private TextField NumberField;
-
-    @FXML
-    private TextField Balance;
-    public void initialize() {
-        IDField.setOnMouseClicked(this::showIDFormatAlert);
-    }
-
-    private void showIDFormatAlert(MouseEvent event) {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("ID Format");
-        alert.setHeaderText(null);
-        alert.setContentText("The ID should start with 'C' followed by 3 digits (e.g., C001).");
-        alert.showAndWait();
-    }
+    
 
     public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
@@ -61,13 +46,7 @@ public class SignupPage {
         stage.setScene(scene);
         stage.show();
     }
-    private void showAlert(String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle("Input Error");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
+
     public void signup(ActionEvent event) throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -75,7 +54,7 @@ public class SignupPage {
         String address = AddressField.getText();
         String number = NumberField.getText();
         String accountType = "Guest";
-        String balance = Balance.getText();
+        float balance = 0;
         int numReturned = 0;
         UsersFileWriter writer = new UsersFileWriter();
         UserFileReader read = new UserFileReader();
@@ -92,7 +71,7 @@ public class SignupPage {
 
         if (password.matches(passwordRegex) && ID.matches(IDRegex)) {
             UserModel registeredUser = new UserModel(username, password, ID, address, accountType,
-                                                     Integer.parseInt(number), Float.parseFloat(balance));
+                                                     Integer.parseInt(number), balance);
             registeredUser.setNumReturned(numReturned);
             read.getUserList().add(registeredUser);
             writer.UserWriteFile(read.getUserList());
@@ -115,41 +94,6 @@ public class SignupPage {
             stage.show();
         } else {
             System.out.println("Error: Stage is null");
-        }
-        // Validate username
-        if (username.isEmpty()) {
-            showAlert("Please enter a username.", AlertType.WARNING);
-            return;
-        }
-
-        // Validate password
-        if (password.isEmpty()) {
-            showAlert("Please enter a password.", AlertType.WARNING);
-            return;
-        }
-
-        // Validate ID
-        if (ID.isEmpty()) {
-            showAlert("Please enter an ID.", AlertType.WARNING);
-            return;
-        }
-
-        // Validate address
-        if (address.isEmpty()) {
-            showAlert("Please enter an address.", AlertType.WARNING);
-            return;
-        }
-
-        // Validate number
-        if (number.isEmpty()) {
-            showAlert("Please enter a number.", AlertType.WARNING);
-            return;
-        }
-
-        // Validate balance
-        if (balance.isEmpty()) {
-            showAlert("Please enter a balance.", AlertType.WARNING);
-            return;
         }
     }
 }
