@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #515151; -fx-border-color: white;"
             xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.hello2.Controller.Display.ItemSelectRegularController">
+            fx:controller="com.example.hello2.Controller.Display.okdokaofd">
     <TabPane layoutX="2.0" prefHeight="400.0" prefWidth="600.0" style="-fx-padding: 0 0 0 0;"
              stylesheets="@CSS/styles.css" tabClosingPolicy="UNAVAILABLE">
         <Tab text="Main">

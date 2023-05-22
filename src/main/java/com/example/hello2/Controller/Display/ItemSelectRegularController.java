@@ -32,6 +32,7 @@ import javafx.scene.control.ProgressBar;
 
 
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -59,38 +60,25 @@ public class ItemSelectRegularController {
         return ID;
     }
 
-    Path pathCasablanca = Paths.get("src/main/resources/com/example/hello2/Images/Casablanca.png");
-    Path pathStarWars = Paths.get("src/main/resources/com/example/hello2/Images/StarWars.png");
-    Path pathEasyRider = Paths.get("src/main/resources/com/example/hello2/Images/EasyRider.png");
-    Path pathBladeRunner = Paths.get("src/main/resources/com/example/hello2/Images/BladeRunner.png");
-    Path pathTheDarkKnight = Paths.get("src/main/resources/com/example/hello2/Images/TheDarkKnight.png");
-    Path pathFightClub = Paths.get("src/main/resources/com/example/hello2/Images/FightClub.png");
-    Path pathIT = Paths.get("src/main/resources/com/example/hello2/Images/IT.png");
-    Path pathOverwatch = Paths.get("src/main/resources/com/example/hello2/Images/overwatch.png");
-    Path pathRedDeadRedemption = Paths.get("src/main/resources/com/example/hello2/Images/RDR.png");
-    Path pathTheLastOfUs = Paths.get("src/main/resources/com/example/hello2/Images/ThelastOfUS.png");
-    Path pathSchindler = Paths.get("src/main/resources/com/example/hello2/Images/schindler's list.jpg");
-    Path pathNoteBook = Paths.get("src/main/resources/com/example/hello2/Images/Notebook.jpg");
-    Path pathInception = Paths.get("src/main/resources/com/example/hello2/Images/Inception.jpg");
-    Path pathSixthSense = Paths.get("src/main/resources/com/example/hello2/Images/Thesixthsense.jpg");
-    Path pathGoneWithTheWind = Paths.get("src/main/resources/com/example/hello2/Images/GoneWithTheWind.png");
+    HashMap<String, String> itemImageFile = new HashMap<>();
 
-
-    Image Casablanca = new Image(String.valueOf(pathCasablanca.toUri()));
-    Image GoneWithTheWind = new Image(String.valueOf(pathGoneWithTheWind.toUri()));
-    Image starWars = new Image(String.valueOf(pathStarWars.toUri()));
-    Image EasyRider = new Image(String.valueOf(pathEasyRider.toUri()));
-    Image BladeRunner = new Image(String.valueOf(pathBladeRunner.toUri()));
-    Image TheDarkKnight = new Image(String.valueOf(pathTheDarkKnight.toUri()));
-    Image FightClub = new Image(String.valueOf(pathFightClub.toUri()));
-    Image IT = new Image(String.valueOf(pathIT.toUri()));
-    Image Overwatch = new Image(String.valueOf(pathOverwatch.toUri()));
-    Image RedDeadRedemption = new Image(String.valueOf(pathRedDeadRedemption.toUri()));
-    Image TheLastOfUs = new Image(String.valueOf(pathTheLastOfUs.toUri()));
-    Image Inception = new Image(String.valueOf(pathInception.toUri()));
-    Image Notebook = new Image(String.valueOf(pathNoteBook.toUri()));
-    Image Schindler = new Image(String.valueOf(pathSchindler.toUri()));
-    Image Sixthsense = new Image(String.valueOf(pathSixthSense.toUri()));
+    {
+        itemImageFile.put("Casablanca", "Casablanca.png");
+        itemImageFile.put("Star Wars", "StarWars.png");
+        itemImageFile.put("Easy Rider", "EasyRider.png");
+        itemImageFile.put("Blade Runner", "BladeRunner.png");
+        itemImageFile.put("The Dark Knight", "TheDarkKnight.png");
+        itemImageFile.put("Fight Club", "FightClub.png");
+        itemImageFile.put("IT", "IT.png");
+        itemImageFile.put("Overwatch", "overwatch.png");
+        itemImageFile.put("RDR", "RDR.png");
+        itemImageFile.put("The Last of Us", "ThelastOfUS.png");
+        itemImageFile.put("Schindler's List", "schindler's list.jpg");
+        itemImageFile.put("The Notebook", "Notebook.jpg");
+        itemImageFile.put("Inception", "Inception.jpg");
+        itemImageFile.put("The Sixth Sense", "Thesixthsense.jpg");
+        itemImageFile.put("Gone with the Wind", "GoneWithTheWind.png");
+    }
 
 
     //Read through both files, if selected is empty, add users from user lists
@@ -216,36 +204,11 @@ public class ItemSelectRegularController {
             selectableCard.setId(items.getID());
 
 
-            if (Objects.equals(items.getTitle(), "Casablanca")) {
-                selectableCard.setImage(Casablanca);
-            } else if (Objects.equals(items.getTitle(), "Star Wars")) {
-                selectableCard.setImage(starWars);
-            } else if (Objects.equals(items.getTitle(), "Easy Rider")) {
-                selectableCard.setImage(EasyRider);
-            } else if (Objects.equals(items.getTitle(), "Blade Runner")) {
-                selectableCard.setImage(BladeRunner);
-            } else if (Objects.equals(items.getTitle(), "The Dark Knight")) {
-                selectableCard.setImage(TheDarkKnight);
-            } else if (Objects.equals(items.getTitle(), "Fight Club")) {
-                selectableCard.setImage(FightClub);
-            } else if (Objects.equals(items.getTitle(), "IT")) {
-                selectableCard.setImage(IT);
-            } else if (Objects.equals(items.getTitle(), "Overwatch")) {
-                selectableCard.setImage(Overwatch);
-            } else if (Objects.equals(items.getTitle(), "The Last of Us")) {
-                selectableCard.setImage(TheLastOfUs);
-            } else if (Objects.equals(items.getTitle(), "The Sixth Sense")) {
-                selectableCard.setImage(Sixthsense);
-            } else if (Objects.equals(items.getTitle(), "Inception")) {
-                selectableCard.setImage(Inception);
-            } else if (Objects.equals(items.getTitle(), "The Notebook")) {
-                selectableCard.setImage(Notebook);
-            } else if (Objects.equals(items.getTitle(), "Gone with the Wind")) {
-                selectableCard.setImage(GoneWithTheWind);
-            } else if (Objects.equals(items.getTitle(), "Schindler's List")) {
-                selectableCard.setImage(Schindler);
-            } else if (Objects.equals(items.getTitle(), "RDR")) {
-                selectableCard.setImage(RedDeadRedemption);
+            String fileName = itemImageFile.get(items.getTitle());
+            URL resourceUrl = getClass().getResource("/com/example/hello2/Images/" + fileName);
+            if (resourceUrl != null) {
+                Image image = new Image(resourceUrl.toExternalForm());
+                selectableCard.setImage(image);
             }
 
             if (items.getCopies() == 0) {
@@ -481,36 +444,11 @@ public class ItemSelectRegularController {
                     selectableCard.setUserData(items.getID());
                     selectableCard.setText(items.toString());
 
-                    if (Objects.equals(items.getTitle(), "Casablanca")) {
-                        selectableCard.setImage(Casablanca);
-                    } else if (Objects.equals(items.getTitle(), "Star Wars")) {
-                        selectableCard.setImage(starWars);
-                    } else if (Objects.equals(items.getTitle(), "Easy Rider")) {
-                        selectableCard.setImage(EasyRider);
-                    } else if (Objects.equals(items.getTitle(), "Blade Runner")) {
-                        selectableCard.setImage(BladeRunner);
-                    } else if (Objects.equals(items.getTitle(), "The Dark Knight")) {
-                        selectableCard.setImage(TheDarkKnight);
-                    } else if (Objects.equals(items.getTitle(), "Fight Club")) {
-                        selectableCard.setImage(FightClub);
-                    } else if (Objects.equals(items.getTitle(), "IT")) {
-                        selectableCard.setImage(IT);
-                    } else if (Objects.equals(items.getTitle(), "Overwatch")) {
-                        selectableCard.setImage(Overwatch);
-                    } else if (Objects.equals(items.getTitle(), "The Last of Us")) {
-                        selectableCard.setImage(TheLastOfUs);
-                    } else if (Objects.equals(items.getTitle(), "The Sixth Sense")) {
-                        selectableCard.setImage(Sixthsense);
-                    } else if (Objects.equals(items.getTitle(), "Inception")) {
-                        selectableCard.setImage(Inception);
-                    } else if (Objects.equals(items.getTitle(), "The Notebook")) {
-                        selectableCard.setImage(Notebook);
-                    } else if (Objects.equals(items.getTitle(), "Schindler's List")) {
-                        selectableCard.setImage(Schindler);
-                    } else if (Objects.equals(items.getTitle(), "RDR")) {
-                        selectableCard.setImage(RedDeadRedemption);
-                    } else if (Objects.equals(items.getTitle(), "Gone with the Wind")) {
-                        selectableCard.setImage(GoneWithTheWind);
+                    String fileName = itemImageFile.get(items.getTitle());
+                    URL resourceUrl = getClass().getResource("/com/example/hello2/Images/" + fileName);
+                    if (resourceUrl != null) {
+                        Image image = new Image(resourceUrl.toExternalForm());
+                        selectableCard.setImage(image);
                     }
 
                     if (items.getCopies() == 0) {

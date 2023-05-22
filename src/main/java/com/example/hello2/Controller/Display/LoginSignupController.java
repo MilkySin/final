@@ -75,7 +75,7 @@ public class LoginSignupController {
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
                         Stage stage = (Stage) LogIn.getScene().getWindow();
-                        ItemSelectRegularController regularUserController = loader.getController(); // Create an
+                        okdokaofd regularUserController = loader.getController(); // Create an
                         // instance
                         // of
                         // ItemSelectGuestController
