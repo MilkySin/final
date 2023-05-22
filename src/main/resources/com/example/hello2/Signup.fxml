@@ -7,40 +7,18 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #444444; -fx-border-color: white;"
-            xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.hello2.Controller.Display.SignupPage">
+<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #444444; -fx-border-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.Display.SignupPage">
 
-    <TextField fx:id="usernameField" layoutX="457.0" layoutY="60.0" prefHeight="40.0" prefWidth="210.0"
-               promptText="Enter Your Name"
-               style="-fx-border-color: #eaaad1; -fx-border-width: 0 0 3 0; -fx-background-color: transparent; -fx-text-fill: white;"/>
-    <PasswordField fx:id="passwordField" layoutX="14.0" layoutY="135.0" prefHeight="40.0" prefWidth="210.0"
-                   promptText="Enter your password"
-                   style="-fx-background-color: transparent; -fx-border-width: 0 0 3 0; -fx-border-color: #eaaad1; -fx-text-fill: white;"/>
-    <Button layoutX="76.0" layoutY="322.0" mnemonicParsing="false" onAction="#signup" prefHeight="40.0"
-            prefWidth="121.0"
-            style="-fx-background-color: #eaaad1; -fx-font-size: 16px; -fx-background-radius: 20; -fx-text-fill: black;"
-            text="Done"/>
-    <TextField fx:id="IDField" layoutX="14.0" layoutY="60.0" prefHeight="40.0" prefWidth="210.0"
-               promptText="Enter Your ID"
-               style="-fx-background-color: transparent; -fx-border-color: #eaaad1; -fx-border-width: 0 0 3 0; -fx-text-fill: white;"/>
-    <TextField fx:id="AddressField" layoutX="457.0" layoutY="135.0" prefHeight="40.0" prefWidth="210.0"
-               promptText="Enter Your Address"
-               style="-fx-border-color: #eaaad1; -fx-border-width: 0 0 3 0; -fx-background-color: transparent; -fx-text-fill: white;"/>
-    <TextField fx:id="NumberField" layoutX="14.0" layoutY="211.0" prefHeight="40.0" prefWidth="210.0"
-               promptText="Enter Your Phone Number"
-               style="-fx-border-color: #eaaad1; -fx-border-width: 0 0 3 0; -fx-background-color: transparent; -fx-text-fill: white;"/>
-    <Button fx:id="back" layoutX="508.0" layoutY="322.0" mnemonicParsing="false" onAction="#Back" prefHeight="40.0"
-            prefWidth="122.0"
-            style="-fx-background-color: #eaaad1; -fx-font-size: 16px; -fx-background-radius: 20; -fx-text-fill: black;"
-            text="Back"/>
-    <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="275.0" layoutY="100.0" pickOnBounds="true"
-               preserveRatio="true">
-        <Image url="@Images/signup.png"/>
+    <TextField fx:id="usernameField" layoutX="457.0" layoutY="60.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter Your Name" style="-fx-border-color: #eaaad1; -fx-border-width: 0 0 3 0; -fx-background-color: transparent; -fx-text-fill: white;" />
+    <PasswordField fx:id="passwordField" layoutX="14.0" layoutY="135.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter your password" style="-fx-background-color: transparent; -fx-border-width: 0 0 3 0; -fx-border-color: #eaaad1; -fx-text-fill: white;" />
+    <Button layoutX="76.0" layoutY="322.0" mnemonicParsing="false" onAction="#signup" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #eaaad1; -fx-font-size: 16px; -fx-background-radius: 20; -fx-text-fill: black;" text="Done" />
+    <TextField fx:id="IDField" layoutX="14.0" layoutY="60.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter Your ID" style="-fx-background-color: transparent; -fx-border-color: #eaaad1; -fx-border-width: 0 0 3 0; -fx-text-fill: white;" />
+    <TextField fx:id="AddressField" layoutX="457.0" layoutY="135.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter Your Address" style="-fx-border-color: #eaaad1; -fx-border-width: 0 0 3 0; -fx-background-color: transparent; -fx-text-fill: white;" />
+    <TextField fx:id="NumberField" layoutX="14.0" layoutY="211.0" prefHeight="40.0" prefWidth="210.0" promptText="Enter Your Phone Number" style="-fx-border-color: #eaaad1; -fx-border-width: 0 0 3 0; -fx-background-color: transparent; -fx-text-fill: white;" />
+    <Button fx:id="back" layoutX="508.0" layoutY="322.0" mnemonicParsing="false" onAction="#Back" prefHeight="40.0" prefWidth="122.0" style="-fx-background-color: #eaaad1; -fx-font-size: 16px; -fx-background-radius: 20; -fx-text-fill: black;" text="Back" />
+    <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="275.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@Images/signup.png" />
     </ImageView>
-    <TextField fx:id="Balance" layoutX="457.0" layoutY="211.0" prefHeight="40.0" prefWidth="210.0"
-               promptText="Enter Your Balance"
-               style="-fx-border-color: #eaaad1; -fx-border-width: 0 0 3 0; -fx-background-color: transparent;"/>
 
 
 </AnchorPane>
