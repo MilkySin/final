@@ -503,6 +503,9 @@ public class ItemSelectRegularController {
                     temp.setNumReturned(temp.getNumReturned() + tempArray.size());
                     if (temp.getNumReturned() >= 5) {
                         temp.setAccountType("VIP");
+                        temp.setNumReturned(0);
+                        usersFileWriter.UserWriteFile(userFileReader.getUserList());
+                        selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
                         Path path = Paths.get("src/main/resources/com/example/hello2/VIPUser.fxml");
                         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
                         Parent root = loader.load();
@@ -517,10 +520,7 @@ public class ItemSelectRegularController {
                         stage.setScene(scene);
                         stage.setResizable(false);
                         stage.show();
-                        temp.setNumReturned(0);
                     }
-                    usersFileWriter.UserWriteFile(userFileReader.getUserList());
-                    selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
                 }
             }
         }

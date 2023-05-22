@@ -223,10 +223,10 @@ public class ItemSelectVIPController {
                 selectableCard.setImage(Inception);
             } else if (Objects.equals(items.getTitle(), "The Notebook")) {
                 selectableCard.setImage(Notebook);
-            } else if (Objects.equals(items.getTitle(), "Schindler's List")) {
-                selectableCard.setImage(Schindler);
             } else if (Objects.equals(items.getTitle(), "RDR")) {
                 selectableCard.setImage(RedDeadRedemption);
+            } else if (Objects.equals(items.getTitle(), "Schindler's List")) {
+                selectableCard.setImage(Schindler);
             }
             if (items.getCopies() == 0) {
                 selectableCard.cardSetDisable(true);
