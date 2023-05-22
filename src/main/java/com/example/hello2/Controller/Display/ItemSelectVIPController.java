@@ -49,21 +49,22 @@ public class ItemSelectVIPController {
     Path pathStarWars = Paths.get("src/main/resources/com/example/hello2/Images/StarWars.png");
     Path pathEasyRider = Paths.get("src/main/resources/com/example/hello2/Images/EasyRider.png");
     Path pathBladeRunner = Paths.get("src/main/resources/com/example/hello2/Images/BladeRunner.png");
-    Path pathTheLastOfUs = Paths.get("src/main/resources/com/example/hello2/Images/ThelastOfUS.png");
-    Path pathSchindler = Paths.get("src/main/resources/com/example/hello2/Images/schindler's list.jpg");
-    Path pathNoteBook = Paths.get("src/main/resources/com/example/hello2/Images/Notebook.jpg");
-    Path pathInception = Paths.get("src/main/resources/com/example/hello2/Images/Inception.jpg");
-    Path pathSixthSense = Paths.get("src/main/resources/com/example/hello2/Images/Thesixthsense.jpg");
     Path pathTheDarkKnight = Paths.get("src/main/resources/com/example/hello2/Images/TheDarkKnight.png");
     Path pathFightClub = Paths.get("src/main/resources/com/example/hello2/Images/FightClub.png");
-    Path pathGoneWithTheWind = Paths.get("src/main/resources/com/example/hello2/Images/GoneWithTheWind.png");
     Path pathIT = Paths.get("src/main/resources/com/example/hello2/Images/IT.png");
     Path pathOverwatch = Paths.get("src/main/resources/com/example/hello2/Images/overwatch.png");
     Path pathRedDeadRedemption = Paths.get("src/main/resources/com/example/hello2/Images/RDR.png");
+    Path pathTheLastOfUs = Paths.get("src/main/resources/com/example/hello2/Images/ThelastOfUS.png");
+    Path pathSchindler = Paths.get("src/main/resources/com/example/hello2/Images/schindler's list.jpg");
+    Path pathNoteBook = Paths.get("src/main/resources/com/example/hello2/Images/Notebook.jpg");
+    Path pathGoneWithTheWind = Paths.get("src/main/resources/com/example/hello2/Images/GoneWithTheWind.png");
+    Path pathInception = Paths.get("src/main/resources/com/example/hello2/Images/Inception.jpg");
+    Path pathSixthSense = Paths.get("src/main/resources/com/example/hello2/Images/Thesixthsense.jpg");
 
 
     Image Casablanca = new Image(String.valueOf(pathCasablanca.toUri()));
     Image starWars = new Image(String.valueOf(pathStarWars.toUri()));
+    Image GoneWithTheWind = new Image(String.valueOf(pathGoneWithTheWind.toUri()));
     Image EasyRider = new Image(String.valueOf(pathEasyRider.toUri()));
     Image BladeRunner = new Image(String.valueOf(pathBladeRunner.toUri()));
     Image TheDarkKnight = new Image(String.valueOf(pathTheDarkKnight.toUri()));
@@ -74,7 +75,6 @@ public class ItemSelectVIPController {
     Image TheLastOfUs = new Image(String.valueOf(pathTheLastOfUs.toUri()));
     Image Inception = new Image(String.valueOf(pathInception.toUri()));
     Image Notebook = new Image(String.valueOf(pathNoteBook.toUri()));
-    Image GoneWithTheWind = new Image(String.valueOf(pathGoneWithTheWind.toUri()));
     Image Schindler = new Image(String.valueOf(pathSchindler.toUri()));
     Image Sixthsense = new Image(String.valueOf(pathSixthSense.toUri()));
 
@@ -225,10 +225,12 @@ public class ItemSelectVIPController {
                 selectableCard.setImage(Inception);
             } else if (Objects.equals(items.getTitle(), "The Notebook")) {
                 selectableCard.setImage(Notebook);
-            } else if (Objects.equals(items.getTitle(), "RDR")) {
-                selectableCard.setImage(RedDeadRedemption);
             } else if (Objects.equals(items.getTitle(), "Schindler's List")) {
                 selectableCard.setImage(Schindler);
+            } else if (Objects.equals(items.getTitle(), "RDR")) {
+                selectableCard.setImage(RedDeadRedemption);
+            } else if (Objects.equals(items.getTitle(), "Gone with the Wind")) {
+                selectableCard.setImage(GoneWithTheWind);
             }
             if (items.getCopies() == 0) {
                 selectableCard.cardSetDisable(true);
@@ -420,16 +422,24 @@ public class ItemSelectVIPController {
                 selectableCard.setImage(TheDarkKnight);
             } else if (Objects.equals(items.getTitle(), "Fight Club")) {
                 selectableCard.setImage(FightClub);
-            } else if (Objects.equals(items.getTitle(), "Gone with the Wind")) {
-                selectableCard.setImage(GoneWithTheWind);
-            }else if (Objects.equals(items.getTitle(), "IT")) {
+            } else if (Objects.equals(items.getTitle(), "IT")) {
                 selectableCard.setImage(IT);
             } else if (Objects.equals(items.getTitle(), "Overwatch")) {
                 selectableCard.setImage(Overwatch);
             } else if (Objects.equals(items.getTitle(), "The Last of Us")) {
                 selectableCard.setImage(TheLastOfUs);
+            } else if (Objects.equals(items.getTitle(), "The Sixth Sense")) {
+                selectableCard.setImage(Sixthsense);
+            } else if (Objects.equals(items.getTitle(), "Inception")) {
+                selectableCard.setImage(Inception);
+            } else if (Objects.equals(items.getTitle(), "The Notebook")) {
+                selectableCard.setImage(Notebook);
+            } else if (Objects.equals(items.getTitle(), "Schindler's List")) {
+                selectableCard.setImage(Schindler);
             } else if (Objects.equals(items.getTitle(), "RDR")) {
                 selectableCard.setImage(RedDeadRedemption);
+            } else if (Objects.equals(items.getTitle(), "Gone with the Wind")) {
+                selectableCard.setImage(GoneWithTheWind);
             }
             if (items.getCopies() == 0) {
                 selectableCard.cardSetDisable(true);
@@ -640,7 +650,7 @@ public class ItemSelectVIPController {
                         selectableCard.setImage(FightClub);
                     } else if (Objects.equals(items.getTitle(), "Gone with the Wind")) {
                         selectableCard.setImage(GoneWithTheWind);
-                    }else if (Objects.equals(items.getTitle(), "IT")) {
+                    } else if (Objects.equals(items.getTitle(), "IT")) {
                         selectableCard.setImage(IT);
                     } else if (Objects.equals(items.getTitle(), "Overwatch")) {
                         selectableCard.setImage(Overwatch);
