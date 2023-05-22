@@ -648,16 +648,24 @@ public class ItemSelectVIPController {
                         selectableCard.setImage(TheDarkKnight);
                     } else if (Objects.equals(items.getTitle(), "Fight Club")) {
                         selectableCard.setImage(FightClub);
-                    } else if (Objects.equals(items.getTitle(), "Gone with the Wind")) {
-                        selectableCard.setImage(GoneWithTheWind);
                     } else if (Objects.equals(items.getTitle(), "IT")) {
                         selectableCard.setImage(IT);
                     } else if (Objects.equals(items.getTitle(), "Overwatch")) {
                         selectableCard.setImage(Overwatch);
                     } else if (Objects.equals(items.getTitle(), "The Last of Us")) {
                         selectableCard.setImage(TheLastOfUs);
+                    } else if (Objects.equals(items.getTitle(), "The Sixth Sense")) {
+                        selectableCard.setImage(Sixthsense);
+                    } else if (Objects.equals(items.getTitle(), "Inception")) {
+                        selectableCard.setImage(Inception);
+                    } else if (Objects.equals(items.getTitle(), "The Notebook")) {
+                        selectableCard.setImage(Notebook);
+                    } else if (Objects.equals(items.getTitle(), "Schindler's List")) {
+                        selectableCard.setImage(Schindler);
                     } else if (Objects.equals(items.getTitle(), "RDR")) {
                         selectableCard.setImage(RedDeadRedemption);
+                    } else if (Objects.equals(items.getTitle(), "Gone with the Wind")) {
+                        selectableCard.setImage(GoneWithTheWind);
                     }
 
                     if (items.getCopies() == 0) {
