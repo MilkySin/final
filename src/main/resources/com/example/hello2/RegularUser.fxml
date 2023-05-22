@@ -29,7 +29,7 @@
                     <Image url="@Images/Windows_10_Default_Profile_Picture.svg.png" />
                 </ImageView>
                 <Label fx:id="Account" layoutX="17.0" layoutY="63.0" text="Account Status:" textFill="WHITE" />
-            <Button fx:id="Deposit" layoutX="273.0" layoutY="261.0" mnemonicParsing="false" onAction="#Deposit" style="-fx-background-color: pink;" text="Deposit" />
+            <Button fx:id="Deposit" layoutX="270.0" layoutY="261.0" mnemonicParsing="false" onAction="#Deposit" style="-fx-background-color: pink;" text="Deposit" />
             </AnchorPane>
         </Tab>
         <Tab onSelectionChanged="#ownedItems" text="Owned">
