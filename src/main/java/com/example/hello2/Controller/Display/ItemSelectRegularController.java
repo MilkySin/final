@@ -49,6 +49,7 @@ public class ItemSelectRegularController {
     private Text Welcome;
     public ScrollPane ownedItemsDisplay;
     public Button back;
+    public Text upgrade;
 
     public void setID(String ID) {
         this.ID = ID;
@@ -104,6 +105,7 @@ public class ItemSelectRegularController {
                 Balance.setText("Balance: $" + String.format("%.2f", user.getBalance()));
                 Welcome.setText("Welcome: " + user.getUsername());
                 Account.setText("Account Status: " + user.getAccountType());
+                upgrade.setText(10 - user.getNumReturned() + " items until account upgrade");
 
             }
         }
@@ -259,7 +261,8 @@ public class ItemSelectRegularController {
                             selectedCount[0]++;
                             selectableCard.setSelected(true);
                         }
-                    }if (selectableCard.isSelected()) {
+                    }
+                    if (selectableCard.isSelected()) {
                         showItemDescription(items);
                     }
                 });
@@ -434,7 +437,6 @@ public class ItemSelectRegularController {
     }
 
 
-
     public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
@@ -558,6 +560,7 @@ public class ItemSelectRegularController {
                 if (Objects.equals(list.getID(), ID) && Objects.equals(temp.getId(), ID) && !tempArray.isEmpty()) {
                     list.getSelectedItemsList().removeAll(tempArray);
                     temp.setNumReturned(temp.getNumReturned() + tempArray.size());
+                    upgrade.setText(10 - temp.getNumReturned() + " items until account upgrade");
                     if (temp.getNumReturned() >= 5) {
                         temp.setAccountType("VIP");
                         temp.setNumReturned(0);

@@ -37,6 +37,7 @@ import java.util.Optional;
 public class ItemSelectGuestController {
     @FXML
     public Label Account;
+    public Text upgrade;
     private String ID;
     public Button Deposit;
     public Text Balance;
@@ -97,6 +98,7 @@ public class ItemSelectGuestController {
                 Balance.setText("Balance: $" + String.format("%.2f", user.getBalance()));
                 Welcome.setText("Welcome: " + user.getUsername());
                 Account.setText("Account Status: " + user.getAccountType());
+                upgrade.setText(3 - user.getNumReturned() + " items until account upgrade");
             }
         }
 
@@ -527,6 +529,7 @@ public class ItemSelectGuestController {
                 if (Objects.equals(list.getID(), ID) && Objects.equals(temp.getId(), ID) && !tempArray.isEmpty()) {
                     list.getSelectedItemsList().removeAll(tempArray);
                     temp.setNumReturned(temp.getNumReturned() + tempArray.size());
+                    upgrade.setText(3 - temp.getNumReturned() + " items until account upgrade");
                     if (temp.getNumReturned() >= 3) {
                         temp.setAccountType("Regular");
                         temp.setNumReturned(0);

@@ -32,7 +32,7 @@
     <ImageView fitHeight="223.0" fitWidth="194.0" layoutX="76.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@Images/R.png" />
     </ImageView>
-    <Text fill="#eaaad1" layoutX="34.0" layoutY="54.0" stroke="#eaaad1" strokeWidth="3.0" style="-fx-fill: black;" text="Welcome To Genie's Store ">
+    <Text fill="#eaaad1" layoutX="38.0" layoutY="38.0" stroke="#eaaad1" strokeWidth="3.0" style="-fx-fill: black;" text="Welcome To Genie's Store ">
         <font>
             <Font size="25.0" />
         </font>
@@ -42,4 +42,9 @@
             <Font size="14.0" />
         </font>
     </Text>
+   <Text fill="#eaaad1" layoutX="80.0" layoutY="57.0" stroke="#eaaad1" style="-fx-fill: black;" text="Game, DVD, Records">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </Text>
 </AnchorPane>
