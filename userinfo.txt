@@ -1,5 +1,5 @@
 Admin,Admin000!,C000,RMIT,VIP,2023,0,0.0
-Emily,Secure456@,C002,456 Elm Avenue,VIP,98765,1,222.22006
+Emily,Secure456@,C002,456 Elm Avenue,VIP,98765,1,1122.2201
 Michael,Password123$,C003,789 Oak Drive,Regular,54321,0,50.0
 Sarah,Sarah123!,C004,321 Pine Street,Guest,1289,0,0.0
 David,HelloWorld!1,C005,555 Maple Road,VIP,9871,1,1000.0

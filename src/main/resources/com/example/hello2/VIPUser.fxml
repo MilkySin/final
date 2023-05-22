@@ -27,11 +27,12 @@
                 <Button layoutX="14.0" layoutY="261.0" mnemonicParsing="false" onAction="#rentItems" style="-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 18px; -fx-pref-width: 150px; -fx-pref-height: 40px;" text="Rent" />
                 <Button layoutX="436.0" layoutY="261.0" mnemonicParsing="false" onAction="#Return" style="-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 18px; -fx-pref-width: 150px; -fx-pref-height: 40px;" text="Return" />
                 <Button fx:id="back" layoutX="272.0" layoutY="315.0" mnemonicParsing="false" onAction="#Back" style="-fx-background-color: pink;" text="Logout" />
+                <Button fx:id="Deposit" layoutX="10.0" layoutY="123.0" mnemonicParsing="false" onAction="#Deposit" style="-fx-background-color: pink;" text="Deposit" />
                 <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="225.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
                     <Image url="@Images/Windows_10_Default_Profile_Picture.svg.png" />
                 </ImageView>
                 <Label fx:id="Account" layoutX="17.0" layoutY="63.0" text="Account Status:" textFill="WHITE" />
-            <Text fx:id="Points" fill="WHITE" layoutX="17.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Points:" />
+                <Text fx:id="Points" fill="WHITE" layoutX="17.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Points:" />
             </AnchorPane>
         </Tab>
         <Tab onSelectionChanged="#ownedItems" text="Owned">

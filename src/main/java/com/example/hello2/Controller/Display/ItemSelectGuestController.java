@@ -10,6 +10,7 @@ import com.example.hello2.Reader.UserFileReader;
 import com.example.hello2.Writer.ItemsFileWriter;
 import com.example.hello2.Writer.SelectedItemsWriter;
 import com.example.hello2.Writer.UsersFileWriter;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -37,6 +38,7 @@ public class ItemSelectGuestController {
     @FXML
     public Label Account;
     private String ID;
+    public Button Deposit;
     public Text Balance;
     public ScrollPane ownedItemsDisplay;
     public Text Welcome;
@@ -152,6 +154,7 @@ public class ItemSelectGuestController {
 
         ownedItemsDisplay.setContent(flowPane);
     }
+
     private List<SelectableCard> getRandomItems(List<SelectableCard> items, int count) {
         List<SelectableCard> randomItems = new ArrayList<>(items);
         java.util.Collections.shuffle(randomItems);
@@ -253,7 +256,6 @@ public class ItemSelectGuestController {
             cardList.add(selectableCard);
             flowPane.getChildren().add(selectableCard);
         }
-
 
 
         dvdButton.setOnAction(event -> {
@@ -542,6 +544,61 @@ public class ItemSelectGuestController {
                 }
             }
         }
+    }
+
+    @FXML
+    public void Deposit(ActionEvent event) throws IOException {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Deposit");
+        dialog.setHeaderText("Enter the amount to deposit:");
+        dialog.setContentText("Amount:");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()) {
+            String input = result.get();
+            try {
+                double amount = Double.parseDouble(input);
+                if (amount <= 0) {
+                    showErrorAlert("Invalid amount. Please enter a positive number.");
+                    return;
+                }
+
+                // Update the user's balance
+                UserFileReader userFileReader = new UserFileReader();
+                UsersFileWriter usersFileWriter = new UsersFileWriter();
+                ArrayList<UserModel> userList = userFileReader.readFileUser();
+
+                for (UserModel user : userList) {
+                    if (user.getId().equals(getUserID())) {
+                        user.setBalance((float) (user.getBalance() + amount));
+                        usersFileWriter.UserWriteFile(userList);
+                        Balance.setText("Balance: $" + String.format("%.2f", user.getBalance()));
+                        showInfoAlert("Deposit successful. New balance: $" + String.format("%.2f", user.getBalance()));
+                        return;
+                    }
+                }
+
+                showErrorAlert("User not found.");
+            } catch (NumberFormatException e) {
+                showErrorAlert("Invalid input. Please enter a valid number.");
+            }
+        }
+    }
+
+    private void showErrorAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void showInfoAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
 
