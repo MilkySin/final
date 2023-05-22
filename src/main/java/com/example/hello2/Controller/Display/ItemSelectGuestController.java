@@ -67,7 +67,6 @@ public class ItemSelectGuestController {
     Path pathSixthSense = Paths.get("src/main/resources/com/example/hello2/Images/Thesixthsense.jpg");
 
 
-
     Image Casablanca = new Image(String.valueOf(pathCasablanca.toUri()));
     Image starWars = new Image(String.valueOf(pathStarWars.toUri()));
     Image GoneWithTheWind = new Image(String.valueOf(pathGoneWithTheWind.toUri()));
@@ -226,7 +225,7 @@ public class ItemSelectGuestController {
                 selectableCard.setImage(Schindler);
             } else if (Objects.equals(items.getTitle(), "RDR")) {
                 selectableCard.setImage(RedDeadRedemption);
-            }else if (Objects.equals(items.getTitle(), "Gone with the Wind")) {
+            } else if (Objects.equals(items.getTitle(), "Gone with the Wind")) {
                 selectableCard.setImage(GoneWithTheWind);
             }
             if (items.getCopies() == 0 || Objects.equals(items.getLoanType(), "2 Days Loan")) {
@@ -458,7 +457,7 @@ public class ItemSelectGuestController {
                         selectableCard.setImage(TheLastOfUs);
                     } else if (Objects.equals(items.getTitle(), "RDR")) {
                         selectableCard.setImage(RedDeadRedemption);
-                    }else if (Objects.equals(items.getTitle(), "Gone with the Wind")) {
+                    } else if (Objects.equals(items.getTitle(), "Gone with the Wind")) {
                         selectableCard.setImage(GoneWithTheWind);
                     }
 
