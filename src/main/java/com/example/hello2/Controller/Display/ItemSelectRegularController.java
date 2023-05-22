@@ -69,6 +69,8 @@ public class ItemSelectRegularController {
     Path pathSixthSense = Paths.get("src/main/resources/com/example/hello2/Images/Thesixthsense.jpg");
     Path pathGoneWithTheWind = Paths.get("src/main/resources/com/example/hello2/Images/GoneWithTheWind.png");
 
+
+
     Image Casablanca = new Image(String.valueOf(pathCasablanca.toUri()));
     Image GoneWithTheWind = new Image(String.valueOf(pathGoneWithTheWind.toUri()));
     Image starWars = new Image(String.valueOf(pathStarWars.toUri()));
