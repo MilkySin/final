@@ -1,7 +1,6 @@
-help,Hello123!,C245,sdfg,VIP,987654,3,4164.3486
+help,Hello123!,C245,sdfg,Guest,987654,2,4062.5686
 Hello,Hello123!@,C345,LOL,Regular,909090909,0,0.0
 gfj,HIhi2345!,C457,saigoj,VIP,98765,3,73.05
-baby,Baby123!,C004,saihon,Regular,987654,0,10.0
 test,Test123!,C126,whatever,Guest,987654,0,0.0
 Minh,Minh123!,C002,Saigon,VIP,1234567,1,5.2100053
 Minh,ShirinPretty1!,C001,dsaf,Guest,90909090,0,0.0
@@ -9,3 +8,4 @@ Admin,Admin000!,C000,RMIT,VIP,2023,0,0.0
 fasfas,MNBmnb089)(*,C231,dfa,Regular,123,0,0.0
 Tester,bnNB21!@,C333,dfadasf,VIP,123,0,82.02
 Shirin,mnNM21@!,C690,Saigon,VIP,12345678,0,9533.1
+dr,Hello123!,C987,saigon,Guest,9876,0,22.0

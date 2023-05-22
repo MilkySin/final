@@ -152,6 +152,7 @@ public class ItemSelectGuestController {
         Button recordButton = new Button("Record");
         Button gameButton = new Button("Game");
         Button allButton = new Button("All");
+        Button recommended = new Button("Recommended");
 
 
         FlowPane flowPane = new FlowPane();
@@ -256,6 +257,16 @@ public class ItemSelectGuestController {
             }
         });
 
+        recommended.setOnAction(event -> {
+            // Filter items based on Game type
+            flowPane.getChildren().clear();
+            for (SelectableCard card : cardList) {
+                if (Objects.equals(card.getUserData(), "Game")) {
+                    flowPane.getChildren().add(card);
+                }
+            }
+        });
+
 
         allButton.setOnAction(event -> {
             // Show all items
@@ -280,7 +291,7 @@ public class ItemSelectGuestController {
 
         // Create an HBox to hold the buttons
         HBox buttonContainer = new HBox(10);
-        buttonContainer.getChildren().addAll(dvdButton, recordButton, gameButton, allButton);
+        buttonContainer.getChildren().addAll(dvdButton, recordButton, gameButton, allButton, recommended);
 
         // Create a VBox to hold the button container and flow pane
         VBox contentContainer = new VBox();
