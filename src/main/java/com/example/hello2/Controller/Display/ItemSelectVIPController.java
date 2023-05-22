@@ -253,6 +253,9 @@ public class ItemSelectVIPController {
                             selectedCount[0]++;
                             selectableCard.setSelected(true);
                         }
+                        if (selectableCard.isSelected()) {
+                            showItemDescription(items);
+                        }
                     }
                 });
             }
@@ -460,6 +463,9 @@ public class ItemSelectVIPController {
                             selectableCard.setSelected(false);
                         } else if (!selectableCard.isSelected()) {
                             selectableCard.setSelected(true);
+                        }
+                        if (selectableCard.isSelected()) {
+                            showItemDescription(items);
                         }
                     }
                 });
@@ -796,5 +802,23 @@ public class ItemSelectVIPController {
         alert.showAndWait();
     }
 
+    private void showItemDescription(ItemModel item) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Item Description");
+        TextArea textArea = new TextArea(item.getDescription());
+        textArea.setPrefWidth(450); // Set the preferred width
+        textArea.setWrapText(true); // Enable text wrapping
+        ScrollPane scrollPane = new ScrollPane(textArea);
+        scrollPane.setPrefWidth(400); // Set the preferred width of the scroll pane
+        scrollPane.setPrefHeight(200); // Set the preferred height of the scroll pane
+        alert.setHeaderText(item.getTitle());
+        alert.getDialogPane().setContent(scrollPane);
+
+        // Add an OK button to close the alert
+        ButtonType okButton = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        alert.getButtonTypes().setAll(okButton);
+
+        alert.showAndWait();
+    }
 
 }
