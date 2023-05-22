@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class UsersFileWriter {
 
     public void UserWriteFile(ArrayList<UserModel> Userlist) throws IOException {
-        File file = new File("userinfo.txt");
+        File file = new File("src/main/resources/com/example/hello2/Datauserinfo.txt");
         FileWriter fw = new FileWriter(file, false); // set append to false
         BufferedWriter bw = new BufferedWriter(fw);
         for (UserModel user : Userlist) {

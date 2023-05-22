@@ -10,7 +10,6 @@ import com.example.hello2.Reader.UserFileReader;
 import com.example.hello2.Writer.ItemsFileWriter;
 import com.example.hello2.Writer.SelectedItemsWriter;
 import com.example.hello2.Writer.UsersFileWriter;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -18,9 +17,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -28,8 +24,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.scene.control.ProgressBar;
-
 
 import java.io.IOException;
 import java.net.URL;
@@ -205,7 +199,7 @@ public class ItemSelectRegularController {
 
 
             String fileName = itemImageFile.get(items.getTitle());
-            URL resourceUrl = getClass().getResource("/com/example/hello2/Images/" + fileName);
+            URL resourceUrl = getClass().getResource("/com/example/hello2/FXML/Images/" + fileName);
             if (resourceUrl != null) {
                 Image image = new Image(resourceUrl.toExternalForm());
                 selectableCard.setImage(image);
@@ -401,7 +395,7 @@ public class ItemSelectRegularController {
 
 
     public void Back() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/LoginSignup.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -504,7 +498,7 @@ public class ItemSelectRegularController {
                         temp.setNumReturned(0);
                         usersFileWriter.UserWriteFile(userFileReader.getUserList());
                         selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
-                        Path path = Paths.get("src/main/resources/com/example/hello2/VIPUser.fxml");
+                        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/VIPUser.fxml");
                         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
@@ -525,7 +519,7 @@ public class ItemSelectRegularController {
     }
 
     @FXML
-    public void Deposit(ActionEvent event) throws IOException {
+    public void Deposit() throws IOException {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Deposit");
         dialog.setHeaderText("Enter the amount to deposit:");

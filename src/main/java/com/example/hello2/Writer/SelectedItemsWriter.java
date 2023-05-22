@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class SelectedItemsWriter {
     public void SelectedItemsWriteFIle(ArrayList<SelectedItems> Items) throws IOException {
-        File file = new File("selected_items.txt");
+        File file = new File("src/main/resources/com/example/hello2/Data/selected_items.txt");
         FileWriter fw = new FileWriter(file, false); // set append to false
         BufferedWriter bw = new BufferedWriter(fw);
 

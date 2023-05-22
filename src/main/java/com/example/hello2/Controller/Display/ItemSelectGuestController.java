@@ -10,7 +10,6 @@ import com.example.hello2.Reader.UserFileReader;
 import com.example.hello2.Writer.ItemsFileWriter;
 import com.example.hello2.Writer.SelectedItemsWriter;
 import com.example.hello2.Writer.UsersFileWriter;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -25,7 +24,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.io.*;
+
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -365,7 +365,7 @@ public class ItemSelectGuestController {
     }
 
     public void Back() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/LoginSignup.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -468,7 +468,7 @@ public class ItemSelectGuestController {
                         temp.setNumReturned(0);
                         usersFileWriter.UserWriteFile(userFileReader.getUserList());
                         selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
-                        Path path = Paths.get("src/main/resources/com/example/hello2/RegularUser.fxml");
+                        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/RegularUser.fxml");
                         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
@@ -486,7 +486,7 @@ public class ItemSelectGuestController {
     }
 
     @FXML
-    public void Deposit(ActionEvent event) throws IOException {
+    public void Deposit() throws IOException {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Deposit");
         dialog.setHeaderText("Enter the amount to deposit:");

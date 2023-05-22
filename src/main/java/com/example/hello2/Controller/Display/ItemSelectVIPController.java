@@ -10,7 +10,6 @@ import com.example.hello2.Reader.UserFileReader;
 import com.example.hello2.Writer.ItemsFileWriter;
 import com.example.hello2.Writer.SelectedItemsWriter;
 import com.example.hello2.Writer.UsersFileWriter;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -555,7 +554,7 @@ public class ItemSelectVIPController {
     }
 
     public void Back() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/LoginSignup.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -661,7 +660,7 @@ public class ItemSelectVIPController {
     }
 
     @FXML
-    public void Deposit(ActionEvent event) throws IOException {
+    public void Deposit() throws IOException {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Deposit");
         dialog.setHeaderText("Enter the amount to deposit:");

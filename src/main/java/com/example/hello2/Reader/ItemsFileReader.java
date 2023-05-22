@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 
 public class ItemsFileReader {
-    public Path filePath = Paths.get("items.txt");
+    public Path filePath = Paths.get("com/example/hello2/Data/items.txt");
 
     public ArrayList<ItemModel> itemList = new ArrayList<>(new ItemModel().getItemList());
 
@@ -26,16 +26,16 @@ public class ItemsFileReader {
     public ArrayList<ItemModel> getItemList() {
         return itemList;
     }
-    
+
     public ArrayList<ItemModel> readFileItems() throws IOException {
-        File file = new File("items.txt");
+        File file = new File("src/main/resources/com/example/hello2/Data/items.txt");
         FileReader fw = new FileReader(file);
         BufferedReader bw = new BufferedReader(fw);
         String line;
         while ((line = bw.readLine()) != null) {
             String[] field = line.split(",");
             ItemModel item = new ItemModel(field[0], field[1], field[2], field[3], field[4], Integer.parseInt(field[5]),
-                                           Double.parseDouble(field[6]), field[7]);
+                    Double.parseDouble(field[6]), field[7]);
             itemList.add(item);
         }
         return itemList;

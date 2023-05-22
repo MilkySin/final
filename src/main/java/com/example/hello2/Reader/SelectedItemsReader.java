@@ -14,7 +14,7 @@ public class SelectedItemsReader {
     }
 
     public ArrayList<SelectedItems> readFileSelectedItems() throws IOException {
-        File file = new File("selected_items.txt");
+        File file = new File("src/main/resources/com/example/hello2/Data/selected_items.txt");
         FileReader fw = new FileReader(file);
         BufferedReader bw = new BufferedReader(fw);
         String line;

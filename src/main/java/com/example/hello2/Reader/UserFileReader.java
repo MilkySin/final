@@ -25,7 +25,7 @@ public class UserFileReader {
     }
 
     public ArrayList<UserModel> readFileUser() throws IOException {
-        File file = new File("userinfo.txt");
+        File file = new File("src/main/resources/com/example/hello2/Data/userinfo.txt");
         FileReader fw = new FileReader(file);
         BufferedReader bw = new BufferedReader(fw);
         String line;

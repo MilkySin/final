@@ -70,7 +70,7 @@ public class DeleteItemController {
 
     @FXML
     public void Back() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/SceneAdmin.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);

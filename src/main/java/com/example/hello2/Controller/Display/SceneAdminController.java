@@ -34,7 +34,7 @@ public class SceneAdminController {
 
     @FXML
     void addItem() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/AddItems.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/AddItems.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -47,7 +47,7 @@ public class SceneAdminController {
     @FXML
         //pl
     void editItem() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/EditItem.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/EditItem.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -59,7 +59,7 @@ public class SceneAdminController {
 
     @FXML
     void deleteItem() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/DeleteItem.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/DeleteItem.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -71,7 +71,7 @@ public class SceneAdminController {
 
     @FXML
     void displayCustomers() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/displayCustomers.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/displayCustomers.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -83,7 +83,7 @@ public class SceneAdminController {
 
     @FXML
     void showAllItems() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/DisplayItems.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/DisplayItems.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -96,7 +96,7 @@ public class SceneAdminController {
 
     @FXML
     void deleteUser() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/deleteUser.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/deleteUser.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -107,7 +107,7 @@ public class SceneAdminController {
     }
 
     public void Promote() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/Promote.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/Promote.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -118,7 +118,7 @@ public class SceneAdminController {
     }
 
     public void Back() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/LoginSignup.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -131,7 +131,7 @@ public class SceneAdminController {
 
     @FXML
     void AddUser() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/Signup.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/Signup.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -143,7 +143,7 @@ public class SceneAdminController {
 
     @FXML
     void EditUser() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/EditUser.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/EditUser.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -155,7 +155,7 @@ public class SceneAdminController {
 
     @FXML
     void AddStock() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/AddStock.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/AddStock.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
