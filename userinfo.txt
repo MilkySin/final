@@ -58,8 +58,8 @@ Matthew,Secure456@,C057,444 Oak Court,Regular,9871,0,20.0
 Amelia,Password123$,C058,555 Pine Street,Guest,1290,0,0.0
 Alexander,HelloWorld!1,C059,666 Maple Avenue,VIP,9821,2,750.0
 Mia,Laura456$,C060,777 Cherry Drive,Regular,1290,0,170.0
-Benjamin,Password123@,C061,888 Walnut Road,Guest,9210,1,400.0
-Olivia,Welcome123!,C062,999 Cedar Street,VIP,1289,0,280.0
+Benjamin,Password123@,C061,888 Walnut Road,Guest,9210,2,397.01
+Olivia,Welcome123!,C062,999 Cedar Street,VIP,1289,0,277.01
 Noah,Secure456@,C063,111 Oak Avenue,Regular,98021,0,45.0
 Ava,Password123$,C064,222 Pine Court,Guest,12390,0,0.0
 William,HelloWorld!1,C065,333 Maple Street,VIP,9921,3,950.0

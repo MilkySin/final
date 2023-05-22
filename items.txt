@@ -12,3 +12,4 @@ I004-1982,Blade Runner,Action,Record,1 Week Loan,1000,1.99,Available
 I003-1969,Easy Rider,Drama,Record,2 Days Loan,6,4.99,Available
 I002-1977,Star Wars,Action,Record,1 Week Loan,3,3.99,Available
 I001-1985,Casablanca,Drama,Record,2 Days Loan,2,2.99,Available
+I018-1939,Gone with the Wind,Drama,Record,1 Week Loan,4,2.99,Available

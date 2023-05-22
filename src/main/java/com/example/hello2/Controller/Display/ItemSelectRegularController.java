@@ -67,9 +67,10 @@ public class ItemSelectRegularController {
     Path pathNoteBook = Paths.get("src/main/resources/com/example/hello2/Images/Notebook.jpg");
     Path pathInception = Paths.get("src/main/resources/com/example/hello2/Images/Inception.jpg");
     Path pathSixthSense = Paths.get("src/main/resources/com/example/hello2/Images/Thesixthsense.jpg");
-
+    Path pathGoneWithTheWind = Paths.get("src/main/resources/com/example/hello2/Images/GoneWithTheWind.png");
 
     Image Casablanca = new Image(String.valueOf(pathCasablanca.toUri()));
+    Image GoneWithTheWind = new Image(String.valueOf(pathGoneWithTheWind.toUri()));
     Image starWars = new Image(String.valueOf(pathStarWars.toUri()));
     Image EasyRider = new Image(String.valueOf(pathEasyRider.toUri()));
     Image BladeRunner = new Image(String.valueOf(pathBladeRunner.toUri()));
@@ -224,6 +225,8 @@ public class ItemSelectRegularController {
                 selectableCard.setImage(Inception);
             } else if (Objects.equals(items.getTitle(), "The Notebook")) {
                 selectableCard.setImage(Notebook);
+            }else if (Objects.equals(items.getTitle(), "Gone with the Wind")) {
+                selectableCard.setImage(GoneWithTheWind);
             } else if (Objects.equals(items.getTitle(), "Schindler's List")) {
                 selectableCard.setImage(Schindler);
             } else if (Objects.equals(items.getTitle(), "RDR")) {
@@ -448,6 +451,8 @@ public class ItemSelectRegularController {
                         selectableCard.setImage(IT);
                     } else if (Objects.equals(items.getTitle(), "Overwatch")) {
                         selectableCard.setImage(Overwatch);
+                    }else if (Objects.equals(items.getTitle(), "Gone with the Wind")) {
+                        selectableCard.setImage(GoneWithTheWind);
                     } else if (Objects.equals(items.getTitle(), "The Last of Us")) {
                         selectableCard.setImage(TheLastOfUs);
                     } else if (Objects.equals(items.getTitle(), "RDR")) {
