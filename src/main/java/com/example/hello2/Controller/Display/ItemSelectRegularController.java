@@ -18,6 +18,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -256,6 +259,8 @@ public class ItemSelectRegularController {
                             selectedCount[0]++;
                             selectableCard.setSelected(true);
                         }
+                    }if (selectableCard.isSelected()) {
+                        showItemDescription(items);
                     }
                 });
             }
@@ -408,6 +413,27 @@ public class ItemSelectRegularController {
 
 
     }
+
+    private void showItemDescription(ItemModel item) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Item Description");
+        TextArea textArea = new TextArea(item.getDescription());
+        textArea.setPrefWidth(450); // Set the preferred width
+        textArea.setWrapText(true); // Enable text wrapping
+        ScrollPane scrollPane = new ScrollPane(textArea);
+        scrollPane.setPrefWidth(400); // Set the preferred width of the scroll pane
+        scrollPane.setPrefHeight(200); // Set the preferred height of the scroll pane
+        alert.setHeaderText(item.getTitle());
+        alert.getDialogPane().setContent(scrollPane);
+
+        // Add an OK button to close the alert
+        ButtonType okButton = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        alert.getButtonTypes().setAll(okButton);
+
+        alert.showAndWait();
+    }
+
+
 
     public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
