@@ -1,5 +1,5 @@
 I017-1992,Schindler's List,Drama,Record,1 Week Loan,3,2.99,Available
-I016-2004,The Notebook,Drama,Record,2 Days Loan,1,2.99,Available
+I016-2004,The Notebook,Drama,Record,2 Days Loan,0,2.99,Borrowed
 I015-2010,Inception,Action,Record,1 Week Loan,2,2.99,Available
 I014-1999,The Sixth Sense,Horror,Record,2 Days Loan,1,2.99,Available
 I013-2016,Overwatch,None,Game,2 Days Loan,4,2.99,Available

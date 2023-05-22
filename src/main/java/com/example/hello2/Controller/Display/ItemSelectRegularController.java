@@ -159,6 +159,12 @@ public class ItemSelectRegularController {
         ownedItemsDisplay.setContent(flowPane);
     }
 
+    private List<SelectableCard> getRandomItems(List<SelectableCard> items, int count) {
+        List<SelectableCard> randomItems = new ArrayList<>(items);
+        java.util.Collections.shuffle(randomItems);
+        return randomItems.subList(0, Math.min(count, randomItems.size()));
+    }
+
     public void rentItems() throws IOException {
 
         ItemsFileReader itemsFileReader = new ItemsFileReader();
@@ -172,6 +178,7 @@ public class ItemSelectRegularController {
         Button recordButton = new Button("Record");
         Button gameButton = new Button("Game");
         Button allButton = new Button("All");
+        Button recommended = new Button("Recommended");
 
 
         FlowPane flowPane = new FlowPane();
@@ -288,6 +295,14 @@ public class ItemSelectRegularController {
             }
         });
 
+        recommended.setOnAction(event -> {
+            int itemCount = 5; // Number of random items to select
+            List<SelectableCard> randomItems = getRandomItems(cardList, itemCount);
+
+            flowPane.getChildren().clear();
+            flowPane.getChildren().addAll(randomItems);
+        });
+
 
         allButton.setOnAction(event -> {
             // Show all items
@@ -312,7 +327,7 @@ public class ItemSelectRegularController {
 
         // Create an HBox to hold the buttons
         HBox buttonContainer = new HBox(10);
-        buttonContainer.getChildren().addAll(dvdButton, recordButton, gameButton, allButton);
+        buttonContainer.getChildren().addAll(dvdButton, recordButton, gameButton, allButton, recommended);
 
         // Create a VBox to hold the button container and flow pane
         VBox contentContainer = new VBox();

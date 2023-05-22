@@ -159,6 +159,12 @@ public class ItemSelectVIPController {
         ownedItemsDisplay.setContent(flowPane);
     }
 
+    private List<SelectableCard> getRandomItems(List<SelectableCard> items, int count) {
+        List<SelectableCard> randomItems = new ArrayList<>(items);
+        java.util.Collections.shuffle(randomItems);
+        return randomItems.subList(0, Math.min(count, randomItems.size()));
+    }
+
     public void freeItem() throws IOException {
         ItemsFileReader itemsFileReader = new ItemsFileReader();
         ItemsFileWriter itemsFileWriter = new ItemsFileWriter();
@@ -388,6 +394,8 @@ public class ItemSelectVIPController {
         Button recordButton = new Button("Record");
         Button gameButton = new Button("Game");
         Button allButton = new Button("All");
+        Button recommended = new Button("Recommended");
+
 
         FlowPane flowPane = new FlowPane();
         flowPane.setHgap(10); // Set horizontal gap between elements
@@ -489,6 +497,13 @@ public class ItemSelectVIPController {
             }
         });
 
+        recommended.setOnAction(event -> {
+            int itemCount = 5; // Number of random items to select
+            List<SelectableCard> randomItems = getRandomItems(cardList, itemCount);
+
+            flowPane.getChildren().clear();
+            flowPane.getChildren().addAll(randomItems);
+        });
 
         allButton.setOnAction(event -> {
             // Show all items
@@ -513,7 +528,7 @@ public class ItemSelectVIPController {
 
         // decrement copies value of selected item
         HBox buttonContainer = new HBox(10);
-        buttonContainer.getChildren().addAll(dvdButton, recordButton, gameButton, allButton);
+        buttonContainer.getChildren().addAll(dvdButton, recordButton, gameButton, allButton, recommended);
 
         // Create a VBox to hold the button container and flow pane
         VBox contentContainer = new VBox();
