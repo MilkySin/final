@@ -31,11 +31,20 @@ public class UserFileReader {
         String line;
         while ((line = bw.readLine()) != null) {
             String[] field = line.split(",");
-            UserModel user = new UserModel(field[0], field[1], field[2], field[3], field[4], Integer.parseInt(field[5]),
-                                           Float.parseFloat(field[7]));
-            user.setNumReturned(Integer.parseInt(field[6]));
-            userList.add(user);
+
+            // Check if the array has enough elements
+            if (field.length >= 8) {
+                UserModel user = new UserModel(field[0], field[1], field[2], field[3], field[4], Integer.parseInt(field[5]),
+                        Float.parseFloat(field[7]));
+                user.setNumReturned(Integer.parseInt(field[6]));
+                userList.add(user);
+            } else {
+                // Handle the case where the line does not have enough fields
+                // You can log an error message or handle it in any other appropriate way
+                System.err.println("Invalid line: " + line);
+            }
         }
         return userList;
+
     }
 }

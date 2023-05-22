@@ -369,7 +369,6 @@ public class ItemSelectRegularController {
 
     }
 
-
     public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
