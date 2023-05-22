@@ -122,6 +122,7 @@ public class ItemSelectGuestController {
         }
     }
 
+
     public void ownedItems() throws IOException {
         ArrayList<ItemModel> itemModelArrayList = new ItemsFileReader().readFileItems();
         ArrayList<SelectedItems> selectedItemsArrayList = new SelectedItemsReader().readFileSelectedItems();
@@ -150,6 +151,11 @@ public class ItemSelectGuestController {
         }
 
         ownedItemsDisplay.setContent(flowPane);
+    }
+    private List<SelectableCard> getRandomItems(List<SelectableCard> items, int count) {
+        List<SelectableCard> randomItems = new ArrayList<>(items);
+        java.util.Collections.shuffle(randomItems);
+        return randomItems.subList(0, Math.min(count, randomItems.size()));
     }
 
     public void rentItems() throws IOException {
@@ -248,6 +254,8 @@ public class ItemSelectGuestController {
             flowPane.getChildren().add(selectableCard);
         }
 
+
+
         dvdButton.setOnAction(event -> {
             // Filter items based on DVD type
             flowPane.getChildren().clear();
@@ -280,13 +288,11 @@ public class ItemSelectGuestController {
         });
 
         recommended.setOnAction(event -> {
-            // Filter items based on Game type
+            int itemCount = 5; // Number of random items to select
+            List<SelectableCard> randomItems = getRandomItems(cardList, itemCount);
+
             flowPane.getChildren().clear();
-            for (SelectableCard card : cardList) {
-                if (Objects.equals(card.getUserData(), "Game")) {
-                    flowPane.getChildren().add(card);
-                }
-            }
+            flowPane.getChildren().addAll(randomItems);
         });
 
 
