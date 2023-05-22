@@ -511,24 +511,21 @@ public class ItemSelectGuestController {
                     temp.setNumReturned(temp.getNumReturned() + tempArray.size());
                     if (temp.getNumReturned() >= 3) {
                         temp.setAccountType("Regular");
+                        temp.setNumReturned(0);
+                        usersFileWriter.UserWriteFile(userFileReader.getUserList());
+                        selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
                         Path path = Paths.get("src/main/resources/com/example/hello2/RegularUser.fxml");
                         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
                         Stage stage = (Stage) Account.getScene().getWindow();
                         ItemSelectRegularController regularUserController = loader.getController(); // Create an
-                        // instance
-                        // of
-                        // ItemSelectGuestController
-                        regularUserController.setID(ID);// Set the ID value
+                        regularUserController.setID(ID);
                         regularUserController.setInitialize();
                         stage.setScene(scene);
                         stage.setResizable(false);
                         stage.show();
-                        temp.setNumReturned(0);
                     }
-                    usersFileWriter.UserWriteFile(userFileReader.getUserList());
-                    selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
                 }
             }
         }
