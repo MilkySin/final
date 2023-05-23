@@ -118,14 +118,7 @@ public class SceneAdminController {
     }
 
     public void Back() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/LoginSignup.fxml");
-        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) back.getScene().getWindow();
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
+        SignupPage.Log(back);
     }
 
 

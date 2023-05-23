@@ -4,18 +4,12 @@ import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Reader.ItemsFileReader;
 import com.example.hello2.Writer.ItemsFileWriter;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.regex.Pattern;
 
 public class AddItemController {
@@ -63,14 +57,7 @@ public class AddItemController {
     }
 
     private void updateGenreOptions(String rentalType) {
-        if (rentalType.equals("DVD") || rentalType.equals("Record")) {
-            genreChoiceBox.getItems().setAll("Action", "Drama", "Horror", "Comedy");
-        } else if (rentalType.equals("Game")) {
-            genreChoiceBox.getItems().setAll("None");
-        } else {
-            genreChoiceBox.getItems().clear();
-        }
-        genreChoiceBox.setValue(genreChoiceBox.getItems().get(0));
+        EditItemController.Genre(rentalType, genreChoiceBox);
     }
 
     @FXML
@@ -135,14 +122,7 @@ public class AddItemController {
 
     @FXML
     public void Back() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/SceneAdmin.fxml");
-        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) back.getScene().getWindow();
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
+        EditItemController.Log(back);
     }
 
     private void showAlert(Alert.AlertType alertType, String message) {

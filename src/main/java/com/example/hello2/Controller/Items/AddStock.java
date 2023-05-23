@@ -4,15 +4,9 @@ import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Reader.ItemsFileReader;
 import com.example.hello2.Writer.ItemsFileWriter;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class AddStock {
@@ -80,14 +74,7 @@ public class AddStock {
 
     @FXML
     public void Back() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/SceneAdmin.fxml");
-        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) back.getScene().getWindow();
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
+        EditItemController.Log(back);
     }
 
 

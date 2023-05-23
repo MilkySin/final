@@ -37,6 +37,10 @@ public class SignupPage {
 
 
     public void Back() throws IOException {
+        Log(back);
+    }
+
+    static void Log(Button back) throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/FXML/LoginSignup.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();

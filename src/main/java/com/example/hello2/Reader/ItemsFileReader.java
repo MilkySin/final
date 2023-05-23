@@ -6,19 +6,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 
 public class ItemsFileReader {
-    public Path filePath = Paths.get("com/example/hello2/Data/items.txt");
 
     public ArrayList<ItemModel> itemList = new ArrayList<>(new ItemModel().getItemList());
 
-    public ItemsFileReader(Path filePath) {
-        this.filePath = filePath;
-    }
 
     public ItemsFileReader() {
     }

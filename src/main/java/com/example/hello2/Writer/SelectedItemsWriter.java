@@ -9,12 +9,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class SelectedItemsWriter {
-    public void SelectedItemsWriteFIle(ArrayList<SelectedItems> Items) throws IOException {
+    public void SelectedItemsWriteFIle(ArrayList<SelectedItems> selectedItemsArrayList) throws IOException {
         File file = new File("src/main/resources/com/example/hello2/Data/selected_items.txt");
         FileWriter fw = new FileWriter(file, false); // set append to false
         BufferedWriter bw = new BufferedWriter(fw);
 
-        for (SelectedItems items : Items) {
+        for (SelectedItems items : selectedItemsArrayList) {
             if (items.getSelectedItemsList() == null) {
                 bw.write(items.getID());
             } else {

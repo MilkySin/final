@@ -119,6 +119,10 @@ public class ItemSelectVIPController {
     }
 
     public void ownedItems() throws IOException {
+        owned(ownedItemsDisplay, ID);
+    }
+
+    static void owned(ScrollPane ownedItemsDisplay, String id) throws IOException {
         ArrayList<ItemModel> itemModelArrayList = new ItemsFileReader().readFileItems();
         ArrayList<SelectedItems> selectedItemsArrayList = new SelectedItemsReader().readFileSelectedItems();
         FlowPane flowPane = new FlowPane();
@@ -134,7 +138,7 @@ public class ItemSelectVIPController {
 
         for (SelectedItems temp : selectedItemsArrayList) {
             for (ItemModel items : itemModelArrayList) {
-                if (temp.getSelectedItemsList().contains(items.getID()) && Objects.equals(temp.getID(), ID)) {
+                if (temp.getSelectedItemsList().contains(items.getID()) && Objects.equals(temp.getID(), id)) {
                     Text owned = new Text(items.toString());
                     owned.setStyle("-fx-fill: white;"); // Set text color of the Text
                     owned.setFont(Font.font(14));

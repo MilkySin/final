@@ -11,86 +11,92 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.Users.EditUser">
-    <VBox prefHeight="400.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #777777;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;"
+            xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.hello2.Controller.Users.EditUser">
+    <VBox prefHeight="400.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #777777;"
+          AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
         <VBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
         </VBox.margin>
-      <Text fill="#eaaad1" stroke="#eaaad1" text="Choose User To Edit">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Text fill="#eaaad1" stroke="#eaaad1" text=" User ID">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <ChoiceBox fx:id="ID" prefWidth="150.0" />
-      <Text fill="#eaaad1" stroke="#eaaad1" text="User Details ">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-        <TextArea fx:id="itemDetailsArea" editable="false" prefHeight="150.0" prefWidth="200.0" wrapText="true" />
-        <Button fx:id="saveChangesButton" onAction="#saveChanges" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="Save Changes">
+        <Text fill="#eaaad1" stroke="#eaaad1" text="Choose User To Edit">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Text>
+        <Text fill="#eaaad1" stroke="#eaaad1" text=" User ID">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Text>
+        <ChoiceBox fx:id="ID" prefWidth="150.0"/>
+        <Text fill="#eaaad1" stroke="#eaaad1" text="User Details ">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Text>
+        <TextArea fx:id="itemDetailsArea" editable="false" prefHeight="150.0" prefWidth="200.0" wrapText="true"/>
+        <Button fx:id="saveChangesButton" onAction="#saveChanges" prefHeight="30.0" prefWidth="90.0"
+                style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="Save Changes">
             <VBox.margin>
-                <Insets />
+                <Insets/>
             </VBox.margin>
         </Button>
-        <Button fx:id="back" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#Back" style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="Back" />
+        <Button fx:id="back" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#Back"
+                style="-fx-background-color: #eaaad1; -fx-background-radius: 20;" text="Back"/>
     </VBox>
-    <VBox layoutX="200.0" prefHeight="400.0" prefWidth="400.0" spacing="10.0" style="-fx-background-color: #515151;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <VBox layoutX="200.0" prefHeight="400.0" prefWidth="400.0" spacing="10.0" style="-fx-background-color: #515151;"
+          AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <VBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
         </VBox.margin>
-      <Text fill="#eaaad1" stroke="#eaaad1" text="Enter Edited Details">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
-      <Text fill="#eaaad1" stroke="#eaaad1" text="User ID:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-        <TextField fx:id="itemIdField" promptText="Enter ID" style="-fx-background-color: #fae9f3;" />
-      <Text fill="#eaaad1" stroke="#eaaad1" text="Username:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-        <TextField fx:id="UsernameField" promptText="Enter Name" style="-fx-background-color: #fae9f3;" />
-      <Text fill="#eaaad1" stroke="#eaaad1" text="User Address">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-        <TextField fx:id="Addressfield" promptText="Enter Address" style="-fx-background-color: #fae9f3;" />
-      <Text fill="#eaaad1" stroke="#eaaad1" text="Account Type: ">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-        <ChoiceBox fx:id="AccountTypeChoicebox" prefWidth="150.0" style="-fx-background-color: #f6d9eb;" />
-      <Text fill="#eaaad1" stroke="#eaaad1" text="User Phone Number: ">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-        <TextField fx:id="NumberField" promptText="Enter Phone Number" style="-fx-background-color: #fae9f3;" />
-      <Text fill="#eaaad1" stroke="#eaaad1" text="User Password :">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <TextField fx:id="PasswordField" promptText="Enter Password" style="-fx-background-color: #fae9f3;" />
-      <Text fill="#eaaad1" stroke="#eaaad1" text="User Account Balance: ">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <TextField fx:id="balanceField" promptText="Enter Account Balamce" style="-fx-background-color: #fae9f3;" />
-        <HBox spacing="10.0" />
+        <Text fill="#eaaad1" stroke="#eaaad1" text="Enter Edited Details">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Text>
+        <Text fill="#eaaad1" stroke="#eaaad1" text="User ID:">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Text>
+        <TextField fx:id="itemIdField" promptText="Enter ID" style="-fx-background-color: #fae9f3;"/>
+        <Text fill="#eaaad1" stroke="#eaaad1" text="Username:">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Text>
+        <TextField fx:id="UsernameField" promptText="Enter Name" style="-fx-background-color: #fae9f3;"/>
+        <Text fill="#eaaad1" stroke="#eaaad1" text="User Address">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Text>
+        <TextField fx:id="addressField" promptText="Enter Address" style="-fx-background-color: #fae9f3;"/>
+        <Text fill="#eaaad1" stroke="#eaaad1" text="Account Type: ">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Text>
+        <ChoiceBox fx:id="AccountTypeChoicebox" prefWidth="150.0" style="-fx-background-color: #f6d9eb;"/>
+        <Text fill="#eaaad1" stroke="#eaaad1" text="User Phone Number: ">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Text>
+        <TextField fx:id="NumberField" promptText="Enter Phone Number" style="-fx-background-color: #fae9f3;"/>
+        <Text fill="#eaaad1" stroke="#eaaad1" text="User Password :">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Text>
+        <TextField fx:id="PasswordField" promptText="Enter Password" style="-fx-background-color: #fae9f3;"/>
+        <Text fill="#eaaad1" stroke="#eaaad1" text="User Account Balance: ">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Text>
+        <TextField fx:id="balanceField" promptText="Enter Account Balamce" style="-fx-background-color: #fae9f3;"/>
+        <HBox spacing="10.0"/>
     </VBox>
 </AnchorPane>

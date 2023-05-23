@@ -14,10 +14,10 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class SelectableCard extends StackPane {
-    private CheckBox checkBox;
-    private Text text;
-    private ImageView imageView;
-    private Rectangle background = new Rectangle(160, 280);
+    private final CheckBox checkBox;
+    private final Text text;
+    private final ImageView imageView;
+    private final Rectangle background = new Rectangle(160, 280);
 
 
     public SelectableCard() {
