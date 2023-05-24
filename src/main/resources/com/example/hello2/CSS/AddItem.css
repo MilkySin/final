@@ -1,0 +1,27 @@
+/* styles.css */
+.label {
+    -fx-text-fill: #efc4ed;
+}
+
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: pink;
+    -fx-border-width: 0 0 3 0;
+    -fx-prompt-text-fill: #efc4ed;
+}
+
+.choice-box {
+    -fx-background-color: #f6d9eb;
+    -fx-background-radius: 20;
+    -fx-text-fill: #000000;
+}
+
+.button {
+    -fx-font-weight: bold;
+    -fx-background-color: #eaaad1;
+    -fx-background-radius: 20;
+    -fx-text-fill: #000000;
+}
+.text-field {
+    -fx-text-fill: white;
+}

@@ -52,7 +52,7 @@ Ethan,Secure456@,C051,777 Oak Court,Regular,9991,0,35.0
 Evelyn,Password123$,C052,888 Pine Avenue,Guest,7890,0,0.0
 Alexander,HelloWorld!1,C053,999 Maple Drive,VIP,921,1,950.0
 Abigail,Laura456$,C054,111 Cherry Lane,Regular,1999,0,130.0
-Daniel,Password123@,C055,222 Walnut Street,Guest,93210,1,300.0
+Daniel,Password123@,C055,222 Walnut Street,Regular,93210,0,282.03998
 Sofia,Welcome123!,C056,333 Cedar Avenue,VIP,1209,0,350.0
 Matthew,Secure456@,C057,444 Oak Court,Regular,9871,0,20.0
 Amelia,Password123$,C058,555 Pine Street,Guest,1290,0,0.0
