@@ -1,7 +1,5 @@
 package com.example.hello2.Model;
 
-import java.util.ArrayList;
-
 public class UserModel {
     //    Username: shirin
 //    Password: 09SHhi!67
@@ -18,8 +16,6 @@ public class UserModel {
     protected String address;
     protected int phoneNumber;
     protected String accountType;
-    protected ArrayList<String> rentedItemList;
-    protected ArrayList<UserModel> usersList = new ArrayList<>();
     protected float balance;
     protected int numReturned;
 
@@ -96,35 +92,6 @@ public class UserModel {
 
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-
-    public ArrayList<String> getRentedItemList() {
-        return rentedItemList;
-    }
-
-    public void setRentedItemList(ArrayList<String> rentedItemList) {
-        this.rentedItemList = rentedItemList;
-    }
-
-    public void rentItem(ItemModel item) {
-    }
-
-    public void returnItem(ItemModel item) {
-        try {
-            rentedItemList.remove(item.getID());
-        } catch (RuntimeException ex) {
-            System.out.println("cannot return item if not borrowed");
-            //implement in javafx
-        }
-    }
-
-    public ArrayList<UserModel> getUsersList() {
-        return usersList;
-    }
-
-    public void setUsersList(ArrayList<UserModel> users) {
-        this.usersList = users;
     }
 
     @Override

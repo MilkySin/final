@@ -47,7 +47,7 @@ public class LoginSignupController {
         for (UserModel users : itemList) {
             if (ID.equals(users.getId()) && password.equals(users.getPassword())) {
                 if (Objects.equals(users.getId(), "C000") && Objects.equals(users.getUsername(), "Admin")) {
-                    Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
+                    Path path = Paths.get("src/main/resources/com/example/hello2/FXML/SceneAdmin.fxml");
                     FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
@@ -57,7 +57,7 @@ public class LoginSignupController {
                     stage.show();
                 } else {
                     if (Objects.equals(users.getAccountType(), "Guest")) {
-                        Path path = Paths.get("src/main/resources/com/example/hello2/GuestUser.fxml");
+                        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/GuestUser.fxml");
                         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
@@ -70,7 +70,7 @@ public class LoginSignupController {
                         stage.setScene(scene);
                         stage.show();
                     } else if (Objects.equals(users.getAccountType(), "Regular")) {
-                        Path path = Paths.get("src/main/resources/com/example/hello2/RegularUser.fxml");
+                        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/RegularUser.fxml");
                         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
@@ -85,7 +85,7 @@ public class LoginSignupController {
                         stage.setScene(scene);
                         stage.show();
                     } else if (Objects.equals(users.getAccountType(), "VIP")) {
-                        Path path = Paths.get("src/main/resources/com/example/hello2/VIPUser.fxml");
+                        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/VIPUser.fxml");
                         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
@@ -118,7 +118,7 @@ public class LoginSignupController {
     public void signup(ActionEvent event) {
         try {
             // Load the FXML file for Scene 1
-            Path path = Paths.get("src/main/resources/com/example/hello2/Signup.fxml");
+            Path path = Paths.get("src/main/resources/com/example/hello2/FXML/Signup.fxml");
             FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
 
             // Set up the stage and show Scene 1

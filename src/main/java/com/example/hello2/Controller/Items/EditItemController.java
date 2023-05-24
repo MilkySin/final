@@ -130,6 +130,10 @@ public class EditItemController {
     }
 
     private void updateGenreOptions(String rentalType) {
+        Genre(rentalType, genreChoiceBox);
+    }
+
+    static void Genre(String rentalType, ChoiceBox<String> genreChoiceBox) {
         if (rentalType.equals("DVD") || rentalType.equals("Record")) {
             genreChoiceBox.getItems().setAll("Action", "Drama", "Horror", "Comedy");
         } else if (rentalType.equals("Game")) {
@@ -142,7 +146,11 @@ public class EditItemController {
 
     @FXML
     public void Back() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
+        Log(back);
+    }
+
+    static void Log(Button back) throws IOException {
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/SceneAdmin.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);

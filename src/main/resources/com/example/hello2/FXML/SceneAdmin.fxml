@@ -54,7 +54,7 @@
     </AnchorPane>
     <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="275.0" layoutY="99.0" pickOnBounds="true"
                preserveRatio="true">
-        <Image url="@Images/904925.png"/>
+        <Image url="@../Images/904925.png"/>
     </ImageView>
     <Text fill="#f2cce3" layoutX="449.0" layoutY="73.0" stroke="#f2cce3" text="Customers">
         <font>

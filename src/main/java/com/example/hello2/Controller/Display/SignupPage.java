@@ -34,10 +34,14 @@ public class SignupPage {
 
     @FXML
     private TextField NumberField;
-    
+
 
     public void Back() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
+        Log(back);
+    }
+
+    static void Log(Button back) throws IOException {
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/LoginSignup.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -71,7 +75,7 @@ public class SignupPage {
 
         if (password.matches(passwordRegex) && ID.matches(IDRegex)) {
             UserModel registeredUser = new UserModel(username, password, ID, address, accountType,
-                                                     Integer.parseInt(number), balance);
+                    Integer.parseInt(number), balance);
             registeredUser.setNumReturned(numReturned);
             read.getUserList().add(registeredUser);
             writer.UserWriteFile(read.getUserList());
@@ -81,7 +85,7 @@ public class SignupPage {
         }
 
         // Load Scene 3 and pass the username as a parameter
-        Path path = Paths.get("src/main/resources/com/example/hello2/LoginSignup.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/LoginSignup.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
 
         Parent root = loader.load();

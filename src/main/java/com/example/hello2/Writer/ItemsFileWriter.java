@@ -9,11 +9,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ItemsFileWriter {
-    public void ItemsWriteFile(ArrayList<ItemModel> itemlist) throws IOException {
-        File file = new File("items.txt");
+    public void ItemsWriteFile(ArrayList<ItemModel> itemModelArrayList) throws IOException {
+        File file = new File("src/main/resources/com/example/hello2/Data/items.txt");
         FileWriter fw = new FileWriter(file, false); // set append to false
         BufferedWriter bw = new BufferedWriter(fw);
-        for (ItemModel item : itemlist) {
+        for (ItemModel item : itemModelArrayList) {
             if (item.getCopies() == 0) {
                 item.setStatus("Borrowed");
 

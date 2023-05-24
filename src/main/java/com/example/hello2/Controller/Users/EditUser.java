@@ -25,7 +25,7 @@ public class EditUser {
     public TextField PasswordField;
 
     public ChoiceBox<String> AccountTypeChoicebox;
-    public TextField Addressfield;
+    public TextField addressField;
     public Button saveChangesButton;
     public TextArea itemDetailsArea;
     public TextField NumberField;
@@ -35,14 +35,14 @@ public class EditUser {
         AccountTypeChoicebox.getItems().addAll("Guest", "Regular", "VIP");
         AccountTypeChoicebox.setValue("Guest");
         UserFileReader temp = new UserFileReader();
-        ArrayList<UserModel> Userlist = temp.readFileUser();
-        for (UserModel user : Userlist) {
+        ArrayList<UserModel> userModelArrayList = temp.readFileUser();
+        for (UserModel user : userModelArrayList) {
             ID.getItems().add(user.getId());
             ID.setValue("Select User to Edit");
         }
         ID.setOnAction(event -> {
             String searchId = ID.getValue();
-            for (UserModel user : Userlist) {
+            for (UserModel user : userModelArrayList) {
                 if (user.getId().equals(searchId)) {
                     itemDetailsArea.setText(user.toString());
                     break; // Exit the loop once a match is found
@@ -63,8 +63,8 @@ public class EditUser {
                     user.setId(itemIdField.getText());
                 }
 
-                if (!Addressfield.getText().isEmpty()) {
-                    user.setAddress(Addressfield.getText());
+                if (!addressField.getText().isEmpty()) {
+                    user.setAddress(addressField.getText());
                 }
 
                 if (!PasswordField.getText().isEmpty()) {
@@ -103,7 +103,11 @@ public class EditUser {
 
     @FXML
     public void Back() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
+        Log(back);
+    }
+
+    public static void Log(Button back) throws IOException {
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/SceneAdmin.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
