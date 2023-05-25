@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class SignupPage {
@@ -25,9 +26,6 @@ public class SignupPage {
 
     @FXML
     private PasswordField passwordField;
-
-    @FXML
-    private TextField IDField;
 
     @FXML
     private TextField AddressField;
@@ -54,7 +52,6 @@ public class SignupPage {
     public void signup(ActionEvent event) throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        String ID = IDField.getText();
         String address = AddressField.getText();
         String number = NumberField.getText();
         String accountType = "Guest";
@@ -64,26 +61,47 @@ public class SignupPage {
         UserFileReader read = new UserFileReader();
 
         String passwordRegex = "^(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|.<>?])(?=.*\\d)(?=.*[A-Z])[^,]{8,}$";
-        String IDRegex = "^C\\d{3}$";
+        String phoneRegex = "\\d{3,20}";
+        String noEmptyRegex = "\\S+";
 
-        for (UserModel user : read.readFileUser()) {
-            if (Objects.equals(user.getId(), ID)) {
-                System.out.println("Same ID");
-                return;
-            }
+
+        ArrayList<UserModel> userModelArrayList = read.readFileUser();
+        String ID = "C" + (userModelArrayList.size() + 1);
+
+        Alert error = new Alert(Alert.AlertType.ERROR);
+        Alert yourId = new Alert(Alert.AlertType.INFORMATION);
+
+        if (!(username.length() >= 10 && username.length() <= 100)) {
+            error.setContentText("Invalid Username, must be between 10 and 100");
+            error.showAndWait();
+            return;
         }
 
-        if (password.matches(passwordRegex) && ID.matches(IDRegex)) {
+        if (!username.matches(noEmptyRegex) || !address.matches(noEmptyRegex) || !password.matches(noEmptyRegex) || !number.matches(noEmptyRegex)) {
+            error.setContentText("Null field");
+            error.showAndWait();
+            return;
+        } else if (!password.matches(passwordRegex)) {
+            error.setContentText("Invalid Password");
+            error.showAndWait();
+            return;
+        } else if (!number.matches(phoneRegex)) {
+            error.setContentText("Invalid Phone number");
+            error.showAndWait();
+            return;
+        } else if (!(password.matches(passwordRegex)) && number.matches(phoneRegex)) {
+            error.setContentText("Invalid Password and Phone number");
+            error.showAndWait();
+            return;
+        } else {
+            yourId.setContentText("Your ID: " + ID);
+            yourId.showAndWait();
             UserModel registeredUser = new UserModel(username, password, ID, address, accountType,
-                    Integer.parseInt(number), balance);
+                    number, balance);
             registeredUser.setNumReturned(numReturned);
             read.getUserList().add(registeredUser);
             writer.UserWriteFile(read.getUserList());
-
-        } else {
-            System.out.println("Invalid Pass or ID");
         }
-
         // Load Scene 3 and pass the username as a parameter
         Path path = Paths.get("src/main/resources/com/example/hello2/FXML/LoginSignup.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());

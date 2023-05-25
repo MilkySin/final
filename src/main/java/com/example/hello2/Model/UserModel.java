@@ -14,13 +14,13 @@ public class UserModel {
     protected String id;
 
     protected String address;
-    protected int phoneNumber;
+    protected String phoneNumber;
     protected String accountType;
-    protected float balance;
+    protected double balance;
     protected int numReturned;
 
-    public UserModel(String username, String password, String id, String address, String accountType, int phoneNumber
-            , float balance) {
+    public UserModel(String username, String password, String id, String address, String accountType, String phoneNumber
+            , double balance) {
         this.username = username;
         this.password = password;
         this.id = id;
@@ -30,11 +30,11 @@ public class UserModel {
         this.balance = balance;
     }
 
-    public float getBalance() {
+    public double getBalance() {
         return balance;
     }
 
-    public void setBalance(float balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 
@@ -86,11 +86,11 @@ public class UserModel {
         this.address = address;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

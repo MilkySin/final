@@ -76,7 +76,7 @@ public class EditUser {
                 }
 
                 if (!NumberField.getText().isEmpty()) {
-                    user.setPhoneNumber(Integer.parseInt(NumberField.getText()));
+                    user.setPhoneNumber(NumberField.getText());
                 }
 
                 if (AccountTypeChoicebox != null && !AccountTypeChoicebox.getValue().isEmpty()) {

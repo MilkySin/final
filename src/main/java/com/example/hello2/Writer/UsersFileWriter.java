@@ -17,7 +17,7 @@ public class UsersFileWriter {
         for (UserModel user : userModelArrayList) {
             bw.write(
                     user.getUsername() + "," + user.getPassword() + "," + user.getId() + "," + user.getAddress() + ","
-                            + user.getAccountType() + "," + user.getPhoneNumber() + "," + user.getNumReturned() + "," + user.getBalance());
+                            + user.getAccountType() + "," + user.getPhoneNumber() + "," + user.getNumReturned() + "," + String.format("%.2f", user.getBalance()));
             bw.write("\n");
         }
         bw.close();

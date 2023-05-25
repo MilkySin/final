@@ -90,7 +90,7 @@ public class ItemSelectVIPController {
                 Balance.setText("Balance: $" + String.format("%.2f", user.getBalance()));
                 Welcome.setText("Welcome: " + user.getUsername());
                 Points.setText("Current Points: " + (user.getNumReturned() * 10));
-                freebutton.setVisible(user.getNumReturned() >= 10);
+                freebutton.setVisible(true);
             }
         }
 
@@ -167,6 +167,7 @@ public class ItemSelectVIPController {
         UserFileReader userFileReader = new UserFileReader();
         List<SelectableCard> cardList = new ArrayList<>();
 
+
         Button dvdButton = new Button("DVD");
         Button recordButton = new Button("Record");
         Button gameButton = new Button("Game");
@@ -185,9 +186,16 @@ public class ItemSelectVIPController {
         scrollPane.setFitToHeight(true);
         ArrayList<ItemModel> itemModelArrayList = itemsFileReader.readFileItems();
         int points = 0;
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
         for (UserModel user : userFileReader.readFileUser()) {
             if (Objects.equals(user.getId(), getUserID())) {
                 points = user.getNumReturned();
+                if (user.getNumReturned() < 10) {
+                    alert.setContentText(100 - (user.getNumReturned() * 10) + " Points until you get a free item");
+                    alert.showAndWait();
+                    return;
+                }
             }
         }
 
@@ -312,10 +320,6 @@ public class ItemSelectVIPController {
         }
 
         if (result.isPresent() && result.get() == confirmButton) {
-            if (points < 100) {
-                freebutton.setVisible(false);
-            }
-
             for (UserModel user : userFileReader.getUserList()) {
                 if (Objects.equals(user.getId(), getUserID())) {
                     user.setNumReturned(user.getNumReturned() - tempArray.size() * 10);
@@ -677,6 +681,9 @@ public class ItemSelectVIPController {
                 double amount = Double.parseDouble(input);
                 if (amount <= 0) {
                     showErrorAlert("Invalid amount. Please enter a positive number.");
+                    return;
+                } else if (input.length() > 10) {
+                    showErrorAlert("Invalid amount");
                     return;
                 }
 

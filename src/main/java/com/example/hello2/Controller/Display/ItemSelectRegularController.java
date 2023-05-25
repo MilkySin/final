@@ -171,7 +171,7 @@ public class ItemSelectRegularController {
 
 
             String fileName = itemImageFile.get(items.getTitle());
-            URL resourceUrl = getClass().getResource("/com/example/hello2/FXML/Images/" + fileName);
+            URL resourceUrl = getClass().getResource("/com/example/hello2/Images/" + fileName);
             if (resourceUrl != null) {
                 Image image = new Image(resourceUrl.toExternalForm());
                 selectableCard.setImage(image);
@@ -484,7 +484,10 @@ public class ItemSelectRegularController {
                         stage.setScene(scene);
                         stage.setResizable(false);
                         stage.show();
+                        return;
                     }
+                    usersFileWriter.UserWriteFile(userFileReader.getUserList());
+                    selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
                 }
             }
         }
@@ -504,6 +507,9 @@ public class ItemSelectRegularController {
                 double amount = Double.parseDouble(input);
                 if (amount <= 0) {
                     showErrorAlert("Invalid amount. Please enter a positive number.");
+                    return;
+                } else if (input.length() > 10) {
+                    showErrorAlert("Invalid amount");
                     return;
                 }
 

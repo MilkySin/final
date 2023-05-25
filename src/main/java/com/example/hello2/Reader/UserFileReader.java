@@ -27,8 +27,8 @@ public class UserFileReader {
 
             // Check if the array has enough elements
             if (field.length >= 8) {
-                UserModel user = new UserModel(field[0], field[1], field[2], field[3], field[4], Integer.parseInt(field[5]),
-                        Float.parseFloat(field[7]));
+                UserModel user = new UserModel(field[0], field[1], field[2], field[3], field[4], field[5],
+                        Double.parseDouble(field[7]));
                 user.setNumReturned(Integer.parseInt(field[6]));
                 userList.add(user);
             } else {

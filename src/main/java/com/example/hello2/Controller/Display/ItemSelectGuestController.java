@@ -451,7 +451,10 @@ public class ItemSelectGuestController {
                         stage.setScene(scene);
                         stage.setResizable(false);
                         stage.show();
+                        return;
                     }
+                    usersFileWriter.UserWriteFile(userFileReader.getUserList());
+                    selectedItemsWriter.SelectedItemsWriteFIle(selectedItemsReader.getSelectedItemsList());
                 }
             }
         }
@@ -471,6 +474,9 @@ public class ItemSelectGuestController {
                 double amount = Double.parseDouble(input);
                 if (amount <= 0) {
                     showErrorAlert("Invalid amount. Please enter a positive number.");
+                    return;
+                } else if (input.length() > 10) {
+                    showErrorAlert("Invalid amount");
                     return;
                 }
 
