@@ -3,8 +3,8 @@
 #### Contribution
 
 ```
-Shirin Shuja: 5
-Tran Quang Minh: 5
-Huynh Ngoc Tai: 5
-Ngo Tra Tam Khoa: 1
+Shirin Shuja: 35
+Tran Quang Minh: 35
+Huynh Ngoc Tai: 30
+Ngo Tra Tam Khoa: 0
 ```
