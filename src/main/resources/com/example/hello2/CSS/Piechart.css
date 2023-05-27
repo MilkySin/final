@@ -1,6 +1,7 @@
 .chart-pie-label {
     -fx-text-fill: white;
 }
+
 .chart-title {
     -fx-text-fill: white;
     -fx-font-weight: bold;
@@ -11,9 +12,8 @@
     -fx-text-fill: white;
 }
 
-
 .chart-pie {
-    -fx-pie-color: #9BBFE0, #E8A09A, #FBE29F;
+    -fx-pie-color: #9BBFE0, #E8A09A, #FBE29F, #C6D68F;
 }
 
 /* Custom CSS classes for each data item */
@@ -28,23 +28,7 @@
 .data2.chart-pie {
     -fx-pie-color: #FBE29F;
 }
-.chart-pie-label {
-    -fx-text-fill: white;
-}
 
-.chart-pie {
-    -fx-pie-color: transparent;
-}
-
-/* Custom CSS classes for each data item */
-.data0.chart-pie {
-    -fx-pie-color: #9BBFE0;
-}
-
-.data1.chart-pie {
-    -fx-pie-color: #E8A09A;
-}
-
-.data2.chart-pie {
-    -fx-pie-color: #FBE29F;
+.data3.chart-pie {
+    -fx-pie-color: #C6D68F;
 }
