@@ -128,7 +128,7 @@ public class SceneAdminController {
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        Stage stage = (Stage) EditItem.getScene().getWindow();
+        Stage stage = (Stage) AddUser.getScene().getWindow();
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
@@ -140,7 +140,7 @@ public class SceneAdminController {
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        Stage stage = (Stage) EditItem.getScene().getWindow();
+        Stage stage = (Stage) EditUser.getScene().getWindow();
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
@@ -152,9 +152,22 @@ public class SceneAdminController {
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        Stage stage = (Stage) EditItem.getScene().getWindow();
+        Stage stage = (Stage) AddStock.getScene().getWindow();
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
+    @FXML
+    void Statistics() throws IOException {
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/Statistics.fxml");
+        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) AddStock.getScene().getWindow();
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
 }
