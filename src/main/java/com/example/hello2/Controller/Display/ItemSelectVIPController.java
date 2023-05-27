@@ -65,6 +65,7 @@ public class ItemSelectVIPController {
         itemImageFile.put("Inception", "Inception.jpg");
         itemImageFile.put("The Sixth Sense", "Thesixthsense.jpg");
         itemImageFile.put("Gone with the Wind", "GoneWithTheWind.png");
+        itemImageFile.put("Sonic", "Sonic.jpg");
     }
 
     public void setID(String ID) {
