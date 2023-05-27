@@ -10,10 +10,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -35,9 +33,28 @@ public class SignupPage {
     @FXML
     private TextField NumberField;
 
+    public Label lengthLabel;
+    public Label specialCharLabel;
+    public Label uppercaseLabel;
+    public Label lowercaseLabel;
+
 
     public void Back() throws IOException {
         Log(back);
+    }
+
+    public void initialize() {
+        passwordField.textProperty().addListener((observable, oldValue, newValue) -> {
+            boolean meetsLengthRequirement = newValue.length() >= 8;
+            boolean hasSpecialCharacter = newValue.matches(".*[!@#$%^&*()_+=\\[\\]{}|<>?/\\\\-]+.*") && !newValue.contains(" ") && !newValue.contains(",");
+            boolean hasUppercase = !newValue.equals(newValue.toLowerCase());
+            boolean hasLowercase = !newValue.equals(newValue.toUpperCase());
+
+            lengthLabel.setTextFill(meetsLengthRequirement ? Color.GREEN : Color.RED);
+            specialCharLabel.setTextFill(hasSpecialCharacter ? Color.GREEN : Color.RED);
+            uppercaseLabel.setTextFill(hasUppercase ? Color.GREEN : Color.RED);
+            lowercaseLabel.setTextFill(hasLowercase ? Color.GREEN : Color.RED);
+        });
     }
 
     static void Log(Button back) throws IOException {
@@ -53,7 +70,6 @@ public class SignupPage {
 
     public void signup(ActionEvent event) throws IOException {
         String username = usernameField.getText();
-        String password = passwordField.getText();
         String address = AddressField.getText();
         String number = NumberField.getText();
         String accountType = "Guest";
@@ -62,7 +78,7 @@ public class SignupPage {
         UsersFileWriter writer = new UsersFileWriter();
         UserFileReader read = new UserFileReader();
 
-        String passwordRegex = "^(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|.<>?])(?=.*\\d)(?=.*[A-Z])[^,]{8,}$";
+        String passwordRegex = "^(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|.<>?])(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[^,\\s]{8,}$";
         String phoneRegex = "\\d{3,20}";
         String noEmptyRegex = "\\S+";
 
@@ -80,6 +96,10 @@ public class SignupPage {
             return;
         }
 
+
+        String password = passwordField.getText();
+
+
         for (UserModel name : userModelArrayList) {
             if (username.equals(name.getUsername())) {
                 error.setContentText("Username has been taken");
@@ -96,7 +116,7 @@ public class SignupPage {
             error.setContentText("Null field");
             error.showAndWait();
             return;
-        } else if (!password.matches(passwordRegex)) {
+        } else if (!(password.matches(passwordRegex))) {
             error.setContentText("Invalid Password");
             error.showAndWait();
             return;

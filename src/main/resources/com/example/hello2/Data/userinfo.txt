@@ -99,3 +99,4 @@ Harper,Welcome123!,C098,666 Cedar Street,VIP,1089,2,600.00
 Ethan,Secure456@,C099,777 Oak Court,Regular,9021,0,35.00
 Evelyn,Password123$,C100,888 Pine Avenue,Guest,890,0,0.00
 Testtester,Hello123!,C101,dfafa,Guest,123,0,100.00
+siadjsaidjasjdiad,Hello123!,C102,dsadsad,Guest,12810318301,0,0.00
