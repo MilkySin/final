@@ -52,6 +52,7 @@ public class Statistics {
                 new PieChart.Data("Regular", regularCount),
                 new PieChart.Data("Guest", guestCount)
         );
+        accountPieChart.getData().forEach(data -> data.getNode().setStyle("-fx-text-fill: white;"));
     }
 
     private void initializeItemTypePieChart() throws IOException {
@@ -83,5 +84,6 @@ public class Statistics {
                 new PieChart.Data("Record", Record),
                 new PieChart.Data("Game", Game)
         );
+        ItemTypePieChart.getData().forEach(data -> data.getNode().setStyle("-fx-text-fill: white;"));
     }
 }
