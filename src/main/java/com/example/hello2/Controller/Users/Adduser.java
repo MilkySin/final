@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -37,6 +38,10 @@ public class Adduser {
     private ChoiceBox<String> AccountType;
     @FXML
     private Text Success;
+    public Label lengthLabel;
+    public Label specialCharLabel;
+    public Label uppercaseLabel;
+    public Label lowercaseLabel;
 
     public void Back() throws IOException {
         Log(back);
@@ -46,6 +51,18 @@ public class Adduser {
         AccountType.getItems().addAll("Guest", "Regular", "VIP");
         AccountType.setValue("Guest");
         Success.setVisible(false);
+
+        PasswordField.textProperty().addListener((observable, oldValue, newValue) -> {
+            boolean meetsLengthRequirement = newValue.length() >= 8;
+            boolean hasSpecialCharacter = newValue.matches(".*[!@#$%^&*()_+=\\[\\]{}|<>?/\\\\-]+.*") && !newValue.contains(" ") && !newValue.contains(",");
+            boolean hasUppercase = !newValue.equals(newValue.toLowerCase());
+            boolean hasLowercase = !newValue.equals(newValue.toUpperCase());
+
+            lengthLabel.setTextFill(meetsLengthRequirement ? Color.GREEN : Color.RED);
+            specialCharLabel.setTextFill(hasSpecialCharacter ? Color.GREEN : Color.RED);
+            uppercaseLabel.setTextFill(hasUppercase ? Color.GREEN : Color.RED);
+            lowercaseLabel.setTextFill(hasLowercase ? Color.GREEN : Color.RED);
+        });
     }
 
     static void Log(Button back) throws IOException {
@@ -70,7 +87,7 @@ public class Adduser {
         UsersFileWriter writer = new UsersFileWriter();
         UserFileReader read = new UserFileReader();
 
-        String passwordRegex = "^(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|.<>?])(?=.*\\d)(?=.*[A-Z])[^,]{8,}$";
+        String passwordRegex = "^(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|.<>?])(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[^,\\s]{8,}$";
         String phoneRegex = "\\d{3,20}";
         String noEmptyRegex = "\\S+";
 
@@ -84,6 +101,18 @@ public class Adduser {
             error.setContentText("Invalid Username, must be between 10 and 100");
             error.showAndWait();
             return;
+        }
+
+        for (UserModel name : userModelArrayList) {
+            if (username.equals(name.getUsername())) {
+                error.setContentText("Username has been taken");
+                error.showAndWait();
+                return;
+            } else if (number.equals(name.getPhoneNumber())) {
+                error.setContentText("Phone number is already being used");
+                error.showAndWait();
+                return;
+            }
         }
 
         if (!username.matches(noEmptyRegex) || !address.matches(noEmptyRegex) || !password.matches(noEmptyRegex) || !number.matches(noEmptyRegex) || !balance.matches(noEmptyRegex)) {

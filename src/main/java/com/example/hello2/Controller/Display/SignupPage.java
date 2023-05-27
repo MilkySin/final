@@ -72,6 +72,7 @@ public class SignupPage {
         String username = usernameField.getText();
         String address = AddressField.getText();
         String number = NumberField.getText();
+        String password = passwordField.getText();
         String accountType = "Guest";
         float balance = 0;
         int numReturned = 0;
@@ -95,10 +96,6 @@ public class SignupPage {
             error.showAndWait();
             return;
         }
-
-
-        String password = passwordField.getText();
-
 
         for (UserModel name : userModelArrayList) {
             if (username.equals(name.getUsername())) {
