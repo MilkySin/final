@@ -124,7 +124,7 @@ public class SceneAdminController {
 
     @FXML
     void AddUser() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/Signup.fxml");
+        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/AddUsers.fxml");
         FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
