@@ -98,12 +98,9 @@ public class AddItemController {
 
         // Validate rental fee is a positive decimal
         double rentalFee;
-        try {
-            rentalFee = Double.parseDouble(rentalFeeText);
-            if (rentalFee <= 0) {
-                throw new NumberFormatException();
-            }
-        } catch (NumberFormatException e) {
+
+        rentalFee = Double.parseDouble(rentalFeeText);
+        if (rentalFee <= 0) {
             showAlert(Alert.AlertType.ERROR, "Invalid rental fee");
             return;
         }

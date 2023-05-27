@@ -45,6 +45,7 @@ public class Adduser {
     public void initialize() {
         AccountType.getItems().addAll("Guest", "Regular", "VIP");
         AccountType.setValue("Guest");
+        Success.setVisible(false);
     }
 
     static void Log(Button back) throws IOException {
@@ -105,19 +106,5 @@ public class Adduser {
             read.getUserList().add(registeredUser);
             writer.UserWriteFile(read.getUserList());
         }
-        // Load Scene 3 and pass the username as a parameter
-//        Path path = Paths.get("src/main/resources/com/example/hello2/FXML/LoginSignup.fxml");
-//        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
-//
-//        Parent root = loader.load();
-//        Scene scene = new Scene(root);
-//
-//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        if (stage != null) {
-//            stage.setScene(scene);
-//            stage.setResizable(false);
-//            stage.show();
-//        } else {
-//            System.out.println("Error: Stage is null");
     }
 }

@@ -69,14 +69,27 @@ public class SignupPage {
 
         ArrayList<UserModel> userModelArrayList = read.readFileUser();
         String ID = "C" + (userModelArrayList.size() + 1);
-        
+
         Alert error = new Alert(Alert.AlertType.ERROR);
         Alert yourId = new Alert(Alert.AlertType.INFORMATION);
+
 
         if (!(username.length() >= 10 && username.length() <= 100)) {
             error.setContentText("Invalid Username, must be between 10 and 100");
             error.showAndWait();
             return;
+        }
+
+        for (UserModel name : userModelArrayList) {
+            if (username.equals(name.getUsername())) {
+                error.setContentText("Username has been taken");
+                error.showAndWait();
+                return;
+            } else if (number.equals(name.getPhoneNumber())) {
+                error.setContentText("Phone number is already being used");
+                error.showAndWait();
+                return;
+            }
         }
 
         if (!username.matches(noEmptyRegex) || !address.matches(noEmptyRegex) || !password.matches(noEmptyRegex) || !number.matches(noEmptyRegex)) {
