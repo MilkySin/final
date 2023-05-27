@@ -85,8 +85,7 @@ public class SignupPage {
 
         String passwordRegex = "^(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|.<>?])(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[^,\\s]{8,}$";
         String phoneRegex = "\\d{3,20}";
-        String noEmptyRegex = "\\S+";
-
+        String noEmptyRegex = ".*\\S+.*";
 
         ArrayList<UserModel> userModelArrayList = read.readFileUser();
         String ID = "C" + (userModelArrayList.size() + 1);
@@ -96,7 +95,7 @@ public class SignupPage {
 
 
         if (!(username.length() >= 10 && username.length() <= 100)) {
-            error.setContentText("Invalid Username, must be between 10 and 100");
+            error.setContentText("Invalid Username, must be between 10 and 100 characters");
             error.showAndWait();
             return;
         }

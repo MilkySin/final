@@ -94,7 +94,8 @@ public class Adduser {
 
         String passwordRegex = "^(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|.<>?])(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[^,\\s]{8,}$";
         String phoneRegex = "\\d{3,20}";
-        String noEmptyRegex = "\\S+";
+        String noEmptyRegex = ".*\\S+.*";
+
 
 
         ArrayList<UserModel> userModelArrayList = read.readFileUser();

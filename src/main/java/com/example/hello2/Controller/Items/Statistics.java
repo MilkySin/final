@@ -1,11 +1,13 @@
-package com.example.hello2.Controller.Display;
+package com.example.hello2.Controller.Items;
 
+import com.example.hello2.Controller.Items.EditItemController;
 import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Model.UserModel;
 import com.example.hello2.Reader.ItemsFileReader;
 import com.example.hello2.Reader.UserFileReader;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 
@@ -14,12 +16,12 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Statistics {
-    @FXML
+
     public PieChart GenreTypePieChart;
-    @FXML
-    private PieChart ItemTypePieChart;
-    @FXML
-    private PieChart accountPieChart;
+    public PieChart ItemTypePieChart;
+    public PieChart accountPieChart;
+    public Button back;
+
 
     public void initialize() throws IOException {
         initializeAccountPieChart();
@@ -53,9 +55,9 @@ public class Statistics {
         }
 
         accountPieChart.getData().addAll(
-                new PieChart.Data("VIP", vipCount),
-                new PieChart.Data("Regular", regularCount),
-                new PieChart.Data("Guest", guestCount)
+                new PieChart.Data("VIP", vipCount/2),
+                new PieChart.Data("Regular", regularCount/2),
+                new PieChart.Data("Guest", guestCount/2)
         );
         accountPieChart.getData().forEach(data -> data.getNode().setStyle("-fx-text-fill: white;"));
         // Add data labels
@@ -87,9 +89,9 @@ public class Statistics {
         }
 
         ItemTypePieChart.getData().addAll(
-                new PieChart.Data("DVD", DVD),
-                new PieChart.Data("Record", Record),
-                new PieChart.Data("Game", Game)
+                new PieChart.Data("DVD", DVD/2),
+                new PieChart.Data("Record", Record/2),
+                new PieChart.Data("Game", Game/2)
         );
         ItemTypePieChart.getData().forEach(data -> data.getNode().setStyle("-fx-text-fill: white;"));
         // Add data labels
@@ -109,30 +111,33 @@ public class Statistics {
 
         ArrayList<ItemModel> itemList = reader.readFileItems();
         for (ItemModel item : itemList) {
-            if (Objects.equals(item.getGenre(), "Drama")) {
-                Drama++;
-            }
-            if (Objects.equals(item.getGenre(), "Horror")) {
-                Horror++;
-            }
-            if (Objects.equals(item.getGenre(), "Comedy")) {
-                Comedy++;
-            }
-            if (Objects.equals(item.getGenre(), "Action")) {
-                Action++;
+            String genre = item.getGenre();
+            if (genre != null && !genre.equalsIgnoreCase("None")) {
+                if (Objects.equals(genre, "Drama")) {
+                    Drama++;
+                } else if (Objects.equals(genre, "Horror")) {
+                    Horror++;
+                } else if (Objects.equals(genre, "Comedy")) {
+                    Comedy++;
+                } else if (Objects.equals(genre, "Action")) {
+                    Action++;
+                }
             }
         }
 
         GenreTypePieChart.getData().addAll(
-                new PieChart.Data("Drama", Drama),
-                new PieChart.Data("Horror", Horror),
-                new PieChart.Data("Action", Action),
-                new PieChart.Data("Comedy", Comedy)
+                new PieChart.Data("Drama", Drama/2),
+                new PieChart.Data("Horror", Horror/2),
+                new PieChart.Data("Comedy", Comedy/2),
+                new PieChart.Data("Action", Action/2)
         );
+
         GenreTypePieChart.getData().forEach(data -> data.getNode().setStyle("-fx-text-fill: white;"));
         // Add data labels
         addDataLabels(GenreTypePieChart);
     }
+
+
     private void addDataLabels(PieChart pieChart) {
         for (PieChart.Data data : pieChart.getData()) {
             Label label = new Label(Integer.toString((int) data.getPieValue()));
@@ -147,5 +152,10 @@ public class Statistics {
                 tooltip.hide();
             });
         }
+    }
+
+    @FXML
+    public void Back() throws IOException {
+        EditItemController.Log(back);
     }
 }

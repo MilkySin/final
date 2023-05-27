@@ -2,13 +2,16 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="510.0" prefWidth="600.0" style="-fx-background-color: #444444; -fx-border-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.Display.Statistics">
+<AnchorPane prefHeight="520.0" prefWidth="600.0" style="-fx-background-color: #444444; -fx-border-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello2.Controller.Items.Statistics">
    <stylesheets>
       <URL value="@../CSS/Piechart.css" />
    </stylesheets>
+   <PieChart fx:id="GenreTypePieChart" layoutX="307.0" layoutY="260.0" prefHeight="231.0" prefWidth="278.0" title="Genre Type" />
    <PieChart fx:id="accountPieChart" layoutX="21.0" layoutY="30.0" prefHeight="231.0" prefWidth="278.0" title="Account Type" />
    <PieChart fx:id="ItemTypePieChart" layoutX="307.0" layoutY="30.0" prefHeight="231.0" prefWidth="278.0" title="Item Type" />
-   <PieChart fx:id="GenreTypePieChart" layoutX="314.0" layoutY="278.0" prefHeight="231.0" prefWidth="278.0" title="Genre Type" />
+   <Button fx:id="back" layoutX="235.0" layoutY="452.0" mnemonicParsing="false" onAction="#Back" prefHeight="38.0" prefWidth="143.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20; -fx-font-weight: bold;" text="Back" />
+
 </AnchorPane>
