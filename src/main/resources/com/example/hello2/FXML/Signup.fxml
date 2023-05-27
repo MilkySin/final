@@ -23,6 +23,7 @@
    <Label fx:id="lowercaseLabel" layoutX="20.0" layoutY="233.0" text="At least 1 lowercase letter" textFill="RED" />
    <Label fx:id="uppercaseLabel" layoutX="20.0" layoutY="217.0" text="At least 1 uppercase letter" textFill="RED" />
    <Label fx:id="specialCharLabel" layoutX="20.0" layoutY="200.0" text="At least 1 special character (no comma)" textFill="RED" />
+   <Label fx:id="numberLabel" layoutX="20.0" layoutY="250.0" text="At least 1 number" textFill="RED" />
 
 
 </AnchorPane>

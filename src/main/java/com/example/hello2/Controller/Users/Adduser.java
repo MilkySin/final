@@ -42,6 +42,7 @@ public class Adduser {
     public Label specialCharLabel;
     public Label uppercaseLabel;
     public Label lowercaseLabel;
+    public Label numberLabel;
 
     public void Back() throws IOException {
         Log(back);
@@ -57,11 +58,15 @@ public class Adduser {
             boolean hasSpecialCharacter = newValue.matches(".*[!@#$%^&*()_+=\\[\\]{}|<>?/\\\\-]+.*") && !newValue.contains(" ") && !newValue.contains(",");
             boolean hasUppercase = !newValue.equals(newValue.toLowerCase());
             boolean hasLowercase = !newValue.equals(newValue.toUpperCase());
+            boolean hasNumber = newValue.matches(".*\\d.*");
+
 
             lengthLabel.setTextFill(meetsLengthRequirement ? Color.GREEN : Color.RED);
             specialCharLabel.setTextFill(hasSpecialCharacter ? Color.GREEN : Color.RED);
             uppercaseLabel.setTextFill(hasUppercase ? Color.GREEN : Color.RED);
             lowercaseLabel.setTextFill(hasLowercase ? Color.GREEN : Color.RED);
+            numberLabel.setTextFill(hasNumber ? Color.GREEN : Color.RED);
+
         });
     }
 
