@@ -12,6 +12,6 @@
    <PieChart fx:id="GenreTypePieChart" layoutX="145.0" layoutY="263.0" prefHeight="273.0" prefWidth="427.0" title="Genre Type" />
    <PieChart fx:id="accountPieChart" layoutX="12.0" layoutY="26.0" prefHeight="231.0" prefWidth="278.0" title="Account Type" />
    <PieChart fx:id="ItemTypePieChart" layoutX="410.0" layoutY="33.0" prefHeight="231.0" prefWidth="278.0" title="Item Type" />
-   <Button fx:id="back" layoutX="285.0" layoutY="552.0" mnemonicParsing="false" onAction="#Back" prefHeight="38.0" prefWidth="143.0" style="-fx-background-color: #eaaad1; -fx-background-radius: 20; -fx-font-weight: bold;" text="Back" />
+   <Button fx:id="back" layoutX="285.0" layoutY="552.0" mnemonicParsing="false" onAction="#Back" prefHeight="38.0" prefWidth="143.0" style="-fx-background-color: #E8A09A; -fx-background-radius: 20; -fx-font-weight: bold;" text="Back" />
 
 </AnchorPane>
