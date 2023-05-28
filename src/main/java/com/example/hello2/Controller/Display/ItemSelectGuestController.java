@@ -10,6 +10,7 @@ import com.example.hello2.Reader.UserFileReader;
 import com.example.hello2.Writer.ItemsFileWriter;
 import com.example.hello2.Writer.SelectedItemsWriter;
 import com.example.hello2.Writer.UsersFileWriter;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
@@ -18,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -175,7 +177,6 @@ public class ItemSelectGuestController {
                 selectableCard.cardSetDisable(true);
             } else {
                 int finalMaxSelect = maxSelect;
-                setupHoverEffect(selectableCard, items);
                 selectableCard.setOnMouseClicked(event -> {
                     if (!selectableCard.cardIsDisabled()) {
                         if (selectableCard.isSelected() && selectedCount[0] > 0) {
@@ -188,6 +189,7 @@ public class ItemSelectGuestController {
                     }
                 });
             }
+            setupHoverEffect(selectableCard, items);
             cardList.add(selectableCard);
             flowPane.getChildren().add(selectableCard);
         }
@@ -523,12 +525,19 @@ public class ItemSelectGuestController {
         tooltip.setWrapText(true);
         tooltip.setMaxWidth(400);
 
-        selectableCard.setOnMouseEntered(event -> {
+        // Add the new hover effect without overwriting the existing one
+        EventHandler<MouseEvent> enterHandler = event -> {
             Point2D location = selectableCard.localToScreen(selectableCard.getBoundsInLocal().getMaxX(), selectableCard.getBoundsInLocal().getMaxY());
             tooltip.show(selectableCard, location.getX(), location.getY());
-        });
+        };
 
-        selectableCard.setOnMouseExited(event -> tooltip.hide());
+        EventHandler<MouseEvent> exitHandler = event -> {
+            tooltip.hide();
+        };
+
+        // Combine the new hover effect with the existing one
+        selectableCard.addEventHandler(MouseEvent.MOUSE_ENTERED, enterHandler);
+        selectableCard.addEventHandler(MouseEvent.MOUSE_EXITED, exitHandler);
     }
 
 }
