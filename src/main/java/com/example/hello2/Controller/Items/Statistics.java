@@ -1,6 +1,5 @@
 package com.example.hello2.Controller.Items;
 
-import com.example.hello2.Controller.Items.EditItemController;
 import com.example.hello2.Model.ItemModel;
 import com.example.hello2.Model.UserModel;
 import com.example.hello2.Reader.ItemsFileReader;
@@ -35,13 +34,8 @@ public class Statistics {
         int guestCount = 0;
 
         UserFileReader reader = new UserFileReader();
-        StringBuilder fileContent = new StringBuilder();
 
-        for (UserModel user : reader.readFileUser()) {
-            fileContent.append(user.toString());
-        }
-
-        ArrayList<UserModel> userList = reader.getUserList();
+        ArrayList<UserModel> userList = reader.readFileUser();
         for (UserModel user : userList) {
             if (Objects.equals(user.getAccountType(), "Regular")) {
                 regularCount++;
@@ -70,12 +64,8 @@ public class Statistics {
         int Game = 0;
 
         ItemsFileReader reader = new ItemsFileReader();
-        StringBuilder fileContent = new StringBuilder();
-        for (ItemModel item : reader.readFileItems()) {
-            fileContent.append(item.toString());
-        }
 
-        ArrayList<ItemModel> itemList = reader.getItemList();
+        ArrayList<ItemModel> itemList = reader.readFileItems();
         for (ItemModel item : itemList) {
             if (Objects.equals(item.getRentalType(), "DVD")) {
                 DVD++;
@@ -105,23 +95,16 @@ public class Statistics {
         int Action = 0;
 
         ItemsFileReader reader = new ItemsFileReader();
-        StringBuilder fileContent = new StringBuilder();
-        for (ItemModel item : reader.readFileItems()) {
-            fileContent.append(item.toString());
-        }
 
-        ArrayList<ItemModel> itemList = reader.getItemList();
+        ArrayList<ItemModel> itemList = reader.readFileItems();
         for (ItemModel item : itemList) {
             String genre = item.getGenre();
             if (genre != null && !genre.equalsIgnoreCase("None")) {
-                if (Objects.equals(genre, "Drama")) {
-                    Drama++;
-                } else if (Objects.equals(genre, "Horror")) {
-                    Horror++;
-                } else if (Objects.equals(genre, "Comedy")) {
-                    Comedy++;
-                } else if (Objects.equals(genre, "Action")) {
-                    Action++;
+                switch (genre) {
+                    case "Drama" -> Drama++;
+                    case "Horror" -> Horror++;
+                    case "Comedy" -> Comedy++;
+                    case "Action" -> Action++;
                 }
             }
         }
