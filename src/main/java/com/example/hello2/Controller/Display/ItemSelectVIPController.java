@@ -10,6 +10,7 @@ import com.example.hello2.Reader.UserFileReader;
 import com.example.hello2.Writer.ItemsFileWriter;
 import com.example.hello2.Writer.SelectedItemsWriter;
 import com.example.hello2.Writer.UsersFileWriter;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -19,9 +20,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -238,13 +241,10 @@ public class ItemSelectVIPController {
                             selectedCount[0]++;
                             selectableCard.setSelected(true);
                         }
-                        if (selectableCard.isSelected()) {
-                            showItemDescription(items);
-                        }
                     }
                 });
             }
-
+            setupHoverEffect(selectableCard, items);
             cardList.add(selectableCard);
             flowPane.getChildren().add(selectableCard);
         }
@@ -411,7 +411,6 @@ public class ItemSelectVIPController {
                 selectableCard.setImage(image);
             }
 
-            setupHoverEffect(selectableCard, items);
 
             if (items.getCopies() == 0) {
                 selectableCard.cardSetDisable(true);
@@ -423,15 +422,14 @@ public class ItemSelectVIPController {
                         } else if (!selectableCard.isSelected()) {
                             selectableCard.setSelected(true);
                         }
-                        if (selectableCard.isSelected()) {
-                            showItemDescription(items);
-                        }
                     }
                 });
             }
+            setupHoverEffect(selectableCard, items);
             cardList.add(selectableCard);
             flowPane.getChildren().add(selectableCard);
         }
+
 
         dvdButton.setOnAction(event -> {
             // Filter items based on DVD type
@@ -580,13 +578,21 @@ public class ItemSelectVIPController {
         tooltip.setWrapText(true);
         tooltip.setMaxWidth(400);
 
-        selectableCard.setOnMouseEntered(event -> {
+        // Add the new hover effect without overwriting the existing one
+        EventHandler<MouseEvent> enterHandler = event -> {
             Point2D location = selectableCard.localToScreen(selectableCard.getBoundsInLocal().getMaxX(), selectableCard.getBoundsInLocal().getMaxY());
             tooltip.show(selectableCard, location.getX(), location.getY());
-        });
+        };
 
-        selectableCard.setOnMouseExited(event -> tooltip.hide());
+        EventHandler<MouseEvent> exitHandler = event -> {
+            tooltip.hide();
+        };
+
+        // Combine the new hover effect with the existing one
+        selectableCard.addEventHandler(MouseEvent.MOUSE_ENTERED, enterHandler);
+        selectableCard.addEventHandler(MouseEvent.MOUSE_EXITED, exitHandler);
     }
+
 
     public void Back() throws IOException {
         Path path = Paths.get("src/main/resources/com/example/hello2/FXML/LoginSignup.fxml");
@@ -749,25 +755,6 @@ public class ItemSelectVIPController {
         alert.setTitle("Information");
         alert.setHeaderText(null);
         alert.setContentText(message);
-        alert.showAndWait();
-    }
-
-    private void showItemDescription(ItemModel item) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Item Description");
-        TextArea textArea = new TextArea(item.getDescription());
-        textArea.setPrefWidth(450); // Set the preferred width
-        textArea.setWrapText(true); // Enable text wrapping
-        ScrollPane scrollPane = new ScrollPane(textArea);
-        scrollPane.setPrefWidth(400); // Set the preferred width of the scroll pane
-        scrollPane.setPrefHeight(200); // Set the preferred height of the scroll pane
-        alert.setHeaderText(item.getTitle());
-        alert.getDialogPane().setContent(scrollPane);
-
-        // Add an OK button to close the alert
-        ButtonType okButton = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
-        alert.getButtonTypes().setAll(okButton);
-
         alert.showAndWait();
     }
 

@@ -1,6 +1,7 @@
 package com.example.hello2.Model;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.image.Image;
