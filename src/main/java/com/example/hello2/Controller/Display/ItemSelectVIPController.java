@@ -47,9 +47,9 @@ public class ItemSelectVIPController {
     @FXML
     private Button freebutton;
 
-    HashMap<String, String> itemImageFile = new HashMap<>();
+    static HashMap<String, String> itemImageFile = new HashMap<>();
 
-    {
+    static {
         itemImageFile.put("Casablanca", "Casablanca.png");
         itemImageFile.put("Star Wars", "StarWars.png");
         itemImageFile.put("Easy Rider", "EasyRider.png");
@@ -126,6 +126,7 @@ public class ItemSelectVIPController {
     static void owned(ScrollPane ownedItemsDisplay, String id) throws IOException {
         ArrayList<ItemModel> itemModelArrayList = new ItemsFileReader().readFileItems();
         ArrayList<SelectedItems> selectedItemsArrayList = new SelectedItemsReader().readFileSelectedItems();
+
         FlowPane flowPane = new FlowPane();
         flowPane.setHgap(30); // Set horizontal gap between elements
         flowPane.setVgap(10); // Set vertical gap between elements
@@ -140,12 +141,21 @@ public class ItemSelectVIPController {
         for (SelectedItems temp : selectedItemsArrayList) {
             for (ItemModel items : itemModelArrayList) {
                 if (temp.getSelectedItemsList().contains(items.getID()) && Objects.equals(temp.getID(), id)) {
-                    Text owned = new Text(items.toString());
-                    owned.setStyle("-fx-fill: white;"); // Set text color of the Text
-                    owned.setFont(Font.font(14));
-                    HBox itemBox = new HBox();
-                    itemBox.getChildren().add(owned);
-                    flowPane.getChildren().add(itemBox);
+                    SelectableCard selectableCard = new SelectableCard();
+
+                    selectableCard.setText(items.toString());
+                    selectableCard.setUserData(items.getRentalType());
+                    selectableCard.setId(items.getID());
+
+
+                    String fileName = itemImageFile.get(items.getTitle());
+                    URL resourceUrl = ItemSelectVIPController.class.getResource("/com/example/hello2/Images/" + fileName);
+                    if (resourceUrl != null) {
+                        Image image = new Image(resourceUrl.toExternalForm());
+                        selectableCard.setImage(image);
+                    }
+                    flowPane.getChildren().add(selectableCard);
+
                 }
             }
         }
