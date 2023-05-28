@@ -13,6 +13,7 @@ import com.example.hello2.Writer.UsersFileWriter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,7 +22,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -410,6 +410,9 @@ public class ItemSelectVIPController {
                 Image image = new Image(resourceUrl.toExternalForm());
                 selectableCard.setImage(image);
             }
+
+            setupHoverEffect(selectableCard, items);
+
             if (items.getCopies() == 0) {
                 selectableCard.cardSetDisable(true);
             } else {
@@ -570,6 +573,19 @@ public class ItemSelectVIPController {
                 }
             }
         }
+    }
+
+    private void setupHoverEffect(SelectableCard selectableCard, ItemModel item) {
+        Tooltip tooltip = new Tooltip(item.getDescription());
+        tooltip.setWrapText(true);
+        tooltip.setMaxWidth(400);
+
+        selectableCard.setOnMouseEntered(event -> {
+            Point2D location = selectableCard.localToScreen(selectableCard.getBoundsInLocal().getMaxX(), selectableCard.getBoundsInLocal().getMaxY());
+            tooltip.show(selectableCard, location.getX(), location.getY());
+        });
+
+        selectableCard.setOnMouseExited(event -> tooltip.hide());
     }
 
     public void Back() throws IOException {
