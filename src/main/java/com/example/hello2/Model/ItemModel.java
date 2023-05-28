@@ -8,7 +8,6 @@ public class ItemModel {
     private String rentalType;
 
     private String loanType;
-    private String description;
 
     private int copies;
 

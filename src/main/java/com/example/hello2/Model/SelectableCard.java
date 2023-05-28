@@ -68,11 +68,6 @@ public class SelectableCard extends StackPane {
         updateStyle();
     }
 
-
-    public boolean isEmpty() {
-        return text.getText().isEmpty();
-    }
-
     public void setText(String itemText) {
         text.setText(itemText);
     }
