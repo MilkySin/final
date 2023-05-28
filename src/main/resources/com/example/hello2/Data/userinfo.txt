@@ -97,7 +97,8 @@ Charlotte,Laura456$,C096,444 Cherry Avenue,Regular,17890,0,160.00
 Liam,Password123@,C097,555 Walnut Drive,Guest,98210,0,0.00
 Harper,Welcome123!,C098,666 Cedar Street,VIP,1089,2,600.00
 Ethan,Secure456@,C099,777 Oak Court,Regular,9021,0,35.00
-Evelyn,Password123$,C100,888 Pine Avenue,Guest,890,0,0.00
+Evelyn,Password123$,C100,888 Pine Avenue,Guest,890,0,100.00
 Testtester,Hello123!,C101,dfafa,Guest,123,0,100.00
 siadjsaidjasjdiad,Hello123!,C102,dsadsad,Guest,12810318301,0,0.00
 Shirin Shujaa,Hello123!,C103,Saigon,Guest,0987654,0,0.00
+Minh hiiiiiiii,Hello123!,C104,hello ,Guest,09876,0,0.00
