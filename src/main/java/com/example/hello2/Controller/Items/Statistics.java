@@ -41,7 +41,7 @@ public class Statistics {
             fileContent.append(user.toString());
         }
 
-        ArrayList<UserModel> userList = reader.readFileUser();
+        ArrayList<UserModel> userList = reader.getUserList();
         for (UserModel user : userList) {
             if (Objects.equals(user.getAccountType(), "Regular")) {
                 regularCount++;
@@ -55,9 +55,9 @@ public class Statistics {
         }
 
         accountPieChart.getData().addAll(
-                new PieChart.Data("VIP", vipCount/2),
-                new PieChart.Data("Regular", regularCount/2),
-                new PieChart.Data("Guest", guestCount/2)
+                new PieChart.Data("VIP", vipCount),
+                new PieChart.Data("Regular", regularCount),
+                new PieChart.Data("Guest", guestCount)
         );
         accountPieChart.getData().forEach(data -> data.getNode().setStyle("-fx-text-fill: white;"));
         // Add data labels
@@ -75,7 +75,7 @@ public class Statistics {
             fileContent.append(item.toString());
         }
 
-        ArrayList<ItemModel> itemList = reader.readFileItems();
+        ArrayList<ItemModel> itemList = reader.getItemList();
         for (ItemModel item : itemList) {
             if (Objects.equals(item.getRentalType(), "DVD")) {
                 DVD++;
@@ -89,14 +89,15 @@ public class Statistics {
         }
 
         ItemTypePieChart.getData().addAll(
-                new PieChart.Data("DVD", DVD/2),
-                new PieChart.Data("Record", Record/2),
-                new PieChart.Data("Game", Game/2)
+                new PieChart.Data("DVD", DVD),
+                new PieChart.Data("Record", Record),
+                new PieChart.Data("Game", Game)
         );
         ItemTypePieChart.getData().forEach(data -> data.getNode().setStyle("-fx-text-fill: white;"));
         // Add data labels
         addDataLabels(ItemTypePieChart);
     }
+
     private void initializeItemGenrePieChart() throws IOException {
         int Drama = 0;
         int Horror = 0;
@@ -109,7 +110,7 @@ public class Statistics {
             fileContent.append(item.toString());
         }
 
-        ArrayList<ItemModel> itemList = reader.readFileItems();
+        ArrayList<ItemModel> itemList = reader.getItemList();
         for (ItemModel item : itemList) {
             String genre = item.getGenre();
             if (genre != null && !genre.equalsIgnoreCase("None")) {
@@ -126,10 +127,10 @@ public class Statistics {
         }
 
         GenreTypePieChart.getData().addAll(
-                new PieChart.Data("Drama", Drama/2),
-                new PieChart.Data("Horror", Horror/2),
-                new PieChart.Data("Comedy", Comedy/2),
-                new PieChart.Data("Action", Action/2)
+                new PieChart.Data("Drama", Drama),
+                new PieChart.Data("Horror", Horror),
+                new PieChart.Data("Comedy", Comedy),
+                new PieChart.Data("Action", Action)
         );
 
         GenreTypePieChart.getData().forEach(data -> data.getNode().setStyle("-fx-text-fill: white;"));
