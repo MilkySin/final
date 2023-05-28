@@ -12,6 +12,7 @@ import com.example.hello2.Writer.SelectedItemsWriter;
 import com.example.hello2.Writer.UsersFileWriter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -174,6 +175,7 @@ public class ItemSelectGuestController {
                 selectableCard.cardSetDisable(true);
             } else {
                 int finalMaxSelect = maxSelect;
+                setupHoverEffect(selectableCard, items);
                 selectableCard.setOnMouseClicked(event -> {
                     if (!selectableCard.cardIsDisabled()) {
                         if (selectableCard.isSelected() && selectedCount[0] > 0) {
@@ -182,9 +184,6 @@ public class ItemSelectGuestController {
                         } else if (!selectableCard.isSelected() && selectedCount[0] < finalMaxSelect) {
                             selectedCount[0]++;
                             selectableCard.setSelected(true);
-                        }
-                        if (selectableCard.isSelected()) {
-                            showItemDescription(items);
                         }
                     }
                 });
@@ -519,23 +518,17 @@ public class ItemSelectGuestController {
         alert.showAndWait();
     }
 
-    private void showItemDescription(ItemModel item) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Item Description");
-        TextArea textArea = new TextArea(item.getDescription());
-        textArea.setPrefWidth(450); // Set the preferred width
-        textArea.setWrapText(true); // Enable text wrapping
-        ScrollPane scrollPane = new ScrollPane(textArea);
-        scrollPane.setPrefWidth(400); // Set the preferred width of the scroll pane
-        scrollPane.setPrefHeight(200); // Set the preferred height of the scroll pane
-        alert.setHeaderText(item.getTitle());
-        alert.getDialogPane().setContent(scrollPane);
+    private void setupHoverEffect(SelectableCard selectableCard, ItemModel item) {
+        Tooltip tooltip = new Tooltip(item.getDescription());
+        tooltip.setWrapText(true);
+        tooltip.setMaxWidth(400);
 
-        // Add an OK button to close the alert
-        ButtonType okButton = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
-        alert.getButtonTypes().setAll(okButton);
+        selectableCard.setOnMouseEntered(event -> {
+            Point2D location = selectableCard.localToScreen(selectableCard.getBoundsInLocal().getMaxX(), selectableCard.getBoundsInLocal().getMaxY());
+            tooltip.show(selectableCard, location.getX(), location.getY());
+        });
 
-        alert.showAndWait();
+        selectableCard.setOnMouseExited(event -> tooltip.hide());
     }
 
 }
