@@ -129,12 +129,9 @@ public class Statistics {
             Tooltip tooltip = new Tooltip(data.getName() + ": " + (int) data.getPieValue());
             Tooltip.install(data.getNode(), tooltip);
 
-            data.getNode().setOnMouseEntered(event -> {
-                tooltip.show(pieChart.getScene().getWindow(), event.getScreenX(), event.getScreenY() + 10);
-            });
-            data.getNode().setOnMouseExited(event -> {
-                tooltip.hide();
-            });
+            data.getNode().setOnMouseEntered(event -> tooltip.show(pieChart.getScene().getWindow(), event.getScreenX(),
+                    event.getScreenY() + 10));
+            data.getNode().setOnMouseExited(event -> tooltip.hide());
         }
     }
 
