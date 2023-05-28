@@ -1,0 +1,77 @@
+.tab-down-button {
+-fx-padding: 0;
+}
+
+.tab-down-button .arrow {
+-fx-padding: 0;
+}
+
+.tab {
+  -fx-background-color: white;
+  -fx-padding: 0;
+  -fx-background-insets: 0;
+ }
+
+.tab:top {
+  -fx-padding: 0;
+  -fx-background-insets: 0;
+ }
+
+ .tab:right {
+  -fx-padding: 0;
+  -fx-background-insets: 0;
+ }
+
+ .tab:bottom {
+  -fx-padding: 0;
+  -fx-background-insets: 0;
+ }
+
+ .tab:left {
+  -fx-padding: 0;
+  -fx-background-insets: 0;
+ }
+
+ .tab-header-area {
+  -fx-padding: 0;
+  -fx-background-insets: 0;
+ }
+
+ .tab-pane:top *.tab-header-area {
+  -fx-background-insets: 0;
+  -fx-padding: 0;
+ }
+
+ .tab-pane:bottom *.tab-header-area {
+  -fx-background-insets: 0;
+  -fx-padding: 0;
+ }
+
+ .tab-pane:left *.tab-header-area {
+  -fx-background-insets: 0;
+  -fx-padding: 0;
+ }
+
+ .tab-pane:right *.tab-header-area {
+  -fx-background-insets: 0;
+  -fx-padding: 0;
+ }
+
+.tab-pane .tab
+{
+    -fx-background-color: linear-gradient(to bottom, repeat, #CCCCCC , #808080 );
+    -fx-pref-width: 295;
+    -fx-pref-height: 30.0;
+
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-alignment: CENTER;
+    -fx-pref-width: 295;
+    -fx-text-fill: -fx-text-base-color;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: pink;
+    -fx-background-insets: 0 1 1 0, 1 2 0 1, 2 3 0 2;
+}

@@ -9,26 +9,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ItemsFileWriter {
-    private String ID;
-    private String title;
-    private String rentalType;
-    private String loanType;
-    private String Availability;
-    private int copies;
-    private double fee;
-    private String status;
-
-    public void ItemsWriteFile(ArrayList<ItemModel> itemlist) throws IOException {
-        File file = new File("new_items.txt");
+    public void ItemsWriteFile(ArrayList<ItemModel> itemModelArrayList) throws IOException {
+        File file = new File("src/main/resources/com/example/hello2/Data/items.txt");
         FileWriter fw = new FileWriter(file, false); // set append to false
         BufferedWriter bw = new BufferedWriter(fw);
-        for (ItemModel item : itemlist) {
-            if(item.getCopies() == 0){
+        for (ItemModel item : itemModelArrayList) {
+            if (item.getCopies() == 0) {
                 item.setStatus("Borrowed");
 
-            } else
-                item.setStatus("Available");
-            bw.write(item.getID() + "," + item.getTitle() + "," + item.getRentalType() + "," + item.getLoanType() + "," + item.getCopies() + "," + item.getFee()+","+item.getStatus());
+            } else item.setStatus("Available");
+            bw.write(
+                    item.getID() + "," + item.getTitle() + "," + item.getGenre() + "," + item.getRentalType() + "," + item.getLoanType() + "," + item.getCopies() + "," + item.getFee() + "," + item.getStatus());
             bw.write("\n");
         }
         bw.close();

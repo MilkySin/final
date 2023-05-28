@@ -1,31 +1,29 @@
 package com.example.hello2.Controller.Display;
 
 //Fixed
-import com.example.hello2.Model.ItemModel;
+
+import com.example.hello2.Controller.Users.EditUser;
 import com.example.hello2.Model.UserModel;
-import com.example.hello2.Reader.ItemsFileReader;
 import com.example.hello2.Reader.UserFileReader;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Objects;
 
 public class DisplayCustomersController {
+    public Button VIP;
     @FXML
     public TextArea customerTextArea;
 
     public Button back;
     public Button SortByID;
     public Button SortByName;
+    public Button Regular;
+    public Button Guest;
 
 
     @FXML
@@ -33,7 +31,7 @@ public class DisplayCustomersController {
         UserFileReader reader = new UserFileReader();
         StringBuilder fileContent = new StringBuilder();
 
-        for(UserModel Users : reader.readFileUser()){
+        for (UserModel Users : reader.readFileUser()) {
             fileContent.append(Users.toString());
         }
         customerTextArea.setText(fileContent.toString());
@@ -41,8 +39,6 @@ public class DisplayCustomersController {
     }
 
     @FXML
-
-
     void SortByID() throws IOException {
         System.out.println("Sorting by ID...");
         UserFileReader read = new UserFileReader();
@@ -52,9 +48,9 @@ public class DisplayCustomersController {
         read.readFileUser().sort(Comparator.comparing(UserModel::getId));
         customerTextArea.clear();
 
-        for(UserModel users: read.readFileUser()){
+        for (UserModel users : read.getUserList()) {
             content.append(users.toString());
-            System.out.println(users.toString());
+
         }
 
         customerTextArea.setText(content.toString());
@@ -62,13 +58,7 @@ public class DisplayCustomersController {
 
     @FXML
     public void Back() throws IOException {
-        Path path = Paths.get("src/main/resources/com/example/hello2/SceneAdmin.fxml");
-        FXMLLoader loader = new FXMLLoader(path.toUri().toURL());
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) back.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        EditUser.Log(back);
     }
 
     @FXML
@@ -81,10 +71,46 @@ public class DisplayCustomersController {
         reader.readFileUser().sort(Comparator.comparing(UserModel::getUsername));
 
         customerTextArea.clear();
-        for(UserModel users: reader.readFileUser()){
+        for (UserModel users : reader.getUserList()) {
             content.append(users.toString());
         }
         customerTextArea.setText(content.toString());
     }
 
+
+    public void Regular() throws IOException {
+        UserFileReader temp = new UserFileReader();
+        ArrayList<UserModel> userList = temp.readFileUser();
+        ArrayList<UserModel> regularList = new ArrayList<>();
+        for (UserModel User : userList) {
+            if (Objects.equals(User.getAccountType(), "Regular")) {
+                regularList.add(User);
+            }
+        }
+        customerTextArea.setText(regularList.toString());
+    }
+
+    public void Guest() throws IOException {
+        UserFileReader temp = new UserFileReader();
+        ArrayList<UserModel> userList = temp.readFileUser();
+        ArrayList<UserModel> guestList = new ArrayList<>();
+        for (UserModel User : userList) {
+            if (Objects.equals(User.getAccountType(), "Guest")) {
+                guestList.add(User);
+            }
+        }
+        customerTextArea.setText(guestList.toString());
+    }
+
+    public void VIP() throws IOException {
+        UserFileReader temp = new UserFileReader();
+        ArrayList<UserModel> userList = temp.readFileUser();
+        ArrayList<UserModel> VipList = new ArrayList<>();
+        for (UserModel User : userList) {
+            if (Objects.equals(User.getAccountType(), "VIP")) {
+                VipList.add(User);
+            }
+        }
+        customerTextArea.setText(VipList.toString());
+    }
 }
