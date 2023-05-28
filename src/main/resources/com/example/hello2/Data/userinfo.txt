@@ -24,7 +24,7 @@ Henry,HelloWorld!1,C023,666 Maple Drive,VIP,9321,3,1200.00
 Charlotte,Laura456$,C024,777 Cherry Lane,Regular,1890,0,180.00
 Liam,Password123@,C025,888 Walnut Street,Guest,43210,0,0.00
 Harper,Welcome123!,C026,999 Cedar Avenue,VIP,1789,2,600.00
-Ethan,Secure456@,C027,111 Oak Court,Regular,9821,0,50.00
+Ethan,Secure456@,C027,111 Oak Court,VIP,9821,4,138.25
 Evelyn,Password123$,C028,222 Pine Street,Guest,1290,0,0.00
 Alexander,HelloWorld!1,C029,333 Maple Road,VIP,9821,1,900.00
 Abigail,Laura456$,C030,444 Cherry Avenue,Regular,1789,0,220.00

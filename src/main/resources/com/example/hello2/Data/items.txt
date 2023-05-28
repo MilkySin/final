@@ -1,9 +1,9 @@
 I019-2020,Sonic,Comedy,DVD,2 Days Loan,3,5.99,Available
 I017-1992,Schindler's List,Action,DVD,2 Days Loan,3,2.99,Available
 I016-2004,The Notebook,Drama,Record,2 Days Loan,1,2.99,Available
-I015-2010,Inception,Action,Record,1 Week Loan,5,2.99,Available
+I015-2010,Inception,Action,Record,1 Week Loan,8,2.99,Available
 I014-1999,The Sixth Sense,Horror,Record,2 Days Loan,1,2.99,Available
-I013-2016,Overwatch,None,Game,2 Days Loan,4,2.99,Available
+I013-2016,Overwatch,None,Game,2 Days Loan,3,2.99,Available
 I012-2013,The Last of Us,None,Game,1 Week Loan,1004,8.99,Available
 I011-2010,RDR,None,Game,2 Days Loan,3,4.99,Available
 I010-2017,IT,Horror,DVD,2 Days Loan,2,2.99,Available
@@ -11,6 +11,6 @@ I009-1999,Fight Club,Drama,DVD,1 Week Loan,37,5.99,Available
 I008-2008,The Dark Knight,Action,DVD,1 Week Loan,1000,3.99,Available
 I004-1982,Blade Runner,Action,Record,1 Week Loan,999,1.99,Available
 I003-1969,Easy Rider,Drama,Record,2 Days Loan,6,4.99,Available
-I002-1977,Star Wars,Action,Record,1 Week Loan,3,3.99,Available
+I002-1977,Star Wars,Action,Record,1 Week Loan,25,4.0,Available
 I001-1985,Casablanca,Drama,Record,2 Days Loan,2,2.99,Available
 I018-1939,Gone with the Wind,Drama,Record,1 Week Loan,4,2.99,Available
